@@ -1,7 +1,7 @@
 package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.common.config.Constant;
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.BaseModel;
 import com.google.common.collect.Lists;
 
 import java.util.List;

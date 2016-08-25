@@ -1,12 +1,13 @@
 package com.doubleview.jeebase.system.model;
 
+import com.doubleview.jeebase.common.base.TreeModel;
 import com.doubleview.jeebase.common.config.Constant;
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.BaseModel;
 
 /**
  * 菜单实体类
  */
-public class Menu extends BaseModel<Menu>{
+public class Menu extends TreeModel<Menu> {
 
     private String name;    // 名称
 

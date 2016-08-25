@@ -1,13 +1,13 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.TreeModel;
 
 import java.util.List;
 
 /**
  * 部门实体类
  */
-public class Department extends BaseModel<Department>{
+public class Department extends TreeModel<Department> {
 
     private String name; //部门名称
 

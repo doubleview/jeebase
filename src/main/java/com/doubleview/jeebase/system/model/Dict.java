@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.BaseModel;
 
 /**
  * 字典实体类

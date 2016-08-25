@@ -1,9 +1,11 @@
-package com.doubleview.jeebase.common.persistence;
+package com.doubleview.jeebase.common.base;
 
+import com.doubleview.jeebase.common.persistence.Page;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * BaseModel支持类
@@ -25,6 +27,7 @@ public abstract  class BaseModel<T> implements Serializable {
     public static final String DELETE = "1";//已删除数据
 
     public static final String AUDIT = "2";//待审核数据
+
     /**
      * 当前实体分页对象
      */
@@ -32,7 +35,6 @@ public abstract  class BaseModel<T> implements Serializable {
 
 
     public BaseModel() {
-        super();
         this.delFlag = NORMAL;
     }
 
@@ -46,6 +48,7 @@ public abstract  class BaseModel<T> implements Serializable {
      * 插入之前执行方法，子类实现
      */
     public  void preInsert(){
+        this.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         this.createTime = new Date();
         this.updateTime = createTime;
     };

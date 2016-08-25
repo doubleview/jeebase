@@ -1,11 +1,11 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.TreeModel;
 
 /**
  * 地区实体类
  */
-public class Area extends BaseModel<Area>{
+public class Area extends TreeModel<Area> {
 
     private String name;//区域名称
 

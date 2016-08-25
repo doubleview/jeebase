@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.persistence.BaseModel;
+import com.doubleview.jeebase.common.base.BaseModel;
 import com.google.common.collect.Lists;
 
 import java.util.Date;
@@ -10,7 +10,6 @@ import java.util.List;
  * 用户实体类
  */
 public class User extends BaseModel<User> {
-
 
     private String loginName;// 登录名
 
@@ -42,7 +41,7 @@ public class User extends BaseModel<User> {
 
     private Date oldLoginDate;    // 上次登陆日期
 
-    Department department;//所属部门
+    private Department department;//所属部门
 
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 

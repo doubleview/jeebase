@@ -1,11 +1,11 @@
-package com.doubleview.jeebase.common.persistence.annotation;
+package com.doubleview.jeebase.common.persistence;
 
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
 /**
- * ±êÊ¶MyBatisµÄDAO,·½±ã{@link org.mybatis.spring.mapper.MapperScannerConfigurer}µÄÉ¨Ãè¡£
+ * ï¿½ï¿½Ê¶MyBatisï¿½ï¿½DAO,ï¿½ï¿½ï¿½ï¿½{@link org.mybatis.spring.mapper.MapperScannerConfigurer}ï¿½ï¿½É¨ï¿½è¡£
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
