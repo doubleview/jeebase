@@ -1,4 +1,4 @@
 /target/*
 /.idea/*
 *.iml
-.class
+/src/main/webapp/WEB-INF/classes/*
