@@ -21,8 +21,8 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 获取单条数据
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 实体对象
      */
     public T get(String id) {
         return dao.get(id);
@@ -30,8 +30,8 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 获取单条数据
-     * @param entity
-     * @return
+     * @param entity 实体对象
+     * @return 实体对象
      */
     public T get(T entity) {
         return dao.get(entity);
@@ -39,8 +39,8 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 查询列表数据
-     * @param entity
-     * @return
+     * @param entity 实体对象
+     * @return 查询出的数据列表
      */
     public List<T> findList(T entity) {
         return dao.findList(entity);
@@ -49,8 +49,8 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
     /**
      * 查询分页数据
      * @param page 分页对象
-     * @param entity
-     * @return
+     * @param entity 实体对象
+     * @return 分页对象(包含查询出的数据列表)
      */
     public Page<T> findPage(Page<T> page, T entity) {
         entity.setPage(page);
@@ -60,7 +60,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 保存数据（插入或更新）
-     * @param entity
+     * @param entity 要保存或更新的实体
      */
     @Transactional(readOnly = false)
     public void save(T entity) {
@@ -75,7 +75,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 删除数据
-     * @param entity
+     * @param entity 要删除的实体
      */
     @Transactional(readOnly = false)
     public void delete(T entity) {
