@@ -18,6 +18,8 @@ public class LogInterceptor implements HandlerInterceptor{
     private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal("ThreadLocal StartTime");
 
     private static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (logger.isDebugEnabled()){

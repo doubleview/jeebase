@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doubleview.jeebase.system.model.Dict">
+
+	<!--根据主键获取实体对象-->
+	<select id="get" resultType="Dict">
+		SELECT 
+			* 
+		FROM sys_dict 
+		WHERE id = #{id}
+	</select>
+
+	<!--条件查询实体对象列表-->
+	<select id="findList" resultType="Dict">
+		SELECT 
+			* 
+		FROM sys_dict 
+		WHERE del_flag = #{NORMAL}
+		<if test="type != null and type != ''">
+			AND type = #{type}
+		</if>
+		<if test="description != null and description != ''">
+			AND description LIKE CONCAT('%', #{description}, '%')
+		</if>
+		ORDER BY type, sort, update_date DESC
+	</select>
+	
+	<!--得到所有字典类型-->
+	<select id="findTypeList" resultType="string">
+		SELECT 
+			type 
+		FROM sys_dict 
+		WHERE del_flag = #{NORMAL}
+		GROUP BY type
+		ORDER BY type
+	</select>
+
+	<!--插入实体对象-->
+	<insert id="insert">
+		INSERT INTO sys_dict(
+			id, 
+			value, 
+			label, 
+			type, 
+			description, 
+			sort, 
+			create_date,
+			update_date,
+			remarks, 
+			del_flag
+		) VALUES (
+			#{id}, 
+			#{value}, 
+			#{label}, 
+			#{type}, 
+			#{description}, 
+			#{sort}, 
+			#{createDate},
+			#{updateDate},
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+
+	<!--更新实体对象-->
+	<update id="update">
+		UPDATE sys_dict SET 
+			value = #{value}, 
+			label = #{label}, 
+			type = #{type}, 
+			description = #{description}, 
+			sort = #{sort}, 
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<!--删除实体对象-->
+	<update id="delete">
+		UPDATE sys_dict SET 
+			del_flag = #{DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

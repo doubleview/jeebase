@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 /**
  * 分页支持类
- * @param <T>
  */
 public class Page<T> {
 

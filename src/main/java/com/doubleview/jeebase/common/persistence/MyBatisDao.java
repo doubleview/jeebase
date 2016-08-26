@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.*;
 
 /**
- * ��ʶMyBatis��DAO,����{@link org.mybatis.spring.mapper.MapperScannerConfigurer}��ɨ�衣
+ * MyBatis标识接口
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

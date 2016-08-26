@@ -42,13 +42,13 @@ public abstract class BaseController {
         return "error/403";
     }
 
+
     /**
      * 初始化数据绑定
-     * 1. 将所有传递进来的String进行HTML编码，防止XSS攻击
-     * 2. 将字段中Date类型转换为String类型
      */
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
+
         // String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击
         binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
             @Override

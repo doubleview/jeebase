@@ -34,17 +34,6 @@ public class Constant {
             }
     }
 
-    public static void main(String[] args){
-        Properties properties = new Properties();
-        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("common.properties");
-        //InputStream inputStream = ClassLoader.getSystemResourceAsStream("common.properties");
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(properties.get("productName"));
-    }
 
     /**
      * 保存全局属性值(缓存)
@@ -119,6 +108,19 @@ public class Constant {
     public static Boolean isDemoMode() {
         String dm = getConfig("demoMode");
         return "true".equals(dm) || "1".equals(dm);
+    }
+
+
+    public static void main(String[] args){
+        Properties properties = new Properties();
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("common.properties");
+        //InputStream inputStream = ClassLoader.getSystemResourceAsStream("common.properties");
+        try {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(properties.get("productName"));
     }
 
 }
