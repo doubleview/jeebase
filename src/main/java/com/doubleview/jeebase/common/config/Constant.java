@@ -20,6 +20,9 @@ public class Constant {
 
     private static Properties props;
 
+    /**
+     * 静态加载配置文件
+     */
     static{
         props = new Properties();
         InputStream is = null;
