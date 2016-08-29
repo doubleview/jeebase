@@ -40,7 +40,6 @@
     </filter-mapping>
 
     <!-- Apache Shiro -->
-<!--
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -53,7 +52,6 @@
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
--->
 
     <!-- Spring MVC-->
     <servlet>

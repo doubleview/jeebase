@@ -1,6 +1,7 @@
 package com.doubleview.jeebase.common.base;
 
 import com.doubleview.jeebase.common.persistence.Page;
+import com.doubleview.jeebase.system.model.User;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
@@ -14,7 +15,11 @@ public abstract  class BaseModel<T> implements Serializable {
 
     protected String id;//实体编号
 
+    protected User createBy;//创建者
+
     protected Date createTime;    // 创建日期
+
+    protected User updateBy;//更新者
 
     protected Date updateTime;    // 更新日期
 
@@ -98,6 +103,22 @@ public abstract  class BaseModel<T> implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public User getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(User updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public User getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(User createBy) {
+        this.createBy = createBy;
     }
 
     public Page<T> getPage() {

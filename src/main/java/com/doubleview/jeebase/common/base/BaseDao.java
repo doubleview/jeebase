@@ -31,14 +31,14 @@ public interface BaseDao<T> {
 
     /**
      * 插入数据
-     * @param entity 实体对象
+     * @param entity 要插入的实体对象
      * @return
      */
      int insert(T entity);
 
     /**
      * 更新数据
-     * @param entity
+     * @param entity 要更新的实体对象
      * @return
      */
      int update(T entity);
@@ -46,7 +46,7 @@ public interface BaseDao<T> {
 
     /**
      * 删除数据（一般为逻辑删除，更新del_flag字段为1）
-     * @param entity
+     * @param entity 要删除的实体
      * @return
      */
      int delete(T entity);

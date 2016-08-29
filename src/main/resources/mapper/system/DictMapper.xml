@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.model.Dict">
+<mapper namespace="com.doubleview.jeebase.system.dao.DictDao">
 
 	<!--根据主键获取实体对象-->
 	<select id="get" resultType="Dict">
@@ -43,8 +43,10 @@
 			label, 
 			type, 
 			description, 
-			sort, 
+			sort,
+			create_by,
 			create_date,
+			update_by,
 			update_date,
 			remarks, 
 			del_flag
@@ -54,8 +56,10 @@
 			#{label}, 
 			#{type}, 
 			#{description}, 
-			#{sort}, 
-			#{createDate},
+			#{sort},
+			#{createBy.id}
+			#{createDate}
+			#{updateBy.id},
 			#{updateDate},
 			#{remarks}, 
 			#{delFlag}
@@ -69,7 +73,8 @@
 			label = #{label}, 
 			type = #{type}, 
 			description = #{description}, 
-			sort = #{sort}, 
+			sort = #{sort},
+			update_by = #{updateBy.id}
 			update_date = #{updateDate},
 			remarks = #{remarks}
 		WHERE id = #{id}
