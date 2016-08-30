@@ -43,7 +43,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
      * @return 查询出的数据列表
      */
     public List<T> findList(T entity) {
-        return dao.findList(entity);
+        return dao.getList(entity);
     }
 
     /**
@@ -54,7 +54,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
      */
     public Page<T> findPage(Page<T> page, T entity) {
         entity.setPage(page);
-        page.setList(dao.findList(entity));
+        page.setList(dao.getList(entity));
         return page;
     }
 

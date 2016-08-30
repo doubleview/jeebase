@@ -26,7 +26,7 @@ public interface BaseDao<T> {
      * @param entity 实体对象
      * @return 实体对象列表
      */
-     List<T> findList(T entity);
+     List<T> getList(T entity);
 
 
     /**
