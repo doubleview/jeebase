@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.dao.UserDao" xmlns:c="http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doubleview.jeebase.system.dao.UserDao">
 
+	<!--要查询的用户列，供查询重用-->
 	<sql id="userColumns">
 		u.id AS "id",
 		u.login_name AS "loginName",
@@ -29,6 +30,7 @@
 		a.parent_id AS "department.area.parent.id",
 	</sql>
 
+	<!--用户关联，供查询重用-->
 	<sql id="userJoins">
 		FROM sys_user u
 		LEFT JOIN sys_department d ON d.id = u.department_id
@@ -98,72 +100,64 @@
 		SELECT
 		COUNT(*)
 		FROM sys_user u
-		WHERE u.del_flag = #{NORMAL}
+		WHERE u.del_status = #{NORMAL}
 	</select>
 
 	<!-- 插入用户 -->
 	<insert id="insert">
 		INSERT INTO sys_user(
 		id,
-		company_id,
-		office_id,
 		login_name,
 		password,
-		no,
 		name,
 		email,
+		skin,
 		phone,
 		mobile,
-		user_type,
+		photo,
+		login_flag,
+		remarks,
 		create_by,
 		create_date,
 		update_by,
 		update_date,
-		remarks,
-		login_flag,
-		photo,
-		del_flag
+		del_status
 		) VALUES (
 		#{id},
-		#{company.id},
-		#{office.id},
 		#{loginName},
 		#{password},
-		#{no},
 		#{name},
 		#{email},
+		#{skin},
 		#{phone},
 		#{mobile},
-		#{userType},
+		#{photo},
+		#{loginFlag},
+		#{remarks},
 		#{createBy.id},
 		#{createDate},
 		#{updateBy.id},
 		#{updateDate},
-		#{remarks},
-		#{loginFlag},
-		#{photo},
-		#{delFlag}
+		#{delStatus}
 		)
 	</insert>
 
 	<!-- 更新用户 -->
 	<update id="update">
 		UPDATE sys_user SET
-		company_id = #{company.id},
-		office_id = #{office.id},
 		login_name = #{loginName},
 		password = #{password},
-		no = #{no},
 		name = #{name},
 		email = #{email},
+		skin = #{skin},
 		phone = #{phone},
 		mobile = #{mobile},
-		user_type = #{userType},
+		photo = #{photo},
+		login_flag = #{loginFlag},
+		remarks = #{remarks},
 		update_by = #{updateBy.id},
 		update_date = #{updateDate},
-		remarks = #{remarks},
-		login_flag = #{loginFlag},
-		photo = #{photo}
+		del_status = #{delStatus},
 		WHERE id = #{id}
 	</update>
 
@@ -183,21 +177,9 @@
 		</foreach>
 	</insert>
 
-	<!-- 更新用户信息  -->
-	<update id="updateUserInfo">
-		UPDATE sys_user SET
-		email = #{email},
-		phone = #{phone},
-		mobile = #{mobile},
-		update_by = #{updateBy.id},
-		update_date = #{updateDate},
-		remarks = #{remarks},
-		photo = #{photo}
-		WHERE id = #{id}
-	</update>
 
 	<!-- 更新用户密码 -->
-	<update id="updatePasswordById">
+	<update id="updatePassword">
 		UPDATE sys_user SET
 		password = #{password}
 		WHERE id = #{id}
@@ -214,7 +196,8 @@
 	<!-- 逻辑删除用户 -->
 	<update id="delete">
 		UPDATE sys_user SET
-		del_flag = #{DEL_FLAG_DELETE}
+		del_status = #{DELETE}
 		WHERE id = #{id}
 	</update>
+
 </mapper>

@@ -28,10 +28,17 @@ public interface UserDao extends BaseDao<User>{
 
     /**
      * 查询全部用户数目
-     * @return
+     * @return 用户数目
      */
      long findAllCount();
 
+
+    /**
+     * 更新用户登录信息
+     * @param user
+     * @return
+     */
+    int updateLoginInfo(User user);
 
     /**
      * 更新用户密码
@@ -54,5 +61,6 @@ public interface UserDao extends BaseDao<User>{
      * @return
      */
      int insertUserRole(User user);
+
 
 }
