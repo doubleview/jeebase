@@ -30,7 +30,7 @@ public interface UserDao extends BaseDao<User>{
      * 查询全部用户数目
      * @return
      */
-     long findAllCount(User user);
+     long findAllCount();
 
 
     /**

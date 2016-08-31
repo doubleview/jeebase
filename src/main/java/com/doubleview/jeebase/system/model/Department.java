@@ -17,8 +17,6 @@ public class Department extends TreeModel<Department> {
 
     private String zipCode; // 邮政编码
 
-    private String master; 	// 负责人
-
     private String phone; 	// 电话
 
     private String fax; 	// 传真
@@ -28,6 +26,8 @@ public class Department extends TreeModel<Department> {
     private String useable;//是否可用
 
     private Area area;	// 归属区域
+
+    private User master;//负责人
 
     private List<String> childDeptList;//快速添加子部门
 
@@ -71,11 +71,11 @@ public class Department extends TreeModel<Department> {
         this.zipCode = zipCode;
     }
 
-    public String getMaster() {
+    public User getMaster() {
         return master;
     }
 
-    public void setMaster(String master) {
+    public void setMaster(User master) {
         this.master = master;
     }
 

@@ -41,10 +41,14 @@ public class User extends BaseModel<User> {
 
     private Date oldLoginDate;    // 上次登陆日期
 
-    private Department department;//所属部门
+    private Department department; // 所属部门
 
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
+
+    private String roleId;//根据角色id查询用户信息
+
+    private List<String> departmentIds;//根据部门id查询用户信息
 
     public User(){
         super();
@@ -188,5 +192,21 @@ public class User extends BaseModel<User> {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public List<String> getDepartmentIds() {
+        return departmentIds;
+    }
+
+    public void setDepartmentIds(List<String> departmentIds) {
+        this.departmentIds = departmentIds;
     }
 }

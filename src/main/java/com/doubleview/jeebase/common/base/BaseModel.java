@@ -25,7 +25,7 @@ public abstract  class BaseModel<T> implements Serializable {
 
     protected String remarks;    // 备注
 
-    protected String delFlag;    // 删除标记（0：正常；1：删除；2：审核）
+    protected String delStatus;    // 删除标记（0：正常；1：删除；2：审核）
 
     public static final String NORMAL = "0";//正常数据
 
@@ -40,12 +40,12 @@ public abstract  class BaseModel<T> implements Serializable {
 
 
     public BaseModel() {
-        this.delFlag = NORMAL;
+        this.delStatus  = NORMAL;
     }
 
     public BaseModel(String id) {
         this.id = id;
-        this.delFlag = NORMAL;
+        this.delStatus = NORMAL;
     }
 
 
@@ -65,12 +65,12 @@ public abstract  class BaseModel<T> implements Serializable {
         this.updateTime = new Date();
     };
 
-    public String getDelFlag() {
-        return delFlag;
+    public String getDelStatus() {
+        return delStatus;
     }
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
+    public void setDelStatus(String delStatus) {
+        this.delStatus = delStatus;
     }
 
     public String getId() {

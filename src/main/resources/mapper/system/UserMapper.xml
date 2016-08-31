@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doubleview.jeebase.system.dao.UserDao" xmlns:c="http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<sql id="userColumns">
+		u.id AS "id",
+		u.login_name AS "loginName",
+		u.password AS "password",
+		u.name AS "name",
+		u.email AS "email",
+		u.skin AS "skin",
+		u.phone AS "phone",
+		u.mobile AS "mobile",
+		u.login_ip AS "loginIp",
+		u.login_date AS "loginDate",
+		u.login_flag AS "loginFlag",
+		u.remarks AS "remarks",
+		u.create_by AS "createBy.id",
+		u.create_date AS "createDate",
+		u.update_by AS "updateBy.id",
+		u.del_flag AS "delFlag",
+		d.id AS "department.id"
+		d.name AS "department.name",
+		d.parent_id AS "department.parent.id",
+		u2.id AS "department.master.id",
+		u2.name AS "department.master.name"
+		a.id AS "department.area.id",
+		a.name AS "department.area.name",
+		a.parent_id AS "department.area.parent.id",
+	</sql>
+
+	<sql id="userJoins">
+		FROM sys_user u
+		LEFT JOIN sys_department d ON d.id = u.department_id
+		LEFT JOIN sys_user u2 ON u2.id = d.master
+		LEFT JOIN sys_area a ON a.id = d.area_id
+	</sql>
+
+	<!-- 根据id获得用户 -->
+	<select id="get" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		<include refid="userJoins"/>
+		WHERE u.id = #{id}
+	</select>
+
+	<!-- 根据登录名查询用户 -->
+	<select id="getByLoginName" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		<include refid="userJoins"/>
+		WHERE u.login_name = #{loginName} AND u.del_flag = #{NORMAL}
+	</select>
+
+	<!-- 根据部门id查询用户 -->
+	<select id="getByDepartmentId" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		<include refid="userJoins"/>
+		WHERE u.department_id  = #{departmentId} AND u.del_flag = #{NORMAL}
+	</select>
+
+	<!-- 分页查询用户信息 -->
+	<select id="getList" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		<include refid="userJoins"/>
+		<if test="roleId != null and roleId != ''">
+			JOIN sys_user_role ur ON ur.user_id = u.id AND ur.role_id = #{roleId}
+		</if>
+		<if test="departmentIds != null">
+			AND d.id =
+			<foreach collection="departmentIds" item="departmentId" open="(" close=")" separator=",">
+				departmentId
+			</foreach>
+		</if>
+		<if test="loginName != null and loginName != ''">
+			AND u.login_name like
+			CONCAT('%', #{loginName}, '%')
+		</if>
+		<if test="name != null and name != ''">
+			AND u.name like
+			CONCAT('%', #{name}, '%')
+		</if>
+		WHERE u.del_status = #{NORMAL}
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY u.name
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 查询全部用户数目 -->
+	<select id="findAllCount" resultType="long">
+		SELECT
+		COUNT(*)
+		FROM sys_user u
+		WHERE u.del_flag = #{NORMAL}
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insert">
+		INSERT INTO sys_user(
+		id,
+		company_id,
+		office_id,
+		login_name,
+		password,
+		no,
+		name,
+		email,
+		phone,
+		mobile,
+		user_type,
+		create_by,
+		create_date,
+		update_by,
+		update_date,
+		remarks,
+		login_flag,
+		photo,
+		del_flag
+		) VALUES (
+		#{id},
+		#{company.id},
+		#{office.id},
+		#{loginName},
+		#{password},
+		#{no},
+		#{name},
+		#{email},
+		#{phone},
+		#{mobile},
+		#{userType},
+		#{createBy.id},
+		#{createDate},
+		#{updateBy.id},
+		#{updateDate},
+		#{remarks},
+		#{loginFlag},
+		#{photo},
+		#{delFlag}
+		)
+	</insert>
+
+	<!-- 更新用户 -->
+	<update id="update">
+		UPDATE sys_user SET
+		company_id = #{company.id},
+		office_id = #{office.id},
+		login_name = #{loginName},
+		password = #{password},
+		no = #{no},
+		name = #{name},
+		email = #{email},
+		phone = #{phone},
+		mobile = #{mobile},
+		user_type = #{userType},
+		update_by = #{updateBy.id},
+		update_date = #{updateDate},
+		remarks = #{remarks},
+		login_flag = #{loginFlag},
+		photo = #{photo}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 删除用户和角色关联表数据 -->
+	<delete id="deleteUserRole">
+		DELETE FROM sys_user_role WHERE user_id = #{id}
+	</delete>
+
+	<!-- 插入用户和角色关联表数据 -->
+	<insert id="insertUserRole">
+		INSERT INTO sys_user_role(user_id, role_id)
+		<foreach collection="roleList" item="role" separator=" union all ">
+			SELECT #{id}, #{role.id}
+			<if test="dbName != 'mssql'">
+				FROM dual
+			</if>
+		</foreach>
+	</insert>
+
+	<!-- 更新用户信息  -->
+	<update id="updateUserInfo">
+		UPDATE sys_user SET
+		email = #{email},
+		phone = #{phone},
+		mobile = #{mobile},
+		update_by = #{updateBy.id},
+		update_date = #{updateDate},
+		remarks = #{remarks},
+		photo = #{photo}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更新用户密码 -->
+	<update id="updatePasswordById">
+		UPDATE sys_user SET
+		password = #{password}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更新登录信息，如登录IP、登录时间 -->
+	<update id="updateLoginInfo">
+		UPDATE sys_user SET
+		login_ip = #{loginIp},
+		login_Date = #{loginDate}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 逻辑删除用户 -->
+	<update id="delete">
+		UPDATE sys_user SET
+		del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+</mapper>
