@@ -46,7 +46,8 @@ public class User extends BaseModel<User> {
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
 
-    private String roleId;//根据角色id查询用户信息
+
+    private Role role;//根据角色信息查询用户
 
     private List<String> departmentIds;//根据部门id查询用户信息
 
@@ -194,12 +195,12 @@ public class User extends BaseModel<User> {
         this.roleList = roleList;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public List<String> getDepartmentIds() {

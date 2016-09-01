@@ -15,7 +15,7 @@
 		SELECT 
 			* 
 		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
+		WHERE del_status = #{NORMAL}
 		<if test="type != null and type != ''">
 			AND type = #{type}
 		</if>
@@ -30,7 +30,7 @@
 		SELECT 
 			type 
 		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
+		WHERE del_status = #{NORMAL}
 		GROUP BY type
 		ORDER BY type
 	</select>
@@ -49,7 +49,7 @@
 			update_by,
 			update_date,
 			remarks, 
-			del_flag
+			del_status
 		) VALUES (
 			#{id}, 
 			#{value}, 
@@ -62,7 +62,7 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks}, 
-			#{delFlag}
+			#{delStatus}
 		)
 	</insert>
 

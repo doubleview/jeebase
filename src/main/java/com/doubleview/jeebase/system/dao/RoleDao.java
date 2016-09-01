@@ -4,6 +4,7 @@ import com.doubleview.jeebase.common.base.BaseDao;
 import com.doubleview.jeebase.common.persistence.MyBatisDao;
 import com.doubleview.jeebase.system.model.Menu;
 import com.doubleview.jeebase.system.model.Role;
+import com.doubleview.jeebase.system.model.RoleMenu;
 
 /**
  * 角色Dao接口
@@ -20,37 +21,18 @@ public interface RoleDao extends BaseDao<Menu> {
 
 
     /**
-     * 根据角色英文名获取角色
-     * @param role
+     * 插入角色菜单关系
+     * @param roleMenu
      * @return
      */
-     Role getByEnname(Role role);
+     int insertRoleMenu(RoleMenu roleMenu);
 
     /**
      * 删除角色与菜单权限关系
      * @param role
      * @return
      */
-     int deleteRoleMenu(Role role);
+     int deleteRoleMenu(RoleMenu roleMenu);
 
-    /**
-     * 插入角色菜单关系
-     * @param role
-     * @return
-     */
-     int insertRoleMenu(Role role);
 
-    /**
-     * 删除角色与公司部门关系
-     * @param role
-     * @return
-     */
-     int deleteRoleOffice(Role role);
-
-    /**
-     * 插入角色部门关系
-     * @param role
-     * @return
-     */
-     int insertRoleOffice(Role role);
 }

@@ -27,7 +27,7 @@
 		u2.name AS "department.master.name"
 		a.id AS "department.area.id",
 		a.name AS "department.area.name",
-		a.parent_id AS "department.area.parent.id",
+		a.parent_id AS "department.area.parent.id"
 	</sql>
 
 	<!--用户关联，供查询重用-->
@@ -67,24 +67,26 @@
 		SELECT
 		<include refid="userColumns"/>
 		<include refid="userJoins"/>
-		<if test="roleId != null and roleId != ''">
-			JOIN sys_user_role ur ON ur.user_id = u.id AND ur.role_id = #{roleId}
+		<if test="role != null and role.id != null and role.id != '' ">
+			JOIN sys_user_role ur ON ur.user_id = u.id AND ur.role_id = #{role.id}
 		</if>
-		<if test="departmentIds != null">
-			AND d.id =
-			<foreach collection="departmentIds" item="departmentId" open="(" close=")" separator=",">
-				departmentId
-			</foreach>
-		</if>
-		<if test="loginName != null and loginName != ''">
-			AND u.login_name like
-			CONCAT('%', #{loginName}, '%')
-		</if>
-		<if test="name != null and name != ''">
-			AND u.name like
-			CONCAT('%', #{name}, '%')
-		</if>
-		WHERE u.del_status = #{NORMAL}
+		<where>
+			<if test="departmentIds != null">
+				AND d.id =
+				<foreach collection="departmentIds" item="departmentId" open="(" close=")" separator=",">
+					departmentId
+				</foreach>
+			</if>
+			<if test="loginName != null and loginName != ''">
+				AND u.login_name like
+				CONCAT('%', #{loginName}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				AND u.name like
+				CONCAT('%', #{name}, '%')
+			</if>
+			AND u.del_status = #{NORMAL}
+		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
@@ -161,22 +163,6 @@
 		WHERE id = #{id}
 	</update>
 
-	<!-- 删除用户和角色关联表数据 -->
-	<delete id="deleteUserRole">
-		DELETE FROM sys_user_role WHERE user_id = #{id}
-	</delete>
-
-	<!-- 插入用户和角色关联表数据 -->
-	<insert id="insertUserRole">
-		INSERT INTO sys_user_role(user_id, role_id)
-		<foreach collection="roleList" item="role" separator=" union all ">
-			SELECT #{id}, #{role.id}
-			<if test="dbName != 'mssql'">
-				FROM dual
-			</if>
-		</foreach>
-	</insert>
-
 
 	<!-- 更新用户密码 -->
 	<update id="updatePassword">
@@ -200,4 +186,20 @@
 		WHERE id = #{id}
 	</update>
 
+	<!-- 删除用户和角色关联表数据 -->
+	<delete id="deleteUserRole">
+		DELETE FROM sys_user_role
+		WHERE user_id = #{userId} AND role_id = #{roleId}
+	</delete>
+
+	<!-- 插入用户和角色关联表数据 -->
+	<insert id="insertUserRole">
+		INSERT INTO sys_user_role(
+		user_id,
+		role_id
+		) VALUES (
+		#{userId},
+		#{roleId}
+		)
+	</insert>
 </mapper>

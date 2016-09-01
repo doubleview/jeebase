@@ -1,90 +1,112 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.dao.DictDao">
+<mapper namespace="com.doubleview.jeebase.system.dao.RoleDao">
 
-	<!--根据主键获取实体对象-->
-	<select id="get" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE id = #{id}
+	<!--角色列，供查询重用-->
+	<sql id="roleColumns">
+		r.id,
+		r.name,
+		r.remarks,
+		r.create_by AS "createBy.id",
+		r.create_date,
+		r.update_by AS "updateBy.id",
+		r.update_date,
+		r.del_status
+	</sql>
+
+	<!--角色关联，共查询重用-->
+	<sql id="roleJoins">
+		FROM sys_role r
+	</sql>
+
+	<!--根据id获取角色-->
+	<select id="get" resultMap="roleResult">
+		SELECT
+		<include refid="roleColumns"/>
+		<include refid="roleJoins"/>
+		WHERE r.id = #{id}
 	</select>
 
-	<!--条件查询实体对象列表-->
-	<select id="findList" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		<if test="type != null and type != ''">
-			AND type = #{type}
+	<!--根据名称获取角色-->
+	<select id="getByName" resultType="Role">
+		SELECT
+		<include refid="roleColumns"/>
+		<include refid="roleJoins"/>
+		WHERE r.name = #{name}
+		AND r.del_status = #{NORMAL}
+	</select>
+
+	<!--获取所有角色-->
+	<select id="getList">
+		SELECT
+		<include refid="roleColumns"/>,
+		<include refid="roleJoins"/>
+		<if test="user != null and user.id != null and user.id != ''">
+			JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = #{user.id}
 		</if>
-		<if test="description != null and description != ''">
-			AND description LIKE CONCAT('%', #{description}, '%')
-		</if>
-		ORDER BY type, sort, update_date DESC
-	</select>
-	
-	<!--得到所有字典类型-->
-	<select id="findTypeList" resultType="string">
-		SELECT 
-			type 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		GROUP BY type
-		ORDER BY type
+		<where>
+			<if test="name != null and name != '' ">
+				AND r.name = #{r.name}
+			</if>
+			AND r.del_status = #{NORMAL}
+		</where>
+		ORDER BY r.name
 	</select>
 
-	<!--插入实体对象-->
+	<!--插入角色信息-->
 	<insert id="insert">
-		INSERT INTO sys_dict(
-			id, 
-			value, 
-			label, 
-			type, 
-			description, 
-			sort,
-			create_by,
-			create_date,
-			update_by,
-			update_date,
-			remarks, 
-			del_flag
+		INSERT INTO sys_role(
+		id,
+		name,
+		remarks,
+		create_by,
+		create_date,
+		update_by,
+		update_date,
+		del_status
 		) VALUES (
-			#{id}, 
-			#{value}, 
-			#{label}, 
-			#{type}, 
-			#{description}, 
-			#{sort},
-			#{createBy.id}
-			#{createDate}
-			#{updateBy.id},
-			#{updateDate},
-			#{remarks}, 
-			#{delFlag}
+		#{id},
+		#{name},
+		#{remarks},
+		#{createBy.id},
+		#{createDate},
+		#{updateBy.id},
+		#{updateDate}
 		)
 	</insert>
 
-	<!--更新实体对象-->
+	<!--更新角色信息-->
 	<update id="update">
-		UPDATE sys_dict SET 
-			value = #{value}, 
-			label = #{label}, 
-			type = #{type}, 
-			description = #{description}, 
-			sort = #{sort},
-			update_by = #{updateBy.id}
-			update_date = #{updateDate},
-			remarks = #{remarks}
+		UPDATE sys_role SET
+		name = #{name},
+		remarks = #{remarks},
+		update_by = #{updateBy.id},
+		update_date = #{updateDate},
+		del_status = #{delStatus}
 		WHERE id = #{id}
 	</update>
 
-	<!--删除实体对象-->
+	<!--删除角色信息-->
 	<update id="delete">
-		UPDATE sys_dict SET 
-			del_flag = #{DELETE}
+		UPDATE sys_role SET
+			del_status = #{DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+	<!--插入角色菜单信息-->
+	<insert id="insertRoleMenu">
+		INSERT INTO sys_role_menu(
+		role_id,
+		menu_id
+		) VALUES (
+		#{roleId},
+		#{menuId},
+		)
+	</insert>
+
+	<!--删除角色菜单信息-->
+	<delete id="deleteRoleMenu">
+		DELETE FROM sys_role_menu WHERE role_id = #{id}
+	</delete>
+
 </mapper>

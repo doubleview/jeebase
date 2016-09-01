@@ -3,6 +3,7 @@ package com.doubleview.jeebase.system.dao;
 import com.doubleview.jeebase.common.base.BaseDao;
 import com.doubleview.jeebase.common.persistence.MyBatisDao;
 import com.doubleview.jeebase.system.model.User;
+import com.doubleview.jeebase.system.model.UserRole;
 
 import java.util.List;
 
@@ -50,17 +51,17 @@ public interface UserDao extends BaseDao<User>{
 
     /**
      * 删除用户角色关联数据
-     * @param user
+     * @param userRole
      * @return
      */
-     int deleteUserRole(User user);
+     int deleteUserRole(UserRole userRole);
 
     /**
      * 插入用户角色关联数据
-     * @param user
+     * @param userRole
      * @return
      */
-     int insertUserRole(User user);
+     int insertUserRole(UserRole userRole);
 
 
 }
