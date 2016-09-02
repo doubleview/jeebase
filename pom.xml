@@ -49,7 +49,6 @@
         <dozer.version>5.5.1</dozer.version>
         <poi.version>3.9</poi.version>
         <freemarker.version>2.3.20</freemarker.version>
-
         <mysql.driver.version>5.1.30</mysql.driver.version>
 
         <!-- 相关环境设置-->
