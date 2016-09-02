@@ -17,8 +17,9 @@
 		u.login_flag AS "loginFlag",
 		u.remarks AS "remarks",
 		u.create_by AS "createBy.id",
-		u.create_date AS "createDate",
+		u.create_time AS "createTime",
 		u.update_by AS "updateBy.id",
+		u.update_time AS "updateTime",
 		u.del_flag AS "delFlag",
 		d.id AS "department.id"
 		d.name AS "department.name",
@@ -120,9 +121,9 @@
 		login_flag,
 		remarks,
 		create_by,
-		create_date,
+		create_time,
 		update_by,
-		update_date,
+		update_time,
 		del_status
 		) VALUES (
 		#{id},
@@ -137,9 +138,9 @@
 		#{loginFlag},
 		#{remarks},
 		#{createBy.id},
-		#{createDate},
+		#{createTime},
 		#{updateBy.id},
-		#{updateDate},
+		#{updateTime},
 		#{delStatus}
 		)
 	</insert>
@@ -158,11 +159,10 @@
 		login_flag = #{loginFlag},
 		remarks = #{remarks},
 		update_by = #{updateBy.id},
-		update_date = #{updateDate},
+		update_time = #{updateTime},
 		del_status = #{delStatus},
 		WHERE id = #{id}
 	</update>
-
 
 	<!-- 更新用户密码 -->
 	<update id="updatePassword">

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doubleview.jeebase.system.dao.AreaDao">
+
+	<!--地区列，供查询重用-->
+	<sql id="areaColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.code AS "code",
+		a.sort AS "sort",
+		a.type  AS "type",
+		a.remarks AS "remarks",
+		a.create_by AS "createBy.id",
+		a.create_time AS "createTime",
+		a.update_by AS "updateBy.id",
+		a.update_time AS "updateTime",
+		a.del_status AS "delStatus",
+		a.parent_id AS "parent.id"
+	</sql>
+
+	<!--地区关联，供查询重用-->
+	<sql id="areaJoins">
+		FROM sys_area a
+			LEFT JOIN sys_area p ON p.id = a.parent_id
+	</sql>
+
+	<!--根据id获取地区-->
+	<select id="get" resultType="Area">
+		SELECT
+		<include refid="areaColumns"/>
+		<include refid="areaJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<!--根据条件获取地区-->
+	<select id="findList" resultType="Area">
+		SELECT
+		<include refid="areaColumns"/>
+		<include refid="areaJoins"/>
+		<where>
+			<if test="name != null and name != ''">
+				AND a.name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="parent != null and parent.id != null and parent.id != '' ">
+				AND a.parent_id  = #{parent.id}
+			</if>
+			WHERE a.del_status = #{NORMAL}
+		</where>
+		ORDER BY a.code
+	</select>
+
+	<!--插入地区-->
+	<insert id="insert">
+		INSERT INTO sys_area(
+		id,
+		name,
+		code,
+		sort,
+		type,
+		remarks,
+		create_by,
+		create_time,
+		update_by,
+		update_time,
+		del_status,
+		parent_id
+		) VALUES (
+		#{id},
+		#{name},
+		#{code},
+		#{sort},
+		#{type},
+		#{remarks},
+		#{createBy.id},
+		#{createTime},
+		#{updateBy.id},
+		#{updateTime},
+		#{delStatus},
+		#{parent.id}
+		)
+	</insert>
+
+	<!--更新地区-->
+	<update id="update">
+		UPDATE sys_area SET
+		parent_id = #{parent.id},
+		parent_ids = #{parentIds},
+		code = #{code},
+		name = #{name},
+		sort = #{sort},
+		type = #{type},
+		update_by = #{updateBy.id},
+		update_time = #{updateTime},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<!--删除地区-->
+	<update id="delete">
+		UPDATE sys_area SET
+		del_status = #{DELETE}
+		WHERE id = #{id}
+	</update>
+
+</mapper>

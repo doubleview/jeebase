@@ -1,90 +1,139 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.dao.DictDao">
+<mapper namespace="com.doubleview.jeebase.system.dao.MenuDao">
 
-	<!--根据主键获取实体对象-->
-	<select id="get" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE id = #{id}
+	<!--菜单列，共查询重用-->
+	<sql id="menuColumns">
+		m.id AS "id",
+		m.name AS "name",
+		m.sort AS "sort",
+		m.href AS "sort",
+		m.target AS "target",
+		m.icon AS "icon",
+		m.is_show AS "isShow",
+		m.remarks AS "remarks",
+		m.create_by AS "createBy.id",
+		m.create_time AS "createTime",
+		m.update_by AS "updateBy.id",
+		m.update_time AS "updateTime",
+		m.del_status AS "delStatus",
+		mp.id AS "parent.id",
+		mp.name AS "parent.name",
+		mp.sort AS "parent.sort",
+		mp.href AS "parent.href",
+		mp.target AS "parent.target",
+		mp.icon AS "parent.icon",
+		mp.is_show AS "parent.isShow",
+		mp.remarks AS "remarks",
+		mp.create_by AS "parent.createBy",
+		mp.create_time AS "parent.createTime",
+		mp.update_by AS "updateBy",
+		mp.update_time AS "updateTime",
+		mp.del_status AS "delStatus"
+	</sql>
+
+	<!--菜单关联，供查询重用-->
+	<sql id="menuJoins">
+		FROM sys_menu m
+			LEFT JOIN sys_menu mp ON mp.id = m.parent_id
+	</sql>
+
+	<!--根据id获取菜单-->
+	<select id="get" resultType="Menu">
+		SELECT
+		<include refid="menuColumns"/>
+		<include refid="menuJoins"/>
+		WHERE a.id = #{id}
 	</select>
 
-	<!--条件查询实体对象列表-->
-	<select id="findList" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		<if test="type != null and type != ''">
-			AND type = #{type}
-		</if>
-		<if test="description != null and description != ''">
-			AND description LIKE CONCAT('%', #{description}, '%')
-		</if>
-		ORDER BY type, sort, update_date DESC
-	</select>
-	
-	<!--得到所有字典类型-->
-	<select id="findTypeList" resultType="string">
-		SELECT 
-			type 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		GROUP BY type
-		ORDER BY type
+	<!--获取所有菜单-->
+	<select id="getList">
+		SELECT
+		<include refid="menuColumns"/>,
+		<include refid="menuJoins"/>
+		<where>
+			<if test="name != null and name != '' ">
+				AND m.name = #{name}
+			</if>
+			AND m.del_status = #{NORMAL}
+		</where>
+		ORDER BY m.name
 	</select>
 
-	<!--插入实体对象-->
+	<!--根据用户id获取所有菜单-->
+	<select id="getByUserId" resultType="Menu">
+		SELECT DISTINCT
+		<include refid="menuColumns"/>
+		<include refid="menuJoins"/>
+		JOIN sys_role_menu rm ON rm.menu_id = m.id
+		JOIN sys_role r ON r.id = rm.role_id
+		JOIN sys_user_role ur ON ur.role_id = r.id
+		JOIN sys_user u ON u.id = ur.user_id AND u.id = #{userId}
+		WHERE m.del_flag = #{NORMAL}
+			AND r.del_flag = #{NORMAL}
+			AND u.del_flag = #{NORMAL}
+		ORDER BY a.sort
+	</select>
+
+	<!--插入菜单-->
 	<insert id="insert">
-		INSERT INTO sys_dict(
-			id, 
-			value, 
-			label, 
-			type, 
-			description, 
-			sort,
-			create_by,
-			create_date,
-			update_by,
-			update_date,
-			remarks, 
-			del_flag
+		INSERT INTO sys_menu(
+		id,
+		name,
+		sort,
+		href,
+		target,
+		icon,
+		is_show,
+		create_by,
+		create_time,
+		update_by,
+		update_time,
+		remarks,
+		del_flag,
+		parent_id
 		) VALUES (
-			#{id}, 
-			#{value}, 
-			#{label}, 
-			#{type}, 
-			#{description}, 
-			#{sort},
-			#{createBy.id}
-			#{createDate}
-			#{updateBy.id},
-			#{updateDate},
-			#{remarks}, 
-			#{delFlag}
+		#{id},
+		#{name},
+		#{href},
+		#{target},
+		#{icon},
+		#{sort},
+		#{isShow},
+		#{permission},
+		#{createBy.id},
+		#{createTime},
+		#{updateBy.id},
+		#{updateTime},
+		#{remarks},
+		#{delFlag},
+		#{parent.id}
 		)
 	</insert>
 
-	<!--更新实体对象-->
+	<!--更新菜单-->
 	<update id="update">
-		UPDATE sys_dict SET 
-			value = #{value}, 
-			label = #{label}, 
-			type = #{type}, 
-			description = #{description}, 
-			sort = #{sort},
-			update_by = #{updateBy.id}
-			update_date = #{updateDate},
-			remarks = #{remarks}
+		UPDATE sys_menu SET
+		name = #{name},
+		sort = #{sort}
+		href = #{href},
+		target = #{target},
+		icon = #{icon},
+		is_show = #{isShow},
+		create_by = #{createBy.id},
+		create_time = #{createTime}
+		update_by = #{updateBy.id},
+		update_time = #{updateTime},
+		remarks = #{remarks},
+		parent_id = #{parentId}
 		WHERE id = #{id}
 	</update>
 
-	<!--删除实体对象-->
+	<!--删除菜单-->
 	<update id="delete">
-		UPDATE sys_dict SET 
-			del_flag = #{DELETE}
+		UPDATE sys_menu SET
+		del_status = #{DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
 </mapper>

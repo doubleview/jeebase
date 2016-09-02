@@ -1,90 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.dao.DictDao">
+<mapper namespace="com.doubleview.jeebase.system.dao.LogDao">
 
-	<!--根据主键获取实体对象-->
-	<select id="get" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE id = #{id}
+
+	<select id="findList" resultType="Log">
+		SELECT
+		l.id AS "id",
+		l.type AS "type",
+		l.title AS "title",
+		l.remote_ip AS "remoteIp",
+		l.user_agent AS "userAgent",
+		l.request_uri AS "requestUri",
+		l.method AS "method",
+		l.params AS "params",
+		l.exception AS "exception"
+		l.create_by AS "createBy.id",
+		l.create_time AS "createTime",
+		u.name AS "createBy.name",
+		d.name AS "createBy.department.name"
+		FROM sys_log l
+		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_department d ON d.id = u.department_id
+		<where>
+			<if test="beginDate != null">
+			   	AND l.create_time gt;= #{beginDate}
+			</if>
+			<if test="endDate != null">
+				AND  l.create_time lt;= #{endDate}
+			</if>
+			<if test="title != null and title != ''">
+				AND l.title LIKE
+				CONCAT('%', #{title}, '%')
+			</if>
+			<if test="createBy != null and createBy.id != null and createBy.id != ''">
+				AND l.create_by = #{createBy.id}
+			</if>
+			<if test="requestUri != null and requestUri != ''">
+				AND l.request_uri LIKE
+				CONCAT('%', #{requestUri}, '%')
+			</if>
+			<if test="exception != null and exception != ''">
+				AND l.type = #{TYPE_EXCEPTION}
+			</if>
+		</where>
+		ORDER BY l.create_time DESC
 	</select>
 
-	<!--条件查询实体对象列表-->
-	<select id="findList" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		<if test="type != null and type != ''">
-			AND type = #{type}
-		</if>
-		<if test="description != null and description != ''">
-			AND description LIKE CONCAT('%', #{description}, '%')
-		</if>
-		ORDER BY type, sort, update_date DESC
-	</select>
-	
-	<!--得到所有字典类型-->
-	<select id="findTypeList" resultType="string">
-		SELECT 
-			type 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		GROUP BY type
-		ORDER BY type
-	</select>
-
-	<!--插入实体对象-->
 	<insert id="insert">
-		INSERT INTO sys_dict(
-			id, 
-			value, 
-			label, 
-			type, 
-			description, 
-			sort,
-			create_by,
-			create_date,
-			update_by,
-			update_date,
-			remarks, 
-			del_flag
+		INSERT INTO sys_log(
+		id,
+		type,
+		title,
+		remote_ip,
+		user_agent,
+		request_uri,
+		method,
+		params,
+		exception,
+		create_by,
+		create_time
 		) VALUES (
-			#{id}, 
-			#{value}, 
-			#{label}, 
-			#{type}, 
-			#{description}, 
-			#{sort},
-			#{createBy.id}
-			#{createDate}
-			#{updateBy.id},
-			#{updateDate},
-			#{remarks}, 
-			#{delFlag}
+		#{id},
+		#{type},
+		#{title},
+		#{remoteIp},
+		#{userAgent},
+		#{requestUri},
+		#{method},
+		#{params},
+		#{exception}
+		#{createBy.id},
+		#{createTime},
 		)
 	</insert>
 
-	<!--更新实体对象-->
-	<update id="update">
-		UPDATE sys_dict SET 
-			value = #{value}, 
-			label = #{label}, 
-			type = #{type}, 
-			description = #{description}, 
-			sort = #{sort},
-			update_by = #{updateBy.id}
-			update_date = #{updateDate},
-			remarks = #{remarks}
-		WHERE id = #{id}
-	</update>
-
-	<!--删除实体对象-->
-	<update id="delete">
-		UPDATE sys_dict SET 
-			del_flag = #{DELETE}
-		WHERE id = #{id}
-	</update>
-	
 </mapper>

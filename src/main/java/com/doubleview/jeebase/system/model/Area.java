@@ -1,6 +1,9 @@
 package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.common.base.TreeModel;
+import com.google.common.collect.Lists;
+
+import java.util.List;
 
 /**
  * 地区实体类
@@ -12,6 +15,8 @@ public class Area extends TreeModel<Area> {
     private String code;    // 区域编码
 
     private String type;    // 区域类型（1：国家；2：省份、直辖市；3：地市；4：区县）
+
+    private List<String> areaIds = Lists.newArrayList();//地区id，用于查询地区id
 
     public Area() {
         super();
@@ -44,5 +49,13 @@ public class Area extends TreeModel<Area> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<String> getAreaIds() {
+        return areaIds;
+    }
+
+    public void setAreaIds(List<String> areaIds) {
+        this.areaIds = areaIds;
     }
 }

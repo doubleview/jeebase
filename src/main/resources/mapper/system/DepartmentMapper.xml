@@ -1,89 +1,140 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doubleview.jeebase.system.dao.DictDao">
+<mapper namespace="com.doubleview.jeebase.system.dao.DepartmentDao">
 
-	<!--根据主键获取实体对象-->
-	<select id="get" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE id = #{id}
+	<!--部门列，共查询共用-->
+	<sql id="departmentColums">
+		d.id AS "id",
+		d.name AS "name",
+		d.sort AS "sort",
+		d.code AS "code",
+		d.zip_code AS "zipCode",
+		d.address AS "address",
+		d.phone AS "phone",
+		d.fax AS "fax",
+		d.email AS "email",
+		d.useable AS useable,
+		d.remarks AS "remarks",
+		d.create_by AS "createBy.id",
+		d.create_time AS "createTime",
+		d.update_by AS "updateBy.id",
+		d.update_time AS "updateTime",
+		d.del_status AS "delStatus",
+		d.master_id AS "master.id",
+		d.area_id AS "area.id",
+		d.parent_id AS "parent.id"
+		p.name AS "parent.name",
+		a.name AS "area.name",
+		u.name AS "master.name"
+	</sql>
+
+	<!--部门关联，供查询重用-->
+	<sql id="departmentJoins">
+		FROM sys_department d
+			LEFT JOIN sys_department p ON p.id = d.parent_id
+			LEFT JOIN sys_area a ON a.id = d.area_id
+			LEFT JOIN sys_user u ON u.id = d.master
+	</sql>
+
+	<!--根据id查询Deepartment-->
+	<select id="get" resultType="Department">
+		SELECT
+		<include refid="officeColumns"/>
+		<include refid="officeJoins"/>
+		WHERE d.id = #{id}
 	</select>
 
-	<!--条件查询实体对象列表-->
-	<select id="findList" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		<if test="type != null and type != ''">
-			AND type = #{type}
-		</if>
-		<if test="description != null and description != ''">
-			AND description LIKE CONCAT('%', #{description}, '%')
-		</if>
-		ORDER BY type, sort, update_date DESC
-	</select>
-	
-	<!--得到所有字典类型-->
-	<select id="findTypeList" resultType="string">
-		SELECT 
-			type 
-		FROM sys_dict 
-		WHERE del_flag = #{NORMAL}
-		GROUP BY type
-		ORDER BY type
+	<!--根据条件查询部门-->
+	<select id="getList" resultType="Department">
+		SELECT
+		<include refid="departmentColumns"/>
+		<include refid="departmentJoins"/>
+		<where>
+			<if test="name != null and name != '' ">
+				AND d.name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="master!= null and master.id != null and master.id != '' ">
+				AND d.master_id = #{master.id}
+			</if>
+			<if test="parent!= null and parent.id != null and parent.id != '' ">
+				AND d.parent_id = #{parent.id}
+			</if>
+			AND d.del_status = #{NORMAL}
+		</where>
+		ORDER BY d.code
 	</select>
 
-	<!--插入实体对象-->
+	<!--插入部门-->
 	<insert id="insert">
-		INSERT INTO sys_dict(
-			id, 
-			value, 
-			label, 
-			type, 
-			description, 
-			sort,
-			create_by,
-			create_date,
-			update_by,
-			update_date,
-			remarks, 
-			del_flag
+		INSERT INTO sys_department(
+		id,
+		name,
+		sort,
+		code,
+		zip_code,
+		address,
+		phone,
+		fax,
+		email,
+		master_id,
+		useable,
+		remarks,
+		grade,
+		create_by,
+		create_time,
+		update_by,
+		update_time,
+		del_status,
+		parent_id,
+		area_id
 		) VALUES (
-			#{id}, 
-			#{value}, 
-			#{label}, 
-			#{type}, 
-			#{description}, 
-			#{sort},
-			#{createBy.id}
-			#{createDate}
-			#{updateBy.id},
-			#{updateDate},
-			#{remarks}, 
-			#{delFlag}
+		#{id},
+		#{name},
+		#{sort},
+		#{code},
+		#{zipCode},
+		#{address},
+		#{phone},
+		#{fax},
+		#{email},
+		#{master.id},
+		#{useable},
+		#{remarks},
+		#{createBy.id},
+		#{createTime},
+		#{updateBy.id},
+		#{updateTime},
+		#{delStatus},
+		#{parent.id},
+		#{area.id}
 		)
 	</insert>
 
-	<!--更新实体对象-->
+	<!--更新部门-->
 	<update id="update">
-		UPDATE sys_dict SET 
-			value = #{value}, 
-			label = #{label}, 
-			type = #{type}, 
-			description = #{description}, 
-			sort = #{sort},
-			update_by = #{updateBy.id}
-			update_date = #{updateDate},
-			remarks = #{remarks}
+		UPDATE sys_department SET
+		name = #{name},
+		sort = #{sort},
+		code = #{code},
+		zip_code = #{zipCode},
+		address = #{address},
+		phone = #{phone},
+		fax = #{fax},
+		email = #{email},
+		master_id = #{master.id},
+		useable=#{useable},
+		update_by = #{updateBy.id},
+		remarks = #{remarks},
+		update_time = #{updateTime},
+		parent_id = #{parent.id},
+		area_id  = #{area.id}
 		WHERE id = #{id}
 	</update>
 
-	<!--删除实体对象-->
+	<!--删除部门-->
 	<update id="delete">
-		UPDATE sys_dict SET 
-			del_flag = #{DELETE}
+		UPDATE sys_department SET
+		del_status = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

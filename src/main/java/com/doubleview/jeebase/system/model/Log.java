@@ -25,9 +25,11 @@ public class Log extends BaseModel<Log>{
 
     private String exception; 	// 异常信息
 
-    private Date beginDate;		// 开始日期
 
-    private Date endDate;		// 结束日期
+
+    private Date beginDate;		// 根据开始日期查询日志
+
+    private Date endDate;		// 根据结束日期查询
 
     // 日志类型（1：接入日志；2：错误日志）
     public static final String TYPE_ACCESS = "1";

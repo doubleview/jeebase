@@ -8,9 +8,9 @@
 		r.name,
 		r.remarks,
 		r.create_by AS "createBy.id",
-		r.create_date,
+		r.create_time,
 		r.update_by AS "updateBy.id",
-		r.update_date,
+		r.update_time,
 		r.del_status
 	</sql>
 
@@ -60,18 +60,18 @@
 		name,
 		remarks,
 		create_by,
-		create_date,
+		create_time,
 		update_by,
-		update_date,
+		update_time,
 		del_status
 		) VALUES (
 		#{id},
 		#{name},
 		#{remarks},
 		#{createBy.id},
-		#{createDate},
+		#{createTime},
 		#{updateBy.id},
-		#{updateDate}
+		#{updateTime}
 		)
 	</insert>
 
@@ -81,7 +81,7 @@
 		name = #{name},
 		remarks = #{remarks},
 		update_by = #{updateBy.id},
-		update_date = #{updateDate},
+		update_time = #{updateTime},
 		del_status = #{delStatus}
 		WHERE id = #{id}
 	</update>
