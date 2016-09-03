@@ -28,9 +28,9 @@
 		<property name="dataSource" ref="dataSource"/>
 		<!--别名包，该包下所有类使用别名-->
 		<property name="typeAliasesPackage" value="com.doubleview.jeebase"/>
-		<!--<property name="typeAliasesSuperType" value="com.ahut.fastadmin.common.persistence.BaseEntity"/>-->
+		<property name="typeAliasesSuperType" value="com.doubleview.jeebase.common.base.BaseModel"/>
 		<!--mappings配置文件位置-->
-		<!--<property name="mapperLocations" value="classpath:/mappings/**/*.xml"/>-->
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
@@ -48,10 +48,6 @@
 
 	<!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-
-
-	<!-- 配置 JSR303 Bean Validator 定义 -->
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 	<!-- 计划任务配置-->
 	<task:executor id="executor" pool-size="10"/>

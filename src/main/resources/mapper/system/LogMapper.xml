@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.doubleview.jeebase.system.dao.LogDao">
 
-
+	<!--得到日志列表-->
 	<select id="findList" resultType="Log">
 		SELECT
 		l.id AS "id",
@@ -46,6 +46,7 @@
 		ORDER BY l.create_time DESC
 	</select>
 
+	<!--插入日志-->
 	<insert id="insert">
 		INSERT INTO sys_log(
 		id,

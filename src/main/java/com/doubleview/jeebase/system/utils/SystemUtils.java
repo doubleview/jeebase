@@ -3,10 +3,13 @@ package com.doubleview.jeebase.system.utils;
 import com.doubleview.jeebase.common.utils.Digests;
 import com.doubleview.jeebase.common.utils.Encodes;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 系统工具类
  */
 public class SystemUtils {
+
 
     public static final String HASH_ALGORITHM = "SHA-1";
     public static final int HASH_INTERATIONS = 1024;
@@ -35,4 +38,30 @@ public class SystemUtils {
         return password.equals(Encodes.encodeHex(salt)+Encodes.encodeHex(hashPassword));
     }
 
+
+    /**
+     * 保存日志
+     */
+    public static void saveLog(HttpServletRequest request, String title){
+        saveLog(request, null, null, title);
+    }
+
+    /**
+     * 保存日志
+     */
+    public static void saveLog(HttpServletRequest request, Object handler, Exception ex, String title){
+/*        User user = UserUtils.getUser();
+        if (user != null && user.getId() != null){
+            Log log = new Log();
+            log.setTitle(title);
+            log.setType(ex == null ? Log.TYPE_ACCESS : Log.TYPE_EXCEPTION);
+            log.setRemoteAddr(StringUtils.getRemoteAddr(request));
+            log.setUserAgent(request.getHeader("user-agent"));
+            log.setRequestUri(request.getRequestURI());
+            log.setParams(request.getParameterMap());
+            log.setMethod(request.getMethod());
+            // 异步保存日志
+            new SaveLogThread(log, handler, ex).start();
+        }*/
+    }
 }

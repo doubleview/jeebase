@@ -1,7 +1,6 @@
 package com.doubleview.jeebase.system.service;
 
 import com.doubleview.jeebase.common.base.BaseService;
-import com.doubleview.jeebase.common.persistence.Page;
 import com.doubleview.jeebase.system.dao.UserDao;
 import com.doubleview.jeebase.system.model.Role;
 import com.doubleview.jeebase.system.model.User;
@@ -21,44 +20,12 @@ import java.util.List;
 public class UserService extends BaseService<UserDao , User>{
 
     /**
-     * 获取用户
-     * @param id
-     * @return
-     */
-    public User getUser(String id) {
-        return dao.get(id);
-    }
-
-    /**
      * 根据登录名获取用户
-     * @param loginName
+     * @param loginName 登录名
      * @return
      */
     public User getUserByLoginName(String loginName) {
         return dao.getByLoginName(loginName);
-    }
-
-    /**
-     * 获取分页用户列表
-     * @param page
-     * @param user
-     * @return
-     */
-    public Page<User> getUserList(Page<User> page, User user) {
-        // 设置分页参数
-        user.setPage(page);
-        // 执行分页查询
-        page.setList(dao.getList(user));
-        return page;
-    }
-
-    /**
-     * 获取用户列表,无分页
-     * @param user
-     * @return
-     */
-    public List<User> getUserList(User user) {
-        return dao.getList(user);
     }
 
     /**
@@ -70,7 +37,6 @@ public class UserService extends BaseService<UserDao , User>{
     public List<User> getUerByDepartmentId(String departmentId) {
         return dao.getByDepartmentId(departmentId);
     }
-
 
     /**
      * 得到所有用户数量
@@ -85,6 +51,7 @@ public class UserService extends BaseService<UserDao , User>{
      * @param user
      * @return
      */
+    @Transactional(readOnly = false)
     public int updateLoginInfo(User user){
         user.preUpdate();
         return dao.update(user);
@@ -95,6 +62,7 @@ public class UserService extends BaseService<UserDao , User>{
      * @param newPassword 用户新密码
      * @return
      */
+    @Transactional(readOnly = false)
     public int updatePassword(String id ,  String newPassword){
         User user = new User(id);
         user.setPassword(SystemUtils.entryptPassword(newPassword));
@@ -102,14 +70,8 @@ public class UserService extends BaseService<UserDao , User>{
     }
 
     @Transactional(readOnly = false)
-    public void saveUser(User user) {
-        if (StringUtils.isBlank(user.getId())){
-            user.preInsert();
-            dao.insert(user);
-        }else{
-            user.preUpdate();
-            dao.update(user);
-        }
+    public void save(User user) {
+        super.save(user);
         if (StringUtils.isNotBlank(user.getId())){
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getId());

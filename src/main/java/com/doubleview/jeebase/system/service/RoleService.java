@@ -26,15 +26,6 @@ public class RoleService extends BaseService<RoleDao, Role>{
     private UserDao userDao;
 
     /**
-     * 根据id获取Role
-     * @param id 角色id
-     * @return
-     */
-    public Role getRole(String id) {
-        return dao.get(id);
-    }
-
-    /**
      * 根据角色名称获取角色
      * @param name 角色名称
      * @return
@@ -45,29 +36,12 @@ public class RoleService extends BaseService<RoleDao, Role>{
 
 
     /**
-     * 获取角色列表
-     * @param role
-     * @return
-     */
-    public List<Role> getRoleList(Role role){
-        return dao.getList(role);
-    }
-
-
-    /**
      * 保存或更新角色
      * @param role
      */
     @Transactional(readOnly = false)
-    public void saveRole(Role role) {
-        if (StringUtils.isBlank(role.getId())){
-            role.preInsert();
-            dao.insert(role);
-        }else{
-            role.preUpdate();
-            dao.update(role);
-        }
-
+    public void save(Role role) {
+        super.save(role);
         RoleMenu roleMenu = new RoleMenu();
         roleMenu.setRoleId(role.getId());
         dao.deleteRoleMenu(roleMenu);
@@ -87,8 +61,8 @@ public class RoleService extends BaseService<RoleDao, Role>{
      * @param role
      */
     @Transactional(readOnly = false)
-    public void deleteRole(Role role) {
-        dao.delete(role);
+    public void delete(Role role) {
+        super.delete(role);
         RoleMenu roleMenu = new RoleMenu();
         roleMenu.setRoleId(role.getId());
         dao.deleteRoleMenu(roleMenu);

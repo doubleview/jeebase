@@ -75,7 +75,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-
 	<!--异常解析器-->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">

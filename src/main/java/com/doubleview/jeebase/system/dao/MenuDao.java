@@ -24,14 +24,8 @@ public interface MenuDao extends BaseDao<Menu> {
      * @param userId 用户id
      * @return
      */
-     List<Menu> getByUserId(String userId);
+     List<Menu> getListByUserId(String userId);
 
-    /**
-     * 更新父子菜单关系
-     * @param menu
-     * @return
-     */
-     int updateParentIds(Menu menu);
 
     /**
      * 更新排序
