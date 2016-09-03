@@ -6,11 +6,13 @@ import com.doubleview.jeebase.system.model.Menu;
 import com.doubleview.jeebase.system.model.Role;
 import com.doubleview.jeebase.system.model.RoleMenu;
 
+import java.util.List;
+
 /**
  * 角色Dao接口
  */
 @MyBatisDao
-public interface RoleDao extends BaseDao<Menu> {
+public interface RoleDao extends BaseDao<Role> {
 
     /**
      * 根据角色名获取角色
@@ -28,11 +30,16 @@ public interface RoleDao extends BaseDao<Menu> {
      int insertRoleMenu(RoleMenu roleMenu);
 
     /**
+     * 批量插入角色菜单关系
+     * @param roleMenuList
+     * @return
+     */
+    int batchInsertRoleMenu(List<RoleMenu> roleMenuList);
+    /**
      * 删除角色与菜单权限关系
-     * @param role
+     * @param roleMenu
      * @return
      */
      int deleteRoleMenu(RoleMenu roleMenu);
-
 
 }

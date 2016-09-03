@@ -189,6 +189,14 @@
 	<!-- 删除用户和角色关联表数据 -->
 	<delete id="deleteUserRole">
 		DELETE FROM sys_user_role
+		<where>
+			<if test="userId != null and userId != '' ">
+				AND user_id = #{userId}
+			</if>
+			<if test="roleId != null and roleId != '' ">
+				AND role_id = #{roleId}
+			</if>
+		</where>
 		WHERE user_id = #{userId} AND role_id = #{roleId}
 	</delete>
 
@@ -201,5 +209,16 @@
 		#{userId},
 		#{roleId}
 		)
+	</insert>
+
+	<!--批量插入用户角色关联-->
+	<insert id="batchInsertUserRole">
+		INSERT INTO sys_user_role(
+		user_id ,
+		role_id
+		)VALUES
+		<foreach collection="list" item="userRole" separator=",">
+			(#{userId} , #{roleId})
+		</foreach>
 	</insert>
 </mapper>

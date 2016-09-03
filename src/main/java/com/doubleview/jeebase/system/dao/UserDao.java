@@ -31,7 +31,7 @@ public interface UserDao extends BaseDao<User>{
      * 查询全部用户数目
      * @return 用户数目
      */
-     long findAllCount();
+     long getAllCount();
 
 
     /**
@@ -56,6 +56,7 @@ public interface UserDao extends BaseDao<User>{
      */
      int deleteUserRole(UserRole userRole);
 
+
     /**
      * 插入用户角色关联数据
      * @param userRole
@@ -63,5 +64,11 @@ public interface UserDao extends BaseDao<User>{
      */
      int insertUserRole(UserRole userRole);
 
+    /**
+     * 批量插入用户角色关联
+     * @param userRoleList
+     * @return
+     */
+    int batchInsertUserRole(List<UserRole> userRoleList);
 
 }
