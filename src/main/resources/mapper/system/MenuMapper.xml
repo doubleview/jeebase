@@ -69,9 +69,9 @@
 		JOIN sys_role r ON r.id = rm.role_id
 		JOIN sys_user_role ur ON ur.role_id = r.id
 		JOIN sys_user u ON u.id = ur.user_id AND u.id = #{userId}
-		WHERE m.del_flag = #{NORMAL}
-			AND r.del_flag = #{NORMAL}
-			AND u.del_flag = #{NORMAL}
+		WHERE m.del_status = #{NORMAL}
+			AND r.del_status = #{NORMAL}
+			AND u.del_status = #{NORMAL}
 		ORDER BY a.sort
 	</select>
 
@@ -90,7 +90,7 @@
 		update_by,
 		update_time,
 		remarks,
-		del_flag,
+		del_status,
 		parent_id
 		) VALUES (
 		#{id},
@@ -106,7 +106,7 @@
 		#{updateBy.id},
 		#{updateTime},
 		#{remarks},
-		#{delFlag},
+		#{delStatus},
 		#{parent.id}
 		)
 	</insert>

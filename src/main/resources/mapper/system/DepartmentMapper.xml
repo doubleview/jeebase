@@ -134,7 +134,7 @@
 	<!--删除部门-->
 	<update id="delete">
 		UPDATE sys_department SET
-		del_status = #{DEL_FLAG_DELETE}
+		del_status = #{DELETE}
 		WHERE id = #{id}
 	</update>
 	

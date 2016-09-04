@@ -20,7 +20,7 @@
 		u.create_time AS "createTime",
 		u.update_by AS "updateBy.id",
 		u.update_time AS "updateTime",
-		u.del_flag AS "delFlag",
+		u.del_status AS "delStatus",
 		d.id AS "department.id"
 		d.name AS "department.name",
 		d.parent_id AS "department.parent.id",
@@ -35,7 +35,7 @@
 	<sql id="userJoins">
 		FROM sys_user u
 		LEFT JOIN sys_department d ON d.id = u.department_id
-		LEFT JOIN sys_user u2 ON u2.id = d.master
+		LEFT JOIN sys_user u2 ON u2.id = d.master_id
 		LEFT JOIN sys_area a ON a.id = d.area_id
 	</sql>
 
@@ -52,7 +52,7 @@
 		SELECT
 		<include refid="userColumns"/>
 		<include refid="userJoins"/>
-		WHERE u.login_name = #{loginName} AND u.del_flag = #{NORMAL}
+		WHERE u.login_name = #{loginName} AND u.del_status = #{NORMAL}
 	</select>
 
 	<!-- 根据部门id查询用户 -->
@@ -60,7 +60,7 @@
 		SELECT
 		<include refid="userColumns"/>
 		<include refid="userJoins"/>
-		WHERE u.department_id  = #{departmentId} AND u.del_flag = #{NORMAL}
+		WHERE u.department_id  = #{departmentId} AND u.del_status = #{NORMAL}
 	</select>
 
 	<!-- 分页查询用户信息 -->

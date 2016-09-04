@@ -56,6 +56,7 @@ public class UserService extends BaseService<UserDao , User>{
         user.preUpdate();
         return dao.update(user);
     }
+    
     /**
      * 更新用户密码
      * @param id 用户id

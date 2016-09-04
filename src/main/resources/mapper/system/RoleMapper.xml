@@ -4,14 +4,14 @@
 
 	<!--角色列，供查询重用-->
 	<sql id="roleColumns">
-		r.id,
-		r.name,
-		r.remarks,
+		r.id AS "id",
+		r.name AS "name",
+		r.remarks AS "remarks",
 		r.create_by AS "createBy.id",
-		r.create_time,
+		r.create_time AS "createTime",
 		r.update_by AS "updateBy.id",
-		r.update_time,
-		r.del_status
+		r.update_time AS "updateTime",
+		r.del_status AS "delStatusl"
 	</sql>
 
 	<!--角色关联，共查询重用-->
