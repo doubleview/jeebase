@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+	default-lazy-init="true">
+
+	<description>Jedis 配置</description>
+
+    <!-- 加载配置属性文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:common.properties" />
+
+	<!--jedis池配置-->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大能够保持idel状态的对象数  -->
+		<property name="maxIdle" value="300" />
+		<!-- 最大分配的对象数 -->
+		<property name="maxTotal" value="60000" />
+		<!-- 当调用borrow Object方法时，是否进行有效性检查 -->
+		<property name="testOnBorrow" value="true" />
+	</bean>
+
+	<!--jedis池-->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${redis.host}" />
+		<constructor-arg index="2" value="${redis.port}" type="int" />
+	</bean>
+	
+</beans>
