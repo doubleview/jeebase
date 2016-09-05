@@ -20,6 +20,8 @@ public class Constant {
 
     private static Properties props;
 
+    private static String defaultLoadProperties = "common.properties";
+
     /**
      * 静态加载配置文件
      */
@@ -27,7 +29,7 @@ public class Constant {
         props = new Properties();
         InputStream is = null;
             try {
-                is = Thread.currentThread().getContextClassLoader().getResourceAsStream("common.properties");
+                is = Thread.currentThread().getContextClassLoader().getResourceAsStream(defaultLoadProperties);
                 System.out.println(is);
                 props.load(is);
             } catch (IOException ex) {
@@ -76,7 +78,6 @@ public class Constant {
         return value;
     }
 
-
     /**
      * 获取管理端路径
      * @return
@@ -84,7 +85,6 @@ public class Constant {
     public static String getAdminPath() {
         return getConfig("adminPath");
     }
-
 
     /**
      * 获取前端路径
@@ -94,7 +94,6 @@ public class Constant {
         return getConfig("frontPath");
     }
 
-
     /**
      * 获取URL后缀
      * @return
@@ -103,27 +102,51 @@ public class Constant {
         return getConfig("urlSuffix");
     }
 
+    public Integer getInt(String key) {
+        return getInt(key, null);
+    }
 
-    /**
-     * 是否是演示模式
-     * @return
-     */
-    public static Boolean isDemoMode() {
-        String dm = getConfig("demoMode");
-        return "true".equals(dm) || "1".equals(dm);
+    public Integer getInt(String key, Integer defaultValue) {
+        String value = getConfig(key);
+        if (value != null)
+            return Integer.parseInt(value.trim());
+        return defaultValue;
+    }
+
+    public Long getLong(String key) {
+        return getLong(key, null);
+    }
+
+    public Long getLong(String key, Long defaultValue) {
+        String value = getConfig(key);
+        if (value != null)
+            return Long.parseLong(value.trim());
+        return defaultValue;
+    }
+
+
+    public Boolean getBoolean(String key) {
+        return getBoolean(key, null);
+    }
+
+
+    public Boolean getBoolean(String key, Boolean defaultValue) {
+        String value = getConfig(key);
+        if (value != null) {
+            value = value.toLowerCase().trim();
+            if ("true".equals(value))
+                return true;
+            else if ("false".equals(value))
+                return false;
+            throw new RuntimeException("The value can not parse to Boolean : "
+                    + value);
+        }
+        return defaultValue;
     }
 
 
     public static void main(String[] args){
-        Properties properties = new Properties();
-        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("common.properties");
-        //InputStream inputStream = ClassLoader.getSystemResourceAsStream("common.properties");
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(properties.get("productName"));
+        System.out.println(Constant.getAdminPath());
     }
 
 }
