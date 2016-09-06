@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.security;
 
-import com.doubleview.jeebase.common.utils.CommonUtils;
+import com.doubleview.jeebase.common.utils.ServletUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -40,7 +40,7 @@ public class SystemAuthenticationFilter extends FormAuthenticationFilter{
             password = "";
         }
         boolean rememberMe = isRememberMe(request);
-        String host = CommonUtils.getRemoteAddr((HttpServletRequest) request);
+        String host = ServletUtils.getRemoteAddr((HttpServletRequest) request);
         String captcha = getCaptcha(request);
         return new SystemToken(username, password.toCharArray(), rememberMe, host, captcha);
     }
