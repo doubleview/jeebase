@@ -131,6 +131,13 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!--spring-data-redis-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.0.2.RELEASE</version>
+        </dependency>
+
         <!-- Bean Validate -->
         <dependency>
             <groupId>org.hibernate</groupId>

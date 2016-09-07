@@ -20,7 +20,7 @@ public class Constant {
 
     private static Properties props;
 
-    private static String defaultLoadProperties = "common.properties";
+    private static String defaultLoadProperties = "common.properties";//默认加载配置文件
 
     /**
      * 静态加载配置文件
@@ -63,6 +63,7 @@ public class Constant {
     public static final String TRUE = "true";
     public static final String FALSE = "false";
 
+    public static final String defaultCharset = "UTF-8";//默认编码
 
     /**
      * 获取配置属性

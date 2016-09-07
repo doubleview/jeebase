@@ -12,7 +12,7 @@ import java.security.SecureRandom;
  * 支持SHA-1/MD5消息摘要的工具类.
  * 返回ByteSource，可进一步被编码为Hex, Base64或UrlSafeBase64
  */
-public class Digests {
+public class DigestUtils {
 
     private static final String SHA1 = "SHA-1";
     private static final String MD5 = "MD5";
@@ -63,7 +63,7 @@ public class Digests {
             }
             return result;
         } catch (GeneralSecurityException e) {
-            throw Exceptions.unchecked(e);
+            throw ExceptionUtils.unchecked(e);
         }
     }
 
@@ -108,7 +108,7 @@ public class Digests {
 
             return messageDigest.digest();
         } catch (GeneralSecurityException e) {
-            throw Exceptions.unchecked(e);
+            throw ExceptionUtils.unchecked(e);
         }
     }
 

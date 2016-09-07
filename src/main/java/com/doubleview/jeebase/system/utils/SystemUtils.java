@@ -1,7 +1,7 @@
 package com.doubleview.jeebase.system.utils;
 
-import com.doubleview.jeebase.common.utils.Digests;
-import com.doubleview.jeebase.common.utils.Encodes;
+import com.doubleview.jeebase.common.utils.DigestUtils;
+import com.doubleview.jeebase.common.utils.EncodeUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,10 +19,10 @@ public class SystemUtils {
      * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
      */
     public static String entryptPassword(String plainPassword) {
-        String plain = Encodes.unescapeHtml(plainPassword);
-        byte[] salt = Digests.generateSalt(SALT_SIZE);
-        byte[] hashPassword = Digests.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
-        return Encodes.encodeHex(salt)+Encodes.encodeHex(hashPassword);
+        String plain = EncodeUtils.unescapeHtml(plainPassword);
+        byte[] salt = DigestUtils.generateSalt(SALT_SIZE);
+        byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
+        return EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword);
     }
 
     /**sys_log
@@ -32,10 +32,10 @@ public class SystemUtils {
      * @return 验证成功返回true
      */
     public static boolean validatePassword(String plainPassword, String password) {
-        String plain = Encodes.unescapeHtml(plainPassword);
-        byte[] salt = Encodes.decodeHex(password.substring(0, 16));
-        byte[] hashPassword = Digests.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
-        return password.equals(Encodes.encodeHex(salt)+Encodes.encodeHex(hashPassword));
+        String plain = EncodeUtils.unescapeHtml(plainPassword);
+        byte[] salt = EncodeUtils.decodeHex(password.substring(0, 16));
+        byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
+        return password.equals(EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword));
     }
 
 

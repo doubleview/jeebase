@@ -1,12 +1,45 @@
 package com.doubleview.jeebase.common.utils;
 
+import com.doubleview.jeebase.common.config.Constant;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  *普通工具类
  */
 public class CommonUtils {
 
+
+    /**
+     * 转换为字节数组
+     * @param str
+     * @return
+     */
+    public static byte[] getBytes(String str){
+        if (str != null){
+            try {
+                return str.getBytes(Constant.defaultCharset);
+            } catch (UnsupportedEncodingException e) {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * 转换为字节数组
+     * @param bytes
+     * @return
+     */
+    public static String toString(byte[] bytes){
+        try {
+            return new String(bytes, Constant.defaultCharset);
+        } catch (UnsupportedEncodingException e) {
+            return "";
+        }
+    }
     /**
      * 驼峰命名法工具
      * @return toCamelCase("hello_world") == "helloWorld"
