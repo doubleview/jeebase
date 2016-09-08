@@ -1,14 +1,10 @@
 package com.doubleview.jeebase.system.service;
 
-import com.doubleview.jeebase.common.base.BaseService;
+import com.doubleview.jeebase.support.base.BaseService;
 import com.doubleview.jeebase.system.dao.DepartmentDao;
-import com.doubleview.jeebase.system.dao.DictDao;
 import com.doubleview.jeebase.system.model.Department;
-import com.doubleview.jeebase.system.model.Dict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * 字典Service

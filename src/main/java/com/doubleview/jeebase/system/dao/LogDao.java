@@ -1,9 +1,8 @@
 package com.doubleview.jeebase.system.dao;
 
-import com.doubleview.jeebase.common.base.BaseDao;
-import com.doubleview.jeebase.common.persistence.MyBatisDao;
+import com.doubleview.jeebase.support.base.BaseDao;
+import com.doubleview.jeebase.support.persistence.MyBatisDao;
 import com.doubleview.jeebase.system.model.Log;
-import com.doubleview.jeebase.system.model.User;
 
 /**
  * 日志Dao接口

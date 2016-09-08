@@ -1,7 +1,7 @@
 package com.doubleview.jeebase.system.utils;
 
-import com.doubleview.jeebase.common.utils.DigestUtils;
-import com.doubleview.jeebase.common.utils.EncodeUtils;
+import com.doubleview.jeebase.support.utils.DigestUtils;
+import com.doubleview.jeebase.support.utils.EncodeUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +17,7 @@ public class SystemUtils {
 
     /**
      * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
+     * @param plainPassword 明文密码
      */
     public static String entryptPassword(String plainPassword) {
         String plain = EncodeUtils.unescapeHtml(plainPassword);
@@ -25,7 +26,7 @@ public class SystemUtils {
         return EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword);
     }
 
-    /**sys_log
+    /**
      * 验证密码
      * @param plainPassword 明文密码
      * @param password 密文密码

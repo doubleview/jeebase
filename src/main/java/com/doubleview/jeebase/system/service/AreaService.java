@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.service;
 
-import com.doubleview.jeebase.common.base.BaseService;
+import com.doubleview.jeebase.support.base.BaseService;
 import com.doubleview.jeebase.system.dao.AreaDao;
 import com.doubleview.jeebase.system.model.Area;
 import org.springframework.stereotype.Service;

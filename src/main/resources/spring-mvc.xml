@@ -29,7 +29,7 @@
 				</property>
 				<property name="prettyPrint" value="false"/>
 <!--				<property name="objectMapper">
-					<bean class="com.ahut.fastadmin.common.mapper.JsonMapper"></bean>
+					<bean class="com.ahut.fastadmin.support.mapper.JsonMapper"></bean>
 				</property>-->
 			</bean>
 		</mvc:message-converters>
@@ -71,7 +71,7 @@
 			<mvc:exclude-mapping path="${adminPath}/sys/menu/tree"/>
 			<mvc:exclude-mapping path="${adminPath}/sys/menu/treeData"/>
 			<mvc:exclude-mapping path="${adminPath}/oa/oaNotify/self/count"/>
-			<bean class="com.doubleview.jeebase.common.interceptor.LogInterceptor" />
+			<bean class="com.doubleview.jeebase.support.interceptor.LogInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

@@ -1,16 +1,12 @@
 package com.doubleview.jeebase.system.service;
 
-import com.doubleview.jeebase.common.base.BaseService;
-import com.doubleview.jeebase.common.persistence.Page;
-import com.doubleview.jeebase.common.utils.DateTimeUtils;
-import com.doubleview.jeebase.system.dao.DictDao;
+import com.doubleview.jeebase.support.base.BaseService;
+import com.doubleview.jeebase.support.persistence.Page;
+import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import com.doubleview.jeebase.system.dao.LogDao;
-import com.doubleview.jeebase.system.model.Dict;
 import com.doubleview.jeebase.system.model.Log;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * 字典Service

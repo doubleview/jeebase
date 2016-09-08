@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.base.TreeModel;
+import com.doubleview.jeebase.support.base.TreeModel;
 import com.google.common.collect.Lists;
 
 import java.util.List;

@@ -28,7 +28,7 @@
 		<property name="dataSource" ref="dataSource"/>
 		<!--别名包，该包下所有类使用别名-->
 		<property name="typeAliasesPackage" value="com.doubleview.jeebase"/>
-		<property name="typeAliasesSuperType" value="com.doubleview.jeebase.common.base.BaseModel"/>
+		<property name="typeAliasesSuperType" value="com.doubleview.jeebase.support.base.BaseModel"/>
 		<!--mappings配置文件位置-->
 		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
@@ -38,7 +38,7 @@
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 		<property name="basePackage" value="com.doubleview.jeebase"/>
-		<property name="annotationClass" value="com.doubleview.jeebase.common.persistence.MyBatisDao"/>
+		<property name="annotationClass" value="com.doubleview.jeebase.support.persistence.MyBatisDao"/>
 	</bean>
 
 	<!-- 定义事务 -->

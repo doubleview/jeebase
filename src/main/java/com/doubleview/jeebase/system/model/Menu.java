@@ -1,8 +1,7 @@
 package com.doubleview.jeebase.system.model;
 
-import com.doubleview.jeebase.common.base.TreeModel;
-import com.doubleview.jeebase.common.config.Constant;
-import com.doubleview.jeebase.common.base.BaseModel;
+import com.doubleview.jeebase.support.base.TreeModel;
+import com.doubleview.jeebase.support.config.Constant;
 
 /**
  * 菜单实体类

@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.security;
 
-import com.doubleview.jeebase.common.utils.ServletUtils;
+import com.doubleview.jeebase.support.utils.ServletUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;

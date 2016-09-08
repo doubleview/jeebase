@@ -41,12 +41,12 @@
 
 	<!-- 类型别名 -->
 	<typeAliases>
-		<typeAlias alias="Page" type="com.doubleview.jeebase.common.persistence.Page" /><!--分页  -->
+		<typeAlias alias="Page" type="com.doubleview.jeebase.support.persistence.Page" /><!--分页  -->
 	</typeAliases>
 
 	<!-- 插件配置 -->
 <!--	<plugins>
-		<plugin interceptor="com.ahut.fastadmin.common.persistence.interceptor.PaginationInterceptor" />
+		<plugin interceptor="com.ahut.fastadmin.support.persistence.interceptor.PaginationInterceptor" />
 	</plugins>-->
 
 </configuration>

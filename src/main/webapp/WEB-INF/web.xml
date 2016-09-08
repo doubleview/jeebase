@@ -16,7 +16,7 @@
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
     <listener>
-        <listener-class>com.doubleview.jeebase.common.listener.WebContextListener</listener-class>
+        <listener-class>com.doubleview.jeebase.support.listener.WebContextListener</listener-class>
     </listener>
 <!--    <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>

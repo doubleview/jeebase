@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.system.service;
 
-import com.doubleview.jeebase.common.base.BaseService;
+import com.doubleview.jeebase.support.base.BaseService;
 import com.doubleview.jeebase.system.dao.UserDao;
 import com.doubleview.jeebase.system.model.Role;
 import com.doubleview.jeebase.system.model.User;
