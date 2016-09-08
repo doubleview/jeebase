@@ -1,4 +1,4 @@
-package com.doubleview.jeebase.system.interceptor;
+package com.doubleview.jeebase.common.interceptor;
 
 import com.doubleview.jeebase.common.utils.DateTimeUtils;
 import com.doubleview.jeebase.system.utils.SystemUtils;

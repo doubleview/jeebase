@@ -1,4 +1,4 @@
-package com.doubleview.jeebase.system.listener;
+package com.doubleview.jeebase.common.listener;
 
 import com.doubleview.jeebase.common.config.Constant;
 import org.springframework.web.context.WebApplicationContext;
