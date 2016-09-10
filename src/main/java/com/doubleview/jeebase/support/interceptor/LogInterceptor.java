@@ -26,7 +26,7 @@ public class LogInterceptor implements HandlerInterceptor{
         if (logger.isDebugEnabled()){
             long beginTime = System.currentTimeMillis();
             startTimeThreadLocal.set(beginTime);
-            logger.debug("start time: {}  URI: {}", new SimpleDateFormat("hh:mm:ss.SSS").format(beginTime), request.getRequestURI());
+            logger.debug("开始计时: {}  URI: {}", new SimpleDateFormat("HH:mm:ss.SSS").format(beginTime), request.getRequestURI());
         }
         return true;
     }

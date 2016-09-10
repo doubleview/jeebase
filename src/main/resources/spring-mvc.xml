@@ -67,10 +67,10 @@
 		<mvc:interceptor>
 			<mvc:mapping path="${adminPath}/**" />
 			<mvc:exclude-mapping path="${adminPath}/"/>
-			<mvc:exclude-mapping path="${adminPath}/login"/>
+			<mvc:exclude-mapping path="${adminPath}/validateCode"/>
 			<mvc:exclude-mapping path="${adminPath}/sys/menu/tree"/>
-			<mvc:exclude-mapping path="${adminPath}/sys/menu/treeData"/>
-			<mvc:exclude-mapping path="${adminPath}/oa/oaNotify/self/count"/>
+<!--			<mvc:exclude-mapping path="${adminPath}/sys/menu/treeData"/>
+			<mvc:exclude-mapping path="${adminPath}/oa/oaNotify/self/count"/>-->
 			<bean class="com.doubleview.jeebase.support.interceptor.LogInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

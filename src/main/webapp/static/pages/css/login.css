@@ -60,6 +60,15 @@
     border: 1px solid #dde3ec;
 }
 
+.login .content .form-control[name='validateCode']{
+    width:65%;
+    display: inline-block;
+}
+
+.login .content .form-control[name='validateCode'] + img{
+    //margin-left: 5px;
+}
+
 .login .content .form-control:focus, .login .content .form-control:active {
     border: 1px solid #c3ccda;
 }

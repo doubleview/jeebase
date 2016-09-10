@@ -15,15 +15,21 @@ var Login = function() {
                 },
                 remember: {
                     required: false
+                },
+                validateCode: {
+                    required : true
                 }
             },
 
             messages: {
                 username: {
-                    required: "Username is required."
+                    required: "请输入用户名"
                 },
                 password: {
-                    required: "Password is required."
+                    required: "请输入密码"
+                },
+                validateCode: {
+                    required : "请输入验证码"
                 }
             },
 
