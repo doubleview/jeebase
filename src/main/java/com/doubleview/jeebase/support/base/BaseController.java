@@ -31,7 +31,7 @@ public abstract class BaseController {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * Feed工厂
+     * Render工厂
      */
     protected RenderFactory renderFactory = RenderFactory.custome();
 

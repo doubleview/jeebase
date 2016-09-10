@@ -18,6 +18,7 @@ import java.util.Random;
  */
 public class CaptchaRender extends Render {
 
+	//验证码参数名
 	public static String captchaName = "validateCode";
 
 	// 默认的验证码大小
@@ -87,7 +88,6 @@ public class CaptchaRender extends Render {
 			color = getRandColor(120, 200);
 			g.setColor(color);
 			g.drawOval(random.nextInt(WIDTH), random.nextInt(HEIGHT), 5 + random.nextInt(10), 5 + random.nextInt(10));
-			color = null;
 		}
 
 		// 取随机产生的认证码(4位数字)
@@ -111,7 +111,6 @@ public class CaptchaRender extends Render {
 			g.drawString(rand, x + 8, y + 10);
 			//旋转之后，必须旋转回来
 			g.rotate(-Math.toRadians(degree), x, y);
-			color = null;
 		}
 		//图片中间线
 		g.setColor(getRandColor(0, 60));
