@@ -5818,7 +5818,7 @@ define("moxie/image/Image", [
 								/*tr.bind("RuntimeInit", function(e, runtime) {
 									tr.destroy();
 									runtime.destroy();
-									onResize.call(self); // re-feed our image data
+									onResize.call(self); // re-render our image data
 								});*/
 
 								runtime = null;

@@ -35,7 +35,7 @@ fc.sourceNormalizers.push(function(sourceOptions) {
 		if (/^[^\/]+@([^\/\.]+\.)*(google|googlemail|gmail)\.com$/.test(url)) {
 			googleCalendarId = url;
 		}
-		// try to scrape it out of a V1 or V3 API feed URL
+		// try to scrape it out of a V1 or V3 API render URL
 		else if (
 			(match = /^https:\/\/www.googleapis.com\/calendar\/v3\/calendars\/([^\/]*)/.exec(url)) ||
 			(match = /^https?:\/\/www.google.com\/calendar\/feeds\/([^\/]*)/.exec(url))

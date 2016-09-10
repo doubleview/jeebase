@@ -1,15 +1,20 @@
 package com.doubleview.jeebase.support.base;
 
+import com.doubleview.jeebase.support.render.Render;
+import com.doubleview.jeebase.support.render.RenderFactory;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.beans.PropertyEditorSupport;
@@ -25,6 +30,39 @@ public abstract class BaseController {
      */
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+    /**
+     * Feed工厂
+     */
+    protected RenderFactory renderFactory = RenderFactory.custome();
+
+    /**
+     * 后台基础路径
+     */
+    @Value("${adminPath}")
+    protected String adminPath;
+
+    /**
+     * 前台基础路径
+     */
+    @Value("${frontPath}")
+    protected String frontPath;
+
+    /**
+     * 前端URL后缀
+     */
+    @Value("${urlSuffix}")
+    protected String urlSuffix;
+
+    /**
+     * 响应浏览器
+     * @param request
+     * @param response
+     * @param render
+     */
+    public void render(HttpServletRequest request , HttpServletResponse response , Render render){
+        render.setWebContext(request,response);
+        render.render();
+    }
 
     /**
      * 参数绑定异常

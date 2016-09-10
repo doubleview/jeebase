@@ -10396,7 +10396,7 @@ var BasicView = View.extend({
 	},
 
 
-	// Compute the value to feed into setRange. Overrides superclass.
+	// Compute the value to render into setRange. Overrides superclass.
 	computeRange: function(date) {
 		var range = View.prototype.computeRange.call(this, date); // get value from the super-method
 

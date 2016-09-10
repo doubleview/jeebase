@@ -1,5 +1,6 @@
 package com.doubleview.jeebase.system.security;
 
+import com.doubleview.jeebase.support.render.CaptchaRender;
 import com.doubleview.jeebase.support.utils.ServletUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -22,7 +23,7 @@ public class SystemAuthenticationFilter extends FormAuthenticationFilter{
 
     public static final String DEFAULT_MESSAGE_PARAM = "message";//验证消息
 
-    private String captchaParam = DEFAULT_CAPTCHA_PARAM;
+    private String captchaParam = CaptchaRender.captchaName;
 
     private String messageParam = DEFAULT_MESSAGE_PARAM;
 

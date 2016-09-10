@@ -15,6 +15,16 @@ public class ResponseResult {
     private Object data;
 
 
+    public ResponseResult(){
+        super();
+    }
+
+    public ResponseResult(int code , String message , Object data){
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
     public int getCode() {
         return code;
     }
@@ -38,4 +48,30 @@ public class ResponseResult {
     public void setData(Object data) {
         this.data = data;
     }
+
+    /**
+     * 成功
+     * @param data
+     * @return
+     */
+    public static ResponseResult success(Object data){
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.setCode(0);
+        responseResult.setMessage("success");
+        responseResult.setData(data);
+        return responseResult;
+    }
+
+    /**
+     * 失败
+     * @return
+     */
+    public static ResponseResult fail(){
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.setCode(1);
+        responseResult.setMessage("fail");
+        responseResult.setData(null);
+        return  responseResult;
+    }
+
 }
