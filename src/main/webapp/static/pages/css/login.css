@@ -60,13 +60,13 @@
     border: 1px solid #dde3ec;
 }
 
-.login .content .form-control[name='validateCode']{
-    width:65%;
-    display: inline-block;
+.login .content .form-control:focus{
+    background-color: #FFFFE0;
 }
 
-.login .content .form-control[name='validateCode'] + img{
-    //margin-left: 5px;
+.login .content .captcha-field{
+    width:65%;
+    display: inline-block;
 }
 
 .login .content .form-control:focus, .login .content .form-control:active {
@@ -91,14 +91,6 @@
     padding-right: 9px;
 }
 
-.login .content .forget-form {
-    display: none;
-}
-
-.login .content .register-form {
-    display: none;
-}
-
 .login .content .form-title {
     font-weight: 300;
     margin-bottom: 25px;
@@ -115,30 +107,6 @@
 
 .login .content .form-actions > .btn {
     margin-top: -2px;
-}
-
-.login-options {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    overflow: hidden;
-}
-
-.login-options h4 {
-    float: left;
-    font-weight: 600;
-    font-size: 15px;
-    color: #7d91aa !important;
-}
-
-.login-options .social-icons {
-    float: right;
-    padding-top: 3px;
-}
-
-.login-options .social-icons li a {
-    border-radius: 15px 15px 15px 15px !important;
-    -moz-border-radius: 15px 15px 15px 15px !important;
-    -webkit-border-radius: 15px 15px 15px 15px !important;
 }
 
 .login .content .form-actions .checkbox {
@@ -180,46 +148,12 @@
     color: #45b6af;
 }
 
-.login .content .forget-password {
-    font-size: 14px;
-    float: right;
-    display: inline-block;
-    margin-top: 10px;
-}
-
 .login .content .check {
     color: #8290a3;
 }
 
 .login .content .rememberme {
     margin-left: 8px;
-}
-
-.login .content .create-account {
-    margin: 0 -40px -30px -40px;
-    padding: 15px 0 17px 0;
-    text-align: center;
-    background-color: #6c7a8d;
-    -webkit-border-radius: 0 0 7px 7px;
-    -moz-border-radius: 0 0 7px 7px;
-    -ms-border-radius: 0 0 7px 7px;
-    -o-border-radius: 0 0 7px 7px;
-    border-radius: 0 0 7px 7px;
-}
-
-.login .content .create-account > p {
-    margin: 0;
-}
-
-.login .content .create-account p a {
-    font-weight: 600;
-    font-size: 14px;
-    color: #c3cedd;
-}
-
-.login .content .create-account a {
-    display: inline-block;
-    margin-top: 5px;
 }
 
 /* footer copyright */
@@ -248,15 +182,6 @@
         font-size: 22px;
     }
 
-    .forget-password {
-        display: inline-block;
-        margin-top: 20px;
-    }
-
-    .login-options .social-icons {
-        float: left;
-        padding-top: 3px;
-    }
 
     .login .checkbox {
         font-size: 13px;

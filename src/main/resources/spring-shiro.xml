@@ -33,13 +33,13 @@
 		<!--权限过滤器定义-->
 		<property name="filterChainDefinitions">
 			<value>
-				/static/** = anon
+<!--				/static/** = anon
 				/userfiles/** = anon
 				${adminPath}/cas = cas
 				${adminPath}/validateCode = anon
 				${adminPath}/login = authc
 				${adminPath}/logout = logout
-				${adminPath}/** = user
+				${adminPath}/** = user-->
 			</value>
 		</property>
 	</bean>

@@ -8,9 +8,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta content="width=device-width, initial-scale=1" name="viewport" />
   <!-- 全局样式-->
-<%--
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
---%>
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -46,16 +44,17 @@
     <div class="form-group">
       <!--ie8, ie9 不支持placeholder , 采用标题显示-->
       <label class="control-label visible-ie8 visible-ie9">用户名</label>
-      <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="username" />
+      <input class="form-control form-control-solid placeholder-no-fix" autocomplete="off" type="text" placeholder="用户名" name="username" />
     </div>
+
     <div class="form-group">
       <label class="control-label visible-ie8 visible-ie9">密码</label>
-      <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" />
+      <input class="form-control form-control-solid placeholder-no-fix" autocomplete="off" type="password" placeholder="密码" name="password" />
     </div>
 
     <div class="form-group">
       <label class="control-label visible-ie8 visible-ie9">验证码</label>
-      <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="验证码" name="validateCode" />
+      <input class="form-control form-control-solid placeholder-no-fix captcha-field" autocomplete="off" type="text"  placeholder="验证码" name="validateCode" />
       <img src="${adminPath}/validateCode" onclick="this.src = '${adminPath}/validateCode?v=' + Math.random()"/>
     </div>
 
@@ -129,8 +128,7 @@
         },
 
         highlight: function(element) { // hightlight error inputs
-          $(element)
-                  .closest('.form-group').addClass('has-error'); // set error class to the control group
+          $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
         },
 
         success: function(label) {
@@ -139,7 +137,8 @@
         },
 
         errorPlacement: function(error, element) {
-          error.insertAfter(element.closest('.input-icon'));
+         // error.insertAfter(element.closest('.input-icon'));
+          error.appendTo(".alert span");
         },
 
         submitHandler: function(form) {
