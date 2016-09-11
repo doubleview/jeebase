@@ -1,12 +1,9 @@
 package com.doubleview.jeebase.support.utils;
 
-import org.apache.commons.lang3.Validate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
-import java.security.SecureRandom;
 
 /**
  * 支持SHA-1/MD5消息摘要的工具类.
@@ -17,7 +14,7 @@ public class DigestUtils {
     private static final String SHA1 = "SHA-1";
     private static final String MD5 = "MD5";
 
-    private static SecureRandom random = new SecureRandom();
+
 
     /**
      * 对输入字符串进行md5散列.
@@ -67,18 +64,7 @@ public class DigestUtils {
         }
     }
 
-    /**
-     * 生成随机的Byte[]作为salt.
-     *
-     * @param numBytes byte数组的大小
-     */
-    public static byte[] generateSalt(int numBytes) {
-        Validate.isTrue(numBytes > 0, "numBytes argument must be a positive integer (1 or larger)", numBytes);
 
-        byte[] bytes = new byte[numBytes];
-        random.nextBytes(bytes);
-        return bytes;
-    }
 
     /**
      * 对文件进行md5散列.
