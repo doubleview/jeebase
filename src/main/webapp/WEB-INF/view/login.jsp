@@ -33,7 +33,7 @@
 
 <div class="content">
   <!-- 登录 -->
-  <form class="login-form" action="index.html" method="post">
+  <form class="login-form" action="${adminPath}/login" method="post">
     <h3 class="form-title font-green">登录</h3>
 
     <div class="alert alert-danger display-hide">
@@ -128,17 +128,16 @@
         },
 
         highlight: function(element) { // hightlight error inputs
-          $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+          $(element).closest('.form-control').addClass('has-error'); // set error class to the control group
         },
 
         success: function(label) {
-          label.closest('.form-group').removeClass('has-error');
+          label.prev("input").removeClass('has-error');
           label.remove();
         },
 
         errorPlacement: function(error, element) {
-         // error.insertAfter(element.closest('.input-icon'));
-          error.appendTo(".alert span");
+          error.insertAfter(element.closest('.input-icon'));
         },
 
         submitHandler: function(form) {

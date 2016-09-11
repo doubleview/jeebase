@@ -2,11 +2,10 @@ package com.doubleview.jeebase.support.render;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.session.Session;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.geom.QuadCurve2D;
 import java.awt.image.BufferedImage;
@@ -43,7 +42,7 @@ public class CaptchaRender extends Render {
 		String validateCode = drawGraphic(image);
 		validateCode = validateCode.toUpperCase();
 
-		request.getSession().setAttribute(captchaName,validateCode);
+		request.getSession().setAttribute(captchaName, validateCode);
 
 		response.setHeader("Pragma","no-cache");
 		response.setHeader("Cache-Control","no-cache");
@@ -142,16 +141,15 @@ public class CaptchaRender extends Render {
 
 	/**
 	 * 验证码
-	 * @param request 控制器
+	 * @param session 用户绘画
 	 * @param userInputCaptcha 用户输入的验证码
 	 * @return 验证通过返回 true, 否则返回 false
 	 */
-	public static boolean validate(HttpServletRequest request, String userInputCaptcha) {
+	public static boolean validate(Session session, String userInputCaptcha) {
 		if (StringUtils.isBlank(userInputCaptcha)) {
 			return false;
 		}
 		userInputCaptcha = userInputCaptcha.toUpperCase();
-		HttpSession session = request.getSession();
 		String sessionCaptcha = (String)session.getAttribute(captchaName);
 		return userInputCaptcha.equals(sessionCaptcha);
 	}

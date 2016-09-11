@@ -64,6 +64,8 @@
     background-color: #FFFFE0;
 }
 
+
+
 .login .content .captcha-field{
     width:65%;
     display: inline-block;
@@ -165,6 +167,7 @@
     font-size: 13px;
 }
 
+
 @media (max-width: 440px) {
     /***
     Login page
@@ -187,3 +190,5 @@
         font-size: 13px;
     }
 }
+
+

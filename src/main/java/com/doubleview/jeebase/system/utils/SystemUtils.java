@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 public class SystemUtils {
 
 
-    public static final String HASH_ALGORITHM = "SHA-1";
     public static final int HASH_INTERATIONS = 1024;
     public static final int SALT_SIZE = 8;
 
@@ -25,20 +24,6 @@ public class SystemUtils {
         byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
         return EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword);
     }
-
-    /**
-     * 验证密码
-     * @param plainPassword 明文密码
-     * @param password 密文密码
-     * @return 验证成功返回true
-     */
-    public static boolean validatePassword(String plainPassword, String password) {
-        String plain = EncodeUtils.unescapeHtml(plainPassword);
-        byte[] salt = EncodeUtils.decodeHex(password.substring(0, 16));
-        byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
-        return password.equals(EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword));
-    }
-
 
     /**
      * 保存日志
