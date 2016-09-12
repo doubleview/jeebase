@@ -5,7 +5,7 @@ import com.doubleview.jeebase.support.render.CaptchaRender;
 import com.doubleview.jeebase.support.utils.EncodeUtils;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.service.UserService;
-import com.doubleview.jeebase.system.utils.SystemUtils;
+import com.doubleview.jeebase.system.utils.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -13,6 +13,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -38,8 +39,8 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
      */
     @PostConstruct
     public void initCredentialsMatcher() {
-        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(SystemUtils.HASH_ALGORITHM);
-        matcher.setHashIterations(SystemUtils.HASH_INTERATIONS);
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(ShiroUtils.HASH_ALGORITHM);
+        matcher.setHashIterations(ShiroUtils.HASH_INTERATIONS);
         setCredentialsMatcher(matcher);
     }
 
@@ -63,7 +64,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         if (user != null) {
             if (user.getLoginFlag().equals(Constant.NO))
                 throw new AuthenticationException("error:您被禁止登录");
-            String salt = user.getPassword().substring(0, SystemUtils.SALT_SIZE*2);
+            String salt = user.getPassword().substring(0, ShiroUtils.SALT_SIZE*2);
             ByteSource saltSource = ByteSource.Util.bytes(EncodeUtils.decodeHex(salt));
             return new SimpleAuthenticationInfo(user, user.getPassword().substring(16),saltSource, this.getName());
         } else {
@@ -80,6 +81,9 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+
+        AuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        return authorizationInfo;
+
     }
 }
