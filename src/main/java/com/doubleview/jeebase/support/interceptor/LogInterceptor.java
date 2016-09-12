@@ -1,7 +1,6 @@
 package com.doubleview.jeebase.support.interceptor;
 
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
-import com.doubleview.jeebase.system.utils.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.NamedThreadLocal;
@@ -41,7 +40,7 @@ public class LogInterceptor implements HandlerInterceptor{
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 保存日志
-        SystemUtils.saveLog(request, handler, ex, null);
+        //SystemUtils.saveLog(request, handler, ex, null);
         if (logger.isDebugEnabled()){
             long beginTime = startTimeThreadLocal.get();
             long endTime = System.currentTimeMillis();

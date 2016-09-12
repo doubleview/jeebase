@@ -16,6 +16,7 @@ public class Role extends BaseModel<Role>{
 
 
     private  User user;//根据user查询角色
+
     public Role(){
         super();
     }
@@ -38,5 +39,13 @@ public class Role extends BaseModel<Role>{
 
     public void setMenuList(List<Menu> menuList) {
         this.menuList = menuList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

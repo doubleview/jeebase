@@ -11,7 +11,7 @@ import java.util.List;
  *Service基础接口
  */
 @Transactional(readOnly = true)
-public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
+public abstract class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
 
     /**
      * 持久层对象
@@ -42,7 +42,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
      * @param entity 实体对象
      * @return 查询出的数据列表
      */
-    public List<T> findList(T entity) {
+    public List<T> getList(T entity) {
         return dao.getList(entity);
     }
 
@@ -52,7 +52,7 @@ public class BaseService<D extends BaseDao<T>,T extends  BaseModel<T>> {
      * @param entity 实体对象
      * @return 分页对象(包含查询出的数据列表)
      */
-    public Page<T> findPage(Page<T> page, T entity) {
+    public Page<T> getPage(Page<T> page, T entity) {
         entity.setPage(page);
         page.setList(dao.getList(entity));
         return page;

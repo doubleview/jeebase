@@ -1,15 +1,18 @@
 package com.doubleview.jeebase.system.service;
 
 import com.doubleview.jeebase.support.base.BaseService;
+import com.doubleview.jeebase.system.dao.RoleDao;
 import com.doubleview.jeebase.system.dao.UserDao;
 import com.doubleview.jeebase.system.model.Role;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.model.UserRole;
-import com.doubleview.jeebase.system.utils.SystemUtils;
+import com.doubleview.jeebase.system.utils.ShiroUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
@@ -19,13 +22,20 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserService extends BaseService<UserDao , User>{
 
+    @Autowired
+    private RoleDao roleDao;
+
     /**
      * 根据登录名获取用户
      * @param loginName 登录名
      * @return
      */
     public User getUserByLoginName(String loginName) {
-        return dao.getByLoginName(loginName);
+        User user =  dao.getByLoginName(loginName);
+        Role role = new Role();
+        role.setUser(user);
+        user.setRoleList(roleDao.getList(role));
+        return  user;
     }
 
     /**
@@ -66,7 +76,7 @@ public class UserService extends BaseService<UserDao , User>{
     @Transactional(readOnly = false)
     public int updatePassword(String id ,  String newPassword){
         User user = new User(id);
-        user.setPassword(SystemUtils.entryptPassword(newPassword));
+        user.setPassword(ShiroUtils.entryptPassword(newPassword));
         return dao.updatePassword(user);
     }
 

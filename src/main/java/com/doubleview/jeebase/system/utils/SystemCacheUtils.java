@@ -24,7 +24,6 @@ public class SystemCacheUtils {
         if(user == null){
 
         }
-
         return user;
     }
 

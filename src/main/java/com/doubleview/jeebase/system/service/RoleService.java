@@ -31,7 +31,6 @@ public class RoleService extends BaseService<RoleDao, Role>{
         return dao.getByName(name);
     }
 
-
     /**
      * 保存或更新角色
      * @param role
