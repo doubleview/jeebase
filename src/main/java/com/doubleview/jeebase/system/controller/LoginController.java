@@ -4,6 +4,7 @@ import com.doubleview.jeebase.support.base.BaseController;
 import com.doubleview.jeebase.support.render.Render;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController extends BaseController{
 
 
-    @RequestMapping("/login")
+    /**
+     * 登录失败
+     * @return
+     */
+    @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public String login(){
-        return "login";
+        return  null;
     }
 
 

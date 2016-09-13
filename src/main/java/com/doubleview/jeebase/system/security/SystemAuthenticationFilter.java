@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SystemAuthenticationFilter extends FormAuthenticationFilter{
 
-    public static final String DEFAULT_CAPTCHA_PARAM = "validateCode";//验证码code
-
     public static final String DEFAULT_MESSAGE_PARAM = "message";//验证消息
 
     private String captchaParam = CaptchaRender.captchaName;
@@ -79,13 +77,14 @@ public class SystemAuthenticationFilter extends FormAuthenticationFilter{
     @Override
     protected boolean onLoginFailure(AuthenticationToken token,
                                      AuthenticationException e, ServletRequest request, ServletResponse response) {
-        String className = e.getClass().getName(), message = "";
+        String className = e.getClass().getName();
+        String message;
         if (IncorrectCredentialsException.class.getName().equals(className)
                 || UnknownAccountException.class.getName().equals(className)){
             message = "用户名或密码错啦，请重试";
         }
-        else if (e.getMessage() != null && StringUtils.startsWith(e.getMessage(), "msg:")){
-            message = StringUtils.replace(e.getMessage(), "msg:", "");
+        else if (e.getMessage() != null && StringUtils.startsWith(e.getMessage(), "error:")){
+            message = StringUtils.replace(e.getMessage(), "error:", "");
         }
         else{
             message = "系统有点问题，稍后重试";
