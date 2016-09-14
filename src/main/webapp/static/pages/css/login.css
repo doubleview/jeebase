@@ -52,19 +52,41 @@
     margin: 0px;
 }
 
+
+.form-icon{
+    position: relative;
+}
+
+.icon-user , .icon-lock , .icon-grid{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.help-block{
+    color : #f2233b;
+    font-size: 80%;
+    margin-left: 10px;
+}
+
+.has-error{
+    border:1px solid #f2233b;
+}
+
+.has-success{
+    border:1px solid #68b828;
+}
+
 .login .content .form-control {
-    border: none;
     background-color: #dde3ec;
     height: 43px;
     color: #8290a3;
-    border: 1px solid #dde3ec;
 }
 
 .login .content .form-control:focus{
     background-color: #FFFFE0;
 }
-
-
 
 .login .content .captcha-field{
     width:65%;
@@ -106,6 +128,7 @@
     margin-left: -30px;
     margin-right: -30px;
 }
+
 
 .login .content .form-actions > .btn {
     margin-top: -2px;
@@ -184,11 +207,11 @@
     .login .content h3 {
         font-size: 22px;
     }
-
-
+    
     .login .checkbox {
         font-size: 13px;
     }
 }
+
 
 

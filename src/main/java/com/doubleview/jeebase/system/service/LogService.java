@@ -22,7 +22,7 @@ public class LogService extends BaseService<LogDao, Log>{
      * @return
      */
     @Override
-    public Page<Log> findPage(Page<Log> page, Log log) {
+    public Page<Log> getPage(Page<Log> page, Log log) {
         // 设置默认时间范围，默认当前月
         if (log.getBeginDate() == null){
             log.setBeginDate(DateTimeUtils.setDays(DateTimeUtils.parseDate(DateTimeUtils.getDate()), 1));
@@ -30,6 +30,6 @@ public class LogService extends BaseService<LogDao, Log>{
         if (log.getEndDate() == null){
             log.setEndDate(DateTimeUtils.addMonths(log.getBeginDate(), 1));
         }
-        return super.findPage(page, log);
+        return super.getPage(page, log);
     }
 }

@@ -8,7 +8,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta content="width=device-width, initial-scale=1" name="viewport" />
   <!-- 全局样式-->
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+  <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -41,21 +41,37 @@
       <span> 请输入你的用户名和密码 </span>
     </div>
 
+    <c:if test="${message ne null}">
+      <div class="alert alert-danger">
+        <button class="close" data-close="alert"></button>
+        <span> ${message}</span>
+      </div>
+    </c:if>
+
     <div class="form-group">
-      <!--ie8, ie9 不支持placeholder , 采用标题显示-->
-      <label class="control-label visible-ie8 visible-ie9">用户名</label>
-      <input class="form-control form-control-solid placeholder-no-fix" autocomplete="off" type="text" placeholder="用户名" name="username" />
+      <div class="input-icon">
+       <!--ie8, ie9 不支持placeholder , 采用标题显示-->
+        <label class="control-label visible-ie8 visible-ie9">用户名</label>
+        <label class="icon-user"></label>
+        <input class="form-control form-control-solid placeholder-no-fix has-success" autocomplete="off" type="text" placeholder="用户名" name="username" />
+      </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label visible-ie8 visible-ie9">密码</label>
-      <input class="form-control form-control-solid placeholder-no-fix" autocomplete="off" type="password" placeholder="密码" name="password" />
+      <div class="input-icon">
+        <label class="control-label visible-ie8 visible-ie9">密码</label>
+        <label class="icon-lock"></label>
+        <input class="form-control form-control-solid placeholder-no-fix has-success" autocomplete="off" type="password" placeholder="密码" name="password" />
+      </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label visible-ie8 visible-ie9">验证码</label>
-      <input class="form-control form-control-solid placeholder-no-fix captcha-field" autocomplete="off" type="text"  placeholder="验证码" name="validateCode" />
-      <img src="${adminPath}/validateCode" onclick="this.src = '${adminPath}/validateCode?v=' + Math.random()"/>
+      <div class="input-icon">
+        <label class="control-label visible-ie8 visible-ie9">验证码</label>
+        <label class="icon-grid"></label>
+        <input class="form-control form-control-solid placeholder-no-fix captcha-field has-success" autocomplete="off" type="text"  placeholder="验证码" name="validateCode" />
+        <img src="${adminPath}/validateCode" onclick="this.src = '${adminPath}/validateCode?v=' + Math.random()"/>
+      </div>
     </div>
 
     <div class="form-actions">
@@ -123,16 +139,13 @@
           }
         },
 
-        invalidHandler: function(event, validator) { //display error alert on form submit
-          $('.alert-danger', $('.login-form')).show();
-        },
 
-        highlight: function(element) { // hightlight error inputs
-          $(element).closest('.form-control').addClass('has-error'); // set error class to the control group
+        highlight: function(element) {
+          $(element).addClass('has-error').removeClass("has-success");
         },
 
         success: function(label) {
-          label.prev("input").removeClass('has-error');
+          label.prev(".input-icon").find(".has-error").removeClass('has-error').addClass("has-success");
           label.remove();
         },
 
@@ -141,7 +154,7 @@
         },
 
         submitHandler: function(form) {
-          form.submit(); // form validation success, call ajax form submit
+          form.submit();
         }
       });
 
