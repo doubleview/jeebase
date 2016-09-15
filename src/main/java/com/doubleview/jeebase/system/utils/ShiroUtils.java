@@ -142,4 +142,10 @@ public class ShiroUtils {
         return bytes;
     }
 
+
+    public static void main(String[] args){
+        String plainPassword = "123456";
+        System.out.println(entryptPassword(plainPassword));
+    }
+
 }

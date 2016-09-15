@@ -21,11 +21,11 @@
 		u.update_by AS "updateBy.id",
 		u.update_time AS "updateTime",
 		u.del_status AS "delStatus",
-		d.id AS "department.id"
+		d.id AS "department.id",
 		d.name AS "department.name",
 		d.parent_id AS "department.parent.id",
 		u2.id AS "department.master.id",
-		u2.name AS "department.master.name"
+		u2.name AS "department.master.name",
 		a.id AS "department.area.id",
 		a.name AS "department.area.name",
 		a.parent_id AS "department.area.parent.id"
@@ -52,7 +52,8 @@
 		SELECT
 		<include refid="userColumns"/>
 		<include refid="userJoins"/>
-		WHERE u.login_name = #{loginName} AND u.del_status = #{NORMAL}
+		WHERE u.login_name = #{loginName}
+			AND u.del_status = "0"
 	</select>
 
 	<!-- 根据部门id查询用户 -->

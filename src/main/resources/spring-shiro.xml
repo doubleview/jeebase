@@ -37,9 +37,9 @@
 				/userfiles/** = anon
 				${adminPath}/cas = cas
 				${adminPath}/validateCode = anon
-				${adminPath}/login = authc
 				${adminPath}/logout = logout
-				${adminPath}/** = user
+				${adminPath}/login = authc
+				/** = user
 			</value>
 		</property>
 	</bean>

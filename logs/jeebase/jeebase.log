@@ -1,0 +1,219 @@
+2016-09-15 11:49:18,853 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 11:49:18.850  URI: /jeebase/admin/login
+2016-09-15 11:49:18,864 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 11:49:21,159 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：11:49:21.158  耗时：0:0:2.308  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 315m  已分配内存中的剩余空间: 264m  最大可用内存: 768m
+2016-09-15 11:50:00,815 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 11:50:00.814  URI: /jeebase/admin/login
+2016-09-15 11:50:00,823 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 11:50:00,828 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：11:50:00.828  耗时：0:0:0.14  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 315m  已分配内存中的剩余空间: 245m  最大可用内存: 750m
+2016-09-15 11:50:31,156 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 11:50:31,514 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = ? 
+2016-09-15 11:50:31,623 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String), doubleview(String)
+2016-09-15 11:50:31,725 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 0
+2016-09-15 11:50:31,825 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 11:50:31.825  URI: /jeebase/admin/login
+2016-09-15 11:50:31,826 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 11:50:31,829 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：11:50:31.829  耗时：0:0:0.4  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 315m  已分配内存中的剩余空间: 236m  最大可用内存: 740m
+2016-09-15 11:50:32,838 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 11:50:32.838  URI: /jeebase/admin/login
+2016-09-15 11:50:32,839 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 11:50:32,841 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：11:50:32.841  耗时：0:0:0.3  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 315m  已分配内存中的剩余空间: 235m  最大可用内存: 740m
+2016-09-15 11:59:23,205 WARN  [net.sf.ehcache.DiskStorePathManager]  diskStorePath 'temp\jeebase\ehcache' is already used by an existing CacheManager either in the same VM or in a different process.
+The diskStore path for this CacheManager will be set to temp\jeebase\ehcache\ehcache_auto_created3066087723202159497diskstore.
+To avoid this warning consider using the CacheManager factory methods to create a singleton CacheManager or specifying a separate ehcache configuration (ehcache.xml) for each CacheManager instance.
+2016-09-15 11:59:23,206 WARN  [sf.ehcache.store.disk.DiskStorageFactory]  Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file E:\codespace\ideaspace\jeebase\temp\jeebase\ehcache\ehcache_auto_created3066087723202159497diskstore\active%0053essions%0043ache.data
+2016-09-15 12:00:56,302 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:00:56.298  URI: /jeebase/admin/login
+2016-09-15 12:00:56,311 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:01:06,089 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:01:06.088  耗时：0:0:9.790  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 276m  已分配内存中的剩余空间: 111m  最大可用内存: 654m
+2016-09-15 12:01:14,715 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:01:14.715  URI: /jeebase/admin/login
+2016-09-15 12:01:14,716 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:01:14,721 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:01:14.721  耗时：0:0:0.6  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 276m  已分配内存中的剩余空间: 109m  最大可用内存: 652m
+2016-09-15 12:01:45,266 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 12:01:45,438 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = ? 
+2016-09-15 12:01:45,478 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String), doubleview(String)
+2016-09-15 12:01:45,526 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 0
+2016-09-15 12:01:45,532 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:01:45.532  URI: /jeebase/admin/login
+2016-09-15 12:01:45,533 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:01:45,535 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:01:45.535  耗时：0:0:0.3  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 308m  已分配内存中的剩余空间: 244m  最大可用内存: 756m
+2016-09-15 12:01:57,445 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:01:57.444  URI: /jeebase/admin/login
+2016-09-15 12:01:57,446 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:01:57,449 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:01:57.448  耗时：0:0:0.4  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 308m  已分配内存中的剩余空间: 232m  最大可用内存: 743m
+2016-09-15 12:07:04,319 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:07:04.314  URI: /jeebase/admin/login
+2016-09-15 12:07:04,329 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:07:09,360 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:07:09.359  耗时：0:0:5.45  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 266m  已分配内存中的剩余空间: 185m  最大可用内存: 739m
+2016-09-15 12:07:31,282 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:07:31.281  URI: /jeebase/admin/login
+2016-09-15 12:07:31,282 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:07:31,285 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:07:31.285  耗时：0:0:0.4  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 266m  已分配内存中的剩余空间: 179m  最大可用内存: 733m
+2016-09-15 12:07:59,993 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 12:08:00,820 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 12:08:00,912 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 12:08:01,187 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 12:08:01,273 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 12:08:01,274 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0b2ebd4d639e4c2b83c2dd0764522f24(String), 0(String)
+2016-09-15 12:08:01,493 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 12:08:01,822 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:08:01.821  URI: /jeebase/admin/favicon.ico
+2016-09-15 12:08:01,825 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:08:01.824  耗时：0:0:0.3  URI: /jeebase/admin/favicon.ico  最大内存: 820m  已分配内存: 340m  已分配内存中的剩余空间: 273m  最大可用内存: 753m
+2016-09-15 12:14:28,890 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:14:28.886  URI: /jeebase/admin/login;JSESSIONID=7fa9196a-d2ee-4e77-b5fb-19f6795d84eb
+2016-09-15 12:14:28,905 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:14:30,825 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:14:30.824  耗时：0:0:1.938  URI: /jeebase/admin/login;JSESSIONID=7fa9196a-d2ee-4e77-b5fb-19f6795d84eb  最大内存: 820m  已分配内存: 282m  已分配内存中的剩余空间: 68m  最大可用内存: 606m
+2016-09-15 12:14:46,346 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:14:46.345  URI: /jeebase/admin/login
+2016-09-15 12:14:46,347 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:14:46,352 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:14:46.352  耗时：0:0:0.7  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 252m  最大可用内存: 759m
+2016-09-15 12:14:58,444 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 12:14:58,574 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 12:14:58,615 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 12:14:58,728 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 12:14:58,781 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 12:14:58,782 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0b2ebd4d639e4c2b83c2dd0764522f24(String), 0(String)
+2016-09-15 12:14:58,784 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 12:14:58,956 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:14:58.956  URI: /jeebase/admin/favicon.ico
+2016-09-15 12:14:58,963 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:14:58.962  耗时：0:0:0.6  URI: /jeebase/admin/favicon.ico  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 235m  最大可用内存: 742m
+2016-09-15 12:16:49,935 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:16:49.935  URI: /jeebase/admin/favicon.ico
+2016-09-15 12:16:49,939 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:16:49.939  耗时：0:0:0.4  URI: /jeebase/admin/favicon.ico  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 226m  最大可用内存: 733m
+2016-09-15 12:17:02,507 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:17:02.506  URI: /jeebase/admin/login
+2016-09-15 12:17:02,508 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: redirect:/admin/main
+2016-09-15 12:17:02,513 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:17:02.513  耗时：0:0:0.7  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 226m  最大可用内存: 733m
+2016-09-15 12:17:02,565 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:17:02.565  URI: /jeebase/admin/main
+2016-09-15 12:17:02,569 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:17:02.568  耗时：0:0:0.3  URI: /jeebase/admin/main  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 226m  最大可用内存: 733m
+2016-09-15 12:17:19,426 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:17:19.425  URI: /jeebase/admin
+2016-09-15 12:17:19,428 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:17:19.428  耗时：0:0:0.3  URI: /jeebase/admin  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 226m  最大可用内存: 733m
+2016-09-15 12:17:26,784 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:17:26.784  URI: /jeebase/admin
+2016-09-15 12:17:26,786 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:17:26.786  耗时：0:0:0.2  URI: /jeebase/admin  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 226m  最大可用内存: 733m
+2016-09-15 12:17:31,656 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:17:31.656  URI: /jeebase/admin
+2016-09-15 12:17:31,658 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:17:31.657  耗时：0:0:0.1  URI: /jeebase/admin  最大内存: 820m  已分配内存: 313m  已分配内存中的剩余空间: 225m  最大可用内存: 732m
+2016-09-15 12:23:03,786 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:23:03.510  URI: /jeebase/admin/login;JSESSIONID=e3c7f235-0450-4a59-bb60-76eab79e0941
+2016-09-15 12:23:03,816 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:23:07,486 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:23:07.481  耗时：0:0:3.971  URI: /jeebase/admin/login;JSESSIONID=e3c7f235-0450-4a59-bb60-76eab79e0941  最大内存: 820m  已分配内存: 240m  已分配内存中的剩余空间: 93m  最大可用内存: 673m
+2016-09-15 12:24:03,418 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:24:03.418  URI: /jeebase/admin/login
+2016-09-15 12:24:03,420 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:24:03,427 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:24:03.427  耗时：0:0:0.9  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 310m  已分配内存中的剩余空间: 250m  最大可用内存: 760m
+2016-09-15 12:30:22,986 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:30:22.977  URI: /jeebase/admin/login;JSESSIONID=47bd8a54-cdd7-40f0-b369-530c82e3ccc1
+2016-09-15 12:30:23,003 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 12:30:25,940 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:30:25.938  耗时：0:0:2.961  URI: /jeebase/admin/login;JSESSIONID=47bd8a54-cdd7-40f0-b369-530c82e3ccc1  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 220m  最大可用内存: 737m
+2016-09-15 12:30:48,606 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 12:30:48,763 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 12:30:48,861 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 12:30:49,044 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 12:30:49,123 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 12:30:49,123 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0b2ebd4d639e4c2b83c2dd0764522f24(String), 0(String)
+2016-09-15 12:30:49,125 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 12:31:12,871 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:12.871  URI: /jeebase/admin/login
+2016-09-15 12:31:12,874 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: redirect:/admin/main
+2016-09-15 12:31:12,881 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:31:12.881  耗时：0:0:0.10  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 196m  最大可用内存: 713m
+2016-09-15 12:31:12,891 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:12.891  URI: /jeebase/admin/main
+2016-09-15 12:31:12,893 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:31:12.893  耗时：0:0:0.2  URI: /jeebase/admin/main  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 196m  最大可用内存: 713m
+2016-09-15 12:31:17,990 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:17.989  URI: /jeebase/admin
+2016-09-15 12:31:17,992 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:31:17.992  耗时：0:0:0.3  URI: /jeebase/admin  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 196m  最大可用内存: 713m
+2016-09-15 12:31:19,255 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:19.255  URI: /jeebase/admin/login
+2016-09-15 12:31:19,256 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: redirect:/admin/main
+2016-09-15 12:31:19,256 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:31:19.256  耗时：0:0:0.1  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 196m  最大可用内存: 713m
+2016-09-15 12:31:19,266 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:19.266  URI: /jeebase/admin/main
+2016-09-15 12:31:19,268 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：12:31:19.268  耗时：0:0:0.2  URI: /jeebase/admin/main  最大内存: 820m  已分配内存: 303m  已分配内存中的剩余空间: 196m  最大可用内存: 713m
+2016-09-15 12:31:48,789 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 12:31:48.788  URI: /jeebase/admin/index
+2016-09-15 12:31:48,791 DEBUG [doubleview.jeebase.system.controller.LoginController]  ???登录成功
+2016-09-15 13:16:24,936 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 13:16:24.860  URI: /jeebase/admin/login;JSESSIONID=1578ef10-0745-4e66-aa8d-204056cbe011
+2016-09-15 13:16:24,986 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 13:16:31,192 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：01:16:31.189  耗时：0:0:6.329  URI: /jeebase/admin/login;JSESSIONID=1578ef10-0745-4e66-aa8d-204056cbe011  最大内存: 820m  已分配内存: 214m  已分配内存中的剩余空间: 129m  最大可用内存: 735m
+2016-09-15 13:17:08,376 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 13:17:08,639 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 13:17:08,688 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 13:17:09,158 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 13:17:09,231 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 13:17:09,231 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0b2ebd4d639e4c2b83c2dd0764522f24(String), 0(String)
+2016-09-15 13:17:09,339 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 13:17:09,544 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 13:17:09.544  URI: /jeebase/admin/in
+2016-09-15 13:17:09,554 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：01:17:09.554  耗时：0:0:0.10  URI: /jeebase/admin/in  最大内存: 820m  已分配内存: 214m  已分配内存中的剩余空间: 107m  最大可用内存: 713m
+2016-09-15 13:17:17,127 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 13:17:17.127  URI: /jeebase/admin/login
+2016-09-15 13:17:17,130 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: redirect:/admin/main
+2016-09-15 13:17:17,135 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：01:17:17.135  耗时：0:0:0.8  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 214m  已分配内存中的剩余空间: 106m  最大可用内存: 712m
+2016-09-15 13:17:17,352 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 13:17:17.352  URI: /jeebase/admin/main
+2016-09-15 13:17:17,355 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：01:17:17.355  耗时：0:0:0.3  URI: /jeebase/admin/main  最大内存: 820m  已分配内存: 214m  已分配内存中的剩余空间: 106m  最大可用内存: 712m
+2016-09-15 13:17:30,337 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 13:17:30.337  URI: /jeebase/admin/index
+2016-09-15 14:19:23,024 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:19:22.912  URI: /jeebase/admin/login
+2016-09-15 14:19:23,388 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:19:33,842 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:19:33.840  耗时：0:0:10.928  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 283m  已分配内存中的剩余空间: 74m  最大可用内存: 610m
+2016-09-15 14:20:35,780 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 14:20:36,917 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 14:20:37,006 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 14:20:37,247 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 14:20:37,338 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 14:20:37,339 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0ca004d6b1bf4bcab9670a5060d82a55(String), 0(String)
+2016-09-15 14:20:37,405 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 14:20:37,632 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:20:37.632  URI: /jeebase/admin/index
+2016-09-15 14:25:36,498 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 14:25:36,656 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:25:36.656  耗时：0:4:59.24  URI: /jeebase/admin/index  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 225m  最大可用内存: 734m
+2016-09-15 14:31:43,281 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:31:43.277  URI: /jeebase/admin/login
+2016-09-15 14:31:43,290 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: redirect:/admin/main
+2016-09-15 14:31:43,330 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:31:43.330  耗时：0:0:0.53  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 225m  最大可用内存: 733m
+2016-09-15 14:31:43,352 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:31:43.352  URI: /jeebase/admin/main
+2016-09-15 14:31:43,357 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:31:43.357  耗时：0:0:0.5  URI: /jeebase/admin/main  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 225m  最大可用内存: 733m
+2016-09-15 14:31:48,569 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:31:48.569  URI: /jeebase/admin/index
+2016-09-15 14:31:48,571 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 14:31:48,932 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:31:48.928  耗时：0:0:0.359  URI: /jeebase/admin/index  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 213m  最大可用内存: 722m
+2016-09-15 14:31:54,617 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:31:54.617  URI: /jeebase/admin/index/asdf
+2016-09-15 14:31:54,621 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:31:54.620  耗时：0:0:0.3  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:03,536 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:03.536  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:03,540 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:03.539  耗时：0:0:0.3  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:04,181 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:04.180  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:04,182 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:04.182  耗时：0:0:0.2  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:04,723 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:04.723  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:04,726 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:04.725  耗时：0:0:0.2  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:05,074 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:05.074  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:05,077 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:05.076  耗时：0:0:0.2  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:05,373 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:05.373  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:05,382 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:05.381  耗时：0:0:0.8  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:05,677 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:05.676  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:05,682 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:05.678  耗时：0:0:0.2  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:05,937 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:05.937  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:05,940 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:05.939  耗时：0:0:0.2  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:27,047 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:27.047  URI: /jeebase/admin/index/asdf
+2016-09-15 14:32:27,050 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:27.050  耗时：0:0:0.3  URI: /jeebase/admin/index/asdf  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:32:30,695 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:32:30.695  URI: /jeebase/admin/index/
+2016-09-15 14:32:30,697 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 14:32:30,699 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:32:30.699  耗时：0:0:0.4  URI: /jeebase/admin/index/  最大内存: 820m  已分配内存: 311m  已分配内存中的剩余空间: 212m  最大可用内存: 721m
+2016-09-15 14:48:24,506 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:48:24.097  URI: /jeebase/admin/login;JSESSIONID=48a74867-569d-4437-bf0c-ac3addace63f
+2016-09-15 14:48:24,552 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:48:28,972 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:48:28.972  URI: /jeebase/admin/login
+2016-09-15 14:48:28,974 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:48:34,981 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:48:34.979  耗时：0:0:10.882  URI: /jeebase/admin/login;JSESSIONID=48a74867-569d-4437-bf0c-ac3addace63f  最大内存: 820m  已分配内存: 204m  已分配内存中的剩余空间: 96m  最大可用内存: 712m
+2016-09-15 14:48:34,981 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:48:34.979  耗时：0:0:6.7  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 204m  已分配内存中的剩余空间: 96m  最大可用内存: 712m
+2016-09-15 14:49:05,381 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user null login submit
+2016-09-15 14:49:05,385 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:49:05.384  URI: /jeebase/admin/login
+2016-09-15 14:49:05,385 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:49:05,388 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:49:05.387  耗时：0:0:0.3  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 204m  已分配内存中的剩余空间: 93m  最大可用内存: 709m
+2016-09-15 14:49:13,355 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user null login submit
+2016-09-15 14:49:13,356 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:49:13.356  URI: /jeebase/admin/login
+2016-09-15 14:49:13,357 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:49:13,364 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:49:13.362  耗时：0:0:0.6  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 204m  已分配内存中的剩余空间: 93m  最大可用内存: 709m
+2016-09-15 14:50:12,314 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:50:12.313  URI: /jeebase/admin/login
+2016-09-15 14:50:12,315 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:50:15,583 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:50:15.583  耗时：0:0:3.270  URI: /jeebase/admin/login  最大内存: 820m  已分配内存: 204m  已分配内存中的剩余空间: 56m  最大可用内存: 672m
+2016-09-15 14:50:40,501 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 14:50:43,670 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 14:50:44,008 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 14:50:52,819 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 14:50:53,150 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 14:50:53,151 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0ca004d6b1bf4bcab9670a5060d82a55(String), 0(String)
+2016-09-15 14:50:53,348 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 14:50:54,187 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:50:54.187  URI: /jeebase/admin
+2016-09-15 14:50:54,977 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:50:54.977  耗时：0:0:0.790  URI: /jeebase/admin  最大内存: 820m  已分配内存: 212m  已分配内存中的剩余空间: 128m  最大可用内存: 736m
+2016-09-15 14:51:19,224 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:51:19.223  URI: /jeebase/admin/index
+2016-09-15 14:51:19,714 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 14:51:23,441 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:51:23.441  耗时：0:0:4.218  URI: /jeebase/admin/index  最大内存: 820m  已分配内存: 239m  已分配内存中的剩余空间: 160m  最大可用内存: 741m
+2016-09-15 14:57:24,356 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:57:24.348  URI: /jeebase/admin/login;JSESSIONID=ea081839-b715-47cd-8b02-cf3c57531e7c
+2016-09-15 14:57:24,396 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: login
+2016-09-15 14:57:30,509 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:57:30.507  耗时：0:0:6.159  URI: /jeebase/admin/login;JSESSIONID=ea081839-b715-47cd-8b02-cf3c57531e7c  最大内存: 820m  已分配内存: 162m  已分配内存中的剩余空间: 90m  最大可用内存: 748m
+2016-09-15 14:59:03,596 DEBUG [doubleview.jeebase.system.security.SystemAuthorizingRealm]  user doubleview login submit
+2016-09-15 14:59:04,320 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==>  Preparing: SELECT u.id AS "id", u.login_name AS "loginName", u.password AS "password", u.name AS "name", u.email AS "email", u.skin AS "skin", u.phone AS "phone", u.mobile AS "mobile", u.login_ip AS "loginIp", u.login_date AS "loginDate", u.login_flag AS "loginFlag", u.remarks AS "remarks", u.create_by AS "createBy.id", u.create_time AS "createTime", u.update_by AS "updateBy.id", u.update_time AS "updateTime", u.del_status AS "delStatus", d.id AS "department.id", d.name AS "department.name", d.parent_id AS "department.parent.id", u2.id AS "department.master.id", u2.name AS "department.master.name", a.id AS "department.area.id", a.name AS "department.area.name", a.parent_id AS "department.area.parent.id" FROM sys_user u LEFT JOIN sys_department d ON d.id = u.department_id LEFT JOIN sys_user u2 ON u2.id = d.master_id LEFT JOIN sys_area a ON a.id = d.area_id WHERE u.login_name = ? AND u.del_status = "0" 
+2016-09-15 14:59:04,512 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  ==> Parameters: doubleview(String)
+2016-09-15 14:59:04,917 DEBUG [jeebase.system.dao.UserDao.getByLoginName]  <==      Total: 1
+2016-09-15 14:59:05,028 DEBUG [jeebase.system.dao.RoleDao.getList]  ==>  Preparing: SELECT r.id AS "id", r.name AS "name", r.remarks AS "remarks", r.create_by AS "createBy.id", r.create_time AS "createTime", r.update_by AS "updateBy.id", r.update_time AS "updateTime", r.del_status AS "delStatusl" FROM sys_role r JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = ? WHERE r.del_status = ? ORDER BY r.name 
+2016-09-15 14:59:05,029 DEBUG [jeebase.system.dao.RoleDao.getList]  ==> Parameters: 0ca004d6b1bf4bcab9670a5060d82a55(String), 0(String)
+2016-09-15 14:59:05,069 DEBUG [jeebase.system.dao.RoleDao.getList]  <==      Total: 0
+2016-09-15 14:59:05,357 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 14:59:05.357  URI: /jeebase/admin/index
+2016-09-15 14:59:05,480 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 14:59:11,892 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：02:59:11.892  耗时：0:0:6.535  URI: /jeebase/admin/index  最大内存: 820m  已分配内存: 234m  已分配内存中的剩余空间: 116m  最大可用内存: 702m
+2016-09-15 15:01:34,751 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 15:01:34.747  URI: /jeebase/admin/index.html
+2016-09-15 15:01:34,765 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 15:01:34,824 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：03:01:34.824  耗时：0:0:0.77  URI: /jeebase/admin/index.html  最大内存: 820m  已分配内存: 234m  已分配内存中的剩余空间: 77m  最大可用内存: 663m
+2016-09-15 15:01:34,933 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  开始计时: 15:01:34.933  URI: /jeebase/admin/index.html
+2016-09-15 15:01:34,935 INFO  [doubleview.jeebase.support.interceptor.LogInterceptor]  view name: index
+2016-09-15 15:01:34,972 DEBUG [doubleview.jeebase.support.interceptor.LogInterceptor]  计时结束：03:01:34.972  耗时：0:0:0.39  URI: /jeebase/admin/index.html  最大内存: 820m  已分配内存: 234m  已分配内存中的剩余空间: 77m  最大可用内存: 663m

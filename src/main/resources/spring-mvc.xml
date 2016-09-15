@@ -60,13 +60,13 @@
 	<mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
 
 	<!-- 定义无Controller的path<->view直接映射 -->
-	<mvc:view-controller path="/" view-name="redirect:${web.view.index}"/>
+<!--	<mvc:view-controller path="/" view-name="redirect:${web.view.index}"/>-->
 
 	<!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。-->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="${adminPath}/**" />
-			<mvc:exclude-mapping path="${adminPath}/"/>
+			<mvc:exclude-mapping path="${adminPath}/static/**"/>
 			<mvc:exclude-mapping path="${adminPath}/validateCode"/>
 			<mvc:exclude-mapping path="${adminPath}/sys/menu/tree"/>
 <!--			<mvc:exclude-mapping path="${adminPath}/sys/menu/treeData"/>

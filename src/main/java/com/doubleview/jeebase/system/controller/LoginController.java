@@ -5,6 +5,7 @@ import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +25,26 @@ public class LoginController extends BaseController{
     @RequestMapping(value = "/login")
     public String forwardToLogin(){
         User user = ShiroUtils.getCurrentUser();
+        //若已经登录，直接重定向到主页
         if(user != null){
             return "redirect:" + adminPath + "/main";
         }else {
             return "login";
         }
     }
+
+
+    /**
+     * 登录成功，请求主页
+     * @return
+     */
+    @RequestMapping("/index")
+    public String mainIndex(Model model){
+        User user = ShiroUtils.getCurrentUser();
+        model.addAttribute("currentUser" , user);
+        return "index";
+    }
+
 
     /**
      * 验证码请求

@@ -141,7 +141,7 @@ public class CaptchaRender extends Render {
 
 	/**
 	 * 验证码
-	 * @param session 用户绘画
+	 * @param session 用户会话
 	 * @param userInputCaptcha 用户输入的验证码
 	 * @return 验证通过返回 true, 否则返回 false
 	 */
@@ -150,9 +150,10 @@ public class CaptchaRender extends Render {
 			return false;
 		}
 		userInputCaptcha = userInputCaptcha.toUpperCase();
-		String sessionCaptcha = (String)session.getAttribute(captchaName);
+		String sessionCaptcha = (String)session.removeAttribute(captchaName);//取出验证码
 		return userInputCaptcha.equals(sessionCaptcha);
 	}
+
 }
 
 

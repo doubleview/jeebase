@@ -32,10 +32,13 @@ public class UserService extends BaseService<UserDao , User>{
      */
     public User getUserByLoginName(String loginName) {
         User user =  dao.getByLoginName(loginName);
-        Role role = new Role();
-        role.setUser(user);
-        user.setRoleList(roleDao.getList(role));
-        return  user;
+        if(user != null){
+            Role role = new Role();
+            role.setUser(user);
+            user.setRoleList(roleDao.getList(role));
+            return  user;
+        }
+        return user;
     }
 
     /**
@@ -44,7 +47,7 @@ public class UserService extends BaseService<UserDao , User>{
      * @return
      */
     @SuppressWarnings("unchecked")
-    public List<User> getUerByDepartmentId(String departmentId) {
+    public List<User> getUserByDepartmentId(String departmentId) {
         return dao.getByDepartmentId(departmentId);
     }
 

@@ -20,7 +20,7 @@
 	</sql>
 
 	<!--根据id获取角色-->
-	<select id="get" resultMap="roleResult">
+	<select id="get" resultType="Role">
 		SELECT
 		<include refid="roleColumns"/>
 		<include refid="roleJoins"/>
@@ -37,9 +37,9 @@
 	</select>
 
 	<!--获取所有角色-->
-	<select id="getList">
+	<select id="getList" resultType="Role">
 		SELECT
-		<include refid="roleColumns"/>,
+		<include refid="roleColumns"/>
 		<include refid="roleJoins"/>
 		<if test="user != null and user.id != null and user.id != ''">
 			JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = #{user.id}

@@ -3,7 +3,7 @@
 <mapper namespace="com.doubleview.jeebase.system.dao.DepartmentDao">
 
 	<!--部门列，共查询共用-->
-	<sql id="departmentColums">
+	<sql id="departmentColumns">
 		d.id AS "id",
 		d.name AS "name",
 		d.sort AS "sort",
@@ -39,8 +39,8 @@
 	<!--根据id查询Deepartment-->
 	<select id="get" resultType="Department">
 		SELECT
-		<include refid="officeColumns"/>
-		<include refid="officeJoins"/>
+		<include refid="departmentColumns"/>
+		<include refid="departmentJoins"/>
 		WHERE d.id = #{id}
 	</select>
 
