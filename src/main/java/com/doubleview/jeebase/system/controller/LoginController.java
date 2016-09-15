@@ -27,7 +27,7 @@ public class LoginController extends BaseController{
         User user = ShiroUtils.getCurrentUser();
         //若已经登录，直接重定向到主页
         if(user != null){
-            return "redirect:" + adminPath + "/main";
+            return "redirect:" + adminPath + "/index";
         }else {
             return "login";
         }

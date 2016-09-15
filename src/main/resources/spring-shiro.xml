@@ -19,6 +19,11 @@
 		<property name="failureUrl" value="${adminPath}/login"/>
 	</bean>
 
+	<!--注销过滤器-->
+	<bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+		<property name="redirectUrl" value="${adminPath}/login" />
+	</bean>
+
 	<!-- 安全认证过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -28,6 +33,7 @@
 			<map>
 				<entry key="cas" value-ref="casFilter"/>
 				<entry key="authc" value-ref="systemAuthenticationFilter"/>
+				<entry key="logout" value-ref="logout"/>
 			</map>
 		</property>
 		<!--权限过滤器定义-->
