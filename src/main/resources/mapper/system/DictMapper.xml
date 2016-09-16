@@ -43,7 +43,7 @@
 			<if test="description != null and description != ''">
 				AND description LIKE CONCAT('%', #{description}, '%')
 			</if>
-			AND del_status = #{NORMAL}
+			AND del_status = "0"
 		</where>
 		ORDER BY d.type, d.sort, d.update_time DESC
 	</select>
@@ -53,7 +53,7 @@
 		SELECT 
 			type 
 		FROM sys_dict d
-		WHERE d.del_status = #{NORMAL}
+		WHERE d.del_status = "0"
 		GROUP BY type
 		ORDER BY type
 	</select>

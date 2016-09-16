@@ -107,7 +107,7 @@ public class ShiroUtils {
     }
 
     /**
-     * 认证通过或已记住的用户。与guset搭配使用。
+     * 认证通过或已记住的用户
      *
      * @return 用户：true，否则 false
      */

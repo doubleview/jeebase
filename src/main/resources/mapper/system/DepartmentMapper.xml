@@ -59,7 +59,7 @@
 			<if test="parent!= null and parent.id != null and parent.id != '' ">
 				AND d.parent_id = #{parent.id}
 			</if>
-			AND d.del_status = #{NORMAL}
+			AND d.del_status = "0"
 		</where>
 		ORDER BY d.code
 	</select>

@@ -55,7 +55,7 @@
 			<if test="name != null and name != '' ">
 				AND m.name = #{name}
 			</if>
-			AND m.del_status = #{NORMAL}
+			AND m.del_status = "0"
 		</where>
 		ORDER BY m.name
 	</select>
@@ -69,9 +69,9 @@
 		JOIN sys_role r ON r.id = rm.role_id
 		JOIN sys_user_role ur ON ur.role_id = r.id
 		JOIN sys_user u ON u.id = ur.user_id AND u.id = #{userId}
-		WHERE m.del_status = #{NORMAL}
-			AND r.del_status = #{NORMAL}
-			AND u.del_status = #{NORMAL}
+		WHERE m.del_status = "0"
+			AND r.del_status = "0"
+			AND u.del_status = "0"
 		ORDER BY a.sort
 	</select>
 

@@ -33,7 +33,7 @@
 		<include refid="roleColumns"/>
 		<include refid="roleJoins"/>
 		WHERE r.name = #{name}
-		AND r.del_status = #{NORMAL}
+		AND r.del_status = "0"
 	</select>
 
 	<!--获取所有角色-->
@@ -48,7 +48,7 @@
 			<if test="name != null and name != '' ">
 				AND r.name = #{r.name}
 			</if>
-			AND r.del_status = #{NORMAL}
+			AND r.del_status = "0"
 		</where>
 		ORDER BY r.name
 	</select>

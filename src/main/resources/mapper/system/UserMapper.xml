@@ -61,7 +61,8 @@
 		SELECT
 		<include refid="userColumns"/>
 		<include refid="userJoins"/>
-		WHERE u.department_id  = #{departmentId} AND u.del_status = #{NORMAL}
+		WHERE u.department_id  = #{departmentId}
+			AND u.del_status = "0"
 	</select>
 
 	<!-- 分页查询用户信息 -->
@@ -87,7 +88,7 @@
 				AND u.name like
 				CONCAT('%', #{name}, '%')
 			</if>
-			AND u.del_status = #{NORMAL}
+			AND u.del_status = "0"
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -104,7 +105,7 @@
 		SELECT
 		COUNT(*)
 		FROM sys_user u
-		WHERE u.del_status = #{NORMAL}
+		WHERE u.del_status = "0"
 	</select>
 
 	<!-- 插入用户 -->
