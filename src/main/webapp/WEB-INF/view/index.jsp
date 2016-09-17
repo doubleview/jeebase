@@ -36,9 +36,9 @@
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 <div class="page-wrapper">
 
-  <!-- BEGIN HEADER -->
+  <!-- header -->
   <div class="page-header navbar navbar-fixed-top">
-    <!-- BEGIN HEADER INNER -->
+    <!-- header inner -->
     <div class="page-header-inner ">
 
       <!-- logo -->
@@ -51,13 +51,12 @@
         </div>
       </div>
 
-      <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+      <!-- responsive menu toggler -->
       <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
         <span></span>
       </a>
 
-      <!-- END RESPONSIVE MENU TOGGLER -->
-      <!-- BEGIN TOP NAVIGATION MENU -->
+      <!--top nagivation menu-->
       <div class="top-menu">
         <ul class="nav navbar-nav pull-right">
           <!-- BEGIN NOTIFICATION DROPDOWN -->
