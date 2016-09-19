@@ -159,8 +159,7 @@
               </li>
             </ul>
           </li>
-          <!-- END NOTIFICATION DROPDOWN -->
-          <!-- BEGIN INBOX DROPDOWN -->
+          <!--inbox dropdown-->
           <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
           <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -234,8 +233,7 @@
               </li>
             </ul>
           </li>
-          <!-- END INBOX DROPDOWN -->
-          <!-- BEGIN TODO DROPDOWN -->
+          <!--dropdown-->
           <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
           <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -346,7 +344,7 @@
             </ul>
           </li>
 
-            <!--用户-->
+            <!--user-->
             <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
               <img alt="" class="img-circle" src="${staticPath}/layouts/layout/img/avatar3_small.jpg" />
@@ -385,7 +383,7 @@
               </li>
             </ul>
           </li>
-            <!--注销-->
+            <!--logout-->
           <li class="dropdown dropdown-quick-sidebar-toggler">
             <a href="${adminPath}/logout" class="dropdown-toggle">
               <i class="icon-logout"></i>
@@ -393,14 +391,11 @@
           </li>
         </ul>
       </div>
-      <!-- END TOP NAVIGATION MENU -->
+
     </div>
-    <!-- END HEADER INNER -->
+
   </div>
-  <!-- END HEADER -->
-  <!-- BEGIN HEADER & CONTENT DIVIDER -->
   <div class="clearfix"> </div>
-  <!-- END HEADER & CONTENT DIVIDER -->
 
 
 
@@ -443,15 +438,15 @@
 
 
 
-  <!-- BEGIN CONTAINER -->
+  <!-- container -->
   <div class="page-container">
-    <!-- BEGIN SIDEBAR -->
+    <!-- sidebar -->
     <div class="page-sidebar-wrapper">
-      <!-- BEGIN SIDEBAR -->
+      <!-- sidebar -->
       <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
       <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
       <div class="page-sidebar navbar-collapse collapse">
-        <!-- BEGIN SIDEBAR MENU -->
+        <!--sidebar menu-->
         <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
         <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
         <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
@@ -460,16 +455,15 @@
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
           <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+          <!--  sidebar toggler button -->
           <li class="sidebar-toggler-wrapper hide">
             <div class="sidebar-toggler">
               <span></span>
             </div>
           </li>
-          <!-- END SIDEBAR TOGGLER BUTTON -->
           <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
           <li class="sidebar-search-wrapper">
-            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+            <!--responsive quick search form-->
             <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
             <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
             <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
@@ -485,7 +479,6 @@
                                         </span>
               </div>
             </form>
-            <!-- END RESPONSIVE QUICK SEARCH FORM -->
           </li>
 
           <li class="nav-item start active open">
@@ -535,61 +528,6 @@
                 </a>
               </li>
               <li class="nav-item  ">
-                <a href="ui_general.html" class="nav-link ">
-                  <span class="title">常用组件</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_buttons.html" class="nav-link ">
-                  <span class="title">按钮</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_buttons_spinner.html" class="nav-link ">
-                  <span class="title">微调按钮</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_confirmations.html" class="nav-link ">
-                  <span class="title">弹出按钮</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_icons.html" class="nav-link ">
-                  <span class="title">字体图标</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_socicons.html" class="nav-link ">
-                  <span class="title">社区图标</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_typography.html" class="nav-link ">
-                  <span class="title">面板</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_tabs_accordions_navs.html" class="nav-link ">
-                  <span class="title">标签，导航页</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_timeline.html" class="nav-link ">
-                  <span class="title">时间线 1</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_timeline_2.html" class="nav-link ">
-                  <span class="title">时间线 2</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_timeline_horizontal.html" class="nav-link ">
-                  <span class="title">水平时间线</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
                 <a href="ui_tree.html" class="nav-link ">
                   <span class="title">树</span>
                 </a>
@@ -608,61 +546,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item  ">
-                <a href="ui_blockui.html" class="nav-link ">
-                  <span class="title">块级 UI</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_bootstrap_growl.html" class="nav-link ">
-                  <span class="title">Bootstrap提示</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_notific8.html" class="nav-link ">
-                  <span class="title">Notific8提示</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_toastr.html" class="nav-link ">
-                  <span class="title">Toastr提示</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_bootbox.html" class="nav-link ">
-                  <span class="title">Bootbox对话框</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_alerts_api.html" class="nav-link ">
-                  <span class="title">Metronic警示条API</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_session_timeout.html" class="nav-link ">
-                  <span class="title">Session超时</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_idle_timeout.html" class="nav-link ">
-                  <span class="title">用户空闲超时</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_modals.html" class="nav-link ">
-                  <span class="title">弹出框</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_extended_modals.html" class="nav-link ">
-                  <span class="title">扩展弹出框</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_tiles.html" class="nav-link ">
-                  <span class="title">标签条</span>
-                </a>
-              </li>
+
               <li class="nav-item  ">
                 <a href="ui_datepaginator.html" class="nav-link ">
                   <span class="title">时间选择</span>
@@ -688,90 +572,8 @@
                 </a>
               </li>
               <li class="nav-item  ">
-                <a href="components_color_pickers.html" class="nav-link ">
-                  <span class="title">颜色选择</span>
-                  <span class="badge badge-danger">2</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_select2.html" class="nav-link ">
-                  <span class="title">下拉选择框</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_select.html" class="nav-link ">
-                  <span class="title">Bootstrap选择</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_multi_select.html" class="nav-link ">
-                  <span class="title">多选择</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_select_splitter.html" class="nav-link ">
-                  <span class="title">分级选择</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_typeahead.html" class="nav-link ">
-                  <span class="title">自动完成</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_tagsinput.html" class="nav-link ">
-                  <span class="title">Bootstrap标签选择</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_switch.html" class="nav-link ">
-                  <span class="title">Bootstrap切换</span>
-                  <span class="badge badge-success">6</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_maxlength.html" class="nav-link ">
-                  <span class="title">Bootstrap最大长度</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_fileinput.html" class="nav-link ">
-                  <span class="title">Bootstrap上传文件</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
                 <a href="components_bootstrap_touchspin.html" class="nav-link ">
                   <span class="title">Bootstrap触摸题赠</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_form_tools.html" class="nav-link ">
-                  <span class="title">表单工具</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_context_menu.html" class="nav-link ">
-                  <span class="title">环境菜单</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_editors.html" class="nav-link ">
-                  <span class="title">Markdown编辑器</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_code_editors.html" class="nav-link ">
-                  <span class="title">Code编辑器</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_ion_sliders.html" class="nav-link ">
-                  <span class="title">范围选择器1</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_noui_sliders.html" class="nav-link ">
-                  <span class="title">范围选择器2</span>
                 </a>
               </li>
               <li class="nav-item  ">
@@ -794,59 +596,7 @@
                                                 <br>Controls</span>
                 </a>
               </li>
-              <li class="nav-item  ">
-                <a href="form_controls_md.html" class="nav-link ">
-                                            <span class="title">机械化设计
-                                                <br>表单控制</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_validation.html" class="nav-link ">
-                  <span class="title">Form验证</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_validation_states_md.html" class="nav-link ">
-                                            <span class="title">机械化设计
-                                                <br>表单验证1</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_validation_md.html" class="nav-link ">
-                                            <span class="title">机械化设计
-                                                <br>表单设计</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_layouts.html" class="nav-link ">
-                  <span class="title">表单布局</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_input_mask.html" class="nav-link ">
-                  <span class="title">表单输入Mask</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_editable.html" class="nav-link ">
-                  <span class="title">表单 X-editable</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_wizard.html" class="nav-link ">
-                  <span class="title">表单 步骤</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_icheck.html" class="nav-link ">
-                  <span class="title">iCheck控制</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_image_crop.html" class="nav-link ">
-                  <span class="title">图像裁剪</span>
-                </a>
-              </li>
+      
               <li class="nav-item  ">
                 <a href="form_fileupload.html" class="nav-link ">
                   <span class="title">多文件上传</span>
@@ -872,21 +622,6 @@
                 </a>
               </li>
               <li class="nav-item  ">
-                <a href="elements_lists.html" class="nav-link ">
-                  <span class="title">列表</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="elements_ribbons.html" class="nav-link ">
-                  <span class="title">丝带修饰</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="elements_overlay.html" class="nav-link ">
-                  <span class="title">覆盖</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
                 <a href="elements_cards.html" class="nav-link ">
                   <span class="title">用户卡片</span>
                 </a>
@@ -906,16 +641,6 @@
                 </a>
               </li>
               <li class="nav-item  ">
-                <a href="table_static_responsive.html" class="nav-link ">
-                  <span class="title">响应式表格</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="table_bootstrap.html" class="nav-link ">
-                  <span class="title">Bootstrap表格</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                   <span class="title">数据表格</span>
                   <span class="arrow"></span>
@@ -926,27 +651,6 @@
                   </li>
                   <li class="nav-item ">
                     <a href="table_datatables_buttons.html" class="nav-link "> Buttons Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_colreorder.html" class="nav-link "> Colreorder Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_rowreorder.html" class="nav-link "> Rowreorder Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_scroller.html" class="nav-link "> Scroller Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_fixedheader.html" class="nav-link "> FixedHeader Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_responsive.html" class="nav-link "> Responsive Extension </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_editable.html" class="nav-link "> Editable Datatables </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_ajax.html" class="nav-link "> Ajax Datatables </a>
                   </li>
                 </ul>
               </li>
@@ -962,26 +666,6 @@
               <li class="nav-item  ">
                 <a href="portlet_boxed.html" class="nav-link ">
                   <span class="title">盒子 Portlets</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="portlet_light.html" class="nav-link ">
-                  <span class="title">高亮 Portlets</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="portlet_solid.html" class="nav-link ">
-                  <span class="title">固体 Portlets</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="portlet_ajax.html" class="nav-link ">
-                  <span class="title">Ajax Portlets</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="portlet_draggable.html" class="nav-link ">
-                  <span class="title">可拖拽 Portlets</span>
                 </a>
               </li>
             </ul>
@@ -1004,26 +688,6 @@
                 </a>
               </li>
               <li class="nav-item  ">
-                <a href="charts_flowchart.html" class="nav-link ">
-                  <span class="title">Flow Charts</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="charts_google.html" class="nav-link ">
-                  <span class="title">Google Charts</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="charts_echarts.html" class="nav-link ">
-                  <span class="title">eCharts</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="charts_morris.html" class="nav-link ">
-                  <span class="title">Morris Charts</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                   <span class="title">HighCharts</span>
                   <span class="arrow"></span>
@@ -1031,9 +695,6 @@
                 <ul class="sub-menu">
                   <li class="nav-item ">
                     <a href="charts_highcharts.html" class="nav-link "> HighCharts </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="charts_highstock.html" class="nav-link "> HighStock </a>
                   </li>
                   <li class="nav-item ">
                     <a href="charts_highmaps.html" class="nav-link "> HighMaps </a>
@@ -1117,14 +778,6 @@
                 <ul class="sub-menu">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="icon-tag"></i>链接1</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="icon-pencil"></i>链接2</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
                       <i class="icon-graph"></i> 链接3</a>
                   </li>
                 </ul>
@@ -1136,11 +789,8 @@
             </ul>
           </li>
         </ul>
-        <!-- 结束侧边栏 -->
       </div>
-      <!-- END SIDEBAR -->
     </div>
-    <!-- END SIDEBAR -->
 
 
 
@@ -1169,19 +819,12 @@
 
 
 
-    <!-- BEGIN CONTENT -->
+    <!-- content -->
     <div class="page-content-wrapper">
-      <!-- BEGIN CONTENT BODY -->
       <div class="page-content">
-
       </div>
-      <!-- END CONTENT BODY -->
     </div>
-
-
-    <!-- END CONTENT -->
-
-    <!-- BEGIN QUICK SIDEBAR -->
+    <!-- quick sidebar -->
     <a href="javascript:;" class="page-quick-sidebar-toggler">
       <i class="icon-login"></i>
     </a>
@@ -1741,9 +1384,7 @@
         </div>
       </div>
     </div>
-    <!-- END QUICK SIDEBAR -->
   </div>
-  <!-- END CONTAINER -->
 
   <!-- footer -->
   <div class="page-footer">
@@ -1755,7 +1396,6 @@
       <i class="icon-arrow-up"></i>
     </div>
   </div>
-    <!--end footer-->
 
 </div>
 
