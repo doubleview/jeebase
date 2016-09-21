@@ -13,7 +13,6 @@
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
   <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-
   <!--page-->
   <link href="${staticPath}/pages/css/login.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="favicon.ico" /> </head>
