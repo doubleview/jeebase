@@ -81,9 +81,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
         AuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         return authorizationInfo;
-
     }
 }

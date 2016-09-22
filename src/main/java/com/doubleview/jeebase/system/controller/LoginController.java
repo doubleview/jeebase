@@ -1,6 +1,7 @@
 package com.doubleview.jeebase.system.controller;
 
 import com.doubleview.jeebase.support.base.BaseController;
+import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
@@ -23,12 +24,13 @@ public class LoginController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/login")
-    public String forwardToLogin(){
+    public String forwardToLogin(Model model){
         User user = ShiroUtils.getCurrentUser();
         //若已经登录，直接重定向到主页
         if(user != null){
             return "redirect:" + adminPath + "/index";
         }else {
+            model.addAttribute("productName" , Constant.getProductName());
             return "login";
         }
     }

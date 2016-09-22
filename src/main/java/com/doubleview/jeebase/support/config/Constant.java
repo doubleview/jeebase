@@ -95,6 +95,9 @@ public class Constant {
         return getConfig("frontPath");
     }
 
+    public static String getProductName(){
+        return getConfig("productName");
+    }
     /**
      * 获取URL后缀
      * @return

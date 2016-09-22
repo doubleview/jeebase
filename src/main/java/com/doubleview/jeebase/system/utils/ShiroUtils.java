@@ -21,7 +21,6 @@ public class ShiroUtils {
     public static final int HASH_INTERATIONS = 1024;//加密循环次数
     public static final int SALT_SIZE = 8;//盐长度
 
-
     /**
      * 得到当前用户
      * @return
@@ -78,6 +77,8 @@ public class ShiroUtils {
         if(session != null)
             session.removeAttribute(key);
     }
+
+
     /**
      * 得到当前用户(subject)
      * @return

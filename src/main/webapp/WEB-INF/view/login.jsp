@@ -20,7 +20,7 @@
 
 <body class=" login">
 <div class="logo">
-    <label style="font-size: 30px;color: #fff">jeebase快速开发平台</label>
+    <label style="font-size: 30px;color: #fff">${productName}</label>
 </div>
 
 <div class="content">
@@ -76,10 +76,6 @@
   </form>
 
 </div>
-
-<!--IE9-->
-<%--<script src="${staticPath}/global/plugins/respond.min.js"></script>
-<script src="${staticPath}/global/plugins/excanvas.min.js"></script>--%>
 
 <!-- global-- -->
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
@@ -160,9 +156,7 @@
       }
     };
 
-
   }();
-
   jQuery(document).ready(function() {
     Login.init();
   });
