@@ -2,12 +2,10 @@ package com.doubleview.jeebase.system.utils;
 
 import com.doubleview.jeebase.support.config.SpringContext;
 import com.doubleview.jeebase.support.utils.CacheUtils;
-import com.doubleview.jeebase.system.model.Department;
-import com.doubleview.jeebase.system.model.Menu;
-import com.doubleview.jeebase.system.model.Role;
+import com.doubleview.jeebase.system.model.*;
 import com.doubleview.jeebase.system.service.*;
+import org.apache.shiro.session.Session;
 
-import javax.management.relation.RoleList;
 import java.util.List;
 
 /**
@@ -66,6 +64,22 @@ public class SystemCacheUtils {
     }
 
     /**
+     * 得到所有的地区
+     * @return
+     */
+    public static List<Area> getAreaList(){
+        List<Area> areaList = (List<Area>)CacheUtils.get(SYSTEM_CACHE , AREA_LIST);
+        if(areaList == null){
+            areaList = areaService.getList(new Area());
+            if(areaList == null){
+                return null;
+            }
+            CacheUtils.put(SYSTEM_CACHE , AREA_LIST , areaList);
+        }
+        return areaList;
+    }
+
+    /**
      * 得到所有的部门
      * @return
      */
@@ -81,8 +95,22 @@ public class SystemCacheUtils {
         return departmentList;
     }
 
-    public List<RoleList> getCurrentRoleList(){
-        return null;
+    /**
+     * 得到当前用户的所有菜单
+     * @return
+     */
+    public List<Menu> getCurrentMenuList(){
+        Session session = ShiroUtils.getSession();
+        List<Menu> menuList = (List<Menu>)session.getAttribute(CURRENT_MENU_LIST);
+        if(menuList == null){
+            User user = ShiroUtils.getCurrentUser();
+            menuList = menuService.getListByUserId(user);
+            if(menuList == null){
+                return null;
+            }
+            session.setAttribute(CURRENT_MENU_LIST , menuList);
+        }
+        return menuList;
     }
 
 }

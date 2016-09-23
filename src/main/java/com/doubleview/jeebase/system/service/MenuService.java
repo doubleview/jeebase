@@ -29,7 +29,7 @@ public class MenuService extends BaseService<MenuDao, Menu>{
      * @param user
      * @return
      */
-    public List<Menu> getMenuListByUserId(User user){
+    public List<Menu> getListByUserId(User user){
         return dao.getListByUserId(user.getId());
     }
 
@@ -41,4 +41,5 @@ public class MenuService extends BaseService<MenuDao, Menu>{
     public void updateMenuSort(Menu menu) {
         dao.updateSort(menu);
     }
+
 }
