@@ -108,7 +108,7 @@ public class SystemCacheUtils {
             if(menuList == null){
                 return null;
             }
-            session.setAttribute(CURRENT_MENU_LIST , menuList);
+            session.setAttribute(CURRENT_MENU_LIST, menuList);
         }
         return menuList;
     }

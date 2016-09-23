@@ -34,6 +34,7 @@ public interface RoleDao extends BaseDao<Role> {
      * @return
      */
     int batchInsertRoleMenu(List<RoleMenu> roleMenuList);
+
     /**
      * 删除角色与菜单权限关系
      * @param roleMenu
