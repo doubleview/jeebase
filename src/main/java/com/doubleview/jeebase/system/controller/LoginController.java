@@ -6,6 +6,7 @@ import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,8 +44,13 @@ public class LoginController extends BaseController{
      */
     @RequestMapping("/index")
     public String mainIndex(Model model){
+        Session session = ShiroUtils.getSession();
+        logger.debug("login sessionId : {}" , session.getId());
+        logger.debug("login host : {}" , session.getHost());
+        logger.debug("login timeout : {}" , session.getTimeout());
         User user = ShiroUtils.getCurrentUser();
         model.addAttribute("currentUser" , user);
+        model.addAttribute("productName" , Constant.getProductName());
         model.addAttribute("menuList" , SystemCacheUtils.getCurrentMenuList());
         return "index";
     }

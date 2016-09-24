@@ -5,10 +5,13 @@ import com.doubleview.jeebase.support.utils.CacheUtils;
 import com.doubleview.jeebase.system.model.*;
 import com.doubleview.jeebase.system.service.*;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统缓存工具类
@@ -20,6 +23,7 @@ public class SystemCacheUtils {
     private static MenuService menuService = SpringContext.getBean(MenuService.class);
     private static AreaService areaService = SpringContext.getBean(AreaService.class);
     private static DepartmentService departmentService = SpringContext.getBean(DepartmentService.class);
+    private static DictService dictService = SpringContext.getBean(DictService.class);
 
 
     private static String SYSTEM_CACHE = "systemCache";//系统缓存
@@ -27,6 +31,7 @@ public class SystemCacheUtils {
     private static String MENU_LIST = "menuList";
     private static String AREA_LIST = "areaList";
     private static String DEPARTMENT_LIST = "departmentList";
+    private static String DICT_MAP = "dictMap";
 
     public static final String CURRENT_ROLE_LIST = "current_roleList";
     public static final String CURRENT_MENU_LIST = "current_menuList";
@@ -98,6 +103,87 @@ public class SystemCacheUtils {
     }
 
     /**
+     * 获取字典的label
+     * @param value
+     * @param type
+     * @param defaultValue
+     * @return
+     */
+    public static String getDictLabel(String value, String type, String defaultValue){
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(value)){
+            for (Dict dict : getDictList(type)){
+                if (type.equals(dict.getType()) && value.equals(dict.getValue())){
+                    return dict.getLabel();
+                }
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
+     * 获取字典的label
+     * @param values
+     * @param type
+     * @param defaultValue
+     * @return
+     */
+    public static String getDictLabels(String values, String type, String defaultValue){
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(values)){
+            List<String> valueList = Lists.newArrayList();
+            for (String value : StringUtils.split(values, ",")){
+                valueList.add(getDictLabel(value, type, defaultValue));
+            }
+            return StringUtils.join(valueList, ",");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * 获取字典的label
+     * @param label
+     * @param type
+     * @param defaultLabel
+     * @return
+     */
+    public static String getDictValue(String label, String type, String defaultLabel){
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)){
+            for (Dict dict : getDictList(type)){
+                if (type.equals(dict.getType()) && label.equals(dict.getLabel())){
+                    return dict.getValue();
+                }
+            }
+        }
+        return defaultLabel;
+    }
+
+    /**
+     * 根据字典类型获取相应字典
+     * @param type
+     * @return
+     */
+    public static List<Dict> getDictList(String type){
+        @SuppressWarnings("unchecked")
+        Map<String, List<Dict>> dictMap = (Map<String, List<Dict>>)CacheUtils.get(SYSTEM_CACHE , DICT_MAP);
+        if (dictMap==null){
+            dictMap = Maps.newHashMap();
+            for (Dict dict : dictService.getList(new Dict())){
+                List<Dict> dictList = dictMap.get(dict.getType());
+                if (dictList != null){
+                    dictList.add(dict);
+                }else{
+                    dictMap.put(dict.getType(), Lists.newArrayList(dict));
+                }
+            }
+            CacheUtils.put(SYSTEM_CACHE, DICT_MAP , dictMap);
+        }
+        List<Dict> dictList = dictMap.get(type);
+        if (dictList == null){
+            dictList = Lists.newArrayList();
+        }
+        return dictList;
+    }
+
+    /**
      * 得到当前用户的所有菜单
      * @return
      */
@@ -121,7 +207,7 @@ public class SystemCacheUtils {
      * @param parentId
      * @return
      */
-    public static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId){
+    private static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId){
 
         if(menuList == null || menuList.isEmpty() ){
             return null;
