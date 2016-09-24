@@ -7,8 +7,7 @@
 		m.id AS "id",
 		m.name AS "name",
 		m.sort AS "sort",
-		m.href AS "sort",
-		m.target AS "target",
+		m.href AS "href",
 		m.icon AS "icon",
 		m.is_show AS "isShow",
 		m.remarks AS "remarks",
@@ -17,19 +16,8 @@
 		m.update_by AS "updateBy.id",
 		m.update_time AS "updateTime",
 		m.del_status AS "delStatus",
-		mp.id AS "parent.id",
-		mp.name AS "parent.name",
-		mp.sort AS "parent.sort",
-		mp.href AS "parent.href",
-		mp.target AS "parent.target",
-		mp.icon AS "parent.icon",
-		mp.is_show AS "parent.isShow",
-		mp.remarks AS "remarks",
-		mp.create_by AS "parent.createBy",
-		mp.create_time AS "parent.createTime",
-		mp.update_by AS "updateBy",
-		mp.update_time AS "updateTime",
-		mp.del_status AS "delStatus"
+		m.parent_id AS "parent.id",
+		mp.name AS "parent.name"
 	</sql>
 
 	<!--菜单关联，供查询重用-->
@@ -57,11 +45,11 @@
 			</if>
 			AND m.del_status = "0"
 		</where>
-		ORDER BY m.name
+		ORDER BY m.create_time
 	</select>
 
 	<!--根据用户id获取所有菜单-->
-	<select id="getByUserId" resultType="Menu">
+	<select id="getListByUserId" resultType="Menu">
 		SELECT DISTINCT
 		<include refid="menuColumns"/>
 		<include refid="menuJoins"/>
@@ -72,7 +60,7 @@
 		WHERE m.del_status = "0"
 			AND r.del_status = "0"
 			AND u.del_status = "0"
-		ORDER BY a.sort
+		ORDER BY m.create_time
 	</select>
 
 	<!--插入菜单-->

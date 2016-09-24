@@ -4,8 +4,10 @@ import com.doubleview.jeebase.support.config.SpringContext;
 import com.doubleview.jeebase.support.utils.CacheUtils;
 import com.doubleview.jeebase.system.model.*;
 import com.doubleview.jeebase.system.service.*;
+import com.google.common.collect.Lists;
 import org.apache.shiro.session.Session;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -99,18 +101,46 @@ public class SystemCacheUtils {
      * 得到当前用户的所有菜单
      * @return
      */
-    public List<Menu> getCurrentMenuList(){
+    public static List<Menu> getCurrentMenuList(){
         Session session = ShiroUtils.getSession();
         List<Menu> menuList = (List<Menu>)session.getAttribute(CURRENT_MENU_LIST);
         if(menuList == null){
             User user = ShiroUtils.getCurrentUser();
             menuList = menuService.getListByUserId(user);
-            if(menuList == null){
-                return null;
+            if(menuList != null){
+                menuList = levelAndSortMenuList(menuList , "0");
+                session.setAttribute(CURRENT_MENU_LIST, menuList);
             }
-            session.setAttribute(CURRENT_MENU_LIST, menuList);
         }
         return menuList;
+    }
+
+    /**
+     * 将所有菜单进行排序
+     * @param menuList
+     * @param parentId
+     * @return
+     */
+    public static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId){
+
+        if(menuList == null || menuList.isEmpty() ){
+            return null;
+        }
+
+        List<Menu> parentList = Lists.newArrayList();
+
+        for(Menu menu : menuList){
+            if(menu.getParent().getId().equals(parentId)){
+                parentList.add(menu);
+            }
+        }
+
+        menuList.removeAll(parentList);
+        for(Menu menu : parentList){
+            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId()));//递归调用
+        }
+        Collections.sort(parentList);//对菜单排序
+        return parentList;
     }
 
 }

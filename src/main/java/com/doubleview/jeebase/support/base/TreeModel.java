@@ -3,7 +3,7 @@ package com.doubleview.jeebase.support.base;
 /**
  * 树形实体类
  */
-public class TreeModel<T>  extends BaseModel<T>{
+public abstract class TreeModel<T>  extends BaseModel<T>{
 
     protected T parent;	// 父级编号
 
@@ -19,13 +19,9 @@ public class TreeModel<T>  extends BaseModel<T>{
         this.sort = 30;
     }
 
-    public T getParent() {
-        return parent;
-    }
+    public abstract T getParent();
 
-    public void setParent(T parent) {
-        this.parent = parent;
-    }
+    public abstract void setParent(T parent);
 
     public Integer getSort() {
         return sort;

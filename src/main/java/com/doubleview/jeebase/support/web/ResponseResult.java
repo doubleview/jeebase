@@ -3,7 +3,7 @@ package com.doubleview.jeebase.support.web;
 /**
  * 对Ajax的请求响应
  */
-public class ResponseResult {
+public class ResponseResult<T> {
 
     // 标记成功失败，默认0:成功,1:失败
     private int code = 0;
@@ -12,14 +12,14 @@ public class ResponseResult {
     private String message;
 
     // 成功时携带的数据
-    private Object data;
+    private T data;
 
 
     public ResponseResult(){
         super();
     }
 
-    public ResponseResult(int code , String message , Object data){
+    public ResponseResult(int code , String message , T data){
         this.code = code;
         this.message = message;
         this.data = data;
@@ -45,7 +45,7 @@ public class ResponseResult {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
@@ -54,7 +54,7 @@ public class ResponseResult {
      * @param data
      * @return
      */
-    public static ResponseResult success(Object data){
+    public static <T> ResponseResult<T> success(T data){
         ResponseResult responseResult = new ResponseResult();
         responseResult.setCode(0);
         responseResult.setMessage("success");

@@ -3,6 +3,7 @@ package com.doubleview.jeebase.support.base;
 import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.support.render.RenderFactory;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
+import com.doubleview.jeebase.support.web.ResponseResult;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
@@ -80,6 +81,21 @@ public abstract class BaseController {
         return "error/403";
     }
 
+    /**
+     * 返回Ajax成功数据
+     * @return
+     */
+    protected <T> ResponseResult<T> success(T data){
+        return ResponseResult.success(data);
+    }
+
+    /**
+     * 返回Ajax失败数据
+     * @return
+     */
+    protected ResponseResult fail(){
+        return ResponseResult.fail();
+    }
 
     /**
      * 初始化数据绑定

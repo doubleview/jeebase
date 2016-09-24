@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>jeebase快速开发平台</title>
+  <title>${productName}</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="" name="description" />
@@ -398,49 +398,8 @@
   <div class="clearfix"> </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- container -->
   <div class="page-container">
-    <!-- sidebar -->
     <div class="page-sidebar-wrapper">
       <!-- sidebar -->
       <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
@@ -461,8 +420,10 @@
               <span></span>
             </div>
           </li>
+
           <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-          <li class="sidebar-search-wrapper">
+          <!--搜索栏-->
+            <li class="sidebar-search-wrapper">
             <!--responsive quick search form-->
             <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
             <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
@@ -484,340 +445,64 @@
           <li class="nav-item start active open">
             <a href="javascript:;" class="nav-link nav-toggle">
               <i class="icon-home"></i>
-              <span class="title">面板</span>
+              <span class="title">后台管理首页</span>
               <span class="selected"></span>
               <span class="arrow open"></span>
             </a>
-            <ul class="sub-menu">
-              <li class="nav-item start active open">
-                <a href="index.html" class="nav-link ">
-                  <i class="icon-bar-chart"></i>
-                  <span class="title">面板 1</span>
-                  <span class="selected"></span>
-                </a>
-              </li>
-              <li class="nav-item start ">
-                <a href="dashboard_2.html" class="nav-link ">
-                  <i class="icon-bulb"></i>
-                  <span class="title">面板 2</span>
-                  <span class="badge badge-success">1</span>
-                </a>
-              </li>
-              <li class="nav-item start ">
-                <a href="dashboard_3.html" class="nav-link ">
-                  <i class="icon-graph"></i>
-                  <span class="title">面板 3</span>
-                  <span class="badge badge-danger">5</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="heading">
-            <h3 class="uppercase">特色</h3>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-diamond"></i>
-              <span class="title">UI 特色</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="ui_colors.html" class="nav-link ">
-                  <span class="title">颜色库</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_tree.html" class="nav-link ">
-                  <span class="title">树</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                  <span class="title">进度条</span>
-                  <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                  <li class="nav-item ">
-                    <a href="ui_page_progress_style_1.html" class="nav-link "> Flash </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="ui_page_progress_style_2.html" class="nav-link "> Big Counter </a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="nav-item  ">
-                <a href="ui_datepaginator.html" class="nav-link ">
-                  <span class="title">时间选择</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="ui_nestable.html" class="nav-link ">
-                  <span class="title">嵌套列表</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-puzzle"></i>
-              <span class="title">组件</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="components_date_time_pickers.html" class="nav-link ">
-                  <span class="title">时间选择器</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_bootstrap_touchspin.html" class="nav-link ">
-                  <span class="title">Bootstrap触摸题赠</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="components_knob_dials.html" class="nav-link ">
-                  <span class="title">圆环选择器</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-settings"></i>
-              <span class="title">表单</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="form_controls.html" class="nav-link ">
-                                            <span class="title">Bootstrap表单
-                                                <br>Controls</span>
-                </a>
-              </li>
-      
-              <li class="nav-item  ">
-                <a href="form_fileupload.html" class="nav-link ">
-                  <span class="title">多文件上传</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="form_dropzone.html" class="nav-link ">
-                  <span class="title">Dropzone 文件上传</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-bulb"></i>
-              <span class="title">元素</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="elements_steps.html" class="nav-link ">
-                  <span class="title">步骤</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="elements_cards.html" class="nav-link ">
-                  <span class="title">用户卡片</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-briefcase"></i>
-              <span class="title">表格</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="table_static_basic.html" class="nav-link ">
-                  <span class="title">基本表格</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                  <span class="title">数据表格</span>
-                  <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                  <li class="nav-item ">
-                    <a href="table_datatables_managed.html" class="nav-link "> Managed Datatables </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="table_datatables_buttons.html" class="nav-link "> Buttons Extension </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="?p=" class="nav-link nav-toggle">
-              <i class="icon-wallet"></i>
-              <span class="title">门户组件</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="portlet_boxed.html" class="nav-link ">
-                  <span class="title">盒子 Portlets</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-bar-chart"></i>
-              <span class="title">图表</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="charts_amcharts.html" class="nav-link ">
-                  <span class="title">amChart</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="charts_flotcharts.html" class="nav-link ">
-                  <span class="title">Flot Charts</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                  <span class="title">HighCharts</span>
-                  <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                  <li class="nav-item ">
-                    <a href="charts_highcharts.html" class="nav-link "> HighCharts </a>
-                  </li>
-                  <li class="nav-item ">
-                    <a href="charts_highmaps.html" class="nav-link "> HighMaps </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-pointer"></i>
-              <span class="title">地图</span>
-              <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item  ">
-                <a href="maps_google.html" class="nav-link ">
-                  <span class="title">Google Maps</span>
-                </a>
-              </li>
-              <li class="nav-item  ">
-                <a href="maps_vector.html" class="nav-link ">
-                  <span class="title">Vector Maps</span>
-                </a>
-              </li>
-            </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="javascript:;" class="nav-link nav-toggle">
-              <i class="icon-folder"></i>
-              <span class="title">多级菜单</span>
-              <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                  <i class="icon-settings"></i> 项目 1
-                  <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                  <li class="nav-item">
-                    <a href="javascript:;" target="_blank" class="nav-link">
-                      <i class="icon-user"></i> 菜单切换
-                      <span class="arrow nav-toggle"></span>
+            <!--菜单栏-->
+            <c:forEach items="${menuList}" var="menu1">
+                <li class="nav-item">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="${menu1.icon}"></i>
+                        <span class="title">${menu1.name}</span>
+                        <span class="arrow "></span>
                     </a>
-                    <ul class="sub-menu">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="icon-power"></i> 连接1</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="icon-paper-plane"></i>连接2</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="icon-star"></i> 连接3</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="icon-camera"></i>连接1</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="icon-link"></i>连接2</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="icon-pointer"></i>连接3</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:;" target="_blank" class="nav-link">
-                  <i class="icon-globe"></i> 菜单切换
-                  <span class="arrow nav-toggle"></span>
-                </a>
-                <ul class="sub-menu">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="icon-graph"></i> 链接3</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="icon-bar-chart"></i>项目3 </a>
-              </li>
-            </ul>
-          </li>
+                    <c:if test="${menu1.subMenuList != null}">
+                        <ul class="sub-menu">
+                            <c:forEach items="${menu1.subMenuList}" var="menu2">
+                                <li class="nav-item">
+                                    <a href="javascript:;" target="_blank" class="nav-link">
+                                         ${menu2.name}
+                                        <c:if test="${not empty menu2.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
+                                    </a>
+                                    <c:if test="${menu2.subMenuList != null}">
+                                        <ul class="sub-menu">
+                                            <c:forEach items="${menu2.subMenuList}" var="menu3">
+                                                <li class="nav-item">
+                                                    <a href="javascript:;" target="_blank" class="nav-link">
+                                                        ${menu3.name}
+                                                        <c:if test="${not empty menu3.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
+                                                    </a>
+                                                    <c:if test="${menu3.subMenuList != null}">
+                                                        <ul class="sub-menu">
+                                                            <c:forEach items="${menu3.subMenuList}" var="menu4">
+                                                                <li class="nav-item">
+                                                                    <a href="javascript:;" target="_blank" class="nav-link">
+                                                                         ${menu4.name}
+                                                                        <c:if test="${not empty menu4.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
+                                                                    </a>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </c:if>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </li>
+            </c:forEach>
+
+
+
         </ul>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- content -->
     <div class="page-content-wrapper">
@@ -1384,6 +1069,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- footer -->

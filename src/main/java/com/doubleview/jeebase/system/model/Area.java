@@ -26,6 +26,16 @@ public class Area extends TreeModel<Area> {
         super(id);
     }
 
+    @Override
+    public Area getParent() {
+        return parent;
+    }
+
+    @Override
+    public void setParent(Area parent) {
+        this.parent = parent;
+    }
+
 
     public String getName() {
         return name;

@@ -5,6 +5,7 @@ import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
+import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ public class LoginController extends BaseController{
     public String mainIndex(Model model){
         User user = ShiroUtils.getCurrentUser();
         model.addAttribute("currentUser" , user);
+        model.addAttribute("menuList" , SystemCacheUtils.getCurrentMenuList());
         return "index";
     }
 

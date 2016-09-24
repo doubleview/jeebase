@@ -39,6 +39,16 @@ public class Department extends TreeModel<Department> {
         super(id);
     }
 
+    @Override
+    public Department getParent() {
+       return parent;
+    }
+
+    @Override
+    public void setParent(Department parent) {
+        this.parent = parent;
+    }
+
     public String getName() {
         return name;
     }
