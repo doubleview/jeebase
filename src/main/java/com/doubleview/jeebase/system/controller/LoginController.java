@@ -55,6 +55,26 @@ public class LoginController extends BaseController{
         return "index";
     }
 
+    /**
+     * 请求锁屏
+     * @return
+     */
+    @RequestMapping("/lock")
+    public String lock(){
+        Session session = ShiroUtils.getSession();
+        session.setAttribute("lock", Constant.TRUE);
+        return "lock";
+    }
+
+    /**
+     * 请求屏幕解锁
+     * @return
+     */
+    public String unlock(){
+        Session session = ShiroUtils.getSession();
+        session.removeAttribute("lock");
+        return "redirect:"+ adminPath + "index";
+    }
 
     /**
      * 验证码请求

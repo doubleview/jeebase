@@ -374,7 +374,7 @@
               </li>
               <li class="divider"> </li>
               <li>
-                <a href="page_user_lock_1.html">
+                <a href="${adminPath}/login/lock">
                   <i class="icon-lock"></i> 锁屏 </a>
               </li>
               <li>
