@@ -37,11 +37,11 @@
 	<!--获取所有菜单-->
 	<select id="getList">
 		SELECT
-		<include refid="menuColumns"/>,
+		<include refid="menuColumns"/>
 		<include refid="menuJoins"/>
 		<where>
 			<if test="name != null and name != '' ">
-				AND m.name = #{name}
+				AND m.name LIKE CONCAT('%', #{name}, '%')
 			</if>
 			AND m.del_status = "0"
 		</where>

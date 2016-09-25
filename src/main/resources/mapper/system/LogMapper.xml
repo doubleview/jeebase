@@ -13,14 +13,12 @@
 		l.request_uri AS "requestUri",
 		l.method AS "method",
 		l.params AS "params",
-		l.exception AS "exception"
+		l.exception AS "exception",
 		l.create_by AS "createBy.id",
 		l.create_time AS "createTime",
-		u.name AS "createBy.name",
-		d.name AS "createBy.department.name"
+		u.name AS "createBy.name"
 		FROM sys_log l
 		JOIN sys_user u ON u.id = a.create_by
-		JOIN sys_department d ON d.id = u.department_id
 		<where>
 			<if test="beginDate != null">
 			   	AND l.create_time gt;= #{beginDate}
@@ -71,7 +69,7 @@
 		#{params},
 		#{exception}
 		#{createBy.id},
-		#{createTime},
+		#{createTime}
 		)
 	</insert>
 

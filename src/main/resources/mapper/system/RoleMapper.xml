@@ -11,7 +11,7 @@
 		r.create_time AS "createTime",
 		r.update_by AS "updateBy.id",
 		r.update_time AS "updateTime",
-		r.del_status AS "delStatusl"
+		r.del_status AS "delStatus"
 	</sql>
 
 	<!--角色关联，共查询重用-->
@@ -46,11 +46,11 @@
 		</if>
 		<where>
 			<if test="name != null and name != '' ">
-				AND r.name = #{r.name}
+				AND r.name LIKE  CONCAT('%', #{name}, '%')
 			</if>
 			AND r.del_status = "0"
 		</where>
-		ORDER BY r.name
+		ORDER BY r.create_time
 	</select>
 
 	<!--插入角色信息-->
@@ -100,7 +100,7 @@
 		menu_id
 		) VALUES (
 		#{roleId},
-		#{menuId},
+		#{menuId}
 		)
 	</insert>
 

@@ -75,7 +75,7 @@
 		</if>
 		<where>
 			<if test="departmentIds != null">
-				AND d.id =
+				AND d.id IN
 				<foreach collection="departmentIds" item="departmentId" open="(" close=")" separator=",">
 					departmentId
 				</foreach>
@@ -95,7 +95,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY u.name
+				ORDER BY u.create_time
 			</otherwise>
 		</choose>
 	</select>
@@ -199,7 +199,6 @@
 				AND role_id = #{roleId}
 			</if>
 		</where>
-		WHERE user_id = #{userId} AND role_id = #{roleId}
 	</delete>
 
 	<!-- 插入用户和角色关联表数据 -->

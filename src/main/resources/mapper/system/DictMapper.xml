@@ -8,7 +8,7 @@
 		d.label AS "label",
 		d.value AS "value",
 		d.type AS "type",
-		d.description AS "description"
+		d.description AS "description",
 		d.sort AS "sort",
 		d.remarks AS "remarks",
 		d.create_by AS "createBy.id",
@@ -45,13 +45,12 @@
 			</if>
 			AND del_status = "0"
 		</where>
-		ORDER BY d.type, d.sort, d.update_time DESC
+		ORDER BY d.type, d.sort, d.create_time DESC
 	</select>
 	
 	<!--得到所有字典类型-->
 	<select id="findTypeList" resultType="string">
-		SELECT 
-			type 
+		SELECT d.type
 		FROM sys_dict d
 		WHERE d.del_status = "0"
 		GROUP BY type
@@ -80,8 +79,8 @@
 			#{type}, 
 			#{description}, 
 			#{sort},
-			#{createBy.id}
-			#{createDate}
+			#{createBy.id},
+			#{createTime},
 			#{updateBy.id},
 			#{updateTime},
 			#{remarks}, 
@@ -97,7 +96,7 @@
 			type = #{type}, 
 			description = #{description}, 
 			sort = #{sort},
-			update_by = #{updateBy.id}
+			update_by = #{updateBy.id},
 			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
