@@ -61,7 +61,7 @@
 			</if>
 			AND d.del_status = "0"
 		</where>
-		ORDER BY d.code
+		ORDER BY d.create_time
 	</select>
 
 	<!--插入部门-->

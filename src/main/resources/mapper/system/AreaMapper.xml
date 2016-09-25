@@ -15,7 +15,8 @@
 		a.update_by AS "updateBy.id",
 		a.update_time AS "updateTime",
 		a.del_status AS "delStatus",
-		a.parent_id AS "parent.id"
+		a.parent_id AS "parent.id",
+		p.name AS "parent.name"
 	</sql>
 
 	<!--地区关联，供查询重用-->
@@ -32,6 +33,14 @@
 		WHERE a.id = #{id}
 	</select>
 
+	<!--根据name获取地区-->
+	<select id="getByName" resultType="Area">
+		SELECT
+		<include refid="areaColumns"/>
+		<include refid="areaJoins"/>
+		WHERE a.name = #{name}
+	</select>
+
 	<!--根据条件获取地区-->
 	<select id="findList" resultType="Area">
 		SELECT
@@ -46,7 +55,7 @@
 			</if>
 			WHERE a.del_status = "0"
 		</where>
-		ORDER BY a.code
+		ORDER BY a.create_time
 	</select>
 
 	<!--插入地区-->

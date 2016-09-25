@@ -21,7 +21,7 @@
 		u.update_by AS "updateBy.id",
 		u.update_time AS "updateTime",
 		u.del_status AS "delStatus",
-		d.id AS "department.id",
+		u.department_id AS "department.id",
 		d.name AS "department.name",
 		d.parent_id AS "department.parent.id",
 		u2.id AS "department.master.id",
