@@ -70,7 +70,6 @@
 		name,
 		sort,
 		href,
-		target,
 		icon,
 		is_show,
 		create_by,
@@ -84,7 +83,6 @@
 		#{id},
 		#{name},
 		#{href},
-		#{target},
 		#{icon},
 		#{sort},
 		#{isShow},
@@ -105,7 +103,6 @@
 		name = #{name},
 		sort = #{sort}
 		href = #{href},
-		target = #{target},
 		icon = #{icon},
 		is_show = #{isShow},
 		create_by = #{createBy.id},

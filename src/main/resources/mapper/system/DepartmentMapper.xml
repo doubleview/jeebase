@@ -23,7 +23,7 @@
 		d.master_id AS "master.id",
 		d.area_id AS "area.id",
 		d.parent_id AS "parent.id"
-		p.name AS "parent.name",
+		dp.name AS "parent.name",
 		a.name AS "area.name",
 		u.name AS "master.name"
 	</sql>
@@ -31,7 +31,7 @@
 	<!--部门关联，供查询重用-->
 	<sql id="departmentJoins">
 		FROM sys_department d
-			LEFT JOIN sys_department p ON p.id = d.parent_id
+			LEFT JOIN sys_department dp ON dp.id = d.parent_id
 			LEFT JOIN sys_area a ON a.id = d.area_id
 			LEFT JOIN sys_user u ON u.id = d.master
 	</sql>

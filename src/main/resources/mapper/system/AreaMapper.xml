@@ -16,13 +16,13 @@
 		a.update_time AS "updateTime",
 		a.del_status AS "delStatus",
 		a.parent_id AS "parent.id",
-		p.name AS "parent.name"
+		mp.name AS "parent.name"
 	</sql>
 
 	<!--地区关联，供查询重用-->
 	<sql id="areaJoins">
 		FROM sys_area a
-			LEFT JOIN sys_area p ON p.id = a.parent_id
+			LEFT JOIN sys_area mp ON mp.id = a.parent_id
 	</sql>
 
 	<!--根据id获取地区-->
