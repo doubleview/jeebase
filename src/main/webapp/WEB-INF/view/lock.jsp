@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
-    <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8" />
         <title>${productName}</title>
@@ -34,10 +33,10 @@
             <div class="page-body">
                 <img class="page-lock-img" src="${staticPath}/pages/media/profile/profile.jpg" alt="">
                 <div class="page-lock-info">
-                    <h1>胡成超</h1>
-                    <span class="email"> bob@keenthemes.com </span>
+                    <h1>${currentUser.name}</h1>
+                    <span class="email"> ${currentUser.email} </span>
                     <span class="locked"> Locked </span>
-                    <form class="form-inline" action="index.html">
+                    <form class="form-inline" action="${adminPath}/index">
                         <div class="input-group input-medium">
                             <input type="text" class="form-control" placeholder="Password">
                             <span class="input-group-btn">
