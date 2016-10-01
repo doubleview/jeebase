@@ -43,6 +43,7 @@
         min-height: 300px !important;
         padding: 0px 20px 20px !important;
         margin: 0 !important;
+        overflow-x: hidden;
     }
 }
 
@@ -2363,6 +2364,7 @@ Page content
     margin-top: 0px;
     padding: 0px;
     background-color: #fff;
+    overflow-x: hidden;
 }
 
 .page-container-bg-solid .page-content {
