@@ -25,11 +25,12 @@
   <link href="${staticPath}/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
 
-  <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <!--组件-->
+  <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
   <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!--布局样式-->
   <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/layouts/layout/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color" />
+  <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!--menu-tab-->
@@ -376,7 +377,7 @@
               </li>
               <li class="divider"> </li>
               <li>
-                <a href="${adminPath}/login/lock">
+                <a href="${adminPath}/lock">
                   <i class="icon-lock"></i> 锁屏 </a>
               </li>
               <li>
@@ -506,21 +507,17 @@
               <div class="btn-group roll-nav roll-right">
                   <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
                   </button>
-                  <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                      <li class="J_tabShowActive"><a>定位当前选项卡</a>
-                      </li>
+                  <ul role="menu" class="dropdown-menu dropdown-menu-right" ">
+                      <li class="J_tabShowActive"><a>定位当前选项卡</a></li>
                       <li class="divider"></li>
-                      <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
-                      </li>
-                      <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
-                      </li>
+                      <li class="J_tabCloseAll"><a>关闭全部选项卡</a></li>
+                      <li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
                   </ul>
               </div>
-              <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
           </div>
 
           <div class="row " id="content-main">
-              <iframe class="J_iframe" name="iframe0" width="100%" height="500px"  src="index_v2.html?v=4.0" frameborder="0" data-id="index_v2.html" seamless></iframe>
+              <iframe class="J_iframe" name="iframe0" width="100%" height="500px"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
           </div>
 
       </div>

@@ -33,7 +33,7 @@
             <div class="page-body">
                 <img class="page-lock-img" src="${staticPath}/pages/media/profile/profile.jpg" alt="">
                 <div class="page-lock-info">
-                    <h1>${currentUser.name}</h1>
+                    <h1>胡成超${currentUser.name}</h1>
                     <span class="email"> ${currentUser.email} </span>
                     <span class="locked"> Locked </span>
                     <form class="form-inline" action="${adminPath}/index">
