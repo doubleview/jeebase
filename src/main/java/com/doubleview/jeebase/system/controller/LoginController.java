@@ -45,6 +45,9 @@ public class LoginController extends BaseController{
     @RequestMapping("/index")
     public String mainIndex(Model model){
         Session session = ShiroUtils.getSession();
+        if(session == null){
+            return "redirect:" + adminPath + "/index";
+        }
         logger.debug("login sessionId : {}" , session.getId());
         logger.debug("login host : {}" , session.getHost());
         logger.debug("login timeout : {}" , session.getTimeout());
@@ -63,6 +66,8 @@ public class LoginController extends BaseController{
     public String lock(){
         Session session = ShiroUtils.getSession();
         session.setAttribute("lock", Constant.TRUE);
+        User user = ShiroUtils.getCurrentUser();
+        session.setAttribute("currentUser" , user);
         return "lock";
     }
 
