@@ -100,10 +100,8 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 
 <script>
-  var UITree = function () {
 
-    var handleSample1 = function () {
-
+    jQuery(document).ready(function() {
       $('#tree_1').jstree({
         "core" : {
           "themes" : {
@@ -132,23 +130,7 @@
           return false;
         }
       });
-    }
-
-    return {
-      //main function to initiate the module
-      init: function () {
-        handleSample1();
-      }
-
-    };
-
-  }();
-
-  if (App.isAngularJsApp() === false) {
-    jQuery(document).ready(function() {
-      UITree.init();
     });
-  }
 </script>
 
 </body>
