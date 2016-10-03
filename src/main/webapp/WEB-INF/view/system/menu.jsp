@@ -49,7 +49,7 @@
                 </div>
               </div>
               <div class="portlet-body">
-                <div id="tree_1" class="tree-demo">
+                <div id="menu_tree" class="tree-demo">
                   <ul>
                     <li> Root node 1
                       <ul>
@@ -82,7 +82,7 @@
 <script src="${staticPath}/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 
-        <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -91,7 +91,6 @@
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
-        
         <script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
         
 <script src="${staticPath}/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
