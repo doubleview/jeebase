@@ -148,7 +148,9 @@
             });
             $("#using_json").jstree({
               "core": {
-                "data": ["Empty Folder", {
+                "data": [
+                  "Empty Folder",
+                  {
                   "text": "Resources",
                   "state": {"opened": true},
                   "children": [{
@@ -179,7 +181,11 @@
                     }, {"text": "sidebar.html", "icon": "none"}],
                     "state": {"opened": true}
                   }]
-                }, "Fonts", "Images", "Scripts", "Templates",]
+                },
+                  "Fonts",
+                  "Images",
+                  "Scripts",
+                  "Templates",]
               }
             })
           });
