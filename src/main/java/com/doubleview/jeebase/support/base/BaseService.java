@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.support.base;
 
-import com.doubleview.jeebase.support.persistence.Page;
+import com.doubleview.jeebase.support.web.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.doubleview.jeebase.support.persistence;
+package com.doubleview.jeebase.support.web;
 
 
 import com.doubleview.jeebase.support.config.Constant;

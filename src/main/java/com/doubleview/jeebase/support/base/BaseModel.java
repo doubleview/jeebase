@@ -1,6 +1,6 @@
 package com.doubleview.jeebase.support.base;
 
-import com.doubleview.jeebase.support.persistence.Page;
+import com.doubleview.jeebase.support.web.Page;
 import com.doubleview.jeebase.system.model.User;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 

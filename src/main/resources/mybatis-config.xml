@@ -41,7 +41,7 @@
 
 	<!-- 类型别名 -->
 	<typeAliases>
-		<typeAlias alias="Page" type="com.doubleview.jeebase.support.persistence.Page" /><!--分页  -->
+		<typeAlias alias="Page" type="com.doubleview.jeebase.support.web.Page" /><!--分页  -->
 	</typeAliases>
 
 	<!-- 插件配置 -->
