@@ -26,15 +26,11 @@
   <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
-  <!-- END THEME LAYOUT STYLES -->
   <link rel="shortcut icon" href="favicon.ico" /> </head>
-<!-- END HEAD -->
-
 <body>
         <div class="row">
 
           <div class="col-md-3">
-
             <div class="portlet light bordered">
               <div class="portlet-title">
                 <div class="caption">
@@ -67,7 +63,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="col-md-9">
@@ -121,7 +116,8 @@
 
         <script>
           $(document).ready(function () {
-            $("#using_json").jstree({
+
+            $("#menu_tree").jstree({
               "core": {
                 "data": [
                   "Empty Folder",
