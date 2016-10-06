@@ -17,9 +17,7 @@
 
   <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 
   <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -72,28 +70,20 @@
 
           </div>
 
+          <div class="col-md-9">
+
+          </div>
+
         </div>
 <!--[if lt IE 9]>
 <script src="${staticPath}/global/plugins/respond.min.js"></script>
 <script src="${staticPath}/global/plugins/excanvas.min.js"></script>
 <![endif]-->
-
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
-        <script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
-        
-<script src="${staticPath}/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-<script src="${staticPath}/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-<script src="${staticPath}/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-<!-- END THEME LAYOUT SCRIPTS -->
-
 <script>
 
     jQuery(document).ready(function() {
@@ -125,6 +115,7 @@
           return false;
         }
       });
+
     });
 </script>
 
