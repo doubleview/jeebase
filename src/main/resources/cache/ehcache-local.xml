@@ -15,7 +15,6 @@
 	
 	<!-- 内容管理模块缓存 -->
 	<cache name="cmsCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>
-    
 
     <!-- 简单页面缓存 -->
     <cache name="pageCachingFilter" maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="120"

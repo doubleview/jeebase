@@ -14,23 +14,19 @@
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
-  <!-- BEGIN GLOBAL MANDATORY STYLES -->
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+
+  <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-  <!-- END GLOBAL MANDATORY STYLES -->
-  <!-- BEGIN PAGE LEVEL PLUGINS -->
+
   <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-  <!-- END PAGE LEVEL PLUGINS -->
-  <!-- BEGIN THEME GLOBAL STYLES -->
   <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
   <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-  <!-- END THEME GLOBAL STYLES -->
-  <!-- BEGIN THEME LAYOUT STYLES -->
+
   <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+  <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
   <!-- END THEME LAYOUT STYLES -->
   <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -134,18 +130,6 @@
 
         <script>
           $(document).ready(function () {
-            $("#jstree1").jstree({
-              "core": {"check_callback": true},
-              "plugins": ["types", "dnd"],
-              "types": {
-                "default": {"icon": "fa fa-folder"},
-                "html": {"icon": "fa fa-file-code-o"},
-                "svg": {"icon": "fa fa-file-picture-o"},
-                "css": {"icon": "fa fa-file-code-o"},
-                "img": {"icon": "fa fa-file-image-o"},
-                "js": {"icon": "fa fa-file-text-o"}
-              }
-            });
             $("#using_json").jstree({
               "core": {
                 "data": [
