@@ -59,6 +59,10 @@ public class CacheUtils {
         return cache;
     }
 
+    /**
+     * 获取缓存管理器
+     * @return
+     */
     public static CacheManager getCacheManager() {
         return cacheManager;
     }

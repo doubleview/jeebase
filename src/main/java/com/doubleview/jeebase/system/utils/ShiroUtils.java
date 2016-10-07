@@ -17,7 +17,7 @@ public class ShiroUtils {
 
 
 
-    public static final String HASH_ALGORITHM = "SHA-1";//加密方式
+    public static final String HASH_ALGORITHM = "SHA-1";//加密方式,选择sha-1加密
     public static final int HASH_INTERATIONS = 1024;//加密循环次数
     public static final int SALT_SIZE = 8;//盐长度
 

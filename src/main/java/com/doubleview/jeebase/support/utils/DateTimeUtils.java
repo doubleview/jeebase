@@ -3,7 +3,6 @@ package com.doubleview.jeebase.support.utils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import java.io.PrintStream;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -12,11 +11,13 @@ import java.util.Date;
  */
 public class DateTimeUtils extends DateUtils {
 
+    /**
+     * 时间日期格式
+     */
     private static String[] parsePatterns = {
             "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
             "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
-    private PrintStream out;
 
     /**
      * 得到当前日期字符串 格式（yyyy-MM-dd）
@@ -36,7 +37,7 @@ public class DateTimeUtils extends DateUtils {
      * 得到日期字符串 默认格式（yyyy-MM-dd） pattern可以为："yyyy-MM-dd" "HH:mm:ss" "E"
      */
     public static String formatDate(Date date, Object... pattern) {
-        String formatDate = null;
+        String formatDate;
         if (pattern != null && pattern.length > 0) {
             formatDate = DateFormatUtils.format(date, pattern[0].toString());
         } else {

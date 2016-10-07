@@ -63,7 +63,7 @@ public class CollectionUtils {
      * @return 排序后的Set
      */
     public static List<Map.Entry<Long, Long>> sortEntrySetToList(Set<Map.Entry<Long, Long>> set) {
-        List<Map.Entry<Long, Long>> list = new LinkedList<Map.Entry<Long, Long>>(set);
+        List<Map.Entry<Long, Long>> list = new LinkedList<>(set);
         Collections.sort(list, new Comparator<Map.Entry<Long, Long>>(){
 
             @Override
@@ -151,7 +151,7 @@ public class CollectionUtils {
      * @return HashMap对象
      */
     public static <T, K> HashMap<T, K> newHashMap(int size) {
-        return new HashMap<T, K>((int)(size / 0.75));
+        return new HashMap<>((int)(size / 0.75));
     }
 
     /**
@@ -170,7 +170,7 @@ public class CollectionUtils {
      */
     @SafeVarargs
     public static <T> HashSet<T> newHashSet(T... ts) {
-        HashSet<T> set = new HashSet<T>();
+        HashSet<T> set = new HashSet<>();
         for (T t : ts) {
             set.add(t);
         }
