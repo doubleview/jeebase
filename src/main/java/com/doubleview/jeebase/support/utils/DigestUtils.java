@@ -7,7 +7,6 @@ import java.security.MessageDigest;
 
 /**
  * 支持SHA-1/MD5消息摘要的工具类.
- * 返回ByteSource，可进一步被编码为Hex, Base64或UrlSafeBase64
  */
 public class DigestUtils {
 
@@ -22,6 +21,13 @@ public class DigestUtils {
     public static byte[] md5(byte[] input) {
         return digest(input, MD5, null, 1);
     }
+
+    /**
+     * 对指定字节进行MD5散列
+     * @param input
+     * @param iterations 散列次数
+     * @return
+     */
     public static byte[] md5(byte[] input, int iterations) {
         return digest(input, MD5, null, iterations);
     }
@@ -33,16 +39,29 @@ public class DigestUtils {
         return digest(input, SHA1, null, 1);
     }
 
+    /**
+     * 对指定字节进行sha1散列
+     * @param input
+     * @param salt 盐
+     * @return
+     */
     public static byte[] sha1(byte[] input, byte[] salt) {
         return digest(input, SHA1, salt, 1);
     }
 
+    /**
+     * 对指定字节进行散列
+     * @param input
+     * @param salt 盐
+     * @param iterations 散列次数
+     * @return
+     */
     public static byte[] sha1(byte[] input, byte[] salt, int iterations) {
         return digest(input, SHA1, salt, iterations);
     }
 
     /**
-     * 对字符串进行散列, 支持md5与sha1算法.
+     * 对指定字节进行散列, 支持md5与sha1算法.
      */
     private static byte[] digest(byte[] input, String algorithm, byte[] salt, int iterations) {
         try {
@@ -63,7 +82,6 @@ public class DigestUtils {
             throw ExceptionUtils.unchecked(e);
         }
     }
-
 
 
     /**

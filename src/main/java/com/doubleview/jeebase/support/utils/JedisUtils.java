@@ -23,15 +23,12 @@ import java.util.Set;
 /**
  * Jedis Cache 工具类
  *
- * @author ThinkGem
- * @version 2014-6-29
  */
 public class JedisUtils {
 
     private static Logger logger = LoggerFactory.getLogger(JedisUtils.class);
 
     private static JedisPool jedisPool = SpringContext.getBean(JedisPool.class);
-
 
     /**
      * 将对象序列化

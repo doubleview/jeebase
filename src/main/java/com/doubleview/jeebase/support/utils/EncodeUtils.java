@@ -23,6 +23,7 @@ public class EncodeUtils {
 
     /**
      * Hex编码.
+     * @param input 要编码的字节
      */
     public static String encodeHex(byte[] input) {
         return new String(Hex.encodeHex(input));
@@ -30,6 +31,7 @@ public class EncodeUtils {
 
     /**
      * Hex解码.
+     * @param input 要解码的字节
      */
     public static byte[] decodeHex(String input) {
         try {
@@ -41,24 +43,29 @@ public class EncodeUtils {
 
     /**
      * Base64编码.
+     * @param input 要编码的字节
+     * @return
      */
     public static String encodeBase64(byte[] input) {
         return new String(Base64.encodeBase64(input));
     }
 
     /**
-     * Base64编码.
+     * Base64编码
+     * @param input 要编码的字符串
+     * @return
      */
     public static String encodeBase64(String input) {
         try {
             return new String(Base64.encodeBase64(input.getBytes(DEFAULT_URL_ENCODING)));
         } catch (UnsupportedEncodingException e) {
-            return "";
+            throw  ExceptionUtils.unchecked(e);
         }
     }
 
     /**
      * Base64解码.
+     * @param input 要解码的字符串
      */
     public static byte[] decodeBase64(String input) {
         return Base64.decodeBase64(input.getBytes());
@@ -71,7 +78,7 @@ public class EncodeUtils {
         try {
             return new String(Base64.decodeBase64(input.getBytes()), DEFAULT_URL_ENCODING);
         } catch (UnsupportedEncodingException e) {
-            return "";
+            throw  ExceptionUtils.unchecked(e);
         }
     }
 

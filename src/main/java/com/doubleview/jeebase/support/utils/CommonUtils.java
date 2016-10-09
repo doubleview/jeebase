@@ -1,8 +1,5 @@
 package com.doubleview.jeebase.support.utils;
 
-import com.doubleview.jeebase.support.config.Constant;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -10,6 +7,8 @@ import java.io.UnsupportedEncodingException;
  */
 public class CommonUtils {
 
+
+    private static String defaultCharset = "UTF-8";
 
     /**
      * 转换为字节数组
@@ -19,7 +18,7 @@ public class CommonUtils {
     public static byte[] getBytes(String str){
         if (str != null){
             try {
-                return str.getBytes(Constant.defaultCharset);
+                return str.getBytes(defaultCharset);
             } catch (UnsupportedEncodingException e) {
                 return null;
             }
@@ -35,11 +34,13 @@ public class CommonUtils {
      */
     public static String toString(byte[] bytes){
         try {
-            return new String(bytes, Constant.defaultCharset);
+            return new String(bytes, defaultCharset);
         } catch (UnsupportedEncodingException e) {
-            return "";
+            throw  ExceptionUtils.unchecked(e);
         }
     }
+
+
     /**
      * 驼峰命名法工具
      * @return toCamelCase("hello_world") == "helloWorld"
@@ -113,24 +114,8 @@ public class CommonUtils {
         return sb.toString();
     }
 
-    /**
-     * 转换为JS获取对象值，生成三目运算返回结果
-     * @param objectString 对象串
-     */
-    public static String jsGetVal(String objectString){
-        StringBuilder result = new StringBuilder();
-        StringBuilder val = new StringBuilder();
-        String[] vals = StringUtils.split(objectString, ".");
-        for (int i=0; i<vals.length; i++){
-            val.append("." + vals[i]);
-            result.append("!"+(val.substring(1))+"?'':");
-        }
-        result.append(val.substring(1));
-        return result.toString();
-    }
 
     public static void main(String[] args){
-        System.out.println(CommonUtils.jsGetVal("abc.def"));
         System.out.println(CommonUtils.toCamelCase("hello_world"));
         System.out.println(CommonUtils.toCapitalizeCamelCase("hello_world"));
         System.out.println(CommonUtils.toUnderScoreCase("hello_world"));

@@ -2,6 +2,7 @@ package com.doubleview.jeebase.support.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,13 +14,19 @@ import java.util.regex.Pattern;
  */
 public class PatternUtils {
 
-    /** 正则表达式匹配中文 */
+    /**
+     * 正则表达式匹配中文
+     */
     public final static String RE_CHINESE = "[\u4E00-\u9FFF]";
 
-    /** 分组 */
-    public final static Pattern GROUP_VAR =  Pattern.compile("\\$(\\d+)");
+    /**
+     * 分组
+     */
+    public final static Pattern GROUP_VAR = Pattern.compile("\\$(\\d+)");
 
-    /** 正则中需要被转义的关键字 */
+    /**
+     * 正则中需要被转义的关键字
+     */
     public final static Set<Character> RE_KEYS = CollectionUtils.newHashSet(new Character[]{'$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|'});
 
     /**
@@ -174,8 +181,8 @@ public class PatternUtils {
     /**
      * 获得匹配的字符串
      *
-     * @param regex 匹配的正则
-     * @param content 被匹配的内容
+     * @param regex      匹配的正则
+     * @param content    被匹配的内容
      * @param groupIndex 匹配正则的分组序号
      * @return 匹配后得到的字符串，未匹配返回null
      */
@@ -187,13 +194,13 @@ public class PatternUtils {
     /**
      * 获得匹配的字符串
      *
-     * @param pattern 编译后的正则模式
-     * @param content 被匹配的内容
+     * @param pattern    编译后的正则模式
+     * @param content    被匹配的内容
      * @param groupIndex 匹配正则的分组序号
      * @return 匹配后得到的字符串，未匹配返回null
      */
     public static String get(Pattern pattern, String content, int groupIndex) {
-        if(null == content){
+        if (null == content) {
             return null;
         }
         Matcher matcher = pattern.matcher(content);
@@ -206,18 +213,18 @@ public class PatternUtils {
     /**
      * 从content中匹配出多个值并根据template生成新的字符串<br>
      * 例如：<br>
-     * 		content		2013年5月
-     * 		pattern			(.*?})年(.*?)月
-     * 		template：	$1-$2
-     * 		return 			2013-5
+     * content		2013年5月
+     * pattern			(.*?})年(.*?)月
+     * template：	$1-$2
+     * return 			2013-5
      *
-     * @param pattern 匹配正则
-     * @param content 被匹配的内容
+     * @param pattern  匹配正则
+     * @param content  被匹配的内容
      * @param template 生成内容模板，变量 $1 表示group1的内容，以此类推
      * @return 新字符串
      */
     public static String extractMulti(Pattern pattern, String content, String template) {
-        HashSet<String> varNums = findAll(GROUP_VAR, template, 1, new HashSet<String>());
+        HashSet<String> varNums = findAll(GROUP_VAR, template, 1, new HashSet<>());
 
         Matcher matcher = pattern.matcher(content);
         if (matcher.find()) {
@@ -234,18 +241,18 @@ public class PatternUtils {
      * 从content中匹配出多个值并根据template生成新的字符串<br>
      * 匹配结束后会删除匹配内容之前的内容（包括匹配内容）<br>
      * 例如：<br>
-     * 		content		2013年5月
-     * 		pattern			(.*?})年(.*?)月
-     * 		template：	$1-$2
-     * 		return 			2013-5
+     * content		2013年5月
+     * pattern			(.*?})年(.*?)月
+     * template：	$1-$2
+     * return 			2013-5
      *
-     * @param pattern 匹配正则
+     * @param pattern  匹配正则
      * @param contents 被匹配的内容，数组0为内容正文
      * @param template 生成内容模板，变量 $1 表示group1的内容，以此类推
      * @return 新字符串
      */
     public static String extractMultiAndDelPre(Pattern pattern, String[] contents, String template) {
-        HashSet<String> varNums = findAll(GROUP_VAR, template, 1, new HashSet<String>());
+        HashSet<String> varNums = findAll(GROUP_VAR, template, 1, new HashSet<>());
 
         final String content = contents[0];
         Matcher matcher = pattern.matcher(content);
@@ -264,13 +271,13 @@ public class PatternUtils {
      * 从content中匹配出多个值并根据template生成新的字符串<br>
      * 匹配结束后会删除匹配内容之前的内容（包括匹配内容）<br>
      * 例如：<br>
-     * 		content		2013年5月
-     * 		pattern			(.*?})年(.*?)月
-     * 		template：	$1-$2
-     * 		return 			2013-5
+     * content		2013年5月
+     * pattern			(.*?})年(.*?)月
+     * template：	$1-$2
+     * return 			2013-5
      *
-     * @param regex 匹配正则字符串
-     * @param content 被匹配的内容
+     * @param regex    匹配正则字符串
+     * @param content  被匹配的内容
      * @param template 生成内容模板，变量 $1 表示group1的内容，以此类推
      * @return 按照template拼接后的字符串
      */
@@ -282,12 +289,12 @@ public class PatternUtils {
     /**
      * 从content中匹配出多个值并根据template生成新的字符串<br>
      * 例如：<br>
-     * 		content		2013年5月
-     * 		pattern			(.*?})年(.*?)月
-     * 		template：	$1-$2
-     * 		return 			2013-5
+     * content		2013年5月
+     * pattern			(.*?})年(.*?)月
+     * template：	$1-$2
+     * return 			2013-5
      *
-     * @param regex 匹配正则字符串
+     * @param regex    匹配正则字符串
      * @param contents 被匹配的内容
      * @param template 生成内容模板，变量 $1 表示group1的内容，以此类推
      * @return 按照template拼接后的字符串
@@ -300,7 +307,7 @@ public class PatternUtils {
     /**
      * 删除匹配的内容
      *
-     * @param regex 正则
+     * @param regex   正则
      * @param content 被匹配的内容
      * @return 删除后剩余的内容
      */
@@ -311,7 +318,7 @@ public class PatternUtils {
     /**
      * 删除正则匹配到的内容之前的字符 如果没有找到，则返回原文
      *
-     * @param regex 定位正则
+     * @param regex   定位正则
      * @param content 被查找的内容
      * @return 删除前缀后的新内容
      */
@@ -326,9 +333,9 @@ public class PatternUtils {
     /**
      * 取得内容中匹配的所有结果
      *
-     * @param regex 正则
-     * @param content 被查找的内容
-     * @param group 正则的分组
+     * @param regex      正则
+     * @param content    被查找的内容
+     * @param group      正则的分组
      * @param collection 返回的集合类型
      * @return 结果集
      */
@@ -340,15 +347,15 @@ public class PatternUtils {
     /**
      * 取得内容中匹配的所有结果
      *
-     * @param pattern 编译后的正则模式
-     * @param content 被查找的内容
-     * @param group 正则的分组
+     * @param pattern    编译后的正则模式
+     * @param content    被查找的内容
+     * @param group      正则的分组
      * @param collection 返回的集合类型
      * @return 结果集
      */
     public static <T extends Collection<String>> T findAll(Pattern pattern, String content, int group, T collection) {
         Matcher matcher = pattern.matcher(content);
-        while(matcher.find()){
+        while (matcher.find()) {
             collection.add(matcher.group(group));
         }
         return collection;
@@ -366,17 +373,18 @@ public class PatternUtils {
 
     /**
      * 给定内容是否匹配正则
-     * @param regex 正则
+     *
+     * @param regex   正则
      * @param content 内容
      * @return 正则为null或者""则不检查，返回true，内容为null返回false
      */
     public static boolean isMatch(String regex, String content) {
-        if(content == null) {
+        if (content == null) {
             //提供null的字符串为不匹配
             return false;
         }
 
-        if(StringUtils.isBlank(regex)) {
+        if (StringUtils.isBlank(regex)) {
             //正则不存在则为全匹配
             return true;
         }
@@ -386,12 +394,13 @@ public class PatternUtils {
 
     /**
      * 给定内容是否匹配正则
+     *
      * @param pattern 模式
      * @param content 内容
      * @return 正则为null或者""则不检查，返回true，内容为null返回false
      */
     public static boolean isMatch(Pattern pattern, String content) {
-        if(content == null || pattern == null) {
+        if (content == null || pattern == null) {
             //提供null的字符串为不匹配
             return false;
         }
@@ -401,13 +410,14 @@ public class PatternUtils {
     /**
      * 正则替换指定值<br>
      * 通过正则查找到字符串，然后把匹配到的字符串加入到replacementTemplate中，$1表示分组1的字符串
-     * @param content 文本
-     * @param regex 正则
+     *
+     * @param content             文本
+     * @param regex               正则
      * @param replacementTemplate 替换的文本模板，可以使用$1类似的变量提取正则匹配出的内容
      * @return 处理后的文本
      */
     public static String replaceAll(String content, String regex, String replacementTemplate) {
-        if(StringUtils.isBlank(content)){
+        if (StringUtils.isBlank(content)) {
             return content;
         }
 
@@ -415,7 +425,7 @@ public class PatternUtils {
         matcher.reset();
         boolean result = matcher.find();
         if (result) {
-            final Set<String> varNums = findAll(GROUP_VAR, replacementTemplate, 1, new HashSet<String>());
+            final Set<String> varNums = findAll(GROUP_VAR, replacementTemplate, 1, new HashSet<>());
             final StringBuffer sb = new StringBuffer();
             do {
                 String replacement = replacementTemplate;
@@ -434,19 +444,20 @@ public class PatternUtils {
 
     /**
      * 转义字符串，将正则的关键字转义
+     *
      * @param content 文本
      * @return 转义后的文本
      */
     public static String escape(String content) {
-        if(StringUtils.isBlank(content)){
+        if (StringUtils.isBlank(content)) {
             return content;
         }
 
         final StringBuilder builder = new StringBuilder();
         char current;
-        for(int i = 0; i < content.length(); i++) {
+        for (int i = 0; i < content.length(); i++) {
             current = content.charAt(i);
-            if(RE_KEYS.contains(current)) {
+            if (RE_KEYS.contains(current)) {
                 builder.append('\\');
             }
             builder.append(current);
@@ -457,10 +468,8 @@ public class PatternUtils {
     /**
      * 是否匹配到结果
      *
-     * @param regex
-     *            正则表达式
-     * @param str
-     *            目标字符串
+     * @param regex 正则表达式
+     * @param str   目标字符串
      * @return
      */
     public static boolean isExist(String regex, String str) {
@@ -472,19 +481,15 @@ public class PatternUtils {
     /**
      * 正则替换
      *
-     * @param regex
-     *            正则表达式
-     * @param ment
-     *            替换内容
-     * @param str
-     *            目标字符串
-     * @param flags
-     *            匹配模式 Pattern.CASE_INSENSITIVE忽略大小写
+     * @param regex 正则表达式
+     * @param ment  替换内容
+     * @param str   目标字符串
+     * @param flags 匹配模式 Pattern.CASE_INSENSITIVE忽略大小写
      * @return 替换后字符串
      */
     public static String replaceAll(String regex, String ment, String str,
                                     int flags) {
-        Pattern pat = null;
+        Pattern pat;
         if (flags == -1) {
             pat = Pattern.compile(regex);
         } else {
@@ -497,10 +502,8 @@ public class PatternUtils {
     /**
      * 获取匹配参数值 eg: regex=(.*)[b](.*)[/b],str=A[b]B[/b],return [1]=A,[2]=B
      *
-     * @param regex
-     *            正则表达式
-     * @param str
-     *            目标字符串
+     * @param regex 正则表达式
+     * @param str   目标字符串
      * @return 匹配参数值
      */
     public static String[] getMatcherValue(String regex, String str) {
@@ -510,12 +513,9 @@ public class PatternUtils {
     /**
      * 获取匹配参数值
      *
-     * @param regex
-     *            正则表达式
-     * @param str
-     *            目标字符串
-     * @param flags
-     *            匹配模式 Pattern.CASE_INSENSITIVE忽略大小写
+     * @param regex 正则表达式
+     * @param str   目标字符串
+     * @param flags 匹配模式 Pattern.CASE_INSENSITIVE忽略大小写
      * @return
      */
     public static String[] getMatcherValue(String regex, String str, int flags) {
@@ -536,16 +536,8 @@ public class PatternUtils {
         return null;
     }
 
-    /**
-     * 是否符合正则判定
-     *
-     * @param regex
-     * @param str
-     * @return
-     */
-    public static boolean isTrue(String regex, String str) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher match = pattern.matcher(str);
-        return match.matches();
+    public static void main(String[] args){
+        String[] stringArray = getMatcherValue("\\d{11}(\\w+)","15695555393hcc");
+        System.out.println(Arrays.toString(stringArray));
     }
 }

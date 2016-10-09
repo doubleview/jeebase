@@ -153,7 +153,6 @@ public class CaptchaRender extends Render {
 		String sessionCaptcha = (String)session.removeAttribute(captchaName);//取出验证码
 		return userInputCaptcha.equals(sessionCaptcha);
 	}
-
 }
 
 
