@@ -18,15 +18,17 @@ public class Page<T> {
     private static String pageNoParam = "pageNo";//当前页面请求参数
     private static String pageSizeParam = "pageSize";//当前页面大小请求参数
 
+
     private int pageNo = 1; // 当前页码
     private int pageSize = Integer.valueOf(Constant.getConfig("page.pageSize")); // 页面大小，设置为“-1”表示不进行分页（分页无效）
+    private long totalSize;// 总记录数，设置为“-1”表示不查询总数
 
-    private long count;// 总记录数，设置为“-1”表示不查询总数
 
     private int first;// 首页索引
     private int last;// 尾页索引
     private int prev;// 上一页索引
     private int next;// 下一页索引
+
 
     private boolean firstPage;//是否是第一页
     private boolean lastPage;//是否是最后一页
@@ -118,11 +120,11 @@ public class Page<T> {
      * 构造方法
      * @param pageNo 当前页码
      * @param pageSize 分页大小
-     * @param count 数据条数
+     * @param totalSize 数据条数
      * @param list 本页数据对象列表
      */
-    public Page(int pageNo, int pageSize, long count, List<T> list) {
-        this.setCount(count);
+    public Page(int pageNo, int pageSize, long totalSize, List<T> list) {
+        this.setTotalSize(totalSize);
         this.setPageNo(pageNo);
         this.pageSize = pageSize;
         this.list = list;
@@ -136,9 +138,9 @@ public class Page<T> {
         //1
         this.first = 1;
 
-        this.last = (int)(count / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
+        this.last = (int)(totalSize / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
 
-        if (this.count % this.pageSize != 0 || this.last == 0) {
+        if (this.totalSize % this.pageSize != 0 || this.last == 0) {
             this.last++;
         }
 
@@ -199,17 +201,17 @@ public class Page<T> {
      * 获取设置总数
      * @return
      */
-    public long getCount() {
-        return count;
+    public long getTotalSize(){
+        return totalSize;
     }
 
     /**
      * 设置数据总数
-     * @param count
+     * @param totalSize
      */
-    public void setCount(long count) {
-        this.count = count;
-        if (pageSize >= count){
+    public void setTotalSize(long totalSize) {
+        this.totalSize = totalSize;
+        if (pageSize >= totalSize){
             pageNo = 1;
         }
     }
