@@ -41,7 +41,6 @@ public class LogInterceptor implements HandlerInterceptor{
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 保存日志
         //SystemUtils.saveLog(request, handler, ex, null);
-        if (logger.isDebugEnabled()){
             long beginTime = startTimeThreadLocal.get();
             long endTime = System.currentTimeMillis();
            logger.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
@@ -51,6 +50,5 @@ public class LogInterceptor implements HandlerInterceptor{
                     Runtime.getRuntime().totalMemory()/1024/1024,
                     Runtime.getRuntime().freeMemory()/1024/1024,
                     (Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
-        }
     }
 }

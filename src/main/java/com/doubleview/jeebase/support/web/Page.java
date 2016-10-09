@@ -15,6 +15,9 @@ import java.util.regex.Pattern;
  */
 public class Page<T> {
 
+    private static String pageNoParam = "pageNo";//当前页面请求参数
+    private static String pageSizeParam = "pageSize";//当前页面大小请求参数
+
     private int pageNo = 1; // 当前页码
     private int pageSize = Integer.valueOf(Constant.getConfig("page.pageSize")); // 页面大小，设置为“-1”表示不进行分页（分页无效）
 

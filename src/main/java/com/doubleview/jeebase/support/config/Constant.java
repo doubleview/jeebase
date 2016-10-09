@@ -30,10 +30,9 @@ public class Constant {
         InputStream is = null;
             try {
                 is = Thread.currentThread().getContextClassLoader().getResourceAsStream(defaultLoadProperties);
-                System.out.println(is);
                 props.load(is);
             } catch (IOException ex) {
-                logger.warn("Could not load support.properties" + ex.getMessage());
+                logger.warn("Could not load common.properties {}" , ex.getMessage());
             } finally {
                 IOUtils.closeQuietly(is);
             }
