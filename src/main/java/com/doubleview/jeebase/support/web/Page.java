@@ -2,10 +2,9 @@ package com.doubleview.jeebase.support.web;
 
 
 import com.doubleview.jeebase.support.config.Constant;
-import com.doubleview.jeebase.support.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -52,12 +51,11 @@ public class Page<T> {
     }
 
     /**
-     *
+     *分页构造函数
      * @param request
-     * @param response
      */
-    public Page(HttpServletRequest request, HttpServletResponse response){
-        this(request, response, 1);
+    public Page(HttpServletRequest request){
+        this(request,1);
     }
 
     /**
@@ -372,19 +370,11 @@ public class Page<T> {
     }
 
     /**
-     * 分页是否有效
-     * @return this.pageSize==-1
-     */
-    public boolean isDisabled() {
-        return this.pageSize==-1;
-    }
-
-    /**
      * 是否进行总数统计
      * @return this.count==-1
      */
     public boolean isNotCount() {
-        return this.count==-1;
+        return this.totalSize==-1;
     }
 
     /**
@@ -392,11 +382,12 @@ public class Page<T> {
      */
     public int getFirstResult(){
         int firstResult = (getPageNo() - 1) * getPageSize();
-        if (firstResult >= getCount()) {
+        if (firstResult >= getTotalSize()) {
             firstResult = 0;
         }
         return firstResult;
     }
+
     /**
      * 获取 Hibernate MaxResults
      */
