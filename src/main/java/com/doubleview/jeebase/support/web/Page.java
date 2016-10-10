@@ -17,11 +17,12 @@ public class Page<T> {
 
     private static String pageNoParam = "pageNo";//当前页面请求参数
     private static String pageSizeParam = "pageSize";//当前页面大小请求参数
+    private static String orderByParam = "orderByParam";//当前页面排序请求参数
 
 
     private int pageNo = 1; // 当前页码
-    private int pageSize = Integer.valueOf(Constant.getConfig("page.pageSize")); // 页面大小，设置为“-1”表示不进行分页（分页无效）
-    private long totalSize;// 总记录数，设置为“-1”表示不查询总数
+    private int pageSize = Integer.valueOf(Constant.getConfig("page.pageSize")); // 页面大小
+    private long totalSize;// 总记录数
 
 
     private int first;// 首页索引
@@ -51,50 +52,27 @@ public class Page<T> {
     }
 
     /**
-     * 构造方法
-     * @param request 传递 repage 参数，来记住页码
-     * @param response 用于设置 Cookie，记住页码
+     *
+     * @param request
+     * @param response
      */
     public Page(HttpServletRequest request, HttpServletResponse response){
-        this(request, response, -2);
+        this(request, response, 1);
     }
 
     /**
-     * 构造方法
-     * @param request 传递 repage 参数，来记住页码
-     * @param response 用于设置 Cookie，记住页码
-     * @param defaultPageSize 默认分页大小，如果传递 -1 则为不分页，返回所有数据
+     * 分页构造函数
+     * @param request
+     * @param defaultPageSize
      */
-    public Page(HttpServletRequest request, HttpServletResponse response, int defaultPageSize){
+    public Page(HttpServletRequest request, int defaultPageSize){
         // 设置页码参数（传递repage参数，来记住页码）
-        String no = request.getParameter("pageNo");
-        if (StringUtils.isNumeric(no)){
-            CookieUtils.setCookie(response, "pageNo", no);
-            this.setPageNo(Integer.parseInt(no));
-        }else if (request.getParameter("repage")!=null){
-            no = CookieUtils.getCookie(request, "pageNo");
-            if (StringUtils.isNumeric(no)){
-                this.setPageNo(Integer.parseInt(no));
-            }
-        }
-        // 设置页面大小参数（传递repage参数，来记住页码大小）
-        String size = request.getParameter("pageSize");
-        if (StringUtils.isNumeric(size)){
-            CookieUtils.setCookie(response, "pageSize", size);
-            this.setPageSize(Integer.parseInt(size));
-        }else if (request.getParameter("repage")!=null){
-            no = CookieUtils.getCookie(request, "pageSize");
-            if (StringUtils.isNumeric(size)){
-                this.setPageSize(Integer.parseInt(size));
-            }
-        }else if (defaultPageSize != -2){
-            this.pageSize = defaultPageSize;
-        }
-        // 设置排序参数
-        String orderBy = request.getParameter("orderBy");
-        if (StringUtils.isNotBlank(orderBy)){
-            this.setOrderBy(orderBy);
-        }
+        String pageNo = request.getParameter(pageNoParam);
+        String pageSize = request.getParameter(pageSizeParam);
+        String orderBy = request.getParameter(orderByParam);
+        this.pageNo = StringUtils.isNotBlank(pageNo) ? Integer.parseInt(pageNo) : 1;
+        this.pageSize = StringUtils.isNotBlank(pageSize) ? Integer.parseInt(pageSize): defaultPageSize;
+        this.orderBy = orderBy;
     }
 
     /**
