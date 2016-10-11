@@ -46,16 +46,20 @@ public class Page<T> {
 
     private String message = ""; // 设置提示消息，显示在“共n条”之后
 
+
+    /**
+     * 默认构造器
+     */
     public Page() {
-        this.pageSize = -1;
+        this(1 , Integer.valueOf(Constant.getConfig("page.pageSize")));
     }
 
     /**
-     *分页构造函数
+     *分页构造函数 ，默认第一页
      * @param request
      */
     public Page(HttpServletRequest request){
-        this(request,1);
+        this(request,Integer.valueOf(Constant.getConfig("page.pageSize")));
     }
 
     /**
@@ -64,7 +68,6 @@ public class Page<T> {
      * @param defaultPageSize
      */
     public Page(HttpServletRequest request, int defaultPageSize){
-        // 设置页码参数（传递repage参数，来记住页码）
         String pageNo = request.getParameter(pageNoParam);
         String pageSize = request.getParameter(pageSizeParam);
         String orderBy = request.getParameter(orderByParam);
@@ -86,25 +89,14 @@ public class Page<T> {
      * 构造方法
      * @param pageNo 当前页码
      * @param pageSize 分页大小
-     * @param count 数据条数
+     * @param totalSize 数据条数
      */
-    public Page(int pageNo, int pageSize, long count) {
-        this(pageNo, pageSize, count, new ArrayList());
+    public Page(int pageNo, int pageSize, long totalSize) {
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
+        this.totalSize = totalSize;
     }
 
-    /**
-     * 构造方法
-     * @param pageNo 当前页码
-     * @param pageSize 分页大小
-     * @param totalSize 数据条数
-     * @param list 本页数据对象列表
-     */
-    public Page(int pageNo, int pageSize, long totalSize, List<T> list) {
-        this.setTotalSize(totalSize);
-        this.setPageNo(pageNo);
-        this.pageSize = pageSize;
-        this.list = list;
-    }
 
     /**
      * 初始化参数
@@ -217,11 +209,11 @@ public class Page<T> {
     }
 
     /**
-     * 设置页面大小（最大500）
+     * 设置页面大小，最大为100条
      * @param pageSize
      */
     public void setPageSize(int pageSize) {
-        this.pageSize = pageSize <= 0 ? 10 : pageSize;// > 500 ? 500 : pageSize;
+        this.pageSize = pageSize <= 0 ? 10 : pageSize > 100 ? 100 : pageSize;
     }
 
     /**

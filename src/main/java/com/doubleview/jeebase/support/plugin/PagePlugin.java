@@ -53,9 +53,8 @@ public class PagePlugin implements Interceptor {
                 }else{
                     Connection connection = (Connection) ivk.getArgs()[0];
                     String sql = boundSql.getSql();
-                    //String countSql = "select count(0) from (" + sql+ ") as tmp_count"; //记录统计
                     String fhsql = sql;
-                    String countSql = "select count(0) from (" + fhsql+ ")  tmp_count"; //记录统计 == oracle 加 as 报错(SQL command not properly ended)
+                    String countSql = "select count(0) from (" + fhsql+ ")  tmp_count"; //记录统计
                     PreparedStatement countStmt = connection.prepareStatement(countSql);
                     BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(),countSql,boundSql.getParameterMappings(),parameterObject);
                     setParameters(countStmt,mappedStatement,countBS,parameterObject);
