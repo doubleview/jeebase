@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 /**
  * 日志拦截器
  */
-public class LogInterceptor implements HandlerInterceptor{
+public class LogInterceptor implements HandlerInterceptor {
 
     private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal("ThreadLocal StartTime");
 
@@ -22,9 +22,9 @@ public class LogInterceptor implements HandlerInterceptor{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (logger.isDebugEnabled()){
-            long beginTime = System.currentTimeMillis();
-            startTimeThreadLocal.set(beginTime);
+        long beginTime = System.currentTimeMillis();
+        startTimeThreadLocal.set(beginTime);
+        if(logger.isDebugEnabled()){
             logger.debug("开始计时: {}  URI: {}", new SimpleDateFormat("HH:mm:ss.SSS").format(beginTime), request.getRequestURI());
         }
         return true;
@@ -32,7 +32,7 @@ public class LogInterceptor implements HandlerInterceptor{
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        if (modelAndView != null){
+        if (modelAndView != null) {
             logger.info("view name: " + modelAndView.getViewName());
         }
     }
@@ -40,15 +40,35 @@ public class LogInterceptor implements HandlerInterceptor{
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 保存日志
-        //SystemUtils.saveLog(request, handler, ex, null);
-            long beginTime = startTimeThreadLocal.get();
-            long endTime = System.currentTimeMillis();
-           logger.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
+        new LogThread(request, handler, ex).start();
+        long beginTime = startTimeThreadLocal.get();
+        long endTime = System.currentTimeMillis();
+        if(logger.isDebugEnabled()){
+            logger.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
                     new SimpleDateFormat("hh:mm:ss.SSS").format(endTime),
                     DateTimeUtils.formatDateTime(endTime - beginTime),
-                    request.getRequestURI(), Runtime.getRuntime().maxMemory()/1024/1024,
-                    Runtime.getRuntime().totalMemory()/1024/1024,
-                    Runtime.getRuntime().freeMemory()/1024/1024,
-                    (Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
+                    request.getRequestURI(), Runtime.getRuntime().maxMemory() / 1024 / 1024,
+                    Runtime.getRuntime().totalMemory() / 1024 / 1024,
+                    Runtime.getRuntime().freeMemory() / 1024 / 1024,
+                    (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory()) / 1024 / 1024);
+        }
+    }
+
+    class LogThread extends Thread {
+
+        private HttpServletRequest request;
+        private Object handler;
+        private Exception ex;
+
+        public LogThread(HttpServletRequest request, Object handler, Exception ex) {
+            this.request = request;
+            this.handler = handler;
+            this.ex = ex;
+        }
+
+        @Override
+        public void run() {
+
+        }
     }
 }

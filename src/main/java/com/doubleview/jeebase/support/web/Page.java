@@ -372,18 +372,18 @@ public class Page<T> {
     /**
      * 获取 Hibernate FirstResult
      */
-    public int getFirstResult(){
+/*    public int getFirstResult(){
         int firstResult = (getPageNo() - 1) * getPageSize();
         if (firstResult >= getTotalSize()) {
             firstResult = 0;
         }
         return firstResult;
-    }
+    }*/
 
     /**
      * 获取 Hibernate MaxResults
      */
-    public int getMaxResults(){
+/*    public int getMaxResults(){
         return getPageSize();
-    }
+    }*/
 }

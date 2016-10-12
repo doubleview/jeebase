@@ -39,14 +39,15 @@
 
 	</settings>
 
+
 	<!-- 类型别名 -->
 	<typeAliases>
 		<typeAlias alias="Page" type="com.doubleview.jeebase.support.web.Page" /><!--分页  -->
 	</typeAliases>
 
 	<!-- 插件配置 -->
-<!--	<plugins>
-		<plugin interceptor="com.ahut.fastadmin.support.persistence.interceptor.PaginationInterceptor" />
-	</plugins>-->
+	<plugins>
+		<plugin interceptor="com.doubleview.jeebase.support.plugin.PagePlugin" />
+	</plugins>
 
 </configuration>
