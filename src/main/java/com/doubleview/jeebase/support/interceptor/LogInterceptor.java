@@ -1,9 +1,11 @@
 package com.doubleview.jeebase.support.interceptor;
 
+import com.doubleview.jeebase.support.config.SpringContext;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
+import com.doubleview.jeebase.system.model.Log;
+import com.doubleview.jeebase.system.service.LogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,9 +18,12 @@ import java.text.SimpleDateFormat;
  */
 public class LogInterceptor implements HandlerInterceptor {
 
-    private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal("ThreadLocal StartTime");
-
     private static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
+
+    //线程局部变量，用于记录访问耗时
+    private static final ThreadLocal<Long> startTimeThreadLocal = new ThreadLocal<>();
+
+    private LogService logService = SpringContext.getBean(LogService.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -68,7 +73,9 @@ public class LogInterceptor implements HandlerInterceptor {
 
         @Override
         public void run() {
-
+            Log log = new Log();
+            log.setType(ex != null ? Log.ACCESS : Log.EXCEPTION);
+            log.setRemoteIp(request.getRemoteHost());
         }
     }
 }

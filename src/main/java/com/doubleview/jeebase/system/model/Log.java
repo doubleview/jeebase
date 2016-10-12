@@ -32,8 +32,8 @@ public class Log extends BaseModel<Log>{
     private Date endDate;		// 根据结束日期查询
 
     // 日志类型（1：接入日志；2：错误日志）
-    public static final String TYPE_ACCESS = "1";
-    public static final String TYPE_EXCEPTION = "2";
+    public static final String ACCESS = "1";
+    public static final String EXCEPTION = "2";
 
     public Log(){
         super();
