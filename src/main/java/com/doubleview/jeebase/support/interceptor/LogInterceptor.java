@@ -1,17 +1,26 @@
 package com.doubleview.jeebase.support.interceptor;
 
 import com.doubleview.jeebase.support.config.SpringContext;
+import com.doubleview.jeebase.support.utils.CommonUtils;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
+import com.doubleview.jeebase.support.utils.ServletUtils;
 import com.doubleview.jeebase.system.model.Log;
+import com.doubleview.jeebase.system.model.Menu;
+import com.doubleview.jeebase.system.security.SystemAuthenticationFilter;
 import com.doubleview.jeebase.system.service.LogService;
+import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 日志拦截器
@@ -45,7 +54,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 保存日志
-        new LogThread(request, handler, ex).start();
+        saveLog(request , handler , ex);
         long beginTime = startTimeThreadLocal.get();
         long endTime = System.currentTimeMillis();
         if(logger.isDebugEnabled()){
@@ -57,6 +66,23 @@ public class LogInterceptor implements HandlerInterceptor {
                     Runtime.getRuntime().freeMemory() / 1024 / 1024,
                     (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory()) / 1024 / 1024);
         }
+    }
+
+    private void saveLog(HttpServletRequest request , Object handler , Exception ex){
+        String href = request.getRequestURI();
+        List<Menu> menuList = SystemCacheUtils.getMenuList();
+        boolean isContinue = false;
+        for(Menu menu : menuList){
+            if(href.contains(menu.getHref())){
+                isContinue = true;
+                break;
+            }
+        }
+        if(!isContinue && ex == null){
+            return;
+        }
+        //启动保存日志线程
+        new LogThread(request, handler, ex).start();
     }
 
     class LogThread extends Thread {
@@ -73,9 +99,39 @@ public class LogInterceptor implements HandlerInterceptor {
 
         @Override
         public void run() {
+
+            //得到拦截的类名和方法名
+            HandlerMethod handlerMethod = (HandlerMethod)handler;
+            String controllerClassName = handlerMethod.getBeanType().getName();
+            String methodName = handlerMethod.getMethod().getName();
+
             Log log = new Log();
+            log.setTitle(controllerClassName+"-->" + methodName);
             log.setType(ex != null ? Log.ACCESS : Log.EXCEPTION);
-            log.setRemoteIp(request.getRemoteHost());
+            log.setRemoteIp(ServletUtils.getRemoteAddr(request));
+            log.setRequestUri(request.getRequestURI());
+            log.setMethod(request.getMethod());
+            Map<String , String[]> paramMap = request.getParameterMap();
+            StringBuilder params = new StringBuilder();
+            for (Map.Entry<String, String[]> param : paramMap.entrySet()){
+                params.append(("".equals(params.toString()) ? "" : "&") + param.getKey() + "=");
+                String paramValue = (param.getValue() != null && param.getValue().length > 0 ? param.getValue()[0] : "");
+                //密码参数不显示
+                if(StringUtils.endsWithIgnoreCase(param.getKey(), SystemAuthenticationFilter.DEFAULT_PASSWORD_PARAM)){
+                    paramValue = "******";
+                    params.append(paramValue);
+                    continue;
+                }
+                params.append(CommonUtils.abbr(paramValue, 100));
+            }
+            log.setParams(params.toString());
+            log.setUserAgent(request.getHeader("user-agent"));
+            if(ex != null){
+                log.setException(ex.getClass().getName() + ":" + ex.getMessage());
+            }else {
+                log.setException("正常");
+            }
+            logService.save(log);
         }
     }
 }
