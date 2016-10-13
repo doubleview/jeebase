@@ -68,10 +68,17 @@ public class LogInterceptor implements HandlerInterceptor {
         }
     }
 
+    /**
+     * 保存日志
+     * @param request
+     * @param handler
+     * @param ex
+     */
     private void saveLog(HttpServletRequest request , Object handler , Exception ex){
         String href = request.getRequestURI();
         List<Menu> menuList = SystemCacheUtils.getMenuList();
         boolean isContinue = false;
+        //判断请求uri是否为菜单内路径
         for(Menu menu : menuList){
             if(href.contains(menu.getHref())){
                 isContinue = true;
@@ -115,13 +122,14 @@ public class LogInterceptor implements HandlerInterceptor {
             StringBuilder params = new StringBuilder();
             for (Map.Entry<String, String[]> param : paramMap.entrySet()){
                 params.append(("".equals(params.toString()) ? "" : "&") + param.getKey() + "=");
-                String paramValue = (param.getValue() != null && param.getValue().length > 0 ? param.getValue()[0] : "");
+                String paramValue = (param.getValue() != null && param.getValue().length > 0 ? StringUtils.join(param.getValue()) : "");
                 //密码参数不显示
                 if(StringUtils.endsWithIgnoreCase(param.getKey(), SystemAuthenticationFilter.DEFAULT_PASSWORD_PARAM)){
                     paramValue = "******";
                     params.append(paramValue);
                     continue;
                 }
+                //控制显示字符数
                 params.append(CommonUtils.abbr(paramValue, 100));
             }
             log.setParams(params.toString());

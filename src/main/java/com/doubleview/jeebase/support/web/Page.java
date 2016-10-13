@@ -281,6 +281,18 @@ public class Page<T> {
     }
 
     /**
+     * 得到起始条数
+     * @return
+     */
+    public int getFirstResult(){
+        int firstResult = (getPageNo() - 1) * getPageSize();
+        if (firstResult >= getTotalSize()) {
+            firstResult = 0;
+        }
+        return firstResult;
+    }
+
+    /**
      * 获取本页数据对象列表
      * @return List<T>
      */

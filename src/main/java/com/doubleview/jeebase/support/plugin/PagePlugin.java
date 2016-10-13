@@ -1,8 +1,10 @@
 package com.doubleview.jeebase.support.plugin;
 
+import com.doubleview.jeebase.support.persistence.dialect.Dialect;
+import com.doubleview.jeebase.support.persistence.dialect.MySQLDialect;
+import com.doubleview.jeebase.support.persistence.dialect.OracleDialect;
 import com.doubleview.jeebase.support.utils.ReflectUtils;
 import com.doubleview.jeebase.support.web.Page;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
@@ -20,7 +22,6 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import javax.xml.bind.PropertyException;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,8 +36,7 @@ import java.util.Properties;
 @Intercepts({@Signature(type=StatementHandler.class,method="prepare",args={Connection.class})})
 public class PagePlugin implements Interceptor {
 
-    private static String dialect = "";	//数据库方言
-    private static String pageSqlId = ""; //mapper.xml中需要拦截的ID(正则匹配)
+    private  Dialect dialect;	//数据库方言
 
     public Object intercept(Invocation ivk) throws Throwable {
         // TODO Auto-generated method stub
@@ -45,7 +45,6 @@ public class PagePlugin implements Interceptor {
             BaseStatementHandler delegate = (BaseStatementHandler) ReflectUtils.getValueByFieldName(statementHandler, "delegate");
             MappedStatement mappedStatement = (MappedStatement) ReflectUtils.getValueByFieldName(delegate, "mappedStatement");
 
-            if(mappedStatement.getId().matches(pageSqlId)){ //拦截需要分页的SQL
                 BoundSql boundSql = delegate.getBoundSql();
                 Object parameterObject = boundSql.getParameterObject();//分页SQL<select>中parameterType属性对应的实体参数，即Mapper接口中执行分页方法的参数,该参数不得为空
                 if(parameterObject==null){
@@ -65,11 +64,9 @@ public class PagePlugin implements Interceptor {
                     }
                     rs.close();
                     countStmt.close();
-                    //System.out.println(count);
                     Page page = null;
                     if(parameterObject instanceof Page){	//参数就是Page实体
                         page = (Page) parameterObject;
-                        //page.setEntityOrField(true);
                         page.setTotalSize(count);
                     }else{	//参数为某个实体，该实体拥有Page属性
                         Field pageField = ReflectUtils.getFieldByFieldName(parameterObject,"page");
@@ -77,7 +74,6 @@ public class PagePlugin implements Interceptor {
                             page = (Page) ReflectUtils.getValueByFieldName(parameterObject,"page");
                             if(page==null)
                                 page = new Page();
-                            //page.setEntityOrField(false);
                             page.setTotalSize(count);
                             ReflectUtils.setValueByFieldName(parameterObject, "page", page); //通过反射，对实体对象设置分页对象
                         }else{
@@ -88,7 +84,6 @@ public class PagePlugin implements Interceptor {
                     ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
                 }
             }
-        }
         return ivk.proceed();
     }
 
@@ -138,49 +133,46 @@ public class PagePlugin implements Interceptor {
         }
     }
 
+
     /**
      * 根据数据库方言，生成特定的分页sql
-     * @param sql
-     * @param page
+     * @param sql 原始sql
+     * @param page 页面对象
      * @return
      */
     private String generatePageSql(String sql,Page page){
-        if(page!=null && StringUtils.isNotBlank(dialect)){
-            StringBuffer pageSql = new StringBuffer();
-            if("mysql".equals(dialect)){
-                pageSql.append(sql);
-                pageSql.append(" limit "+page.getPageNo()+","+page.getPageSize());
-            }
-            return pageSql.toString();
-        }else{
+        if(dialect.supportsLimit()){
+            return dialect.getLimitString(sql , page.getFirstResult() , page.getPageSize());
+        }else {
             return sql;
         }
     }
 
     public Object plugin(Object arg0) {
-        // TODO Auto-generated method stub
         return Plugin.wrap(arg0, this);
     }
 
+    @Override
     public void setProperties(Properties p) {
-        dialect = p.getProperty("dialect");
-        if (StringUtils.isNotBlank(dialect)) {
-            try {
-                throw new PropertyException("dialect property is not found!");
-            } catch (PropertyException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        String dialectType = p.getProperty("jdbc.type");
+        initDialect(dialectType);
+    }
+
+    /**
+     * 初始化数据库方言
+     * @param dialectType
+     */
+    private void initDialect(String dialectType){
+        if(dialectType == null){
+            throw  new RuntimeException("mybatis dialect config error");
         }
-        pageSqlId = p.getProperty("pageSqlId");
-        if (StringUtils.isNotBlank(dialect)) {
-            try {
-                throw new PropertyException("pageSqlId property is not found!");
-            } catch (PropertyException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        Dialect dialect = null;
+        if("mysql".equals(dialectType)){
+            dialect = new MySQLDialect();
+        }else if("oracle".equals(dialectType)){
+            dialect = new OracleDialect();
         }
+        this.dialect = dialect;
     }
 
 }

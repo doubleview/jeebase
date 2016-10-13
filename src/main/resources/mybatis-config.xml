@@ -47,7 +47,10 @@
 
 	<!-- 插件配置 -->
 	<plugins>
-		<plugin interceptor="com.doubleview.jeebase.support.plugin.PagePlugin" />
+		<plugin interceptor="com.doubleview.jeebase.support.plugin.PagePlugin">
+			<!--指定数据库类型为mysql-->
+			<property name="jdbc.type" value="mysql"></property>
+		</plugin>
 	</plugins>
 
 </configuration>
