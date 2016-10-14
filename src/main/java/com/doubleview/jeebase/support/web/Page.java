@@ -26,26 +26,13 @@ public class Page<T> {
 
     private int first;// 首页索引
     private int last;// 尾页索引
-    private int prev;// 上一页索引
-    private int next;// 下一页索引
-
 
     private boolean firstPage;//是否是第一页
     private boolean lastPage;//是否是最后一页
 
-    private int length = 8;// 显示页面长度
-    private int slider = 1;// 前后显示页面长度
-
     private List<T> list = new ArrayList();
 
-    private String orderBy = ""; // 标准查询有效， 实例： updatedate desc, name asc
-
-    private String funcName = "page"; // 设置点击页码调用的js函数名称，默认为page，在一页有多个分页对象时使用。
-
-    private String funcParam = ""; // 函数的附加参数，第三个参数值。
-
-    private String message = ""; // 设置提示消息，显示在“共n条”之后
-
+    private String orderBy = ""; // 标准查询有效
 
     /**
      * 默认构造器
@@ -103,7 +90,7 @@ public class Page<T> {
      */
     public void initialize(){
 
-        //1
+        //设置首页和尾页
         this.first = 1;
 
         this.last = (int)(totalSize / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
@@ -116,6 +103,7 @@ public class Page<T> {
             this.last = this.first;
         }
 
+        //设置当前页
         if (this.pageNo <= 1) {
             this.pageNo = this.first;
             this.firstPage=true;
@@ -125,28 +113,6 @@ public class Page<T> {
             this.pageNo = this.last;
             this.lastPage=true;
         }
-
-        if (this.pageNo < this.last - 1) {
-            this.next = this.pageNo + 1;
-        } else {
-            this.next = this.last;
-        }
-
-        if (this.pageNo > 1) {
-            this.prev = this.pageNo - 1;
-        } else {
-            this.prev = this.first;
-        }
-
-        //2
-        if (this.pageNo < this.first) {// 如果当前页小于首页
-            this.pageNo = this.first;
-        }
-
-        if (this.pageNo > this.last) {// 如果当前页大于尾页
-            this.pageNo = this.last;
-        }
-
     }
 
     /**
@@ -326,76 +292,10 @@ public class Page<T> {
     }
 
     /**
-     * 设置查询排序，标准查询有效， 实例： updatedate desc, name asc
+     * 设置查询排序，标准查询有效
      */
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
 
-    /**
-     * 获取点击页码调用的js函数名称
-     * function ${page.funcName}(pageNo){location="${ctx}/list-${category.id}${urlSuffix}?pageNo="+i;}
-     * @return
-     */
-    public String getFuncName() {
-        return funcName;
-    }
-
-    /**
-     * 设置点击页码调用的js函数名称，默认为page，在一页有多个分页对象时使用。
-     * @param funcName 默认为page
-     */
-    public void setFuncName(String funcName) {
-        this.funcName = funcName;
-    }
-
-    /**
-     * 获取分页函数的附加参数
-     * @return
-     */
-    public String getFuncParam() {
-        return funcParam;
-    }
-
-    /**
-     * 设置分页函数的附加参数
-     * @return
-     */
-    public void setFuncParam(String funcParam) {
-        this.funcParam = funcParam;
-    }
-
-    /**
-     * 设置提示消息，显示在“共n条”之后
-     * @param message
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    /**
-     * 是否进行总数统计
-     * @return this.count==-1
-     */
-    public boolean isNotCount() {
-        return this.totalSize==-1;
-    }
-
-    /**
-     * 获取 Hibernate FirstResult
-     */
-/*    public int getFirstResult(){
-        int firstResult = (getPageNo() - 1) * getPageSize();
-        if (firstResult >= getTotalSize()) {
-            firstResult = 0;
-        }
-        return firstResult;
-    }*/
-
-    /**
-     * 获取 Hibernate MaxResults
-     */
-/*    public int getMaxResults(){
-        return getPageSize();
-    }*/
 }
