@@ -3,8 +3,6 @@
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
 <c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!DOCTYPE html>
-<!--[if ie8]--><html lang="en" class="ie8 no-js">
-<!--[if ie9]--> <html lang="en" class="ie9 no-js">
 <html lang="en">
 <head>
   <meta charset="utf-8" />

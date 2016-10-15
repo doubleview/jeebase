@@ -223,7 +223,8 @@ public class SystemCacheUtils {
 
         menuList.removeAll(parentList);
         for(Menu menu : parentList){
-            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId()));//递归调用
+            //递归调用
+            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId()));
         }
         Collections.sort(parentList);//对菜单排序
         return parentList;
