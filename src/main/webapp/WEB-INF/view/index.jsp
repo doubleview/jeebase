@@ -35,13 +35,12 @@
   <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<!--page-warper-->
 <div class="page-wrapper">
-
   <!-- header -->
   <div class="page-header navbar navbar-fixed-top">
     <!-- header inner -->
     <div class="page-header-inner ">
-
       <!-- logo -->
       <div class="page-logo">
         <a href="${adminPath}/index" class="logo-default">
@@ -51,7 +50,6 @@
           <span></span>
         </div>
       </div>
-
       <!-- responsive menu toggler -->
       <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
         <span></span>
@@ -60,291 +58,6 @@
       <!--top nagivation menu-->
       <div class="top-menu">
         <ul class="nav navbar-nav pull-right">
-          <!-- notification dropdown -->
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-              <i class="icon-bell"></i>
-              <span class="badge badge-default"> 7 </span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="external">
-                <h3>
-                  <span class="bold">12 pending</span> notifications</h3>
-                <a href="page_user_profile_1.html">view all</a>
-              </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">just now</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-success">
-                                                            <i class="fa fa-plus"></i>
-                                                        </span> New user registered. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">3 mins</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Server #12 overloaded. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">10 mins</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span> Server #2 not responding. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">14 hrs</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> Application error. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">2 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Database overloaded 68%. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">3 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> A user IP blocked. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">4 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span> Storage Server #4 not responding dfdfdfd. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">5 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> System Error. </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="time">9 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Storage server failed. </span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <!--inbox dropdown-->
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-              <i class="icon-envelope-open"></i>
-              <span class="badge badge-default"> 4 </span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="external">
-                <h3>You have
-                  <span class="bold">7 New</span> Messages</h3>
-                <a href="app_inbox.html">view all</a>
-              </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                  <li>
-                    <a href="#">
-                                                    <span class="photo">
-                                                        <img src="${staticPath}/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">Just Now </span>
-                                                    </span>
-                      <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                                                    <span class="photo">
-                                                        <img src="${staticPath}/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">16 mins </span>
-                                                    </span>
-                      <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                                                    <span class="photo">
-                                                        <img src="${staticPath}/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Bob Nilson </span>
-                                                        <span class="time">2 hrs </span>
-                                                    </span>
-                      <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                                                    <span class="photo">
-                                                        <img src="${staticPath}/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">40 mins </span>
-                                                    </span>
-                      <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                                                    <span class="photo">
-                                                        <img src="${staticPath}/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">46 mins </span>
-                                                    </span>
-                      <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <!--dropdown-->
-          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-          <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-              <i class="icon-calendar"></i>
-              <span class="badge badge-default"> 3 </span>
-            </a>
-            <ul class="dropdown-menu extended tasks">
-              <li class="external">
-                <h3>你有
-                  <span class="bold">12个待处理</span> 任务</h3>
-                <a href="app_todo.html">查看所有</a>
-              </li>
-              <li>
-                <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">New release v1.2 </span>
-                                                        <span class="percent">30%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">40% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Application deployment</span>
-                                                        <span class="percent">65%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">65% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Mobile app release</span>
-                                                        <span class="percent">98%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">98% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Database migration</span>
-                                                        <span class="percent">10%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">10% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Web server upgrade</span>
-                                                        <span class="percent">58%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">58% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Mobile development</span>
-                                                        <span class="percent">85%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">85% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">New UI release</span>
-                                                        <span class="percent">38%</span>
-                                                    </span>
-                                                    <span class="progress progress-striped">
-                                                        <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">38% Complete</span>
-                                                        </span>
-                                                    </span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
             <!--user-->
             <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -354,21 +67,21 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
               <li>
-                <a href="page_user_profile_1.html">
+                <a href="">
                   <i class="icon-user"></i> 我的主页 </a>
               </li>
               <li>
-                <a href="app_calendar.html">
+                <a href="">
                   <i class="icon-calendar"></i> 我的日历 </a>
               </li>
               <li>
-                <a href="app_inbox.html">
+                <a href="">
                   <i class="icon-envelope-open"></i> 我的收件箱
                   <span class="badge badge-danger"> 3 </span>
                 </a>
               </li>
               <li>
-                <a href="app_todo.html">
+                <a href="">
                   <i class="icon-rocket"></i> 我的任务
                   <span class="badge badge-success"> 7 </span>
                 </a>
@@ -379,7 +92,7 @@
                   <i class="icon-lock"></i> 锁屏 </a>
               </li>
               <li>
-                <a href="page_user_login_1.html">
+                <a href="${adminPath}/logout">
                   <i class="icon-key"></i> 退出 </a>
               </li>
             </ul>
@@ -392,11 +105,11 @@
           </li>
         </ul>
       </div>
-
     </div>
-
+      <!---end header inner-->
   </div>
-  <div class="clearfix"> </div>
+    <!--end page header-->
+<div class="clearfix"> </div>
 
   <!-- container -->
   <div class="page-container">
@@ -505,7 +218,7 @@
               <div class="btn-group roll-nav roll-right">
                   <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
                   </button>
-                  <ul role="menu" class="dropdown-menu dropdown-menu-right" ">
+                  <ul role="menu" class="dropdown-menu dropdown-menu-right">
                       <li class="J_tabShowActive"><a>定位当前选项卡</a></li>
                       <li class="divider"></li>
                       <li class="J_tabCloseAll"><a>关闭全部选项卡</a></li>
@@ -526,19 +239,17 @@
   <!-- footer -->
   <div class="page-footer">
     <div class="page-footer-inner"> 2016 &copy; jeebase By
-      <a target="_blank" href="http://keenthemes.com">doubleview</a> &nbsp;|&nbsp;
+      <a target="_blank" href="https://github.com/doubleview">doubleview</a> &nbsp;|&nbsp;
     </div>
     <div class="scroll-to-top">
       <i class="icon-arrow-up"></i>
     </div>
   </div>
+    <!--end footer-->
 
 </div>
+<!--end page-wraper-->
 
-
-<!--[if ie9]-->
-<script src="${staticPath}/global/plugins/respond.min.js"></script>
-<script src="${staticPath}/global/plugins/excanvas.min.js"></script>
 <!--core-->
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
