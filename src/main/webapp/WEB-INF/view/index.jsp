@@ -124,20 +124,20 @@
           </li>
           <!--搜索栏-->
             <li class="sidebar-search-wrapper">
-            <!--responsive quick search form-->
-            <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
-              <a href="javascript:;" class="remove">
-                <i class="icon-close"></i>
-              </a>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="搜索...">
-                                        <span class="input-group-btn">
-                                            <a href="javascript:;" class="btn submit">
-                                              <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
-              </div>
-            </form>
+                <!--responsive quick search form-->
+                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                  <a href="javascript:;" class="remove">
+                    <i class="icon-close"></i>
+                  </a>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜索...">
+                                            <span class="input-group-btn">
+                                                <a href="javascript:;" class="btn submit">
+                                                  <i class="icon-magnifier"></i>
+                                                </a>
+                                            </span>
+                  </div>
+                </form>
           </li>
 
           <li class="nav-item start active open">
@@ -161,26 +161,53 @@
                         <ul class="sub-menu">
                             <c:forEach items="${menu1.subMenuList}" var="menu2">
                                 <li class="nav-item">
-                                    <a href="javascript:;" target="_blank" class="nav-link">
-                                         ${menu2.name}
-                                        <c:if test="${not empty menu2.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="{not empty menu2.subMenuList}">
+                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                                    ${menu2.name}
+                                                <span class="arrow nav-toggle"></span>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="${menu2.href}" target="_blank" class="nav-link menu-item">
+                                                    ${menu2.name}
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <c:if test="${menu2.subMenuList != null}">
                                         <ul class="sub-menu">
                                             <c:forEach items="${menu2.subMenuList}" var="menu3">
                                                 <li class="nav-item">
-                                                    <a href="javascript:;" target="_blank" class="nav-link">
-                                                        ${menu3.name}
-                                                        <c:if test="${not empty menu3.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
-                                                    </a>
+                                                    <c:choose>
+                                                        <c:when test="{not empty menu3.subMenuList}">
+                                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                                                    ${menu3.name}
+                                                                <span class="arrow nav-toggle"></span>
+                                                            </a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="${menu3.href}" target="_blank" class="nav-link menu-item">
+                                                                    ${menu3.name}
+                                                            </a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <c:if test="${menu3.subMenuList != null}">
                                                         <ul class="sub-menu">
                                                             <c:forEach items="${menu3.subMenuList}" var="menu4">
                                                                 <li class="nav-item">
-                                                                    <a href="javascript:;" target="_blank" class="nav-link">
-                                                                         ${menu4.name}
-                                                                        <c:if test="${not empty menu4.subMenuList}"><span class="arrow nav-toggle"></span></c:if>
-                                                                    </a>
+                                                                        <c:choose>
+                                                                            <c:when test="{not empty menu4.subMenuList}">
+                                                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                                                                    ${menu4.name}
+                                                                                        <span class="arrow nav-toggle"></span>
+                                                                            </a>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                            <a href="${menu4.href}" target="_blank" class="nav-link menu-item">
+                                                                                    ${menu4.name}
+                                                                            </a>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
                                                                 </li>
                                                             </c:forEach>
                                                         </ul>
@@ -200,39 +227,38 @@
       </div>
     </div>
 
-    <!-- content -->
+    <!-- content-warpper -->
     <div class="page-content-wrapper">
       <div class="page-content">
 
           <!--选项卡-->
           <div class="row content-tabs">
-              <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
-              </button>
-              <nav class="page-tabs J_menuTabs">
+              <button class="roll-nav roll-left tab-left"><i class="fa fa-backward"></i></button>
+              <nav class="page-tabs menu-tabs">
                   <div class="page-tabs-content">
-                      <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                      <a href="javascript:;" class="active menu-tab" data-id="${adminPath}/index.jsp">首页</a>
                   </div>
               </nav>
-              <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
-              </button>
+              <button class="roll-nav roll-right tab-right"><i class="fa fa-forward"></i></button>
               <div class="btn-group roll-nav roll-right">
-                  <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+                  <button class="dropdown tab-close" data-toggle="dropdown">关闭操作<span class="caret"></span>
                   </button>
                   <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                      <li class="J_tabShowActive"><a>定位当前选项卡</a></li>
+                      <li class="show-active"><a>定位当前选项卡</a></li>
                       <li class="divider"></li>
-                      <li class="J_tabCloseAll"><a>关闭全部选项卡</a></li>
-                      <li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
+                      <li class="close-all"><a>关闭全部选项卡</a></li>
+                      <li class="close-other"><a>关闭其他选项卡</a></li>
                   </ul>
               </div>
           </div>
 
           <div class="row " id="content-main">
-              <iframe class="J_iframe" name="iframe0" width="100%" height="500px"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
+              <iframe class="menu-iframe" name="iframe0" width="100%" height="500px"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
           </div>
 
       </div>
     </div>
+      <!--end content-wrapper-->
 
   </div>
 
