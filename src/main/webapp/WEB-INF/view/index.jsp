@@ -252,7 +252,7 @@
               </div>
           </div>
 
-          <div class="row " id="content-main">
+          <div class="row menu-content" id="content-main">
               <iframe class="menu-iframe" name="iframe0" width="100%" height="500px"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
           </div>
 
@@ -262,15 +262,15 @@
 
   </div>
 
-  <!-- footer -->
-  <div class="page-footer">
-    <div class="page-footer-inner"> 2016 &copy; jeebase By
-      <a target="_blank" href="https://github.com/doubleview">doubleview</a> &nbsp;|&nbsp;
-    </div>
-    <div class="scroll-to-top">
-      <i class="icon-arrow-up"></i>
-    </div>
-  </div>
+      <!-- footer -->
+      <div class="page-footer">
+        <div class="page-footer-inner"> 2016 &copy; jeebase By
+          <a target="_blank" href="https://github.com/doubleview">doubleview</a> &nbsp;|&nbsp;
+        </div>
+        <div class="scroll-to-top">
+          <i class="icon-arrow-up"></i>
+        </div>
+      </div>
     <!--end footer-->
 
 </div>
