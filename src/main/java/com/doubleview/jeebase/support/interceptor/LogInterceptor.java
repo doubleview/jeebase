@@ -90,20 +90,38 @@ public class LogInterceptor implements HandlerInterceptor {
         if(!isContinue && ex == null){
             return;
         }
-        System.out.println(request.getRequestURI());
+        Log log = new Log();
+        log.setRemoteIp(ServletUtils.getRemoteAddr(request));
+        log.setRequestUri(request.getRequestURI());
+        log.setMethod(request.getMethod());
+        log.setUserAgent(request.getHeader("user-agent"));
+        Map<String , String[]> paramMap = request.getParameterMap();
+        StringBuilder params = new StringBuilder();
+        for (Map.Entry<String, String[]> param : paramMap.entrySet()){
+            params.append(("".equals(params.toString()) ? "" : "&") + param.getKey() + "=");
+            String paramValue = (param.getValue() != null && param.getValue().length > 0 ? StringUtils.join(param.getValue()) : "");
+            //密码参数不显示
+            if(StringUtils.endsWithIgnoreCase(param.getKey(), SystemAuthenticationFilter.DEFAULT_PASSWORD_PARAM)){
+                paramValue = "******";
+                params.append(paramValue);
+                continue;
+            }
+            //控制显示字符数
+            params.append(CommonUtils.abbr(paramValue, 100));
+        }
+        log.setParams(params.toString());
         //启动保存日志线程
-        new LogThread(request, handler, ex).start();
+        new LogThread(log, handler, ex).start();
     }
 
     private class LogThread extends Thread {
 
-        private HttpServletRequest request;
+        private Log log;
         private Object handler;
         private Exception ex;
 
-        public LogThread(HttpServletRequest request, Object handler, Exception ex) {
-            this.request = request;
-            System.out.println(this.request.getRequestURI());
+        public LogThread(Log log, Object handler, Exception ex) {
+            this.log = log;
             this.handler = handler;
             this.ex = ex;
         }
@@ -115,34 +133,14 @@ public class LogInterceptor implements HandlerInterceptor {
             String controllerClassName = handlerMethod.getBeanType().getName();
             String methodName = handlerMethod.getMethod().getName();
 
-            Log log = new Log();
             log.setTitle(controllerClassName + "-->" + methodName);
             log.setType(ex != null ? Log.ACCESS : Log.EXCEPTION);
-            log.setRemoteIp(ServletUtils.getRemoteAddr(request));
-            log.setRequestUri(request.getRequestURI());
-            log.setMethod(request.getMethod());
             User user = ShiroUtils.getCurrentUser();
             if(user == null){
                 log.setCreateBy(new User("0"));
             }else {
                 log.setCreateBy(user);
             }
-            Map<String , String[]> paramMap = request.getParameterMap();
-            StringBuilder params = new StringBuilder();
-            for (Map.Entry<String, String[]> param : paramMap.entrySet()){
-                params.append(("".equals(params.toString()) ? "" : "&") + param.getKey() + "=");
-                String paramValue = (param.getValue() != null && param.getValue().length > 0 ? StringUtils.join(param.getValue()) : "");
-                //密码参数不显示
-                if(StringUtils.endsWithIgnoreCase(param.getKey(), SystemAuthenticationFilter.DEFAULT_PASSWORD_PARAM)){
-                    paramValue = "******";
-                    params.append(paramValue);
-                    continue;
-                }
-                //控制显示字符数
-                params.append(CommonUtils.abbr(paramValue, 100));
-            }
-            log.setParams(params.toString());
-            log.setUserAgent(request.getHeader("user-agent"));
             if(ex != null){
                 log.setException(ex.getClass().getName() + ":" + ex.getMessage());
             }else {
