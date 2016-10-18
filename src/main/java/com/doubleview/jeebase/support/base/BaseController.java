@@ -60,7 +60,7 @@ public abstract class BaseController {
      * @param response
      * @param render
      */
-    public void render(HttpServletRequest request , HttpServletResponse response , Render render){
+    protected void render(HttpServletRequest request , HttpServletResponse response , Render render){
         render.setWebContext(request,response);
         render.render();
     }
@@ -69,7 +69,7 @@ public abstract class BaseController {
      * 参数绑定异常
      */
     @ExceptionHandler({BindException.class, ConstraintViolationException.class, ValidationException.class})
-    public String bindException() {
+    protected String bindException() {
         return "error/400";
     }
 
@@ -77,7 +77,7 @@ public abstract class BaseController {
      * 授权登录异常
      */
     @ExceptionHandler({AuthenticationException.class})
-    public String authenticationException() {
+    protected String authenticationException() {
         return "error/403";
     }
 

@@ -6,8 +6,10 @@ import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import com.doubleview.jeebase.support.utils.ServletUtils;
 import com.doubleview.jeebase.system.model.Log;
 import com.doubleview.jeebase.system.model.Menu;
+import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.security.SystemAuthenticationFilter;
 import com.doubleview.jeebase.system.service.LogService;
+import com.doubleview.jeebase.system.utils.ShiroUtils;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -88,11 +90,12 @@ public class LogInterceptor implements HandlerInterceptor {
         if(!isContinue && ex == null){
             return;
         }
+        System.out.println(request.getRequestURI());
         //启动保存日志线程
         new LogThread(request, handler, ex).start();
     }
 
-    class LogThread extends Thread {
+    private class LogThread extends Thread {
 
         private HttpServletRequest request;
         private Object handler;
@@ -100,24 +103,30 @@ public class LogInterceptor implements HandlerInterceptor {
 
         public LogThread(HttpServletRequest request, Object handler, Exception ex) {
             this.request = request;
+            System.out.println(this.request.getRequestURI());
             this.handler = handler;
             this.ex = ex;
         }
 
         @Override
         public void run() {
-
             //得到拦截的类名和方法名
             HandlerMethod handlerMethod = (HandlerMethod)handler;
             String controllerClassName = handlerMethod.getBeanType().getName();
             String methodName = handlerMethod.getMethod().getName();
 
             Log log = new Log();
-            log.setTitle(controllerClassName+"-->" + methodName);
+            log.setTitle(controllerClassName + "-->" + methodName);
             log.setType(ex != null ? Log.ACCESS : Log.EXCEPTION);
             log.setRemoteIp(ServletUtils.getRemoteAddr(request));
             log.setRequestUri(request.getRequestURI());
             log.setMethod(request.getMethod());
+            User user = ShiroUtils.getCurrentUser();
+            if(user == null){
+                log.setCreateBy(new User("0"));
+            }else {
+                log.setCreateBy(user);
+            }
             Map<String , String[]> paramMap = request.getParameterMap();
             StringBuilder params = new StringBuilder();
             for (Map.Entry<String, String[]> param : paramMap.entrySet()){

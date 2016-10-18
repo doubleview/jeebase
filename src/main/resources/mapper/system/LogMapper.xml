@@ -67,7 +67,7 @@
 		#{requestUri},
 		#{method},
 		#{params},
-		#{exception}
+		#{exception},
 		#{createBy.id},
 		#{createTime}
 		)

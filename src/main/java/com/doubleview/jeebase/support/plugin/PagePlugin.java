@@ -21,8 +21,9 @@ import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,10 +37,11 @@ import java.util.Properties;
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class PagePlugin implements Interceptor {
 
+    private Logger logger = LoggerFactory.getLogger(PagePlugin.class);
     private Dialect dialect;    //数据库方言
 
     public Object intercept(Invocation ivk) throws Throwable {
-        // TODO Auto-generated method stub
+
         if (ivk.getTarget() instanceof RoutingStatementHandler) {
             RoutingStatementHandler statementHandler = (RoutingStatementHandler) ivk.getTarget();
             BaseStatementHandler delegate = (BaseStatementHandler) ReflectUtils.getValueByFieldName(statementHandler, "delegate");
@@ -47,42 +49,41 @@ public class PagePlugin implements Interceptor {
 
             BoundSql boundSql = delegate.getBoundSql();
             Object parameterObject = boundSql.getParameterObject();//分页SQL<select>中parameterType属性对应的实体参数，即Mapper接口中执行分页方法的参数,该参数不得为空
-            if (parameterObject == null) {
-                throw new NullPointerException("parameterObject尚未实例化！");
+
+            Page<Object> page = null;
+
+            if (parameterObject != null) {
+                if (parameterObject instanceof Page) {
+                    page = (Page<Object>) parameterObject;
+                } else {
+                    page = (Page<Object>) ReflectUtils.getValueByFieldName(parameterObject, "page");
+                }
             } else {
-                Connection connection = (Connection) ivk.getArgs()[0];
-                String sql = boundSql.getSql();
-                String fhsql = sql;
-                String countSql = "select count(0) from (" + fhsql + ")  tmp_count"; //记录统计
-                PreparedStatement countStmt = connection.prepareStatement(countSql);
-                BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql, boundSql.getParameterMappings(), parameterObject);
-                setParameters(countStmt, mappedStatement, countBS, parameterObject);
-                ResultSet rs = countStmt.executeQuery();
-                int count = 0;
-                if (rs.next()) {
-                    count = rs.getInt(1);
-                }
-                rs.close();
-                countStmt.close();
-                Page page = null;
-                if (parameterObject instanceof Page) {    //参数就是Page实体
-                    page = (Page) parameterObject;
-                    page.setTotalSize(count);
-                } else {    //参数为某个实体，该实体拥有Page属性
-                    Field pageField = ReflectUtils.getFieldByFieldName(parameterObject, "page");
-                    if (pageField != null) {
-                        page = (Page) ReflectUtils.getValueByFieldName(parameterObject, "page");
-                        if (page == null)
-                            page = new Page();
-                        page.setTotalSize(count);
-                        ReflectUtils.setValueByFieldName(parameterObject, "page", page); //通过反射，对实体对象设置分页对象
-                    } else {
-                        throw new NoSuchFieldException(parameterObject.getClass().getName() + "不存在 page 属性！");
-                    }
-                }
-                String pageSql = generatePageSql(sql, page);
-                ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
+                throw new NullPointerException("parameterObject尚未实例化！");
             }
+
+            if (page == null) {
+                return ivk.proceed();
+            }
+            //查找此次查询的条数
+            Connection connection = (Connection) ivk.getArgs()[0];
+            String sql = boundSql.getSql();
+            String fhsql = sql;
+            String countSql = "select count(0) from (" + fhsql + ")  tmp_count"; //记录统计
+            PreparedStatement countStmt = connection.prepareStatement(countSql);
+            BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql, boundSql.getParameterMappings(), parameterObject);
+            setParameters(countStmt, mappedStatement, countBS, parameterObject);
+            ResultSet rs = countStmt.executeQuery();
+            int count = 0;
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            countStmt.close();
+            page.setTotalSize(count);
+            String pageSql = generatePageSql(sql, page);
+            logger.debug("page sql is {}" , pageSql);
+            ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
         }
         return ivk.proceed();
     }
