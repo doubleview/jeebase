@@ -30,7 +30,7 @@
 
     <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>
-      <span> 请输入你的用户名和密码 </span>
+      <span>请输入你的用户名和密码</span>
     </div>
 
     <c:if test="${message ne null}">

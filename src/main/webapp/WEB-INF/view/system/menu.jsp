@@ -39,7 +39,7 @@
             <div class="portlet-body">
                 <div id="menu_tree" class="tree-demo">
                     <ul>
-                        <li> Root node 1
+                        <li> root
                             <ul>
                                 <li data-jstree='{ "selected" : true }'>
                                     <a href="javascript:;"> Initially selected </a>
