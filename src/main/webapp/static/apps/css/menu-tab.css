@@ -1,17 +1,12 @@
-a:hover , a:focus{
-    text-decoration: none;
-}
-
 .content-tabs {
     position: relative;
     height: 42px;
     background: #fafafa;
     line-height: 40px;
-    border-bottom: solid 2px #2f4050;
-    top: -20px;
+    margin-top: -20px;
 }
 
-.content-tabs .roll-nav, .page-tabs-list {
+.content-tabs .roll-nav,.page-tabs-list {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -58,35 +53,40 @@ nav.page-tabs .page-tabs-content {
     display: block;
     float: left;
     border-right: solid 1px #eee;
-    padding: 0 15px
+    padding: 0 15px;
+    color: #999;
+    text-decoration: none;
 }
 
 .page-tabs a.active {
     background: #2f4050;
-    color: #a7b1c2;
+    color: #a7b1c2
 }
 
 .page-tabs a i:hover {
     color: #c00
 }
 
-.content-tabs .roll-nav:hover, .page-tabs a:hover {
+.page-tabs a i {
+    color: #ccc
+}
+
+.page-tabs a.active i:hover,.page-tabs a.active:hover {
+    background: #293846;
+    color: #fff
+}
+
+.content-tabs .roll-nav:hover,.page-tabs a:hover {
     color: #777;
     background: #f2f2f2;
     cursor: pointer
 }
 
-.content-tabs .roll-nav:hover, .page-tabs a.active:hover {
-    color: #000;
-    cursor: pointer
-}
-
-.roll-right.J_tabRight {
+.roll-right.tab-right {
     right: 80px
 }
 
 .roll-right.btn-group {
-    right: 0px;
     width: 80px;
     padding: 0
 }
@@ -95,11 +95,8 @@ nav.page-tabs .page-tabs-content {
     width: 80px
 }
 
-.roll-right.J_tabExit {
-    background: #fff;
-    height: 40px;
-    width: 60px;
-    outline: 0
+.dropdown-menu-right {
+    left: auto
 }
 
 #content-main {
@@ -107,7 +104,7 @@ nav.page-tabs .page-tabs-content {
     overflow: hidden
 }
 
-.fixed-nav #content-main {
-    height: calc(100% - 80px);
-    overflow: hidden
+.content-tabs {
+    border-bottom: solid 2px #2f4050
 }
+

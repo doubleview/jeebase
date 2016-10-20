@@ -98,6 +98,7 @@ $(function () {
         if (void 0 == t || 0 == $.trim(t).length)
             return !1;
 
+
         if ($(".menu-tab").each(function () {
                 return $(this).data("id") == t ? ($(this).hasClass("active") || ($(this).addClass("active").siblings(".menu-tab").removeClass("active"),
                     jusifyWidth(this),

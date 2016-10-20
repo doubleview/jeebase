@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
 <c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!DOCTYPE html>
@@ -163,13 +164,13 @@
                                 <li class="nav-item">
                                     <c:choose>
                                         <c:when test="${not empty menu2.subMenuList}">
-                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                            <a href="javascript:;" class="nav-link">
                                                     ${menu2.name}
                                                 <span class="arrow nav-toggle"></span>
                                             </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="${menu2.href}" target="_blank" class="nav-link menu-item">
+                                            <a href="${contextPath}/${menu2.href}" class="nav-link menu-item">
                                                     ${menu2.name}
                                             </a>
                                         </c:otherwise>
@@ -180,13 +181,13 @@
                                                 <li class="nav-item">
                                                     <c:choose>
                                                         <c:when test="${not empty menu3.subMenuList}">
-                                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                                            <a href="javascript:;"  class="nav-link">
                                                                     ${menu3.name}
                                                                 <span class="arrow nav-toggle"></span>
                                                             </a>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <a href="${menu3.href}" target="_blank" class="nav-link menu-item">
+                                                            <a href="${contextPath}/${menu3.href}"  class="nav-link menu-item">
                                                                     ${menu3.name}
                                                             </a>
                                                         </c:otherwise>
@@ -197,13 +198,13 @@
                                                                 <li class="nav-item">
                                                                         <c:choose>
                                                                             <c:when test="${not empty menu4.subMenuList}">
-                                                                            <a href="javascript:;" target="_blank" class="nav-link">
+                                                                            <a href="javascript:;" class="nav-link">
                                                                                     ${menu4.name}
                                                                                         <span class="arrow nav-toggle"></span>
                                                                             </a>
                                                                             </c:when>
                                                                             <c:otherwise>
-                                                                            <a href="${menu4.href}" target="_blank" class="nav-link menu-item">
+                                                                            <a href="${contextPath}/${menu4.href}" class="nav-link menu-item">
                                                                                     ${menu4.name}
                                                                             </a>
                                                                             </c:otherwise>
@@ -325,5 +326,6 @@
 
 <!--menu-tab-->
 <script src="${staticPath}/apps/scripts/menu-tab.js" type="text/javascript"></script>
+<script src="${staticPath}/apps/scripts/layer/layer.min.js" type="text/javascript"></script>
 
 </body>
