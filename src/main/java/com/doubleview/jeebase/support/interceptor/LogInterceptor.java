@@ -82,7 +82,7 @@ public class LogInterceptor implements HandlerInterceptor {
         boolean isContinue = false;
         //判断请求uri是否为菜单内路径
         for(Menu menu : menuList){
-            if(href.contains(menu.getHref())){
+            if(StringUtils.isNotBlank(menu.getHref()) && href.contains(menu.getHref())){
                 isContinue = true;
                 break;
             }

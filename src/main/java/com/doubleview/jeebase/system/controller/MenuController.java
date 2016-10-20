@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 菜单控制器
  */
-@RequestMapping("menu")
+@RequestMapping("${adminPath}/sys/menu")
 public class MenuController extends BaseController{
 
     @Autowired

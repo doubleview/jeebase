@@ -162,7 +162,7 @@
                             <c:forEach items="${menu1.subMenuList}" var="menu2">
                                 <li class="nav-item">
                                     <c:choose>
-                                        <c:when test="{not empty menu2.subMenuList}">
+                                        <c:when test="${not empty menu2.subMenuList}">
                                             <a href="javascript:;" target="_blank" class="nav-link">
                                                     ${menu2.name}
                                                 <span class="arrow nav-toggle"></span>
@@ -179,7 +179,7 @@
                                             <c:forEach items="${menu2.subMenuList}" var="menu3">
                                                 <li class="nav-item">
                                                     <c:choose>
-                                                        <c:when test="{not empty menu3.subMenuList}">
+                                                        <c:when test="${not empty menu3.subMenuList}">
                                                             <a href="javascript:;" target="_blank" class="nav-link">
                                                                     ${menu3.name}
                                                                 <span class="arrow nav-toggle"></span>
@@ -196,7 +196,7 @@
                                                             <c:forEach items="${menu3.subMenuList}" var="menu4">
                                                                 <li class="nav-item">
                                                                         <c:choose>
-                                                                            <c:when test="{not empty menu4.subMenuList}">
+                                                                            <c:when test="${not empty menu4.subMenuList}">
                                                                             <a href="javascript:;" target="_blank" class="nav-link">
                                                                                     ${menu4.name}
                                                                                         <span class="arrow nav-toggle"></span>
