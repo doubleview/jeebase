@@ -99,12 +99,12 @@ nav.page-tabs .page-tabs-content {
     left: auto
 }
 
-#content-main {
-    height: calc(100% - 140px);
-    overflow: hidden
-}
-
 .content-tabs {
     border-bottom: solid 2px #2f4050
+}
+
+.menu-tab{
+    -webkit-transition: all .3s ease-out 0s;
+    transition: all .3s ease-out 0s;
 }
 

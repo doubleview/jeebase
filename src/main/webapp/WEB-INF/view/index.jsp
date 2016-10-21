@@ -31,7 +31,7 @@
   <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="favicon.ico" /> </head>
+  <%--<link rel="shortcut icon" href="favicon.ico" /> </head>--%>
     <!--menu-tab-->
   <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
 
@@ -170,7 +170,7 @@
                                             </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="${contextPath}/${menu2.href}" class="nav-link menu-item">
+                                            <a href="${adminPath}${menu2.href}" class="nav-link menu-item">
                                                     ${menu2.name}
                                             </a>
                                         </c:otherwise>
@@ -187,7 +187,7 @@
                                                             </a>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <a href="${contextPath}/${menu3.href}"  class="nav-link menu-item">
+                                                            <a href="${adminPath}${menu3.href}"  class="nav-link menu-item">
                                                                     ${menu3.name}
                                                             </a>
                                                         </c:otherwise>
@@ -204,7 +204,7 @@
                                                                             </a>
                                                                             </c:when>
                                                                             <c:otherwise>
-                                                                            <a href="${contextPath}/${menu4.href}" class="nav-link menu-item">
+                                                                            <a href="${adminPath}${men4.href}" class="nav-link menu-item">
                                                                                     ${menu4.name}
                                                                             </a>
                                                                             </c:otherwise>

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 登录控制器
  */
-@RequestMapping("/admin")
+@RequestMapping("/${adminPath}")
 @Controller
 public class LoginController extends BaseController{
 
