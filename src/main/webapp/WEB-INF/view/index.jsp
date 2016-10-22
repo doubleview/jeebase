@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
 <c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!DOCTYPE html>
@@ -164,7 +163,7 @@
                                 <li class="nav-item">
                                     <c:choose>
                                         <c:when test="${not empty menu2.subMenuList}">
-                                            <a href="javascript:;" class="nav-link">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
                                                     ${menu2.name}
                                                 <span class="arrow nav-toggle"></span>
                                             </a>
@@ -181,7 +180,7 @@
                                                 <li class="nav-item">
                                                     <c:choose>
                                                         <c:when test="${not empty menu3.subMenuList}">
-                                                            <a href="javascript:;"  class="nav-link">
+                                                            <a href="javascript:;"  class="nav-link nav-toggle">
                                                                     ${menu3.name}
                                                                 <span class="arrow nav-toggle"></span>
                                                             </a>
@@ -198,7 +197,7 @@
                                                                 <li class="nav-item">
                                                                         <c:choose>
                                                                             <c:when test="${not empty menu4.subMenuList}">
-                                                                            <a href="javascript:;" class="nav-link">
+                                                                            <a href="javascript:;" class="nav-link nav-toggle">
                                                                                     ${menu4.name}
                                                                                         <span class="arrow nav-toggle"></span>
                                                                             </a>
