@@ -11,67 +11,72 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-
+    <!--plugins-->
     <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css"/>
     <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
     <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
+
+    <!--component-->
+    <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css"/>
     <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
 
-    <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
+    <!--layout and theme-->
+   <%-- <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>--%>
     <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
 </head>
 <body>
-<div class="row">
 
-    <div class="col-md-3">
-        <div class="portlet light bordered">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="icon-social-dribbble font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase">菜单管理</span>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-social-dribbble font-blue-sharp"></i>
+                        <span class="caption-subject font-blue-sharp bold uppercase">菜单管理</span>
+                    </div>
                 </div>
-            </div>
-            <div class="portlet-body">
-                <div id="menu_tree" class="tree-demo">
-                    <ul>
-                        <li> root
-                            <ul>
-                                <li data-jstree='{ "selected" : true }'>
-                                    <a href="javascript:;"> Initially selected </a>
-                                </li>
-                                <li data-jstree='{ "icon" : "fa fa-briefcase icon-state-success " }'> custom icon URL
-                                </li>
-                                <li data-jstree='{ "opened" : true }'> initially open
-                                    <ul>
-                                        <li data-jstree='{ "disabled" : true }'> Disabled Node</li>
-                                        <li data-jstree='{ "type" : "file" }'> Another node</li>
-                                    </ul>
-                                </li>
-                                <li data-jstree='{ "icon" : "fa fa-warning icon-state-danger" }'> Custom icon class
-                                    (bootstrap)
-                                </li>
-                            </ul>
-                        </li>
-                        <li data-jstree='{ "type" : "file" }'>
-                            <a href="http://www.jstree.com"> Clickanle link node </a>
-                        </li>
-                    </ul>
+                <div class="portlet-body">
+                    <div id="menu_tree" class="tree-demo">
+                        <ul>
+                            <li> root
+                                <ul>
+                                    <li data-jstree='{ "selected" : true }'>
+                                        <a href="javascript:;"> Initially selected </a>
+                                    </li>
+                                    <li data-jstree='{ "icon" : "fa fa-briefcase icon-state-success " }'> custom icon URL
+                                    </li>
+                                    <li data-jstree='{ "opened" : true }'> initially open
+                                        <ul>
+                                            <li data-jstree='{ "disabled" : true }'> Disabled Node</li>
+                                            <li data-jstree='{ "type" : "file" }'> Another node</li>
+                                        </ul>
+                                    </li>
+                                    <li data-jstree='{ "icon" : "fa fa-warning icon-state-danger" }'> Custom icon class
+                                        (bootstrap)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-jstree='{ "type" : "file" }'>
+                                <a href="http://www.jstree.com"> Clickanle link node </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-9">
+
+        </div>
+
     </div>
-
-    <div class="col-md-9">
-
-    </div>
-
 </div>
-
+<!--plugins-->
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <!--jstree-->
@@ -159,3 +164,4 @@
     });
 </script>
 </body>
+</html>

@@ -499,9 +499,7 @@ var Layout = function () {
             height = App.getViewPort().height -
                 $('.page-header').outerHeight(true) -
                 $('.page-footer').outerHeight(true) -
-                $('.page-title').outerHeight(true) -
-                $('.page-bar').outerHeight(true);
-
+                $('.content-tabs').outerHeight(true);
             if (target.hasClass('portlet')) {
                 var portletBody = target.find('.portlet-body');
 
@@ -513,7 +511,7 @@ var Layout = function () {
                     parseInt(target.find('.portlet-body').css('padding-bottom')) - 5;
 
                 if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
-                    height = height - 35;
+                    height = height - 25;
                     portletBody.find('.full-height-content-body').css('height', height);
                     App.initSlimScroll(portletBody.find('.full-height-content-body'));
                 } else {
@@ -523,7 +521,7 @@ var Layout = function () {
                App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll 
 
                 if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
-                    height = height - 35;
+                    height = height - 25;
                     target.find('.full-height-content-body').css('height', height);
                     App.initSlimScroll(target.find('.full-height-content-body'));
                 } else {

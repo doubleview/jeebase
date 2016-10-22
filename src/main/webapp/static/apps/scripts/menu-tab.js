@@ -112,7 +112,7 @@ $(function () {
                 n) {
             var s = '<a href="javascript:;" class="active menu-tab" data-id="' + t + '">' + i + ' <i class="fa fa-times-circle"></i></a>';
             $(".menu-tab").removeClass("active");
-            var r = '<iframe class="menu-iframe" name="iframe' + a + '" width="100%" height="500px" src="' + t + '?v=4.0" frameborder="0" data-id="' + t + '" seamless></iframe>';
+            var r = '<iframe class="menu-iframe" name="iframe' + a + '" width="100%" height="99%" src="' + t + '?v=4.0" frameborder="0" data-id="' + t + '" seamless></iframe>';
             $(".menu-content").find("iframe.menu-iframe").hide().parents(".menu-content").append(r);
             var o = layer.load();
             $(".menu-content iframe:visible").load(function () {

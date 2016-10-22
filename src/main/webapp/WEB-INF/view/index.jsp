@@ -12,30 +12,30 @@
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
-  <!-- 全局样式-->
+  <!-- plugins-->
     <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-
   <link href="${staticPath}/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
 
-    <!--组件-->
+    <!--component-->
   <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
   <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <!--布局样式-->
+
+    <!--layout and theme-->
   <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
-  <%--<link rel="shortcut icon" href="favicon.ico" /> </head>--%>
+  <link rel="shortcut icon" href="${staticPath}/favicon.ico" /> </head>
     <!--menu-tab-->
   <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-fixed">
 <!--page-warper-->
 <div class="page-wrapper">
   <!-- header -->
@@ -232,6 +232,7 @@
     <div class="page-content-wrapper">
       <div class="page-content">
 
+
           <!--选项卡-->
           <div class="row content-tabs">
               <button class="roll-nav roll-left tab-left"><i class="fa fa-backward"></i></button>
@@ -253,9 +254,14 @@
               </div>
           </div>
 
-          <div class="row menu-content" id="content-main">
-              <iframe class="menu-iframe" name="iframe0" width="100%" height="500px"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
+          <div class="full-height-content full-height-content-scrollable">
+              <div class="full-height-content-body">
+                  <div class="row menu-content" id="content-main">
+                      <iframe class="menu-iframe" name="iframe0" width="100%" height="99%"  src="tabindex" frameborder="0" data-id="tabindex" seamless></iframe>
+                  </div>
+              </div>
           </div>
+
 
       </div>
     </div>
@@ -320,7 +326,7 @@
 <script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
 <script src="${staticPath}/pages/scripts/dashboard.min.js" type="text/javascript"></script>
 <!--layout-->
-<script src="${staticPath}/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="${staticPath}/layouts/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="${staticPath}/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <script src="${staticPath}/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 

@@ -15,7 +15,7 @@
   <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
   <!--page-->
   <link href="${staticPath}/pages/css/login.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="favicon.ico" /> </head>
+  <link rel="shortcut icon" href="${staticPath}/favicon.ico" /> </head>
 </head>
 
 <body class=" login">
