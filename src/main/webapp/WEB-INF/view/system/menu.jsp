@@ -37,34 +37,11 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-social-dribbble font-blue-sharp"></i>
-                        <span class="caption-subject font-blue-sharp bold uppercase">菜单管理</span>
+                        <span class="caption-subject font-blue-sharp bold uppercase">菜单结构</span>
                     </div>
                 </div>
                 <div class="portlet-body">
                     <div id="menu_tree" class="tree-demo">
-                        <ul>
-                            <li> root
-                                <ul>
-                                    <li data-jstree='{ "selected" : true }'>
-                                        <a href="javascript:;"> Initially selected </a>
-                                    </li>
-                                    <li data-jstree='{ "icon" : "fa fa-briefcase icon-state-success " }'> custom icon URL
-                                    </li>
-                                    <li data-jstree='{ "opened" : true }'> initially open
-                                        <ul>
-                                            <li data-jstree='{ "disabled" : true }'> Disabled Node</li>
-                                            <li data-jstree='{ "type" : "file" }'> Another node</li>
-                                        </ul>
-                                    </li>
-                                    <li data-jstree='{ "icon" : "fa fa-warning icon-state-danger" }'> Custom icon class
-                                        (bootstrap)
-                                    </li>
-                                </ul>
-                            </li>
-                            <li data-jstree='{ "type" : "file" }'>
-                                <a href="http://www.jstree.com"> Clickanle link node </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -82,86 +59,71 @@
 <!--jstree-->
 <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 <script>
+    var Menu = function(){
+        var menuTreeData ;
+        var loadMenuTree = function(){
+            $.getJSON("${adminPath}/system/menu/treeData",function(data){
+                menuTreeData = data;
+            });
 
-    jQuery(document).ready(function () {
-        $('#tree_1').jstree({
-            "core": {
-                "themes": {
-                    "responsive": false
-                }
-            },
-            "types": {
-                "default": {
-                    "icon": "fa fa-folder icon-state-warning icon-lg"
-                },
-                "file": {
-                    "icon": "fa fa-file icon-state-warning icon-lg"
-                }
-            },
-            "plugins": ["types"]
-        });
-
-        // handle link clicks in tree nodes(support target="_blank" as well)
-        $('#tree_1').on('select_node.jstree', function (e, data) {
-            var link = $('#' + data.selected).find('a');
-            if (link.attr("href") != "#" && link.attr("href") != "javascript:;" && link.attr("href") != "") {
-                if (link.attr("target") == "_blank") {
-                    link.attr("href").target = "_blank";
-                }
-                document.location.href = link.attr("href");
-                return false;
-            }
-        });
-
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-
-        $("#menu_tree").jstree({
-            "core": {
-                "data": [
-                    "Empty Folder",
-                    {
-                        "text": "Resources",
-                        "state": {"opened": true},
-                        "children": [{
-                            "text": "css",
-                            "children": [{"text": "animate.css", "icon": "none"}, {
-                                "text": "bootstrap.css",
-                                "icon": "none"
-                            }, {"text": "main.css", "icon": "none"}, {"text": "style.css", "icon": "none"}],
-                            "state": {"opened": true}
-                        }, {
-                            "text": "js",
-                            "children": [{"text": "bootstrap.js", "icon": "none"}, {
-                                "text": "hplus.min.js",
-                                "icon": "none"
-                            }, {"text": "jquery.min.js", "icon": "none"}, {
-                                "text": "jsTree.min.js",
-                                "icon": "none"
-                            }, {"text": "custom.min.js", "icon": "none"}],
-                            "state": {"opened": true}
-                        }, {
-                            "text": "html",
-                            "children": [{"text": "layout.html", "icon": "none"}, {
-                                "text": "navigation.html",
-                                "icon": "none"
-                            }, {"text": "navbar.html", "icon": "none"}, {
-                                "text": "footer.html",
-                                "icon": "none"
-                            }, {"text": "sidebar.html", "icon": "none"}],
-                            "state": {"opened": true}
-                        }]
+            $("#menu_tree").jstree({
+                "core": {
+                    "themes": {
+                        "responsive": false
                     },
-                    "Fonts",
-                    "Images",
-                    "Scripts",
-                    "Templates",]
-            }
-        })
+                    "data": menuTreeData
+                },
+                "plugins": ["types"]
+            })
+
+            $('#menu_tree').bind("activate_node.jstree", function (obj, e) {
+                // 获取当前节点
+                var currentNode = e.node;
+                window.alert(currentNode.text);
+            });
+        };
+
+        return {
+            init: function(){
+                loadMenuTree();
+            },
+        }
+    }();
+
+    $(document).ready(function () {
+        Menu.init();
+  /*      var data = [
+            {
+                "text": "Resources",
+                "state": {"opened": true},
+                "children": [{
+                    "text": "css",
+                    "children": [{"text": "animate.css", "icon": "none"}, {
+                        "text": "bootstrap.css",
+                        "icon": "none"
+                    }, {"text": "main.css", "icon": "none"}, {"text": "style.css", "icon": "none"}]
+                }, {
+                    "text": "js",
+                    "children": [{"text": "bootstrap.js", "icon": "none"}, {
+                        "text": "hplus.min.js",
+                        "icon": "none"
+                    }, {"text": "jquery.min.js", "icon": "none"}, {
+                        "text": "jsTree.min.js",
+                        "icon": "none"
+                    }, {"text": "custom.min.js", "icon": "none"}]
+                }, {
+                    "text": "html",
+                    "children": [{"text": "layout.html", "icon": "none"}, {
+                        "text": "navigation.html",
+                        "icon": "none"
+                    }, {"text": "navbar.html", "icon": "none"}, {
+                        "text": "footer.html",
+                        "icon": "none"
+                    }, {"text": "sidebar.html", "icon": "none"}],
+                }]
+            }];*/
     });
+
 </script>
 </body>
 </html>

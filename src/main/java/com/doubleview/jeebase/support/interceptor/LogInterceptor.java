@@ -87,7 +87,7 @@ public class LogInterceptor implements HandlerInterceptor {
                 break;
             }
         }
-        if(!isContinue && ex == null){
+        if(!isContinue && ex == null && !(handler instanceof HandlerMethod)){
             return;
         }
         Log log = new Log();

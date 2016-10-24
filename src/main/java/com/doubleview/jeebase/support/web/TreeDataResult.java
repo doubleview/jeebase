@@ -7,9 +7,11 @@ import java.util.List;
  */
 public class TreeDataResult {
 
+    private String id;
+
     private String text;
 
-    private String state;
+    private State state;
 
     private List<TreeDataResult> children;
 
@@ -23,11 +25,19 @@ public class TreeDataResult {
         this.text = text;
     }
 
-    public String getState() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -46,4 +56,18 @@ public class TreeDataResult {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
+
+    static class  State{
+        Boolean open;
+
+        public Boolean getOpen() {
+            return open;
+        }
+
+        public void setOpen(Boolean open) {
+            this.open = open;
+        }
+    }
+
 }
