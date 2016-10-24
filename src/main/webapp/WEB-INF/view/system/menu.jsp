@@ -20,12 +20,9 @@
     <!--component-->
     <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css"/>
     <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
-
-    <!--layout and theme-->
-   <%-- <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>--%>
-    <%--<link href="${staticPath}/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>--%>
     <link href="${staticPath}/layouts/layout/css/iframecontainer.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
+
 </head>
 <body>
 
