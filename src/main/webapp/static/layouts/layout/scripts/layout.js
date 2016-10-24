@@ -500,10 +500,13 @@ var Layout = function () {
                 $('.page-header').outerHeight(true) -
                 $('.page-footer').outerHeight(true) -
                 $('.content-tabs').outerHeight(true);
+
+            console.log("the full height is : " + height);
+
             if (target.hasClass('portlet')) {
                 var portletBody = target.find('.portlet-body');
 
-                App.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll 
+                App.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll
                 
                 height = height -
                     target.find('.portlet-title').outerHeight(true) -
@@ -518,7 +521,7 @@ var Layout = function () {
                     portletBody.css('min-height', height);
                 }
             } else {
-               App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll 
+/*               App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll
 
                 if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
                     height = height - 25;
@@ -526,7 +529,9 @@ var Layout = function () {
                     App.initSlimScroll(target.find('.full-height-content-body'));
                 } else {
                     target.css('min-height', height);
-                }
+                }*/
+                height = height - 25;
+                target.find('.full-height-content-body').css('height', height);
             }
         });        
     };

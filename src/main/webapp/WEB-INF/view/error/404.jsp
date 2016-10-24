@@ -21,7 +21,8 @@
     <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <!--page-->
     <link href="${staticPath}/pages/css/error.min.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="favicon.ico" /> </head>
+    <link rel="shortcut icon" href="${staticPath}/favicon.ico" />
+</head>
 <body class=" page-404-full-page">
 <div class="row">
     <div class="col-md-12 page-404">

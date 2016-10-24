@@ -12,7 +12,7 @@
   <meta content="" name="description" />
   <meta content="" name="author" />
   <!-- plugins-->
-    <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
+   <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -30,9 +30,10 @@
   <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
   <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="${staticPath}/favicon.ico" /> </head>
+  <link rel="shortcut icon" href="${staticPath}/favicon.ico" />
     <!--menu-tab-->
-  <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
+</head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-fixed">
 <!--page-warper-->
@@ -334,3 +335,4 @@
 <script src="${staticPath}/apps/scripts/layer/layer.min.js" type="text/javascript"></script>
 
 </body>
+</html>

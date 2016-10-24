@@ -23,13 +23,13 @@
 
     <!--layout and theme-->
    <%-- <link href="${staticPath}/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>--%>
-    <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
+    <%--<link href="${staticPath}/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>--%>
+    <link href="${staticPath}/layouts/layout/css/iframecontainer.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
 </head>
 <body>
 
-<div class="container">
+<div class="page-iframe-container">
     <div class="row">
 
         <div class="col-md-3">
