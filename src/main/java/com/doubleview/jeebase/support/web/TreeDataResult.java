@@ -58,15 +58,20 @@ public class TreeDataResult {
     }
 
 
-    static class  State{
-        Boolean open;
+   public  static class  State{
 
-        public Boolean getOpen() {
-            return open;
+       Boolean opened;
+
+       public  State(Boolean opened){
+           this.opened = opened;
+       }
+
+        public Boolean getOpened() {
+            return opened;
         }
 
-        public void setOpen(Boolean open) {
-            this.open = open;
+        public void setOpen(Boolean opened) {
+            this.opened = opened;
         }
     }
 
