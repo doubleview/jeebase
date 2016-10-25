@@ -57,68 +57,42 @@
 <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 <script>
     var Menu = function(){
-        var menuTreeData ;
+
         var loadMenuTree = function(){
-            $.getJSON("${adminPath}/system/menu/treeData",function(data){
-                menuTreeData = data;
+            $.getJSON("${adminPath}/system/menu/tree-data",function(result){
+                if(result.code == "0"){
+                    console.log(result);
+                    $("#menu_tree").jstree({
+                        "core": {
+                            "themes": {
+                                "responsive": false
+                            },
+                            "data": result.data
+                        },
+                        "plugins": ["types"]
+                    });
+                }
             });
+        };
 
-            $("#menu_tree").jstree({
-                "core": {
-                    "themes": {
-                        "responsive": false
-                    },
-                    "data": menuTreeData
-                },
-                "plugins": ["types"]
-            })
-
+        var bindMenuTree = function(){
             $('#menu_tree').bind("activate_node.jstree", function (obj, e) {
                 // 获取当前节点
                 var currentNode = e.node;
-                window.alert(currentNode.text);
+                window.alert(currentNode.id + currentNode.text);
             });
-        };
+        }
 
         return {
             init: function(){
                 loadMenuTree();
+                bindMenuTree();
             },
         }
     }();
 
     $(document).ready(function () {
         Menu.init();
-  /*      var data = [
-            {
-                "text": "Resources",
-                "state": {"opened": true},
-                "children": [{
-                    "text": "css",
-                    "children": [{"text": "animate.css", "icon": "none"}, {
-                        "text": "bootstrap.css",
-                        "icon": "none"
-                    }, {"text": "main.css", "icon": "none"}, {"text": "style.css", "icon": "none"}]
-                }, {
-                    "text": "js",
-                    "children": [{"text": "bootstrap.js", "icon": "none"}, {
-                        "text": "hplus.min.js",
-                        "icon": "none"
-                    }, {"text": "jquery.min.js", "icon": "none"}, {
-                        "text": "jsTree.min.js",
-                        "icon": "none"
-                    }, {"text": "custom.min.js", "icon": "none"}]
-                }, {
-                    "text": "html",
-                    "children": [{"text": "layout.html", "icon": "none"}, {
-                        "text": "navigation.html",
-                        "icon": "none"
-                    }, {"text": "navbar.html", "icon": "none"}, {
-                        "text": "footer.html",
-                        "icon": "none"
-                    }, {"text": "sidebar.html", "icon": "none"}],
-                }]
-            }];*/
     });
 
 </script>

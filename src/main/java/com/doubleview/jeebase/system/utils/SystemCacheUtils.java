@@ -46,10 +46,10 @@ public class SystemCacheUtils {
         List<Menu> menuList = (List<Menu>)CacheUtils.get(SYSTEM_CACHE , MENU_LIST);
         if(menuList == null){
             menuList = menuService.getList(new Menu());
-            if(menuList == null){
-                return null;
+            if(menuList != null){
+                menuList = levelAndSortMenuList(menuList, "0");
+                CacheUtils.put(SYSTEM_CACHE ,  MENU_LIST , menuList);
             }
-            CacheUtils.put(SYSTEM_CACHE ,  MENU_LIST , menuList);
         }
         return menuList;
     }

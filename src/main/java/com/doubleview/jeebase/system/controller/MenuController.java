@@ -38,7 +38,7 @@ public class MenuController extends BaseController{
      * 返回菜单树形数据
      * @return
      */
-    @RequestMapping("tree-menu")
+    @RequestMapping("tree-data")
     @ResponseBody
     public ResponseResult<List<TreeDataResult>> treeData(){
         List<Menu> menuList = SystemCacheUtils.getMenuList();
@@ -64,10 +64,11 @@ public class MenuController extends BaseController{
             treeDataResult.setId(menu.getId());
             treeDataResult.setText(menu.getName());
             treeDataResult.setIcon(menu.getIcon());
-            if(menu.getParent().getId() == "0"){
+            if(menu.getParent().getId().equals("0")){
                 treeDataResult.setState(new TreeDataResult.State(true));
             }
             treeDataResult.setChildren(toTreeDataResult(menu.getSubMenuList()));
+            treeDataResultList.add(treeDataResult);
         }
         return treeDataResultList;
     }
