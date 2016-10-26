@@ -7,6 +7,7 @@ import com.doubleview.jeebase.system.model.Menu;
 import com.doubleview.jeebase.system.service.MenuService;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,6 @@ public class MenuController extends BaseController{
     @Autowired
     private MenuService menuService;
 
-
     /**
      *
      * @return
@@ -33,6 +33,23 @@ public class MenuController extends BaseController{
     public String toMenuPage(){
         return "system/menu";
     }
+
+
+    /**
+     * 根据id获取Menu
+     * @param id
+     * @return
+     */
+    @RequestMapping("get-menu")
+    @ResponseBody
+    public ResponseResult<Menu> getMneu(String id){
+        if(StringUtils.isBlank(id)){
+            throw  new RuntimeException("id is null");
+        }
+        Menu menu = menuService.get(id);
+        return success(menu);
+    }
+
 
     /**
      * 返回菜单树形数据
