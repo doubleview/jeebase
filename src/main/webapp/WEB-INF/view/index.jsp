@@ -158,7 +158,7 @@
                         <span class="title">${menu1.name}</span>
                         <span class="arrow "></span>
                     </a>
-                    <c:if test="${menu1.subMenuList != null}">
+                    <c:if test="${not empty menu1.subMenuList}">
                         <ul class="sub-menu">
                             <c:forEach items="${menu1.subMenuList}" var="menu2">
                                 <li class="nav-item">
@@ -166,7 +166,7 @@
                                         <c:when test="${not empty menu2.subMenuList}">
                                             <a href="javascript:;" class="nav-link nav-toggle">
                                                     ${menu2.name}
-                                                <span class="arrow nav-toggle"></span>
+                                                <span class="arrow"></span>
                                             </a>
                                         </c:when>
                                         <c:otherwise>
@@ -175,7 +175,7 @@
                                             </a>
                                         </c:otherwise>
                                     </c:choose>
-                                    <c:if test="${menu2.subMenuList != null}">
+                                    <c:if test="${not empty menu2.subMenuList}">
                                         <ul class="sub-menu">
                                             <c:forEach items="${menu2.subMenuList}" var="menu3">
                                                 <li class="nav-item">
@@ -183,7 +183,7 @@
                                                         <c:when test="${not empty menu3.subMenuList}">
                                                             <a href="javascript:;"  class="nav-link nav-toggle">
                                                                     ${menu3.name}
-                                                                <span class="arrow nav-toggle"></span>
+                                                                <span class="arrow"></span>
                                                             </a>
                                                         </c:when>
                                                         <c:otherwise>
@@ -192,7 +192,7 @@
                                                             </a>
                                                         </c:otherwise>
                                                     </c:choose>
-                                                    <c:if test="${menu3.subMenuList != null}">
+                                                    <c:if test="${not empty menu3.subMenuList}">
                                                         <ul class="sub-menu">
                                                             <c:forEach items="${menu3.subMenuList}" var="menu4">
                                                                 <li class="nav-item">
@@ -200,12 +200,12 @@
                                                                             <c:when test="${not empty menu4.subMenuList}">
                                                                             <a href="javascript:;" class="nav-link nav-toggle">
                                                                                     ${menu4.name}
-                                                                                        <span class="arrow nav-toggle"></span>
+                                                                                <span class="arrow"></span>
                                                                             </a>
                                                                             </c:when>
                                                                             <c:otherwise>
                                                                             <a href="${adminPath}${men4.href}" class="nav-link menu-item">
-                                                                                    ${menu4.name}
+                                                                                ${menu4.name}
                                                                             </a>
                                                                             </c:otherwise>
                                                                         </c:choose>
