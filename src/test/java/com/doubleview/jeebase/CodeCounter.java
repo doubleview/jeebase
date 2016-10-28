@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * 代码统计
+ * 代码行数统计
  */
 public class CodeCounter {
 

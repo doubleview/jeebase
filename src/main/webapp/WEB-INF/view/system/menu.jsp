@@ -79,6 +79,7 @@
             $('#menu_tree').bind("activate_node.jstree", function (obj, e) {
                 // 获取当前节点
                 var currentNode = e.node;
+                window.alert(currentNode.text);
 
             });
         }
@@ -94,7 +95,6 @@
     $(document).ready(function () {
         Menu.init();
     });
-
 </script>
 </body>
 </html>

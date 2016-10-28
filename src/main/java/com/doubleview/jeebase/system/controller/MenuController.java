@@ -20,31 +20,31 @@ import java.util.List;
  */
 @RequestMapping("${adminPath}/system/menu")
 @Controller
-public class MenuController extends BaseController{
+public class MenuController extends BaseController {
 
     @Autowired
     private MenuService menuService;
 
     /**
-     *
      * @return
      */
     @RequestMapping("")
-    public String toMenuPage(){
+    public String toMenuPage() {
         return "system/menu";
     }
 
 
     /**
      * 根据id获取Menu
+     *
      * @param id
      * @return
      */
     @RequestMapping("get-menu")
     @ResponseBody
-    public ResponseResult<Menu> getMneu(String id){
-        if(StringUtils.isBlank(id)){
-            throw  new RuntimeException("id is null");
+    public ResponseResult<Menu> getMneu(String id) {
+        if (StringUtils.isBlank(id)) {
+            throw new RuntimeException("id is null");
         }
         Menu menu = menuService.get(id);
         return success(menu);
@@ -53,35 +53,42 @@ public class MenuController extends BaseController{
 
     /**
      * 返回菜单树形数据
+     *
      * @return
      */
     @RequestMapping("tree-data")
     @ResponseBody
-    public ResponseResult<List<TreeDataResult>> treeData(){
+    public ResponseResult<List<TreeDataResult>> treeData() {
         List<Menu> menuList = SystemCacheUtils.getMenuList();
         List<TreeDataResult> treeDataResultList = toTreeDataResult(menuList);
-        return  success(treeDataResultList);
+        return success(treeDataResultList);
     }
 
 
     /**
      * 将菜单转换为树形结构
+     *
      * @param menuList
      * @return
      */
-    private  List<TreeDataResult> toTreeDataResult(List<Menu> menuList){
+    private List<TreeDataResult> toTreeDataResult(List<Menu> menuList) {
 
-        if(menuList == null || menuList.isEmpty()){
+        if (menuList == null || menuList.isEmpty()) {
             return null;
         }
 
         List<TreeDataResult> treeDataResultList = Lists.newArrayList();
-        for(Menu menu : menuList){
+        for (Menu menu : menuList) {
             TreeDataResult treeDataResult = new TreeDataResult();
             treeDataResult.setId(menu.getId());
             treeDataResult.setText(menu.getName());
-            treeDataResult.setIcon(menu.getIcon());
-            if(menu.getParent().getId().equals("0")){
+
+            if (menu.getSubMenuList() != null && !menu.getSubMenuList().isEmpty()) {
+                treeDataResult.setIcon("fa fa-folder");
+            } else {
+                treeDataResult.setIcon("fa fa-file-text-o");
+            }
+            if (menu.getParent().getId().equals("0")) {
                 treeDataResult.setState(new TreeDataResult.State(true));
             }
             treeDataResult.setChildren(toTreeDataResult(menu.getSubMenuList()));
