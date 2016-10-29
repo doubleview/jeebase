@@ -17,10 +17,6 @@
   <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
 
     <!--component-->
   <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -35,7 +31,7 @@
     <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-fixed">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white <%--page-sidebar-fixed--%>">
 <!--page-warper-->
 <div class="page-wrapper">
   <!-- header -->
@@ -132,11 +128,11 @@
                   </a>
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="搜索...">
-                                            <span class="input-group-btn">
-                                                <a href="javascript:;" class="btn submit">
-                                                  <i class="icon-magnifier"></i>
-                                                </a>
-                                            </span>
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                              <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
                   </div>
                 </form>
           </li>
@@ -272,7 +268,7 @@
       <!-- footer -->
       <div class="page-footer">
         <div class="page-footer-inner"> 2016 &copy; jeebase By
-          <a target="_blank" href="https://github.com/doubleview">doubleview</a> &nbsp;|&nbsp;
+          <a target="_blank" href="https://github.com/doubleview">doubleview</a>
         </div>
         <div class="scroll-to-top">
           <i class="icon-arrow-up"></i>
@@ -283,7 +279,7 @@
 </div>
 <!--end page-wraper-->
 
-<!--core-->
+<!--plugins-->
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/js.cookie.min.js" type="text/javascript"></script>
@@ -291,40 +287,9 @@
 <script src="${staticPath}/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 
-<!--pugins-->
-<script src="${staticPath}/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/horizontal-timeline/horozontal-timeline.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <!--page-->
 <script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
-<script src="${staticPath}/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+
 <!--layout-->
 <script src="${staticPath}/layouts/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="${staticPath}/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
