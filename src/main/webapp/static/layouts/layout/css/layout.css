@@ -2330,8 +2330,8 @@ Page footer
     padding: 8px 20px 5px 20px;
     font-size: 13px;
     height: 33px;
-/*    background: white;
-    margin*/
+    background: white;
+    margin-left: 235px;
 }
 
 .page-footer:before, .page-footer:after {
