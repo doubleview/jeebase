@@ -97,4 +97,16 @@ public class MenuController extends BaseController {
         return treeDataResultList;
     }
 
+
+    /**
+     * 编辑菜单
+     * @param id
+     * @return
+     */
+    @RequestMapping("edit")
+    public String editMenu(String id){
+
+        return "system/menu_edit";
+    }
+
 }
