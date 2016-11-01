@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -104,8 +105,12 @@ public class MenuController extends BaseController {
      * @return
      */
     @RequestMapping("edit")
-    public String editMenu(String id){
-
+    public String editMenu(String id , Model model){
+        if(StringUtils.isBlank(id)){
+            throw  new RuntimeException("id is null");
+        }
+        List<Menu> subMenuList = menuService.getByParentId(id);
+        model.addAttribute("subMenuList" , subMenuList);
         return "system/menu_edit";
     }
 

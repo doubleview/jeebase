@@ -60,7 +60,17 @@
 		WHERE m.del_status = "0"
 			AND r.del_status = "0"
 			AND u.del_status = "0"
-		ORDER BY m.create_time
+		ORDER BY m.sort , m.create_time
+	</select>
+
+	<!--根据父级菜单id获取菜单-->
+	<select id="getByParentId" resultType="Menu">
+		SELECT DISTINCT
+		<include refid="menuColumns"/>
+		<include refid="menuJoins"/>
+		WHERE m.parent_id = #{parentId}
+		AND m.del_status = "0"
+		ORDER BY m.sort , m.create_time
 	</select>
 
 	<!--插入菜单-->

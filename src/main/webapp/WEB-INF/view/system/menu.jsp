@@ -40,12 +40,12 @@
                 <div class="portlet-body">
                     <div id="menu-tree">
                     </div>
-                </div>n
+                </div>
             </div>
         </div>
 
         <div class="col-md-9">
-            <iframe id="menuFrame" src="${adminPath}/menu/edit?id=0" width="100%"></iframe>
+            <iframe id="menuFrame" src="${adminPath}/system/menu/edit?id=0" width="100%" height="500px" frameborder="0"></iframe>
         </div>
         </div>
 

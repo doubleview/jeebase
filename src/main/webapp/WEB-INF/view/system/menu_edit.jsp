@@ -17,17 +17,16 @@
     <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="${staticPath}/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
     <!--component-->
     <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css"/>
     <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
     <link href="${staticPath}/layouts/layout/css/iframecontainer.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
 </head>
 <body>
 
 <div class="page-iframe-container">
     <div class="row">
-            <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet  light  bordered">
                 <div class="portlet-title">
                     <div class="caption">
@@ -58,44 +57,39 @@
                             <th> 名称 </th>
                             <th> 图标 </th>
                             <th> 链接 </th>
+                            <th>是否显示</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="odd gradeX">
-                            <td>
-                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input type="checkbox" class="checkboxes" value="1" />
-                                    <span></span>
-                                </label>
-                            </td>
-                            <td> userwow </td>
-                            <td>
-                                <a href="mailto:userwow@gmail.com"> userwow@gmail.com </a>
-                            </td>
-                            <td>
-                                <span class="label label-sm label-default"> Blocked </span>
-                            </td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>
-                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input type="checkbox" class="checkboxes" value="1" />
-                                    <span></span>
-                                </label>
-                            </td>
-                            <td> test </td>
-                            <td>
-                                <a href="mailto:userwow@gmail.com"> test@gmail.com </a>
-                            </td>
-                            <td>
-                                <span class="label label-sm label-success"> Approved </span>
-                            </td>
-                        </tr>
+                        <c:forEach items="${subMenuList}" var="subMenu">
+                            <tr class="odd gradeX">
+                                <td>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" class="checkboxes" value="${subMenu.id}" />
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td>${subMenu.name}</td>
+                                <td>${subMenu.icon}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty subMenu.href}">
+                                            无
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${subMenu.href}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <input type="checkbox" <c:if test="${subMenu.isShow eq '1'}">checked</c:if> readonly class="make-switch" data-size="mini">
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
 </div>
@@ -105,18 +99,17 @@
 <script src="${staticPath}/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/scripts/datatable.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>>
+<script src="${staticPath}/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="${staticPath}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!--page-->
 <script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
-
 <script>
     var MenuEdit = function(){
 
         var initTable = function () {
 
             var table = $('#menu-table');
-
             table.find('.group-checkable').change(function () {
                 var checked = jQuery(this).is(":checked");
                 jQuery(".checkboxes").each(function () {
@@ -129,15 +122,18 @@
             });
 
             $("#menu-edit").click(function(){
-                window.alert("edit");
+                var menuId = $(".checkboxes:checked").val();
+                window.alert(menuId);
             });
 
             $("#menu-add").click(function(){
-                window.alert("add");
+                var menuId = $(".checkboxes:checked").val();
+                window.alert(menuId);
             });
 
             $("#menu-remove").click(function(){
-                window.alert("remove");
+                var menuId = $(".checkboxes:checked").val();
+                window.alert(menuId);
             });
 
         };
@@ -153,7 +149,7 @@
     }();
 
     $(document).ready(function () {
-        Menu.init();
+        MenuEdit.init();
     });
 </script>
 </body>

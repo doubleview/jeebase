@@ -20,7 +20,7 @@ public class MenuService extends BaseService<MenuDao, Menu>{
      * @param parentId
      * @return
      */
-    List<Menu> getByParentId(String parentId){
+    public List<Menu> getByParentId(String parentId){
         return dao.getByParentId(parentId);
     }
 
