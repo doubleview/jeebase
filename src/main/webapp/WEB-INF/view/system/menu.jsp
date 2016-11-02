@@ -45,7 +45,7 @@
         </div>
 
         <div class="col-md-9">
-            <iframe id="menuFrame" src="${adminPath}/system/menu/edit?id=0" width="100%" height="500px" frameborder="0"></iframe>
+            <iframe id="menuFrame" src="${adminPath}/system/menu/show?id=0" width="100%" height="500px" frameborder="0"></iframe>
         </div>
         </div>
 
@@ -78,7 +78,6 @@
                         },
                         "plugins": ["types"]
                     });
-                    //$("#menu-tree .fa").addClass("icon-state-warning");
                 }
             });
         };
@@ -87,48 +86,14 @@
             $('#menu-tree').bind("activate_node.jstree", function (obj, e) {
                 // 获取当前节点
                 var currentNode = e.node;
-                window.alert(currentNode.text);
+                $("#menuFrame").attr("src","${adminPath}/system/menu/show?id=" + currentNode.id);
             });
         }
 
-        var initTable = function () {
-
-            var table = $('#menu-table');
-
-            table.find('.group-checkable').change(function () {
-                var checked = jQuery(this).is(":checked");
-                jQuery(".checkboxes").each(function () {
-                    if (checked) {
-                        $(this).prop("checked", true);
-                    } else {
-                        $(this).prop("checked", false);
-                    }
-                });
-            });
-
-            $("#menu-edit").click(function(){
-                window.alert("edit");
-            });
-
-            $("#menu-add").click(function(){
-                window.alert("add");
-            });
-
-            $("#menu-remove").click(function(){
-                window.alert("remove");
-            });
-
-        };
-
-        return {
+          return {
             init: function(){
                 loadMenuTree();
                 bindMenuTree();
-
-                if (!jQuery().dataTable) {
-                    return;
-                }
-                initTable();
             },
         }
     }();

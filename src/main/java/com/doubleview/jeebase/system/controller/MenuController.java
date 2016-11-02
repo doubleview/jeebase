@@ -85,9 +85,9 @@ public class MenuController extends BaseController {
             treeDataResult.setText(menu.getName());
 
             if (menu.getSubMenuList() != null && !menu.getSubMenuList().isEmpty()) {
-                treeDataResult.setIcon("fa fa-folder");
+                treeDataResult.setIcon("fa fa-folder icon-state-warning");
             } else {
-                treeDataResult.setIcon("fa fa-file-text-o");
+                treeDataResult.setIcon("fa fa-file icon-state-default");
             }
             if (menu.getParent().getId().equals("0")) {
                 treeDataResult.setState(new TreeDataResult.State(true));
@@ -100,17 +100,33 @@ public class MenuController extends BaseController {
 
 
     /**
-     * 编辑菜单
+     * 菜单显示
      * @param id
      * @return
      */
-    @RequestMapping("edit")
-    public String editMenu(String id , Model model){
+    @RequestMapping("show")
+    public String show(String id , Model model){
         if(StringUtils.isBlank(id)){
             throw  new RuntimeException("id is null");
         }
         List<Menu> subMenuList = menuService.getByParentId(id);
         model.addAttribute("subMenuList" , subMenuList);
+        return "system/menu_show";
+    }
+
+
+    /**
+     * 菜单显示
+     * @param id
+     * @return
+     */
+    @RequestMapping("edit")
+    public String edit(String id , Model model){
+        if(StringUtils.isBlank(id)){
+            throw  new RuntimeException("id is null");
+        }
+        Menu menu = menuService.get(id);
+        model.addAttribute("menu" , menu);
         return "system/menu_edit";
     }
 

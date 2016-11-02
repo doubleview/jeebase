@@ -70,7 +70,15 @@
                                     </label>
                                 </td>
                                 <td>${subMenu.name}</td>
-                                <td>${subMenu.icon}</td>
+                                <td>
+                                    <c:choose>
+                                    <c:when test="${empty subMenu.icon}">
+                                        无
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${subMenu.icon}
+                                    </c:otherwise>
+                                </c:choose></td>
                                 <td>
                                     <c:choose>
                                         <c:when test="${empty subMenu.href}">
@@ -134,6 +142,10 @@
             $("#menu-remove").click(function(){
                 var menuId = $(".checkboxes:checked").val();
                 window.alert(menuId);
+            });
+
+            $("#menu-refresh").click(function(){
+                location.href = "${adminPath}/system/menu/show?id=0";
             });
 
         };
