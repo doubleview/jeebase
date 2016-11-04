@@ -31,7 +31,7 @@
 		SELECT
 		<include refid="menuColumns"/>
 		<include refid="menuJoins"/>
-		WHERE a.id = #{id}
+		WHERE m.id = #{id}
 	</select>
 
 	<!--获取所有菜单-->
