@@ -110,7 +110,14 @@ public class MenuController extends BaseController {
             throw  new RuntimeException("id is null");
         }
         List<Menu> subMenuList = menuService.getByParentId(id);
-        model.addAttribute("subMenuList" , subMenuList);
+
+        if(subMenuList == null || subMenuList.isEmpty()){
+            Menu menu = menuService.get(id);
+            model.addAttribute("menu" , menu);
+            return "system/menu_edit";
+        }else {
+            model.addAttribute("subMenuList" , subMenuList);
+        }
         return "system/menu_show";
     }
 

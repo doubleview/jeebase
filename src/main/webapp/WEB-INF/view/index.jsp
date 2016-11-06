@@ -1,34 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
-<c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>${productName}</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <meta content="" name="description" />
-  <meta content="" name="author" />
-  <!-- plugins-->
-   <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-
-    <!--component-->
-  <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
-  <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-
+    <meta charset="utf-8"/>
+    <title>${productName}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
     <!--layout and theme-->
-  <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
-  <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
-  <link href="${staticPath}/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="${staticPath}/favicon.ico" />
+    <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
+    <!--layout-->
+    <script src="${staticPath}/layouts/layout/scripts/layout.js" type="text/javascript"></script>
     <!--menu-tab-->
-    <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css" />
+    <script src="${staticPath}/apps/scripts/layer/layer.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/apps/scripts/menu-tab.js" type="text/javascript"></script>
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white <%--page-sidebar-fixed--%>">
@@ -257,12 +247,9 @@
                   </div>
               </div>
           </div>
-
-
       </div>
     </div>
       <!--end content-wrapper-->
-
   </div>
 
       <!-- footer -->
@@ -278,26 +265,5 @@
 
 </div>
 <!--end page-wraper-->
-
-<!--plugins-->
-<script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-
-<!--page-->
-<script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
-
-<!--layout-->
-<script src="${staticPath}/layouts/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="${staticPath}/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-<script src="${staticPath}/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-
-<!--menu-tab-->
-<script src="${staticPath}/apps/scripts/menu-tab.js" type="text/javascript"></script>
-<script src="${staticPath}/apps/scripts/layer/layer.min.js" type="text/javascript"></script>
-
 </body>
 </html>

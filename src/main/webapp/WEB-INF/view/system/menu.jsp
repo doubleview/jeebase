@@ -1,7 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
-<c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,22 +8,13 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <!--plugins-->
-    <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <%@ include file="/WEB-INF/view/global/head-lib.jsp"%>
     <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-    <link href="${staticPath}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-    <!--component-->
-    <link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css"/>
-    <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/layouts/layout/css/iframecontainer.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
+    <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 </head>
 <body>
 
-<div class="page-iframe-container">
+<div class="page-inner-container" style="padding: 0px 15px">
     <div class="row">
 
         <div class="col-md-3">
@@ -51,17 +39,7 @@
 
     </div>
 </div>
-<!--plugins-->
-<script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<script src="${staticPath}/global/scripts/datatable.js" type="text/javascript"></script>
-<script src="${staticPath}/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>>
-<script src="${staticPath}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<!--page-->
-<script src="${staticPath}/global/scripts/app.min.js" type="text/javascript"></script>
+
 <script>
     var Menu = function(){
 
@@ -84,6 +62,8 @@
 
         var bindMenuTree = function(){
             $('#menu-tree').bind("activate_node.jstree", function (obj, e) {
+                console.log("obj :"+obj);
+                console.log("e : " + e);
                 // 获取当前节点
                 var currentNode = e.node;
                 $("#menuFrame").attr("src","${adminPath}/system/menu/show?id=" + currentNode.id);
