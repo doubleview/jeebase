@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <form action="${adminPath}/system/main/save" method="post" id="menu-form" class="form-horizontal">
+                <form:form modelAttribute="menu" action="${adminPath}/system/main/save" method="post" id="menu-form" class="form-horizontal">
                     <div class="form-body">
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button> 请保证表单信息填写正确</div>
@@ -38,17 +39,30 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" class="form-control" name="name" /> </div>
+                                    <form:input path="name" cssClass="form-control" htmlEscape="false"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">icon
+                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">链接
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" class="form-control" name="icon" /> </div>
+                                    <form:input path="href" cssClass="form-control" htmlEscape="false"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  margin-top-20">
+                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">icon
+                                <span class="required">  </span>
+                            </label>
+                            <div class="col-xs-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <form:input path="icon" cssClass="form-control" htmlEscape="false"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group  margin-top-20">
@@ -58,7 +72,8 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" class="form-control" name="parent.id" /> </div>
+                                    <form:input path="parent.name" cssClass="form-control" htmlEscape="false" disabled="true"/>
+                                 </div>
                             </div>
                         </div>
                         <div class="form-group  margin-top-20">
@@ -68,7 +83,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <input type="text" class="form-control" name="name" /> </div>
+                                <form:checkbox path="isShow"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
                             </div>
                         </div>
                     </div>
@@ -76,11 +91,11 @@
                         <div class="row">
                             <div class="col-xs-offset-3 col-xs-9">
                                 <button type="submit" class="btn green">保存</button>
-                                <button type="button" class="btn default">取消</button>
+                                <button type="button" class="btn default" onclick="javascript:history.go(-1)">取消</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
@@ -104,6 +119,12 @@
                     name: {
                         minlength: 2,
                         required: true
+                    },
+                    isShow: {
+                        required:true
+                    },
+                    href : {
+                        required:true
                     }
                 },
 

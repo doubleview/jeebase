@@ -115,8 +115,13 @@
             });
 
             $("#menu-edit").click(function () {
+                var $checked = $(".checkboxes:checked");
+                if($checked.size() > 1 || $checked.size() == 0 ){
+                    window.alert("请选中一条进行编辑");
+                    return;
+                }
                 var menuId = $(".checkboxes:checked").val();
-                window.alert(menuId);
+                location.href = "${adminPath}/system/menu/show?id=" + menuId;
             });
 
             $("#menu-add").click(function () {
@@ -125,8 +130,17 @@
             });
 
             $("#menu-remove").click(function () {
+                var $checked = $(".checkboxes:checked");
+                if($checked.size() == 0){
+                    window.alert("请至少选中一条删除");
+                    return;
+                }
                 var menuId = $(".checkboxes:checked").val();
-                window.alert(menuId);
+                $.post("${adminPath}/system/menu/del",{id : menuId} , function(result){
+                    if(result.code == "0"){
+                        window.alert("删除成功");
+                    }
+                });
             });
 
             $("#menu-refresh").click(function () {
