@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-md-9">
-            <iframe id="menuFrame" src="${adminPath}/system/menu/show?id=0" width="100%" height="500px" frameborder="0"></iframe>
+            <iframe id="menuFrame" src="${adminPath}/system/menu/show?parentId=0" width="100%" height="500px" frameborder="0"></iframe>
         </div>
         </div>
 
@@ -66,7 +66,7 @@
                 console.log("e : " + e);
                 // 获取当前节点
                 var currentNode = e.node;
-                $("#menuFrame").attr("src","${adminPath}/system/menu/show?id=" + currentNode.id);
+                $("#menuFrame").attr("src","${adminPath}/system/menu/show?parentId=" + currentNode.id);
             });
         }
 

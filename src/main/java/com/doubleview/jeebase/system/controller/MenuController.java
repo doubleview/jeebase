@@ -41,9 +41,9 @@ public class MenuController extends BaseController {
      * @param id
      * @return
      */
-    @RequestMapping("get-menu")
+    @RequestMapping("get")
     @ResponseBody
-    public ResponseResult<Menu> getMneu(String id) {
+    public ResponseResult<Menu> getMenu(String id) {
         if (StringUtils.isBlank(id)) {
             throw new RuntimeException("id is null");
         }
@@ -101,40 +101,74 @@ public class MenuController extends BaseController {
 
     /**
      * 菜单显示
-     * @param id
+     * @param parentId
      * @return
      */
     @RequestMapping("show")
-    public String show(String id , Model model){
-        if(StringUtils.isBlank(id)){
+    public String show(String parentId , Model model){
+        if(StringUtils.isBlank(parentId)){
             throw  new RuntimeException("id is null");
         }
-        List<Menu> subMenuList = menuService.getByParentId(id);
+        List<Menu> subMenuList = menuService.getByParentId(parentId);
 
         if(subMenuList == null || subMenuList.isEmpty()){
-            Menu menu = menuService.get(id);
+            Menu menu = menuService.get(parentId);
             model.addAttribute("menu" , menu);
             return "system/menu_edit";
         }else {
             model.addAttribute("subMenuList" , subMenuList);
+            model.addAttribute("parentId" , parentId);
         }
         return "system/menu_show";
     }
 
 
     /**
-     * 菜单显示
+     * 菜单添加，编辑
      * @param id
      * @return
      */
     @RequestMapping("edit")
-    public String edit(String id , Model model){
-        if(StringUtils.isBlank(id)){
-            throw  new RuntimeException("id is null");
+    public String edit(String id, String parentId, Model model) {
+        if (StringUtils.isBlank(id) && StringUtils.isBlank(parentId)) {
+            throw new RuntimeException("id and parentId is null");
         }
-        Menu menu = menuService.get(id);
-        model.addAttribute("menu" , menu);
+        Menu menu = null;
+        if (parentId != null) {
+            //新增顶级菜单
+            if (parentId.equals("0")) {
+                menu = new Menu();
+                Menu topMenu = new Menu("0");
+                topMenu.setName("顶级菜单");
+                menu.setParent(topMenu);
+            } else {
+                menu = new Menu();
+                menu.setParent(menuService.get(parentId));
+            }
+        } else {
+            menu = menuService.get(id);
+        }
+        model.addAttribute("menu", menu);
         return "system/menu_edit";
+    }
+
+    /**
+     * 菜单保存
+     * @param menu
+     */
+    @RequestMapping("save")
+    public void saveOrUpdate(Menu menu , Model model){
+        menuService.save(menu);
+    }
+
+    /**
+     * 菜单删除
+     * @param id
+     * @return
+     */
+    public ResponseResult delete(String id){
+        menuService.delete(new Menu(id));
+        return  success("删除成功");
     }
 
 }

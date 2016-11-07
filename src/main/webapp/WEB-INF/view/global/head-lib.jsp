@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
 <c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
 <!--global css-->

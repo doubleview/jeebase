@@ -24,7 +24,7 @@
                     <span class="caption-subject font-blue-sharp bold uppercase">菜单内容</span>
                 </div>
                 <div class="actions">
-                    <a href="javascript:;" class="btn btn-circle blue" id="menu-add">
+                    <a href="javascript:;" class="btn btn-circle blue" id="menu-add" data-id="${parentId}">
                         <i class="fa fa-plus"></i> 添加子菜单 </a>
                     <a href="javascript:;" class="btn btn-circle blue" id="menu-edit">
                         <i class="fa fa-edit"></i> 编辑 </a>
@@ -48,7 +48,10 @@
                             <th> 名称</th>
                             <th> 图标</th>
                             <th> 链接</th>
+                            <th>排序</th>
                             <th>是否显示</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,7 +72,8 @@
                                         <c:otherwise>
                                             ${subMenu.icon}
                                         </c:otherwise>
-                                    </c:choose></td>
+                                    </c:choose>
+                                </td>
                                 <td>
                                     <c:choose>
                                         <c:when test="${empty subMenu.href}">
@@ -80,10 +84,17 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
+                                <td>${subMenu.sort}</td>
                                 <td>
                                     <input type="checkbox"
                                            <c:if test="${subMenu.isShow eq '1'}">checked</c:if> readonly
                                            class="make-switch" data-size="mini">
+                                </td>
+                                <td>
+                                    <fmt:formatDate value="${subMenu.createTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
+                                </td>
+                                <td>
+                                    <fmt:formatDate value="${subMenu.updateTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -121,12 +132,12 @@
                     return;
                 }
                 var menuId = $(".checkboxes:checked").val();
-                location.href = "${adminPath}/system/menu/show?id=" + menuId;
+                location.href = "${adminPath}/system/menu/edit?id=" + menuId;
             });
 
             $("#menu-add").click(function () {
-                var menuId = $(".checkboxes:checked").val();
-                window.alert(menuId);
+                var parentId = $(this).attr("data-id");
+                location.href = "${adminPath}/system/menu/edit?parentId=" + parentId;
             });
 
             $("#menu-remove").click(function () {
@@ -139,12 +150,13 @@
                 $.post("${adminPath}/system/menu/del",{id : menuId} , function(result){
                     if(result.code == "0"){
                         window.alert("删除成功");
+                        location.reload();
                     }
                 });
             });
 
             $("#menu-refresh").click(function () {
-                location.href = "${adminPath}/system/menu/show?id=0";
+                location.href = "${adminPath}/system/menu/show?parentId=0";
             });
 
         };
