@@ -92,11 +92,10 @@
 		) VALUES (
 		#{id},
 		#{name},
+		#{sort},
 		#{href},
 		#{icon},
-		#{sort},
 		#{isShow},
-		#{permission},
 		#{createBy.id},
 		#{createTime},
 		#{updateBy.id},
@@ -111,16 +110,14 @@
 	<update id="update">
 		UPDATE sys_menu SET
 		name = #{name},
-		sort = #{sort}
+		sort = #{sort},
 		href = #{href},
 		icon = #{icon},
 		is_show = #{isShow},
-		create_by = #{createBy.id},
-		create_time = #{createTime}
 		update_by = #{updateBy.id},
 		update_time = #{updateTime},
 		remarks = #{remarks},
-		parent_id = #{parentId}
+		parent_id = #{parent.id}
 		WHERE id = #{id}
 	</update>
 
