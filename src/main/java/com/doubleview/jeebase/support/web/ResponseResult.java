@@ -54,10 +54,10 @@ public class ResponseResult<T> {
      * @param data
      * @return
      */
-    public static <T> ResponseResult<T> success(T data){
+    public static <T> ResponseResult<T> success(T data , String message){
         ResponseResult responseResult = new ResponseResult();
         responseResult.setCode(0);
-        responseResult.setMessage("success");
+        responseResult.setMessage(message);
         responseResult.setData(data);
         return responseResult;
     }
@@ -66,10 +66,10 @@ public class ResponseResult<T> {
      * 失败
      * @return
      */
-    public static ResponseResult fail(){
+    public static ResponseResult fail(String message){
         ResponseResult responseResult = new ResponseResult();
         responseResult.setCode(1);
-        responseResult.setMessage("fail");
+        responseResult.setMessage(message);
         responseResult.setData(null);
         return  responseResult;
     }
