@@ -8,6 +8,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.Map;
  * 系统缓存工具类
  */
 public class SystemCacheUtils {
+
+    private static  Logger logger = LoggerFactory.getLogger(SystemCacheUtils.class);
 
     private static UserService userService = SpringContext.getBean(UserService.class);
     private static RoleService roleService = SpringContext.getBean(RoleService.class);
@@ -43,11 +47,13 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Menu> getMenuList(){
+        logger.debug("try to get menu list from system cache");
         List<Menu> menuList = (List<Menu>)CacheUtils.get(SYSTEM_CACHE , MENU_LIST);
         if(menuList == null){
             menuList = menuService.getList(new Menu());
             if(menuList != null){
                 menuList = levelAndSortMenuList(menuList, "0");
+                logger.debug("put menu list into system cache");
                 CacheUtils.put(SYSTEM_CACHE ,  MENU_LIST , menuList);
             }
         }
@@ -59,12 +65,14 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Role> getRoleList(){
+        logger.debug("try to get role list from system cache");
         List<Role> roleList = (List<Role>) CacheUtils.get(SYSTEM_CACHE , ROLE_LIST);
         if(roleList == null){
             roleList = roleService.getList(new Role());
             if(roleList == null){
                 return null;
             }
+            logger.debug("put role list into system cache");
             CacheUtils.put(SYSTEM_CACHE , ROLE_LIST , roleList);
         }
         return roleList;
@@ -75,12 +83,14 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Area> getAreaList(){
+        logger.debug("try to get role list from system cache");
         List<Area> areaList = (List<Area>)CacheUtils.get(SYSTEM_CACHE , AREA_LIST);
         if(areaList == null){
             areaList = areaService.getList(new Area());
             if(areaList == null){
                 return null;
             }
+            logger.debug("put area list into system cache");
             CacheUtils.put(SYSTEM_CACHE , AREA_LIST , areaList);
         }
         return areaList;
@@ -91,12 +101,14 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Department> getDepartmentList(){
+        logger.debug("try to get role list from system cache");
         List<Department> departmentList = (List<Department>)CacheUtils.get(SYSTEM_CACHE,DEPARTMENT_LIST);
         if(departmentList == null){
             departmentList = departmentService.getList(new Department());
             if(departmentList == null){
                 return null;
             }
+            logger.debug("put department list into system cache");
             CacheUtils.put(SYSTEM_CACHE , DEPARTMENT_LIST , departmentList);
         }
         return departmentList;
