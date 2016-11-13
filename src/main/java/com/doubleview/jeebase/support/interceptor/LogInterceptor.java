@@ -41,7 +41,7 @@ public class LogInterceptor implements HandlerInterceptor {
         long beginTime = System.currentTimeMillis();
         startTimeThreadLocal.set(beginTime);
         if(logger.isDebugEnabled()){
-            logger.debug("开始计时: {}  URI: {}", new SimpleDateFormat("HH:mm:ss.SSS").format(beginTime), request.getRequestURI());
+            logger.debug("开始计时: {}  URI: {}", DateTimeUtils.format(beginTime,"hh:mm:ss.SSS"), request.getRequestURI());
         }
         return true;
     }
@@ -49,7 +49,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (modelAndView != null) {
-            logger.info("view name: " + modelAndView.getViewName());
+            logger.debug("view name: " + modelAndView.getViewName());
         }
     }
 
@@ -60,8 +60,8 @@ public class LogInterceptor implements HandlerInterceptor {
         long beginTime = startTimeThreadLocal.get();
         long endTime = System.currentTimeMillis();
         if(logger.isDebugEnabled()){
-            logger.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
-                    new SimpleDateFormat("hh:mm:ss.SSS").format(endTime),
+            logger.debug("结束时间：{}  耗时：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
+                    DateTimeUtils.format(endTime,"hh:mm:ss.SSS"),
                     DateTimeUtils.formatDateTime(endTime - beginTime),
                     request.getRequestURI(), Runtime.getRuntime().maxMemory() / 1024 / 1024,
                     Runtime.getRuntime().totalMemory() / 1024 / 1024,

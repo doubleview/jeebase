@@ -59,7 +59,7 @@ public class LoginController extends BaseController{
     }
 
     /**
-     * 请求锁屏
+     * 锁屏
      * @return
      */
     @RequestMapping("/lock")
@@ -72,7 +72,7 @@ public class LoginController extends BaseController{
     }
 
     /**
-     * 请求屏幕解锁
+     * 屏幕解锁
      * @return
      */
     public String unlock(){

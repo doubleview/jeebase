@@ -2,6 +2,8 @@ package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.support.base.TreeModel;
 import com.doubleview.jeebase.support.config.Constant;
+import com.drew.lang.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -69,6 +71,9 @@ public class Menu extends TreeModel<Menu> implements Comparable<Menu>{
     }
 
     public void setIsShow(String isShow) {
+        if(StringUtils.isBlank(isShow)){
+            this.isShow = Constant.NO;
+        }
         this.isShow = isShow;
     }
 

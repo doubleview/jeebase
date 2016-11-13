@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -107,7 +109,7 @@ public class MenuController extends BaseController {
     @RequestMapping("show")
     public String show(String parentId , Model model){
         if(StringUtils.isBlank(parentId)){
-            throw  new RuntimeException("id is null");
+            throw  new RuntimeException("parentId is null");
         }
         List<Menu> subMenuList = menuService.getByParentId(parentId);
 
@@ -157,8 +159,11 @@ public class MenuController extends BaseController {
      * @param menu
      */
     @RequestMapping("save")
-    public void saveOrUpdate(Menu menu , Model model){
+    public String saveOrUpdate(Menu menu , RedirectAttributes redirectAttributes, HttpServletRequest request){
         menuService.save(menu);
+        redirectAttributes.addFlashAttribute("message", "保存菜单'" + menu.getName() + "'成功");
+        redirectAttributes.addAttribute("parentId",menu.getParent().getId());
+        return "redirect:" + adminPath + "/system/menu/show";
     }
 
     /**
@@ -166,6 +171,8 @@ public class MenuController extends BaseController {
      * @param id
      * @return
      */
+    @RequestMapping("del")
+    @ResponseBody
     public ResponseResult delete(String id){
         menuService.delete(new Menu(id));
         return  success("删除成功");

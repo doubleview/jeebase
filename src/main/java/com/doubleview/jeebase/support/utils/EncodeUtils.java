@@ -14,7 +14,7 @@ import java.net.URLEncoder;
  * 1.Commons-Codec的 hex/base64 编码
  * 2.自制的base62 编码
  * 3.Commons-Lang的xml/html escape
- * 4.JDK提供的URLEncoder
+ * 4.JDK提供的 URLEncoder
  */
 public class EncodeUtils {
 
