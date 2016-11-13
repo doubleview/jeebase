@@ -10,7 +10,6 @@
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
     <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-
     <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -35,6 +34,9 @@
                 </div>
             </div>
             <div class="portlet-body">
+                <c:if test="${not empty message}">
+                    <div class="alert alert-success"><button class="close" data-close="alert"></button>${message}</div>
+                </c:if>
                 <div class="table-scrollable">
                     <table class="table table-bordered table-striped table-condensed table-hover table-checkable" id="menu-table">
                         <thead>
@@ -127,8 +129,11 @@
 
             $("#menu-edit").click(function () {
                 var $checked = $(".checkboxes:checked");
-                if($checked.size() > 1 || $checked.size() == 0 ){
-                    window.alert("请选中一条进行编辑");
+                if($checked.size() > 1){
+                    window.parent.swal("只能选中一条编辑");
+                    return;
+                }else if($checked.size() == 0){
+                    window.parent.swal("请选中一条进行编辑");
                     return;
                 }
                 var menuId = $(".checkboxes:checked").val();
@@ -143,16 +148,29 @@
             $("#menu-remove").click(function () {
                 var $checked = $(".checkboxes:checked");
                 if($checked.size() == 0){
-                    window.alert("请至少选中一条删除");
+                    window.parent.swal("请至少选中一条删除");
                     return;
                 }
-                var menuId = $(".checkboxes:checked").val();
-                $.post("${adminPath}/system/menu/del",{id : menuId} , function(result){
-                    if(result.code == "0"){
-                        window.alert("删除成功");
-                        location.reload();
-                    }
-                });
+                window.parent.swal({
+                            title: "确认删除么?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: '确认',
+                            cancelButtonText: "取消",
+                            closeOnConfirm: false,
+                        },
+                        function(){
+                            var menuId = $(".checkboxes:checked").val();
+                            $.post("${adminPath}/system/menu/del",{id : menuId} , function(result){
+                                if(result.code == "0"){
+                                    window.parent.swal("删除成功!","","success");
+                                    location.reload();
+                                }else {
+                                    window.parent.swal("删除失败!",result.message,"error");
+                                }
+                            });
+                        });
             });
 
             $("#menu-refresh").click(function () {

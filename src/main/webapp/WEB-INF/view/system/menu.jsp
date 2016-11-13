@@ -9,7 +9,9 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp"%>
+    <link href="${staticPath}/global/plugins/sweet-alert/css/sweet-alert.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
+    <script src="${staticPath}/global/plugins/sweet-alert/js/sweet-alert.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 </head>
 <body>
