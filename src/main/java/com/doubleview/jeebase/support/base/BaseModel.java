@@ -2,6 +2,7 @@ package com.doubleview.jeebase.support.base;
 
 import com.doubleview.jeebase.support.web.Page;
 import com.doubleview.jeebase.system.model.User;
+import com.doubleview.jeebase.system.utils.ShiroUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
@@ -56,6 +57,14 @@ public abstract  class BaseModel<T> implements Serializable {
         this.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         this.createTime = new Date();
         this.updateTime = createTime;
+        User user = ShiroUtils.getCurrentUser();
+        if(user != null){
+            this.createBy = new User(user.getId());
+            this.updateBy = new User(user.getId());
+        }else {
+            this.createBy = new User("0");
+            this.updateBy = new User("0");
+        }
     };
 
     /**
@@ -63,6 +72,12 @@ public abstract  class BaseModel<T> implements Serializable {
      */
     public  void preUpdate(){
         this.updateTime = new Date();
+        User user = ShiroUtils.getCurrentUser();
+        if(user != null){
+            this.updateBy = new User(user.getId());
+        }else {
+            this.updateBy = new User("0");
+        }
     };
 
     public String getDelStatus() {

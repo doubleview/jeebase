@@ -68,17 +68,23 @@ public abstract class BaseController {
     /**
      * 参数绑定异常
      */
-    @ExceptionHandler({BindException.class, ConstraintViolationException.class, ValidationException.class})
+/*    @ExceptionHandler({BindException.class, ConstraintViolationException.class, ValidationException.class})
     protected String bindException() {
         return "error/400";
-    }
+    }*/
 
     /**
      * 授权登录异常
      */
-    @ExceptionHandler({AuthenticationException.class})
+/*    @ExceptionHandler({AuthenticationException.class})
     protected String authenticationException() {
         return "error/403";
+    }*/
+
+    @ExceptionHandler
+    protected String handleException(Exception ex){
+        ex.printStackTrace();
+        return "error/500";
     }
 
     /**
@@ -86,7 +92,15 @@ public abstract class BaseController {
      * @return
      */
     protected <T> ResponseResult<T> success(T data){
-        return ResponseResult.success(data);
+        return success(data , "success");
+    }
+
+    /**
+     * 返回Ajax成功数据
+     * @return
+     */
+    protected <T> ResponseResult<T> success(T data,String message){
+        return ResponseResult.success(data, message);
     }
 
     /**
@@ -94,7 +108,15 @@ public abstract class BaseController {
      * @return
      */
     protected ResponseResult fail(){
-        return ResponseResult.fail();
+        return fail("fail");
+    }
+
+    /**
+     * 返回Ajax失败数据
+     * @return
+     */
+    protected ResponseResult fail(String message){
+        return ResponseResult.fail(message);
     }
 
     /**
