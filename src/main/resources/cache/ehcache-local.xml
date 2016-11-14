@@ -19,7 +19,7 @@
 			transactionalMode="off">
 	</defaultCache>
 
-	<!-- 系统全局变量：永不过期-->
+	<!-- 系统缓存-->
 	<cache name="systemCache"
 		   maxElementsInMemory="50000"
 		   eternal="true"
@@ -32,24 +32,48 @@
 		   memoryStoreEvictionPolicy="LFU"
 		   transactionalMode="off">
 	</cache>
-	
-	<!-- 用户缓存 -->
-<!--
-	<cache name="userCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>
--->
 
-	<!-- 内容管理模块缓存 -->
-<!--
-	<cache name="cmsCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>
--->
+	<!--用户缓存-->
+	<cache name="userCache"
+		   maxElementsInMemory="50000"
+		   eternal="true"
+		   clearOnFlush="false"
+		   overflowToDisk="true"
+		   diskSpoolBufferSizeMB="1024"
+		   maxElementsOnDisk="100000"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="120"
+		   memoryStoreEvictionPolicy="LFU"
+		   transactionalMode="off">
+	</cache>
 
-    <!-- 简单页面缓存 -->
-<!--    <cache name="pageCachingFilter" maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="120"
-    	timeToLiveSeconds="120" overflowToDisk="true" memoryStoreEvictionPolicy="LFU" statistics="true"/>-->
-	
-	<!-- 系统活动会话缓存 -->
-<!--    <cache name="activeSessionsCache" maxEntriesLocalHeap="10000" eternal="true" overflowToDisk="true"
-           diskPersistent="true" diskExpiryThreadIntervalSeconds="600" statistics="true"/>-->
+	<!--页面缓存-->
+	<cache name="pageCache"
+		   maxElementsInMemory="50000"
+		   eternal="true"
+		   clearOnFlush="false"
+		   overflowToDisk="true"
+		   diskSpoolBufferSizeMB="1024"
+		   maxElementsOnDisk="100000"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="120"
+		   memoryStoreEvictionPolicy="LFU"
+		   transactionalMode="off">
+	</cache>
+
+	<!--活动会话缓存-->
+	<cache name="activeSessionsCache"
+		   maxElementsInMemory="50000"
+		   eternal="true"
+		   clearOnFlush="false"
+		   overflowToDisk="true"
+		   diskSpoolBufferSizeMB="1024"
+		   maxElementsOnDisk="100000"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="120"
+		   memoryStoreEvictionPolicy="LFU"
+		   transactionalMode="off">
+	</cache>
 
 	<!--
     maxElementsInMemory="10000" 	//Cache中最多允许保存的数据对象的数量

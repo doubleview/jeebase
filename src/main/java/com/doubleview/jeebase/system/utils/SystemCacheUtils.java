@@ -31,11 +31,11 @@ public class SystemCacheUtils {
 
 
     private static String SYSTEM_CACHE = "systemCache";//系统缓存
-    private static String ROLE_LIST = "roleList";
-    private static String MENU_LIST = "menuList";
-    private static String AREA_LIST = "areaList";
-    private static String DEPARTMENT_LIST = "departmentList";
-    private static String DICT_MAP = "dictMap";
+    public static String ROLE_LIST = "roleList";
+    public static String MENU_LIST = "menuList";
+    public static String AREA_LIST = "areaList";
+    public static String DEPARTMENT_LIST = "departmentList";
+    public static String DICT_MAP = "dictMap";
 
     public static final String CURRENT_ROLE_LIST = "current_roleList";
     public static final String CURRENT_MENU_LIST = "current_menuList";
@@ -193,6 +193,14 @@ public class SystemCacheUtils {
             dictList = Lists.newArrayList();
         }
         return dictList;
+    }
+
+    /**
+     * 清空缓存
+     */
+    public static void clearSystemCache(String key){
+        logger.debug("clear all system cache");
+        CacheUtils.remove(SYSTEM_CACHE , key);
     }
 
     /**

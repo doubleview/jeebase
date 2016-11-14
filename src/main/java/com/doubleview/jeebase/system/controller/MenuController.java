@@ -161,6 +161,7 @@ public class MenuController extends BaseController {
     @RequestMapping("save")
     public String saveOrUpdate(Menu menu , RedirectAttributes redirectAttributes, HttpServletRequest request){
         menuService.save(menu);
+        SystemCacheUtils.clearSystemCache(SystemCacheUtils.MENU_LIST);
         redirectAttributes.addFlashAttribute("message", "保存菜单'" + menu.getName() + "'成功");
         redirectAttributes.addAttribute("parentId",menu.getParent().getId());
         return "redirect:" + adminPath + "/system/menu/show";
@@ -175,6 +176,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public ResponseResult delete(String id){
         menuService.delete(new Menu(id));
+        SystemCacheUtils.clearSystemCache(SystemCacheUtils.MENU_LIST);
         return  success("删除成功");
     }
 

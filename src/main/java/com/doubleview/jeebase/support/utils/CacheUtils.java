@@ -45,6 +45,14 @@ public class CacheUtils {
     }
 
     /**
+     * 从缓存中移除所有
+     * @param cacheName
+     */
+    public static void removeAll(String cacheName) {
+        getCache(cacheName).removeAll();
+    }
+
+    /**
      * 获得一个Cache，没有则创建一个。
      * @param cacheName
      * @return

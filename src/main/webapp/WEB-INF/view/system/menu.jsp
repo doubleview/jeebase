@@ -23,8 +23,14 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
+
                         <i class="icon-social-dribbble font-blue-sharp"></i>
                         <span class="caption-subject font-blue-sharp bold uppercase">菜单结构</span>
+                    </div>
+                    <div class="actions">
+                        <a href="javascript:;">
+                            <i class="fa fa-refresh" id="tree-refresh"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -48,7 +54,6 @@
         var loadMenuTree = function(){
             $.getJSON("${adminPath}/system/menu/tree-data",function(result){
                 if(result.code == "0"){
-                    console.log(result);
                     $("#menu-tree").jstree({
                         "core": {
                             "themes": {
@@ -64,11 +69,14 @@
 
         var bindMenuTree = function(){
             $('#menu-tree').bind("activate_node.jstree", function (obj, e) {
-                console.log("obj :"+obj);
-                console.log("e : " + e);
                 // 获取当前节点
                 var currentNode = e.node;
                 $("#menuFrame").attr("src","${adminPath}/system/menu/show?parentId=" + currentNode.id);
+            });
+
+            $("#tree-refresh").click(function(){
+                ("#menu-tree").empty();
+                loadMenuTree();
             });
         }
 
