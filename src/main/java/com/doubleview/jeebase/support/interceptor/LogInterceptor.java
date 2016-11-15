@@ -77,17 +77,7 @@ public class LogInterceptor implements HandlerInterceptor {
      * @param ex
      */
     private void saveLog(HttpServletRequest request , Object handler , Exception ex){
-        String href = request.getRequestURI();
-        List<Menu> menuList = SystemCacheUtils.getMenuList();
-        boolean isContinue = false;
-        //判断请求uri是否为菜单内路径
-        for(Menu menu : menuList){
-            if(StringUtils.isNotBlank(menu.getHref()) && href.contains(menu.getHref())){
-                isContinue = true;
-                break;
-            }
-        }
-        if(!isContinue && ex == null && !(handler instanceof HandlerMethod)){
+        if(!(handler instanceof HandlerMethod)){
             return;
         }
         Log log = new Log();
