@@ -1,5 +1,6 @@
 package com.doubleview.jeebase.system.utils;
 
+import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.config.SpringContext;
 import com.doubleview.jeebase.support.utils.CacheUtils;
 import com.doubleview.jeebase.system.model.*;
@@ -52,7 +53,7 @@ public class SystemCacheUtils {
         if(menuList == null){
             menuList = menuService.getList(new Menu());
             if(menuList != null){
-                menuList = levelAndSortMenuList(menuList, "0");
+                menuList = levelAndSortMenuList(menuList, "0", false);
                 logger.debug("put menu list into system cache");
                 CacheUtils.put(SYSTEM_CACHE ,  MENU_LIST , menuList);
             }
@@ -174,7 +175,6 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Dict> getDictList(String type){
-        @SuppressWarnings("unchecked")
         Map<String, List<Dict>> dictMap = (Map<String, List<Dict>>)CacheUtils.get(SYSTEM_CACHE , DICT_MAP);
         if (dictMap==null){
             dictMap = Maps.newHashMap();
@@ -199,7 +199,7 @@ public class SystemCacheUtils {
      * 清空缓存
      */
     public static void clearSystemCache(String key){
-        logger.debug("clear all system cache");
+        logger.debug("clear {} cache" , key);
         CacheUtils.remove(SYSTEM_CACHE , key);
     }
 
@@ -214,7 +214,7 @@ public class SystemCacheUtils {
             User user = ShiroUtils.getCurrentUser();
             menuList = menuService.getListByUserId(user);
             if(menuList != null){
-                menuList = levelAndSortMenuList(menuList , "0");
+                menuList = levelAndSortMenuList(menuList , "0" , true);
                 session.setAttribute(CURRENT_MENU_LIST, menuList);
             }
         }
@@ -225,9 +225,10 @@ public class SystemCacheUtils {
      * 将所有菜单进行排序
      * @param menuList
      * @param parentId
+     * @param filterNoShow 是否过滤不可见的菜单
      * @return
      */
-    private static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId){
+    private static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId , boolean filterNoShow){
 
         if(menuList == null || menuList.isEmpty() ){
             return null;
@@ -236,6 +237,9 @@ public class SystemCacheUtils {
         List<Menu> parentList = Lists.newArrayList();
 
         for(Menu menu : menuList){
+            if(filterNoShow && menu.getIsShow().equals(Constant.NO)){
+                continue;
+            }
             if(menu.getParent().getId().equals(parentId)){
                 parentList.add(menu);
             }
@@ -244,7 +248,7 @@ public class SystemCacheUtils {
         menuList.removeAll(parentList);
         for(Menu menu : parentList){
             //递归调用
-            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId()));
+            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId() , filterNoShow));
         }
         Collections.sort(parentList);//对菜单排序
         return parentList;
