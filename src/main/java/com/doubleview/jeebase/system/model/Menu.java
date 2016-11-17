@@ -73,8 +73,9 @@ public class Menu extends TreeModel<Menu> implements Comparable<Menu>{
     public void setIsShow(String isShow) {
         if(StringUtils.isBlank(isShow)){
             this.isShow = Constant.NO;
+        }else {
+            this.isShow = isShow;
         }
-        this.isShow = isShow;
     }
 
     public List<Menu> getSubMenuList() {

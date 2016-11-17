@@ -15,7 +15,6 @@
     <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
 </head>
 <body>
-
 <div class="page-inner-container" style="padding: 0px 15px">
     <div class="row">
 
@@ -51,9 +50,16 @@
 <script>
     var Menu = function(){
 
+        //刷新菜单树
+        var refreshMenuTree = function () {
+            $('#menu-tree').data('jstree', false);
+            loadMenuTree();
+        };
+
         var loadMenuTree = function(){
             $.getJSON("${adminPath}/system/menu/tree-data",function(result){
                 if(result.code == "0"){
+                    console.log("success");
                     $("#menu-tree").jstree({
                         "core": {
                             "themes": {
@@ -75,10 +81,9 @@
             });
 
             $("#tree-refresh").click(function(){
-                ("#menu-tree").empty();
-                loadMenuTree();
+                refreshMenuTree();
             });
-        }
+        };
 
           return {
             init: function(){
