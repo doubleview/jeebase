@@ -94,7 +94,7 @@
 	</update>
 
 	<!--插入角色菜单信息-->
-	<insert id="insertRoleMenu">
+	<insert id="insertRM">
 		INSERT INTO sys_role_menu(
 		role_id,
 		menu_id
@@ -105,27 +105,48 @@
 	</insert>
 
 	<!--插入角色菜单信息-->
-	<insert id="batchInsertRoleMenu">
+	<insert id="batchInsertRM">
 		INSERT INTO sys_role_menu(
-		role_id,
-		menu_id
+			role_id,
+			menu_id
 		) VALUES
 		<foreach collection="list" item="roleMenu" separator=",">
 			(#{roleId},#{menuId})
 		</foreach>
-
 	</insert>
 
 	<!--删除角色菜单信息-->
-	<delete id="deleteRoleMenu">
+	<delete id="deleteRM">
 		DELETE FROM sys_role_menu
 		<where>
 			<if test="roleId != null and roleId != '' ">
 				AND role_id = #{roleId}
 			</if>
-			<if test="userId != null and userId !='' ">
-				AND user_id = #{userId}
+			<if test="menuId != null and menuId !='' ">
+				AND menu_id = #{menuId}
 			</if>
+		</where>
+	</delete>
+
+	<!--删除角色菜单信息-->
+	<delete id="deleteRMByMenuId">
+		DELETE FROM sys_role_menu
+		<where>
+			menu_id IN
+			<foreach collection="list" item="menuId" separator="," open="(" close=")">
+				#{menuId}
+			</foreach>
+		</where>
+	</delete>
+
+	<!--删除角色菜单信息-->
+	<delete id="deleteRMByRoleId">
+		DELETE FROM sys_role_menu
+		<where>
+			role_id IN
+			<foreach collection="list" item="menuId" separator="," open="(" close=")">
+				#{roleId}
+			</foreach>
 		</where>
 	</delete>
 

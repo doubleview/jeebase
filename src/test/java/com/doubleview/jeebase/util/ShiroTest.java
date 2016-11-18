@@ -1,4 +1,4 @@
-package com.doubleview.jeebase.system;
+package com.doubleview.jeebase.util;
 
 
 import com.doubleview.jeebase.system.utils.ShiroUtils;

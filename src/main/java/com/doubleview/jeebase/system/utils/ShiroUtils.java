@@ -3,10 +3,13 @@ package com.doubleview.jeebase.system.utils;
 import com.doubleview.jeebase.support.utils.DigestUtils;
 import com.doubleview.jeebase.support.utils.EncodeUtils;
 import com.doubleview.jeebase.system.model.User;
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_EXCLUSIONPeer;
 import org.apache.poi.ss.formula.functions.T;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
 
@@ -16,6 +19,7 @@ import java.security.SecureRandom;
 public class ShiroUtils {
 
 
+    private static Logger logger = LoggerFactory.getLogger(ShiroUtils.class);
 
     public static final String HASH_ALGORITHM = "SHA-1";//加密方式,选择sha-1加密
     public static final int HASH_INTERATIONS = 1024;//加密循环次数
@@ -26,7 +30,12 @@ public class ShiroUtils {
      * @return
      */
     public static User getCurrentUser(){
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        User user = null;
+        try{
+            user = (User) SecurityUtils.getSubject().getPrincipal();
+        }catch (Exception e){
+            logger.error(e.getMessage() , e);
+        }
         return user;
     }
 

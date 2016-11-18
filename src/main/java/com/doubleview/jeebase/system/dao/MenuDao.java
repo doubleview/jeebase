@@ -33,4 +33,11 @@ public interface MenuDao extends BaseDao<Menu> {
      * @return
      */
      int updateSort(Menu menu);
+
+    /**
+     * 批量删除
+     * @param menuList
+     * @return
+     */
+    int batchDelete(List<Menu> menuList);
 }

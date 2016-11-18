@@ -1,4 +1,4 @@
-package com.doubleview.jeebase;
+package com.doubleview.jeebase.util;
 
 import java.io.*;
 import java.util.ArrayList;

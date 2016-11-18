@@ -175,7 +175,7 @@ public class MenuController extends BaseController {
     @RequestMapping("del")
     @ResponseBody
     public ResponseResult delete(String id){
-        menuService.delete(new Menu(id));
+        menuService.deleteAndChild(new Menu(id));
         SystemCacheUtils.clearSystemCache(SystemCacheUtils.MENU_LIST);
         return  success("删除成功");
     }

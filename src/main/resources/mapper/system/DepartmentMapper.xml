@@ -22,7 +22,7 @@
 		d.del_status AS "delStatus",
 		d.master_id AS "master.id",
 		d.area_id AS "area.id",
-		d.parent_id AS "parent.id"
+		d.parent_id AS "parent.id" ,
 		dp.name AS "parent.name",
 		a.name AS "area.name",
 		u.name AS "master.name"
@@ -33,7 +33,7 @@
 		FROM sys_department d
 			LEFT JOIN sys_department dp ON dp.id = d.parent_id
 			LEFT JOIN sys_area a ON a.id = d.area_id
-			LEFT JOIN sys_user u ON u.id = d.master
+			LEFT JOIN sys_user u ON u.id = d.master_id
 	</sql>
 
 	<!--根据id查询Deepartment-->
@@ -76,15 +76,14 @@
 		phone,
 		fax,
 		email,
-		master_id,
 		useable,
 		remarks,
-		grade,
 		create_by,
 		create_time,
 		update_by,
 		update_time,
 		del_status,
+		master_id,
 		parent_id,
 		area_id
 		) VALUES (
@@ -97,7 +96,6 @@
 		#{phone},
 		#{fax},
 		#{email},
-		#{master.id},
 		#{useable},
 		#{remarks},
 		#{createBy.id},
@@ -105,6 +103,7 @@
 		#{updateBy.id},
 		#{updateTime},
 		#{delStatus},
+		#{master.id},
 		#{parent.id},
 		#{area.id}
 		)
@@ -121,11 +120,11 @@
 		phone = #{phone},
 		fax = #{fax},
 		email = #{email},
-		master_id = #{master.id},
 		useable=#{useable},
-		update_by = #{updateBy.id},
 		remarks = #{remarks},
+		update_by = #{updateBy.id},
 		update_time = #{updateTime},
+		master_id = #{master.id},
 		parent_id = #{parent.id},
 		area_id  = #{area.id}
 		WHERE id = #{id}

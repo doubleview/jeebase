@@ -81,7 +81,7 @@
     timeToLiveSeconds="3600"  		//缓存的存活时间，从开始创建的时间算起
     timeToIdleSeconds="3600"  		//多长时间不访问该缓存，那么ehcache 就会清除该缓存
 
-    这两个参数很容易误解，看文档根本没用，我仔细分析了ehcache的代码。结论如下：
+    这两个参数很容易误解，我仔细分析了ehcache的代码。结论如下：
     1、timeToLiveSeconds的定义是：以创建时间为基准开始计算的超时时长；
     2、timeToIdleSeconds的定义是：在创建时间和最近访问时间中取出离现在最近的时间作为基准计算的超时时长；
     3、如果仅设置了timeToLiveSeconds，则该对象的超时时间=创建时间+timeToLiveSeconds，假设为A；

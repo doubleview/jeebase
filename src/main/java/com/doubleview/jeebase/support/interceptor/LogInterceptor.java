@@ -5,12 +5,10 @@ import com.doubleview.jeebase.support.utils.CommonUtils;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import com.doubleview.jeebase.support.utils.ServletUtils;
 import com.doubleview.jeebase.system.model.Log;
-import com.doubleview.jeebase.system.model.Menu;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.security.SystemAuthenticationFilter;
 import com.doubleview.jeebase.system.service.LogService;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
-import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Map;
 
 /**

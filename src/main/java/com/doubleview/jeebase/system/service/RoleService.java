@@ -40,7 +40,7 @@ public class RoleService extends BaseService<RoleDao, Role>{
         super.save(role);
         RoleMenu roleMenu = new RoleMenu();
         roleMenu.setRoleId(role.getId());
-        dao.deleteRoleMenu(roleMenu);
+        dao.deleteRM(roleMenu);
 
         if(role.getMenuList() != null && !role.getMenuList().isEmpty()){
             List<RoleMenu> roleMenuList = Lists.newArrayList();
@@ -48,7 +48,7 @@ public class RoleService extends BaseService<RoleDao, Role>{
                 RoleMenu rm = new RoleMenu(role.getId() , menu.getId());
                 roleMenuList.add(rm);
             }
-            dao.batchInsertRoleMenu(roleMenuList);
+            dao.batchInsertRM(roleMenuList);
         }
     }
 
@@ -61,7 +61,7 @@ public class RoleService extends BaseService<RoleDao, Role>{
         super.delete(role);
         RoleMenu roleMenu = new RoleMenu();
         roleMenu.setRoleId(role.getId());
-        dao.deleteRoleMenu(roleMenu);
+        dao.deleteRM(roleMenu);
         UserRole userRole = new UserRole();
         userRole.setRoleId(role.getId());
         userDao.deleteUserRole(userRole);
