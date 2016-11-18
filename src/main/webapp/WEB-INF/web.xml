@@ -6,21 +6,26 @@
 
     <display-name>jeebase</display-name>
 
-    <!-- spring全局变量设置 -->
+    <!-- spring配置文件路径-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:/spring-*.xml</param-value>
     </context-param>
+    <!--log4j路径-->
     <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
+
+    <!--spring启动监听器-->
     <listener>
         <listener-class>com.doubleview.jeebase.support.listener.WebContextListener</listener-class>
     </listener>
 <!--    <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>-->
+
+
     <!--编码过滤器-->
     <filter>
         <filter-name>encodingFilter</filter-name>
