@@ -3,7 +3,7 @@ package com.doubleview.jeebase.support.base;
 /**
  * 树形实体类
  */
-public abstract class TreeModel<T>  extends BaseModel<T>{
+public abstract class TreeModel<T>  extends BaseModel<T> implements Comparable<T>{
 
     protected T parent;	// 父级编号
 
