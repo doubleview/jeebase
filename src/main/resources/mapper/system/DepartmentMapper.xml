@@ -136,5 +136,17 @@
 		del_status = #{DELETE}
 		WHERE id = #{id}
 	</update>
+
+	<!--批量删除-->
+	<update id="batchDelete">
+		UPDATE sys_department SET
+		del_status = #{DELETE}
+		<where>
+			id IN
+			<foreach collection="list" separator="," open="(" close=")" item="dept">
+				#{id}
+			</foreach>
+		</where>
+	</update>
 	
 </mapper>
