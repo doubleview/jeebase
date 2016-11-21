@@ -68,4 +68,9 @@ public class Area extends TreeModel<Area> {
     public void setAreaIds(List<String> areaIds) {
         this.areaIds = areaIds;
     }
+
+    @Override
+    public int compareTo(Area other) {
+        return this.getSort().compareTo(other.getSort());
+    }
 }
