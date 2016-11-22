@@ -4,6 +4,9 @@ import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.support.render.RenderFactory;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import com.doubleview.jeebase.support.web.ResponseResult;
+import com.doubleview.jeebase.support.web.TreeDataResult;
+import com.doubleview.jeebase.system.model.Menu;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
@@ -20,6 +23,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Controller基础接口
@@ -118,6 +122,7 @@ public abstract class BaseController {
     protected ResponseResult fail(String message){
         return ResponseResult.fail(message);
     }
+
 
     /**
      * 初始化数据绑定

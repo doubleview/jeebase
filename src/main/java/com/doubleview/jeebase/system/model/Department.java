@@ -29,7 +29,7 @@ public class Department extends TreeModel<Department> {
 
     private User master;//负责人
 
-    private List<String> childDeptList;//快速添加子部门
+    private List<Department> subDeptList;//子部门
 
     public Department(){
         super();
@@ -129,11 +129,16 @@ public class Department extends TreeModel<Department> {
         this.area = area;
     }
 
-    public List<String> getChildDeptList() {
-        return childDeptList;
+    public List<Department> getSubDeptList() {
+        return subDeptList;
     }
 
-    public void setChildDeptList(List<String> childDeptList) {
-        this.childDeptList = childDeptList;
+    public void setSubDeptList(List<Department> subDeptList) {
+        this.subDeptList = subDeptList;
+    }
+
+    @Override
+    public int compareTo(Department other) {
+        return this.getSort().compareTo(other.getSort());
     }
 }

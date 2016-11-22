@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 菜单实体类
  */
-public class Menu extends TreeModel<Menu> implements Comparable<Menu>{
+public class Menu extends TreeModel<Menu>{
 
     private String name;    // 名称
 

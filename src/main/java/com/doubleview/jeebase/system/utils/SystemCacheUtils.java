@@ -254,4 +254,36 @@ public class SystemCacheUtils {
         return parentList;
     }
 
+    /**
+     * 将所有部门进行排序
+     * @param departmentList
+     * @param parentId
+     * @param filterNoUse 是否过滤不可用的部门
+     * @return
+     */
+    private static List<Department> levelAndSortDeptList(List<Department> departmentList , String parentId , boolean filterNoUse){
+
+        if(departmentList == null || departmentList.isEmpty() ){
+            return null;
+        }
+
+        List<Department> parentList = Lists.newArrayList();
+
+        for(Department department : departmentList){
+            if(filterNoUse && department.getUseable().equals(Constant.NO)){
+                continue;
+            }
+            if(department.getParent().getId().equals(parentId)){
+                parentList.add(department);
+            }
+        }
+
+        departmentList.removeAll(parentList);
+        for(Department department : parentList){
+            //递归调用
+            department.setSubDeptList(levelAndSortDeptList(departmentList , department.getId() , filterNoUse));
+        }
+        Collections.sort(parentList);//对部门排序
+        return parentList;
+    }
 }
