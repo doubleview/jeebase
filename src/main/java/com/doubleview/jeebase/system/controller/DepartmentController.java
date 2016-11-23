@@ -63,8 +63,8 @@ public class DepartmentController extends BaseController{
     @RequestMapping("tree-data")
     @ResponseBody
     public ResponseResult<List<TreeDataResult>> treeData() {
-        List<Department> menuList = SystemCacheUtils.getDepartmentList();
-        List<TreeDataResult> treeDataResultList = toTreeDataResult(menuList);
+        List<Department> departmentList = SystemCacheUtils.getDepartmentList();
+        List<TreeDataResult> treeDataResultList = toTreeDataResult(departmentList);
         return success(treeDataResultList);
     }
 
