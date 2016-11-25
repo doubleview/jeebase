@@ -4,6 +4,7 @@ import com.doubleview.jeebase.support.base.BaseService;
 import com.doubleview.jeebase.system.dao.DepartmentDao;
 import com.doubleview.jeebase.system.model.Department;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,29 +27,13 @@ public class DepartmentService extends BaseService<DepartmentDao, Department>{
         return dao.getByParentId(parentId);
     }
 
-    /**
-     * 删除部门
-     * @param department
-     */
-    public void delete(Department department){
-        super.delete(department);
-    }
-
-    /**
-     * 保存部门
-     * @param department
-     */
-    @Override
-    public void save(Department department){
-        super.save(department);
-    }
 
     /**
      * 删除及其子部门
      */
     public void deleteAndChild(Department department){
         List<Department> departmentList = SystemCacheUtils.getDepartmentList();
-        List<Department> deleteDeptList = null;
+        List<Department> deleteDeptList = Lists.newArrayList();
         deleteDeptList.add(department);
         //得到要删除的所有菜单
         for(Department d : departmentList){

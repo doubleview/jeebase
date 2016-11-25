@@ -1,6 +1,8 @@
 package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.support.base.TreeModel;
+import com.doubleview.jeebase.support.config.Constant;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -118,7 +120,11 @@ public class Department extends TreeModel<Department> {
     }
 
     public void setUseable(String useable) {
-        this.useable = useable;
+        if(StringUtils.isBlank(useable)){
+            this.useable = Constant.NO;
+        }else {
+            this.useable = useable;
+        }
     }
 
     public Area getArea() {

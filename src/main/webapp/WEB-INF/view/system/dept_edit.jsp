@@ -46,12 +46,12 @@
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">编码
-                                <span class="required"> </span>
+                                <span class="required">* </span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="href" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="code" cssClass="form-control" htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="icon" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="address" cssClass="form-control" htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
@@ -82,65 +82,77 @@
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮政编码
-                                <span class="required"> * </span>
+                                <span class="required"></span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="zipCode" cssClass="form-control"  htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">电话
-                                <span class="required"> * </span>
+                                <span class="required"></span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="phone" cssClass="form-control"  htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">传真
-                                <span class="required"> * </span>
+                                <span class="required"></span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="fax" cssClass="form-control"  htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮箱
-                                <span class="required"> * </span>
+                                <span class="required"> </span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="email" cssClass="form-control"  htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">所属区域
-                                <span class="required"> * </span>
+                                <span class="required">  </span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="area.name" cssClass="form-control"  htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">负责人
+                                <span class="required">  </span>
+                            </label>
+                            <div class="col-xs-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    <form:input path="master.name" cssClass="form-control"  htmlEscape="false"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group  margin-top-20">
+                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">排序
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-xs-4">
@@ -210,6 +222,9 @@
                         required: true,
                         number: true,
                         min : 0
+                    },
+                    code:{
+                        required:true
                     }
                 },
 

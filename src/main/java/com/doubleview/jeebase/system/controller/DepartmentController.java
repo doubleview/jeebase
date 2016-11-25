@@ -116,7 +116,7 @@ public class DepartmentController extends BaseController{
 
         if(subDeptList == null || subDeptList.isEmpty()){
             Department department = departmentService.get(parentId);
-            model.addAttribute("department" , department);
+            model.addAttribute("dept" , department);
             return "system/dept_edit";
         }else {
             model.addAttribute("subDeptList" , subDeptList);
@@ -151,9 +151,10 @@ public class DepartmentController extends BaseController{
         } else {
             department = departmentService.get(id);
         }
-        model.addAttribute("department", department);
+        model.addAttribute("dept", department);
         return "system/dept_edit";
     }
+
 
     /**
      * 部门保存

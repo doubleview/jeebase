@@ -9,8 +9,10 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
-    <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-    <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
+            type="text/javascript"></script>
 </head>
 <body>
 
@@ -35,10 +37,13 @@
             </div>
             <div class="portlet-body">
                 <c:if test="${not empty message}">
-                    <div class="alert alert-success"><button class="close" data-close="alert"></button>${message}</div>
+                    <div class="alert alert-success">
+                        <button class="close" data-close="alert"></button>
+                            ${message}</div>
                 </c:if>
                 <div class="table-scrollable">
-                    <table class="table table-bordered table-striped table-condensed table-hover table-checkable" id="dept-table">
+                    <table class="table table-bordered table-striped table-condensed table-hover table-checkable"
+                           id="dept-table">
                         <thead>
                         <tr>
                             <th class="table-checkbox">
@@ -49,15 +54,10 @@
                             </th>
                             <th> 名称</th>
                             <th> 编码</th>
-                            <th> 地址</th>
-                            <th>邮政编码</th>
                             <th>电话</th>
-                            <th>传真</th>
                             <th>邮箱</th>
                             <th>所属区域</th>
                             <th>负责人</th>
-                            <th>创建时间</th>
-                            <th>更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,19 +71,10 @@
                                 </td>
                                 <td>${subDept.name}</td>
                                 <td>${subDept.code}</td>
-                                <td>${subDept.address}</td>
-                                <td>${subDept.zipCode}</td>
                                 <td>${subDept.phone}</td>
-                                <td>${subDept.fax}</td>
                                 <td>${subDept.email}</td>
                                 <td>${subDept.area.name}</td>
                                 <td>${subDept.master.name}</td>
-                                <td>
-                                    <fmt:formatDate value="${subDept.createTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
-                                </td>
-                                <td>
-                                    <fmt:formatDate value="${subDept.updateTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
-                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -97,7 +88,7 @@
 </div>
 
 <script>
-    var MenuShow = function () {
+    var DeptShow = function () {
 
         var initTable = function () {
 
@@ -115,10 +106,10 @@
 
             $("#dept-edit").click(function () {
                 var $checked = $(".checkboxes:checked");
-                if($checked.size() > 1){
+                if ($checked.size() > 1) {
                     window.parent.swal("只能选中一条编辑");
                     return;
-                }else if($checked.size() == 0){
+                } else if ($checked.size() == 0) {
                     window.parent.swal("请选中一条进行编辑");
                     return;
                 }
@@ -133,7 +124,7 @@
 
             $("#dept-remove").click(function () {
                 var $checked = $(".checkboxes:checked");
-                if($checked.size() == 0){
+                if ($checked.size() == 0) {
                     window.parent.swal("请至少选中一条删除");
                     return;
                 }
@@ -146,14 +137,14 @@
                             cancelButtonText: "取消",
                             closeOnConfirm: false,
                         },
-                        function(){
+                        function () {
                             var deptId = $(".checkboxes:checked").val();
-                            $.post("${adminPath}/system/dept/del",{id : deptId} , function(result){
-                                if(result.code == "0"){
-                                    window.parent.swal("删除成功!","","success");
+                            $.post("${adminPath}/system/dept/del", {id: deptId}, function (result) {
+                                if (result.code == "0") {
+                                    window.parent.swal("删除成功!", "", "success");
                                     location.reload();
-                                }else {
-                                    window.parent.swal("删除失败!",result.message,"error");
+                                } else {
+                                    window.parent.swal("删除失败!", result.message, "error");
                                 }
                             });
                         });
@@ -173,7 +164,7 @@
     }();
 
     $(document).ready(function () {
-        MenuShow.init();
+        DeptShow.init();
     });
 </script>
 </body>

@@ -44,6 +44,14 @@
 		WHERE d.id = #{id}
 	</select>
 
+	<!--根据parentId查询Deepartment-->
+	<select id="getByParentId" resultType="Department">
+		SELECT
+		<include refid="departmentColumns"/>
+		<include refid="departmentJoins"/>
+		WHERE d.parent_id= #{parentId}
+	</select>
+
 	<!--根据条件查询部门-->
 	<select id="getList" resultType="Department">
 		SELECT
