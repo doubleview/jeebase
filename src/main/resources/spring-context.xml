@@ -86,11 +86,5 @@
 			<!-- 配置监控统计拦截的filters -->
 			<property name="filters" value="stat" />
 		</bean>
-	<beans profile="a">
-		<bean  name="aaa"></bean>
-	</beans>
-	<beans profile="b">
-		<bean  name="aaa"></bean>
-	</beans>
 </beans>
 
