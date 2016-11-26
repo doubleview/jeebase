@@ -5,6 +5,7 @@ import com.doubleview.jeebase.system.dao.MenuDao;
 import com.doubleview.jeebase.system.dao.RoleDao;
 import com.doubleview.jeebase.system.model.*;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,8 +56,8 @@ public class MenuService extends BaseService<MenuDao, Menu>{
      */
     public void deleteAndChild(Menu menu){
         List<Menu> menuList = SystemCacheUtils.getMenuList();
-        List<Menu> deleteMenuList = null;
-        List<String> deleleMenuStrings = null;
+        List<Menu> deleteMenuList = Lists.newArrayList();
+        List<String> deleleMenuStrings = Lists.newArrayList();
         deleteMenuList.add(menu);
         deleleMenuStrings.add(menu.getId());
         //得到要删除的所有菜单

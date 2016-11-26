@@ -1,5 +1,7 @@
 package com.doubleview.jeebase.support.render;
 
+import java.util.List;
+
 /**
  * Render工厂
  */
@@ -14,6 +16,10 @@ public class RenderFactory {
 
     public Render getCaptchaRender(){
         return new CaptchaRender();
+    }
+
+    public Render getExcelRender(List<Object> dataList){
+        return  new ExcelRender();
     }
 
 }
