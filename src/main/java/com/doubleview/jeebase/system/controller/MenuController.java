@@ -1,6 +1,7 @@
 package com.doubleview.jeebase.system.controller;
 
 import com.doubleview.jeebase.support.base.BaseController;
+import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.support.web.TreeDataResult;
 import com.doubleview.jeebase.system.model.Menu;
@@ -53,6 +54,22 @@ public class MenuController extends BaseController {
         return success(menu);
     }
 
+    /**
+     * 菜单显示
+     * @param parentId
+     * @return
+     */
+    @RequestMapping("show")
+    public String show(String parentId , Model model){
+        if(StringUtils.isBlank(parentId)){
+            throw  new RuntimeException("parentId is null");
+        }
+        List<Menu> subMenuList = Lists.newArrayList();
+        subMenuList.add(menuService.get(parentId));
+        subMenuList.addAll(menuService.getByParentId(parentId));
+        model.addAttribute("subMenuList" , subMenuList);
+        return "system/menu_show";
+    }
 
     /**
      * 返回菜单树形数据
@@ -91,37 +108,13 @@ public class MenuController extends BaseController {
             } else {
                 treeDataResult.setIcon("fa fa-file icon-state-default");
             }
-            if (menu.getParent().getId().equals("0")) {
+            if (menu.getId().equals(Constant.rootId) || menu.getParent().getId().equals(Constant.rootId)) {
                 treeDataResult.setState(new TreeDataResult.State(true));
             }
             treeDataResult.setChildren(toTreeDataResult(menu.getSubMenuList()));
             treeDataResultList.add(treeDataResult);
         }
         return treeDataResultList;
-    }
-
-
-    /**
-     * 菜单显示
-     * @param parentId
-     * @return
-     */
-    @RequestMapping("show")
-    public String show(String parentId , Model model){
-        if(StringUtils.isBlank(parentId)){
-            throw  new RuntimeException("parentId is null");
-        }
-        List<Menu> subMenuList = menuService.getByParentId(parentId);
-
-        if(subMenuList == null || subMenuList.isEmpty()){
-            Menu menu = menuService.get(parentId);
-            model.addAttribute("menu" , menu);
-            return "system/menu_edit";
-        }else {
-            model.addAttribute("subMenuList" , subMenuList);
-            model.addAttribute("parentId" , parentId);
-        }
-        return "system/menu_show";
     }
 
 
@@ -137,16 +130,8 @@ public class MenuController extends BaseController {
         }
         Menu menu = null;
         if (parentId != null) {
-            //新增顶级菜单
-            if (parentId.equals("0")) {
-                menu = new Menu();
-                Menu topMenu = new Menu("0");
-                topMenu.setName("顶级菜单");
-                menu.setParent(topMenu);
-            } else {
-                menu = new Menu();
-                menu.setParent(menuService.get(parentId));
-            }
+            menu = new Menu();
+            menu.setParent(menuService.get(parentId));
         } else {
             menu = menuService.get(id);
         }
@@ -175,8 +160,13 @@ public class MenuController extends BaseController {
     @RequestMapping("del")
     @ResponseBody
     public ResponseResult delete(String id){
-        menuService.deleteAndChild(new Menu(id));
-        SystemCacheUtils.clearSystemCache(SystemCacheUtils.MENU_LIST);
+        try {
+            menuService.deleteAndChild(new Menu(id));
+            SystemCacheUtils.clearSystemCache(SystemCacheUtils.MENU_LIST);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return fail(e.getMessage());
+        }
         return  success("删除成功");
     }
 

@@ -89,7 +89,7 @@
 	<!--删除角色信息-->
 	<update id="delete">
 		UPDATE sys_role SET
-			del_status = #{DELETE}
+			del_status = '1'
 		WHERE id = #{id}
 	</update>
 

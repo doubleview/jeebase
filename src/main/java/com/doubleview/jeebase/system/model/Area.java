@@ -16,6 +16,8 @@ public class Area extends TreeModel<Area> {
 
     private String type;    // 区域类型（1：国家；2：省份、直辖市；3：地市；4：区县）
 
+    private  List<Area> subAreaList;
+
     private List<String> areaIds = Lists.newArrayList();//地区id，用于查询地区id
 
     public Area() {
@@ -69,8 +71,17 @@ public class Area extends TreeModel<Area> {
         this.areaIds = areaIds;
     }
 
+    public List<Area> getSubAreaList() {
+        return subAreaList;
+    }
+
+    public void setSubAreaList(List<Area> subAreaList) {
+        this.subAreaList = subAreaList;
+    }
+
     @Override
     public int compareTo(Area other) {
         return this.getSort().compareTo(other.getSort());
     }
+
 }

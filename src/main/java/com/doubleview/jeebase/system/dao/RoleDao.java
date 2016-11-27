@@ -47,7 +47,7 @@ public interface RoleDao extends BaseDao<Role> {
      * @param menuId
      * @return
      */
-    int deleterRMByMenuId(List<String> menuId);
+    int deleteRMByMenuId(List<String> menuId);
 
     /**
      * 根据角色Id删除角色菜单权限关系

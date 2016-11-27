@@ -16,13 +16,14 @@
 		a.update_time AS "updateTime",
 		a.del_status AS "delStatus",
 		a.parent_id AS "parent.id",
-		mp.name AS "parent.name"
+		ap.name AS "parent.name",
+		ap.code AS "parent.code"
 	</sql>
 
 	<!--地区关联，供查询重用-->
 	<sql id="areaJoins">
 		FROM sys_area a
-			LEFT JOIN sys_area mp ON mp.id = a.parent_id
+			LEFT JOIN sys_area ap ON ap.id = a.parent_id
 	</sql>
 
 	<!--根据id获取地区-->
@@ -31,6 +32,14 @@
 		<include refid="areaColumns"/>
 		<include refid="areaJoins"/>
 		WHERE a.id = #{id}
+	</select>
+
+	<!--根据parentId获取地区-->
+	<select id="getByParentId" resultType="Area">
+		SELECT
+		<include refid="areaColumns"/>
+		<include refid="areaJoins"/>
+		WHERE a.parent_id= #{parentId}
 	</select>
 
 	<!--根据name获取地区-->
@@ -107,8 +116,20 @@
 	<!--删除地区-->
 	<update id="delete">
 		UPDATE sys_area SET
-		del_status = #{DELETE}
+		del_status = '1'
 		WHERE id = #{id}
+	</update>
+
+	<!--批量删除-->
+	<update id="batchDelete">
+		UPDATE sys_area SET
+		del_status = '1'
+		<where>
+			id IN
+			<foreach collection="list" separator="," open="(" close=")" item="area">
+				#{area.id}
+			</foreach>
+		</where>
 	</update>
 
 </mapper>

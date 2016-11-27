@@ -105,7 +105,7 @@
 	<!--删除实体对象-->
 	<update id="delete">
 		UPDATE sys_dict SET 
-			del_status = #{DELETE}
+			del_status = '1'
 		WHERE id = #{id}
 	</update>
 	

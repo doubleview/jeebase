@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>部门编辑</title>
+    <title>区域编辑</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -22,11 +22,11 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-bubble font-green"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase">部门编辑</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase">区域编辑</span>
                 </div>
             </div>
             <div class="portlet-body">
-                <form:form modelAttribute="dept" action="${adminPath}/system/dept/save" method="post" id="dept-form" class="form-horizontal">
+                <form:form modelAttribute="area" action="${adminPath}/system/area/save" method="post" id="area-form" class="form-horizontal">
                     <form:hidden path="id"/>
                     <form:hidden path="parent.id"/>
                     <div class="form-body">
@@ -57,96 +57,13 @@
                         </div>
 
                         <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">地址
-                                <span class="required">  </span>
+                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">类型
+                                <span class="required">*</span>
                             </label>
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="address" cssClass="form-control" htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">上级部门
-                                <span class="required"> * </span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="parent.name" cssClass="form-control" htmlEscape="false" disabled="true"/>
-                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮政编码
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="zipCode" cssClass="form-control"  htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">电话
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="phone" cssClass="form-control"  htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">传真
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="fax" cssClass="form-control"  htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮箱
-                                <span class="required"> </span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="email" cssClass="form-control"  htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">所属区域
-                                <span class="required">  </span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="area.name" cssClass="form-control"  htmlEscape="false"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">负责人
-                                <span class="required">  </span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="master.name" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="type" cssClass="form-control" htmlEscape="false"/>
                                 </div>
                             </div>
                         </div>
@@ -164,17 +81,6 @@
                         </div>
 
                         <div class="form-group  margin-top-20">
-                            <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">是否可用
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                <form:checkbox path="useable"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">备注
                                 <span class="required"> </span>
                             </label>
@@ -189,7 +95,7 @@
                         <div class="row">
                             <div class="col-xs-offset-3 col-xs-9">
                                 <input type="submit" class="btn green" value="保存"/>
-                                <input type="button" class="btn default" value="返回" onclick="location.href='${adminPath}/system/dept/show?parentId=${dept.parent.id}'"/>
+                                <input type="button" class="btn default" value="返回" onclick="location.href='${adminPath}/system/area/show?parentId=${area.parent.id}'"/>
                             </div>
                         </div>
                     </div>
@@ -205,10 +111,10 @@
     var FormValidation = function () {
 
         var handleValidation = function () {
-            var deptForm = $('#dept-form');
-            var error = $('.alert-danger', deptForm);
+            var areaForm = $('#area-form');
+            var error = $('.alert-danger', areaForm);
 
-            deptForm.validate({
+            areaForm.validate({
                 errorElement: 'span',
                 errorClass: 'help-block help-block-error',
                 focusInvalid: false,
@@ -224,6 +130,9 @@
                         min : 0
                     },
                     code:{
+                        required:true
+                    },
+                    type:{
                         required:true
                     }
                 },

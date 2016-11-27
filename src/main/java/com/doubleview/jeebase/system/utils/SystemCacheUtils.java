@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class SystemCacheUtils {
 
-    private static  Logger logger = LoggerFactory.getLogger(SystemCacheUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(SystemCacheUtils.class);
 
     private static UserService userService = SpringContext.getBean(UserService.class);
     private static RoleService roleService = SpringContext.getBean(RoleService.class);
@@ -45,17 +45,18 @@ public class SystemCacheUtils {
 
     /**
      * 得到所有菜单
+     *
      * @return
      */
-    public static List<Menu> getMenuList(){
+    public static List<Menu> getMenuList() {
         logger.debug("try to get menu list from system cache");
-        List<Menu> menuList = (List<Menu>)CacheUtils.get(SYSTEM_CACHE , MENU_LIST);
-        if(menuList == null){
+        List<Menu> menuList = (List<Menu>) CacheUtils.get(SYSTEM_CACHE, MENU_LIST);
+        if (menuList == null) {
             menuList = menuService.getList(new Menu());
-            if(menuList != null){
-                menuList = levelAndSortMenuList(menuList, "0", false);
+            if (menuList != null) {
+                menuList = levelAndSortMenuList(menuList, Constant.rootParentId, false);
                 logger.debug("put menu list into system cache");
-                CacheUtils.put(SYSTEM_CACHE ,  MENU_LIST , menuList);
+                CacheUtils.put(SYSTEM_CACHE, MENU_LIST, menuList);
             }
         }
         return menuList;
@@ -63,69 +64,73 @@ public class SystemCacheUtils {
 
     /**
      * 得到所有的角色
+     *
      * @return
      */
-    public static List<Role> getRoleList(){
+    public static List<Role> getRoleList() {
         logger.debug("try to get role list from system cache");
-        List<Role> roleList = (List<Role>) CacheUtils.get(SYSTEM_CACHE , ROLE_LIST);
-        if(roleList == null){
+        List<Role> roleList = (List<Role>) CacheUtils.get(SYSTEM_CACHE, ROLE_LIST);
+        if (roleList == null) {
             roleList = roleService.getList(new Role());
-            if(roleList == null){
+            if (roleList == null) {
                 return null;
             }
             logger.debug("put role list into system cache");
-            CacheUtils.put(SYSTEM_CACHE , ROLE_LIST , roleList);
+            CacheUtils.put(SYSTEM_CACHE, ROLE_LIST, roleList);
         }
         return roleList;
     }
 
     /**
      * 得到所有的地区
+     *
      * @return
      */
-    public static List<Area> getAreaList(){
+    public static List<Area> getAreaList() {
         logger.debug("try to get role list from system cache");
-        List<Area> areaList = (List<Area>)CacheUtils.get(SYSTEM_CACHE , AREA_LIST);
-        if(areaList == null){
+        List<Area> areaList = (List<Area>) CacheUtils.get(SYSTEM_CACHE, AREA_LIST);
+        if (areaList == null) {
             areaList = areaService.getList(new Area());
-            if(areaList == null){
-                return null;
+            if(areaList != null){
+                levelAndSortAreaList(areaList , Constant.rootId);
+                logger.debug("put area list into system cache");
+                CacheUtils.put(SYSTEM_CACHE, AREA_LIST, areaList);
             }
-            logger.debug("put area list into system cache");
-            CacheUtils.put(SYSTEM_CACHE , AREA_LIST , areaList);
         }
         return areaList;
     }
 
     /**
      * 得到所有的部门
+     *
      * @return
      */
-    public static List<Department> getDepartmentList(){
+    public static List<Department> getDepartmentList() {
         logger.debug("try to get role list from system cache");
-        List<Department> departmentList = (List<Department>)CacheUtils.get(SYSTEM_CACHE,DEPARTMENT_LIST);
-        if(departmentList == null){
+        List<Department> departmentList = (List<Department>) CacheUtils.get(SYSTEM_CACHE, DEPARTMENT_LIST);
+        if (departmentList == null) {
             departmentList = departmentService.getList(new Department());
-            if(departmentList == null){
-                return null;
+            if (departmentList != null) {
+                departmentList = levelAndSortDeptList(departmentList, Constant.rootId, false);
+                logger.debug("put department list into system cache");
+                CacheUtils.put(SYSTEM_CACHE, DEPARTMENT_LIST, departmentList);
             }
-            logger.debug("put department list into system cache");
-            CacheUtils.put(SYSTEM_CACHE , DEPARTMENT_LIST , departmentList);
         }
         return departmentList;
     }
 
     /**
      * 获取字典的label
+     *
      * @param value
      * @param type
      * @param defaultValue
      * @return
      */
-    public static String getDictLabel(String value, String type, String defaultValue){
-        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(value)){
-            for (Dict dict : getDictList(type)){
-                if (type.equals(dict.getType()) && value.equals(dict.getValue())){
+    public static String getDictLabel(String value, String type, String defaultValue) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(value)) {
+            for (Dict dict : getDictList(type)) {
+                if (type.equals(dict.getType()) && value.equals(dict.getValue())) {
                     return dict.getLabel();
                 }
             }
@@ -135,15 +140,16 @@ public class SystemCacheUtils {
 
     /**
      * 获取字典的label
+     *
      * @param values
      * @param type
      * @param defaultValue
      * @return
      */
-    public static String getDictLabels(String values, String type, String defaultValue){
-        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(values)){
+    public static String getDictLabels(String values, String type, String defaultValue) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(values)) {
             List<String> valueList = Lists.newArrayList();
-            for (String value : StringUtils.split(values, ",")){
+            for (String value : StringUtils.split(values, ",")) {
                 valueList.add(getDictLabel(value, type, defaultValue));
             }
             return StringUtils.join(valueList, ",");
@@ -153,15 +159,16 @@ public class SystemCacheUtils {
 
     /**
      * 获取字典的label
+     *
      * @param label
      * @param type
      * @param defaultLabel
      * @return
      */
-    public static String getDictValue(String label, String type, String defaultLabel){
-        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)){
-            for (Dict dict : getDictList(type)){
-                if (type.equals(dict.getType()) && label.equals(dict.getLabel())){
+    public static String getDictValue(String label, String type, String defaultLabel) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)) {
+            for (Dict dict : getDictList(type)) {
+                if (type.equals(dict.getType()) && label.equals(dict.getLabel())) {
                     return dict.getValue();
                 }
             }
@@ -171,25 +178,26 @@ public class SystemCacheUtils {
 
     /**
      * 根据字典类型获取相应字典
+     *
      * @param type
      * @return
      */
-    public static List<Dict> getDictList(String type){
-        Map<String, List<Dict>> dictMap = (Map<String, List<Dict>>)CacheUtils.get(SYSTEM_CACHE , DICT_MAP);
-        if (dictMap==null){
+    public static List<Dict> getDictList(String type) {
+        Map<String, List<Dict>> dictMap = (Map<String, List<Dict>>) CacheUtils.get(SYSTEM_CACHE, DICT_MAP);
+        if (dictMap == null) {
             dictMap = Maps.newHashMap();
-            for (Dict dict : dictService.getList(new Dict())){
+            for (Dict dict : dictService.getList(new Dict())) {
                 List<Dict> dictList = dictMap.get(dict.getType());
-                if (dictList != null){
+                if (dictList != null) {
                     dictList.add(dict);
-                }else{
+                } else {
                     dictMap.put(dict.getType(), Lists.newArrayList(dict));
                 }
             }
-            CacheUtils.put(SYSTEM_CACHE, DICT_MAP , dictMap);
+            CacheUtils.put(SYSTEM_CACHE, DICT_MAP, dictMap);
         }
         List<Dict> dictList = dictMap.get(type);
-        if (dictList == null){
+        if (dictList == null) {
             dictList = Lists.newArrayList();
         }
         return dictList;
@@ -198,23 +206,24 @@ public class SystemCacheUtils {
     /**
      * 清空缓存
      */
-    public static void clearSystemCache(String key){
-        logger.debug("clear {} cache" , key);
-        CacheUtils.remove(SYSTEM_CACHE , key);
+    public static void clearSystemCache(String key) {
+        logger.debug("clear {} cache", key);
+        CacheUtils.remove(SYSTEM_CACHE, key);
     }
 
     /**
      * 得到当前用户的所有菜单
+     *
      * @return
      */
-    public static List<Menu> getCurrentMenuList(){
+    public static List<Menu> getCurrentMenuList() {
         Session session = ShiroUtils.getSession();
-        List<Menu> menuList = (List<Menu>)session.getAttribute(CURRENT_MENU_LIST);
-        if(menuList == null){
+        List<Menu> menuList = (List<Menu>) session.getAttribute(CURRENT_MENU_LIST);
+        if (menuList == null) {
             User user = ShiroUtils.getCurrentUser();
             menuList = menuService.getListByUserId(user);
-            if(menuList != null){
-                menuList = levelAndSortMenuList(menuList , "0" , true);
+            if (menuList != null) {
+                menuList = levelAndSortMenuList(menuList, Constant.rootId, true);
                 session.setAttribute(CURRENT_MENU_LIST, menuList);
             }
         }
@@ -223,32 +232,33 @@ public class SystemCacheUtils {
 
     /**
      * 将所有菜单进行排序
+     *
      * @param menuList
      * @param parentId
      * @param filterNoShow 是否过滤不可见的菜单
      * @return
      */
-    private static List<Menu> levelAndSortMenuList(List<Menu> menuList , String parentId , boolean filterNoShow){
+    private static List<Menu> levelAndSortMenuList(List<Menu> menuList, String parentId, boolean filterNoShow) {
 
-        if(menuList == null || menuList.isEmpty() ){
+        if (menuList == null || menuList.isEmpty()) {
             return null;
         }
 
         List<Menu> parentList = Lists.newArrayList();
 
-        for(Menu menu : menuList){
-            if(filterNoShow && menu.getIsShow().equals(Constant.NO)){
+        for (Menu menu : menuList) {
+            if (filterNoShow && menu.getIsShow().equals(Constant.NO)) {
                 continue;
             }
-            if(menu.getParent().getId().equals(parentId)){
+            if (menu.getParent().getId().equals(parentId)) {
                 parentList.add(menu);
             }
         }
 
         menuList.removeAll(parentList);
-        for(Menu menu : parentList){
+        for (Menu menu : parentList) {
             //递归调用
-            menu.setSubMenuList(levelAndSortMenuList(menuList , menu.getId() , filterNoShow));
+            menu.setSubMenuList(levelAndSortMenuList(menuList, menu.getId(), filterNoShow));
         }
         Collections.sort(parentList);//对菜单排序
         return parentList;
@@ -256,34 +266,66 @@ public class SystemCacheUtils {
 
     /**
      * 将所有部门进行排序
+     *
      * @param departmentList
      * @param parentId
-     * @param filterNoUse 是否过滤不可用的部门
+     * @param filterNoUse    是否过滤不可用的部门
      * @return
      */
-    private static List<Department> levelAndSortDeptList(List<Department> departmentList , String parentId , boolean filterNoUse){
+    private static List<Department> levelAndSortDeptList(List<Department> departmentList, String parentId, boolean filterNoUse) {
 
-        if(departmentList == null || departmentList.isEmpty() ){
+        if (departmentList == null || departmentList.isEmpty()) {
             return null;
         }
 
         List<Department> parentList = Lists.newArrayList();
 
-        for(Department department : departmentList){
-            if(filterNoUse && department.getUseable().equals(Constant.NO)){
+        for (Department department : departmentList) {
+            if (filterNoUse && department.getUseable().equals(Constant.NO)) {
                 continue;
             }
-            if(department.getParent().getId().equals(parentId)){
+            if (department.getParent().getId().equals(parentId)) {
                 parentList.add(department);
             }
         }
 
         departmentList.removeAll(parentList);
-        for(Department department : parentList){
+        for (Department department : parentList) {
             //递归调用
-            department.setSubDeptList(levelAndSortDeptList(departmentList , department.getId() , filterNoUse));
+            department.setSubDeptList(levelAndSortDeptList(departmentList, department.getId(), filterNoUse));
         }
         Collections.sort(parentList);//对部门排序
         return parentList;
     }
+
+    /**
+     * 将所有地区进行排序
+     *
+     * @param areaList 地区列表
+     * @param parentId
+     * @return
+     */
+    private static List<Area> levelAndSortAreaList(List<Area> areaList, String parentId) {
+
+        if (areaList == null || areaList.isEmpty()) {
+            return null;
+        }
+
+        List<Area> parentList = Lists.newArrayList();
+
+        for (Area area : areaList) {
+            if (area.getParent().getId().equals(parentId)) {
+                parentList.add(area);
+            }
+        }
+
+        areaList.removeAll(parentList);
+        for (Area area : parentList) {
+            //递归调用
+            area.setSubAreaList(levelAndSortAreaList(areaList, area.getId()));
+        }
+        Collections.sort(parentList);//对部门排序
+        return parentList;
+    }
+
 }

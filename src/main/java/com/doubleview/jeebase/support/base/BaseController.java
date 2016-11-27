@@ -69,25 +69,10 @@ public abstract class BaseController {
         render.render();
     }
 
-    /**
-     * 参数绑定异常
-     */
-/*    @ExceptionHandler({BindException.class, ConstraintViolationException.class, ValidationException.class})
-    protected String bindException() {
-        return "error/400";
-    }*/
-
-    /**
-     * 授权登录异常
-     */
-/*    @ExceptionHandler({AuthenticationException.class})
-    protected String authenticationException() {
-        return "error/403";
-    }*/
 
     @ExceptionHandler
     protected String handleException(Exception ex){
-        ex.printStackTrace();
+        logger.error(ex.getMessage() , ex);
         return "error/500";
     }
 

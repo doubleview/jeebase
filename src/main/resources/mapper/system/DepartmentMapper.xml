@@ -141,18 +141,18 @@
 	<!--删除部门-->
 	<update id="delete">
 		UPDATE sys_department SET
-		del_status = #{DELETE}
+		del_status = '1'
 		WHERE id = #{id}
 	</update>
 
 	<!--批量删除-->
 	<update id="batchDelete">
 		UPDATE sys_department SET
-		del_status = #{DELETE}
+		del_status = '1'
 		<where>
 			id IN
 			<foreach collection="list" separator="," open="(" close=")" item="dept">
-				#{id}
+				#{dept.id}
 			</foreach>
 		</where>
 	</update>

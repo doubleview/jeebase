@@ -1,6 +1,7 @@
 package com.doubleview.jeebase.system.controller;
 
 import com.doubleview.jeebase.support.base.BaseController;
+import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.support.web.TreeDataResult;
 import com.doubleview.jeebase.system.model.Department;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @RequestMapping("${adminPath}/system/dept")
 @Controller
-public class DepartmentController extends BaseController{
+public class DepartmentController extends BaseController {
 
 
     @Autowired
@@ -54,6 +55,23 @@ public class DepartmentController extends BaseController{
         return success(department);
     }
 
+    /**
+     * 部门显示
+     *
+     * @param parentId
+     * @return
+     */
+    @RequestMapping("show")
+    public String show(String parentId, Model model) {
+        if (StringUtils.isBlank(parentId)) {
+            throw new RuntimeException("parentId is null");
+        }
+        List<Department> subDeptList = Lists.newArrayList();
+        subDeptList.add(departmentService.get(parentId));
+        subDeptList.addAll(departmentService.getByParentId(parentId));
+        model.addAttribute("subDeptList", subDeptList);
+        return "system/dept_show";
+    }
 
     /**
      * 返回菜单树形数据
@@ -92,7 +110,7 @@ public class DepartmentController extends BaseController{
             } else {
                 treeDataResult.setIcon("fa fa-file icon-state-default");
             }
-            if (department.getParent().getId().equals("0")) {
+            if (department.getId().equals(Constant.rootId) || department.getParent().getId().equals("0")) {
                 treeDataResult.setState(new TreeDataResult.State(true));
             }
             treeDataResult.setChildren(toTreeDataResult(department.getSubDeptList()));
@@ -101,33 +119,9 @@ public class DepartmentController extends BaseController{
         return treeDataResultList;
     }
 
-
-    /**
-     * 部门显示
-     * @param parentId
-     * @return
-     */
-    @RequestMapping("show")
-    public String show(String parentId , Model model){
-        if(StringUtils.isBlank(parentId)){
-            throw  new RuntimeException("parentId is null");
-        }
-        List<Department> subDeptList = departmentService.getByParentId(parentId);
-
-        if(subDeptList == null || subDeptList.isEmpty()){
-            Department department = departmentService.get(parentId);
-            model.addAttribute("dept" , department);
-            return "system/dept_edit";
-        }else {
-            model.addAttribute("subDeptList" , subDeptList);
-            model.addAttribute("parentId" , parentId);
-        }
-        return "system/dept_show";
-    }
-
-
     /**
      * 部门添加，编辑
+     *
      * @param id
      * @return
      */
@@ -138,16 +132,8 @@ public class DepartmentController extends BaseController{
         }
         Department department = null;
         if (parentId != null) {
-            //新增顶级部门
-            if (parentId.equals("0")) {
-                department = new Department();
-                Department topDept = new Department("0");
-                topDept.setName("顶级部门");
-                department.setParent(topDept);
-            } else {
-                department = new Department();
-                department.setParent(departmentService.get(parentId));
-            }
+            department = new Department();
+            department.setParent(departmentService.get(parentId));
         } else {
             department = departmentService.get(id);
         }
@@ -158,28 +144,35 @@ public class DepartmentController extends BaseController{
 
     /**
      * 部门保存
+     *
      * @param department
      */
     @RequestMapping("save")
-    public String saveOrUpdate(Department department , RedirectAttributes redirectAttributes, HttpServletRequest request){
+    public String saveOrUpdate(Department department, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         departmentService.save(department);
         SystemCacheUtils.clearSystemCache(SystemCacheUtils.DEPARTMENT_LIST);
         redirectAttributes.addFlashAttribute("message", "保存部门'" + department.getName() + "'成功");
-        redirectAttributes.addAttribute("parentId",department.getParent().getId());
+        redirectAttributes.addAttribute("parentId", department.getParent().getId());
         return "redirect:" + adminPath + "/system/dept/show";
     }
 
     /**
      * 部门删除
+     *
      * @param id
      * @return
      */
     @RequestMapping("del")
     @ResponseBody
-    public ResponseResult delete(String id){
-        departmentService.deleteAndChild(new Department(id));
-        SystemCacheUtils.clearSystemCache(SystemCacheUtils.DEPARTMENT_LIST);
-        return  success("删除成功");
+    public ResponseResult delete(String id) {
+        try {
+            departmentService.deleteAndChild(new Department(id));
+            SystemCacheUtils.clearSystemCache(SystemCacheUtils.DEPARTMENT_LIST);
+            return success("删除成功");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return fail(e.getMessage());
+        }
     }
 
 }

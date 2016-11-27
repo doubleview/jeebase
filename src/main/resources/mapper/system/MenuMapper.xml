@@ -124,18 +124,18 @@
 	<!--删除菜单-->
 	<update id="delete">
 		UPDATE sys_menu SET
-		del_status = #{DELETE}
+		del_status = '1'
 		WHERE id = #{id}
 	</update>
 
 	<!--批量删除-->
 	<update id="batchDelete">
 		UPDATE sys_menu SET
-		del_status = #{DELETE}
+		del_status = '1'
 		<where>
 			id IN
 			<foreach collection="list" separator="," open="(" close=")" item="menu">
-				#{id}
+				#{menu.id}
 			</foreach>
 		</where>
 	</update>

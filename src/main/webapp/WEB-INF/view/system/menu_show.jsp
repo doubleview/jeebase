@@ -23,7 +23,7 @@
                     <span class="caption-subject font-blue-sharp bold uppercase">菜单内容</span>
                 </div>
                 <div class="actions">
-                    <a href="javascript:;" class="btn btn-circle blue" id="menu-add" data-id="${parentId}">
+                    <a href="javascript:;" class="btn btn-circle blue" id="menu-add">
                         <i class="fa fa-plus"></i> 添加子菜单 </a>
                     <a href="javascript:;" class="btn btn-circle blue" id="menu-edit">
                         <i class="fa fa-edit"></i> 编辑 </a>
@@ -141,8 +141,16 @@
             });
 
             $("#menu-add").click(function () {
-                var parentId = $(this).attr("data-id");
-                location.href = "${adminPath}/system/menu/edit?parentId=" + parentId;
+                var $checked = $(".checkboxes:checked");
+                if($checked.size() > 1){
+                    window.parent.swal("只能选中一条添加子菜单");
+                    return;
+                }else if($checked.size() == 0){
+                    window.parent.swal("请选中一条添加子菜单");
+                    return;
+                }
+                var menuId = $(".checkboxes:checked").val();
+                location.href = "${adminPath}/system/menu/edit?parentId=" + menuId;
             });
 
             $("#menu-remove").click(function () {

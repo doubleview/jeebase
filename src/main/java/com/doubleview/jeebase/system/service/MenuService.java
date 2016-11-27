@@ -54,6 +54,7 @@ public class MenuService extends BaseService<MenuDao, Menu>{
      * 批量删除菜单
      * @param
      */
+    @Transactional(readOnly = false)
     public void deleteAndChild(Menu menu){
         List<Menu> menuList = SystemCacheUtils.getMenuList();
         List<Menu> deleteMenuList = Lists.newArrayList();
@@ -68,7 +69,7 @@ public class MenuService extends BaseService<MenuDao, Menu>{
             }
         }
         dao.batchDelete(deleteMenuList);
-        roleDao.deleterRMByMenuId(deleleMenuStrings);
+        roleDao.deleteRMByMenuId(deleleMenuStrings);
     }
 
 }

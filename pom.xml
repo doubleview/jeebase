@@ -26,9 +26,9 @@
     <!-- 项目属性 -->
     <properties>
         <!-- 相关库版本设置-->
-        <spring.version>4.3.4.RELEASE</spring.version>
+        <spring.version>4.1.7.RELEASE</spring.version>
         <dubbo>2.5.3</dubbo>
-        <validator.version>5.1.1.Final</validator.version>
+        <validator.version>5.2.4.Final</validator.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <druid.version>1.0.11</druid.version>
@@ -152,6 +152,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.5.3</version>
+            <exclusions>
+                <!--去除spring依赖，防止冲突-->
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -262,7 +269,7 @@
             <version>2.5.1</version>
         </dependency>
 
-        <!-- Shiro相关 -->
+        <!-- shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>

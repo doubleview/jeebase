@@ -25,7 +25,7 @@
                     <span class="caption-subject font-blue-sharp bold uppercase">部门信息</span>
                 </div>
                 <div class="actions">
-                    <a href="javascript:;" class="btn btn-circle blue" id="dept-add" data-id="${parentId}">
+                    <a href="javascript:;" class="btn btn-circle blue" id="dept-add">
                         <i class="fa fa-plus"></i> 添加子部门 </a>
                     <a href="javascript:;" class="btn btn-circle blue" id="dept-edit">
                         <i class="fa fa-edit"></i> 编辑 </a>
@@ -118,8 +118,16 @@
             });
 
             $("#dept-add").click(function () {
-                var parentId = $(this).attr("data-id");
-                location.href = "${adminPath}/system/dept/edit?parentId=" + parentId;
+                var $checked = $(".checkboxes:checked");
+                if ($checked.size() > 1) {
+                    window.parent.swal("只能选中一条添加");
+                    return;
+                } else if ($checked.size() == 0) {
+                    window.parent.swal("请选中一条进行添加");
+                    return;
+                }
+                var deptId = $(".checkboxes:checked").val();
+                location.href = "${adminPath}/system/dept/edit?parentId=" + deptId;
             });
 
             $("#dept-remove").click(function () {

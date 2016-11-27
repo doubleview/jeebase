@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>部门管理</title>
+    <title>区域管理</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -24,7 +24,7 @@
                     <div class="caption">
 
                         <i class="icon-social-dribbble font-blue-sharp"></i>
-                        <span class="caption-subject font-blue-sharp bold uppercase">部门结构</span>
+                        <span class="caption-subject font-blue-sharp bold uppercase">区域结构</span>
                     </div>
                     <div class="actions">
                         <a href="javascript:;">
@@ -33,14 +33,14 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div id="dept-tree">
+                    <div id="area-tree">
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-9">
-            <iframe id="deptFrame" src="${adminPath}/system/dept/show?parentId=0" width="100%" height="500px" frameborder="0"></iframe>
+            <iframe id="areaFrame" src="${adminPath}/system/area/show?parentId=0" width="100%" height="500px" frameborder="0"></iframe>
         </div>
         </div>
 
@@ -48,19 +48,19 @@
 </div>
 
 <script>
-    var Dept = function(){
+    var Area = function(){
 
         //刷新菜单树
-        var refreshDeptTree = function () {
-            $('#dept-tree').data('jstree', false);
-            loadDeptTree();
+        var refreshAreaTree = function () {
+            $('#area-tree').data('jstree', false);
+            loadAreaTree();
         };
 
-        var loadDeptTree = function(){
-            $.getJSON("${adminPath}/system/dept/tree-data",function(result){
+        var loadAreaTree = function(){
+            $.getJSON("${adminPath}/system/area/tree-data",function(result){
                 if(result.code == "0"){
                     console.log("success");
-                    $("#dept-tree").jstree({
+                    $("#area-tree").jstree({
                         "core": {
                             "themes": {
                                 "responsive": false
@@ -73,28 +73,28 @@
             });
         };
 
-        var bindDeptTree = function(){
-            $('#dept-tree').bind("activate_node.jstree", function (obj, e) {
+        var bindAreaTree = function(){
+            $('#area-tree').bind("activate_node.jstree", function (obj, e) {
                 // 获取当前节点
                 var currentNode = e.node;
-                $("#deptFrame").attr("src","${adminPath}/system/dept/show?parentId=" + currentNode.id);
+                $("#areaFrame").attr("src","${adminPath}/system/area/show?parentId=" + currentNode.id);
             });
 
             $("#tree-refresh").click(function(){
-                refreshDeptTree();
+                refreshAreaTree();
             });
         };
 
           return {
             init: function(){
-                loadDeptTree();
-                bindDeptTree();
+                loadAreaTree();
+                bindAreaTree();
             },
         }
     }();
 
     $(document).ready(function () {
-        Dept.init();
+        Area.init();
     });
 </script>
 </body>

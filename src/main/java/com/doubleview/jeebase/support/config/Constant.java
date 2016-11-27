@@ -62,6 +62,15 @@ public class Constant {
     public static final String TRUE = "true";
     public static final String FALSE = "false";
 
+    /**
+     * 树形结构跟级id
+     */
+    public static final String rootId = "0";
+    /**
+     * 树形结构父级id
+     */
+    public static final String rootParentId = "-1";
+
     public static final String defaultCharset = "UTF-8";//默认编码
 
     /**

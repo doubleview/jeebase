@@ -31,6 +31,7 @@ public class DepartmentService extends BaseService<DepartmentDao, Department>{
     /**
      * 删除及其子部门
      */
+    @Transactional(readOnly = false)
     public void deleteAndChild(Department department){
         List<Department> departmentList = SystemCacheUtils.getDepartmentList();
         List<Department> deleteDeptList = Lists.newArrayList();

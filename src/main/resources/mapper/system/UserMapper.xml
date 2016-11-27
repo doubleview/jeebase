@@ -184,7 +184,7 @@
 	<!-- 逻辑删除用户 -->
 	<update id="delete">
 		UPDATE sys_user SET
-		del_status = #{DELETE}
+		del_status = '1'
 		WHERE id = #{id}
 	</update>
 
