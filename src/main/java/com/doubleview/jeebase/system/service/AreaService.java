@@ -26,6 +26,7 @@ public class AreaService extends BaseService<AreaDao,Area>{
         return dao.getByParentId(parentId);
     }
 
+
     /**
      * 删除及其子部门
      */
