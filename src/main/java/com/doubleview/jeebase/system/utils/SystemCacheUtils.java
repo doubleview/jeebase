@@ -92,7 +92,7 @@ public class SystemCacheUtils {
         if (areaList == null) {
             areaList = areaService.getList(new Area());
             if(areaList != null){
-                levelAndSortAreaList(areaList , Constant.rootId);
+                areaList = levelAndSortAreaList(areaList , Constant.rootParentId);
                 logger.debug("put area list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, AREA_LIST, areaList);
             }
@@ -111,7 +111,7 @@ public class SystemCacheUtils {
         if (departmentList == null) {
             departmentList = departmentService.getList(new Department());
             if (departmentList != null) {
-                departmentList = levelAndSortDeptList(departmentList, Constant.rootId, false);
+                departmentList = levelAndSortDeptList(departmentList, Constant.rootParentId, false);
                 logger.debug("put department list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, DEPARTMENT_LIST, departmentList);
             }

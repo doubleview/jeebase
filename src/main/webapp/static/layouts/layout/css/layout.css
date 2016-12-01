@@ -1635,7 +1635,7 @@ Page sidebar
 @media (min-width: 992px) {
     /* 992px */
     .page-sidebar {
-        width: 235px;
+        width: 200px;
         float: left;
         position: relative;
         margin-right: -100%;
@@ -2212,7 +2212,7 @@ Page content
     }
 
     .page-content-wrapper .page-content {
-        margin-left: 235px;
+        margin-left: 200px;
         margin-top: 0px;
         min-height: 600px;
         padding: 25px 20px 0px;
@@ -2331,7 +2331,7 @@ Page footer
     font-size: 13px;
     height: 33px;
     background: white;
-    margin-left: 235px;
+    margin-left: 200px;
 }
 
 .page-footer:before, .page-footer:after {

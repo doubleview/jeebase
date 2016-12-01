@@ -9590,6 +9590,17 @@ Customized Bootstrap Pagination
     border-radius: 0 25px 25px 0 !important;
 }
 
+.pagination li.pagination-info a{
+    border : 0;
+    color : black;
+    margin-left: 1px;
+}
+
+.pagination li.pagination-info a:hover{
+    background-color: white;
+    cursor: default;
+}
+
 /***
 Customized Bootstrap Panels
 ***/

@@ -151,7 +151,7 @@ public class AreaController extends BaseController {
     @RequestMapping("save")
     public String saveOrUpdate(Area area, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         areaService.save(area);
-        SystemCacheUtils.clearSystemCache(SystemCacheUtils.DEPARTMENT_LIST);
+        SystemCacheUtils.clearSystemCache(SystemCacheUtils.AREA_LIST);
         redirectAttributes.addFlashAttribute("message", "保存区域'" + area.getName() + "'成功");
         redirectAttributes.addAttribute("parentId", area.getParent().getId());
         return "redirect:" + adminPath + "/system/area/show";
@@ -168,7 +168,7 @@ public class AreaController extends BaseController {
     public ResponseResult delete(String id) {
         try {
             areaService.deleteAndChild(new Area(id));
-            SystemCacheUtils.clearSystemCache(SystemCacheUtils.DEPARTMENT_LIST);
+            SystemCacheUtils.clearSystemCache(SystemCacheUtils.AREA_LIST);
             return success("删除成功");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

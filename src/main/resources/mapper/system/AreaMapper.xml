@@ -51,7 +51,7 @@
 	</select>
 
 	<!--根据条件获取地区-->
-	<select id="findList" resultType="Area">
+	<select id="getList" resultType="Area">
 		SELECT
 		<include refid="areaColumns"/>
 		<include refid="areaJoins"/>
@@ -62,7 +62,7 @@
 			<if test="parent != null and parent.id != null and parent.id != '' ">
 				AND a.parent_id  = #{parent.id}
 			</if>
-			WHERE a.del_status = "0"
+			  a.del_status = "0"
 		</where>
 		ORDER BY a.create_time
 	</select>

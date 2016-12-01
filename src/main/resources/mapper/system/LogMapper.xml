@@ -18,7 +18,7 @@
 		l.create_time AS "createTime",
 		u.name AS "createBy.name"
 		FROM sys_log l
-		JOIN sys_user u ON u.id = a.create_by
+		LEFT JOIN sys_user u ON u.id = a.create_by
 		<where>
 			<if test="beginDate != null">
 			   	AND l.create_time gt;= #{beginDate}

@@ -9,7 +9,7 @@
 <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
 <link href="${staticPath}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="${staticPath}/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
+<link href="${staticPath}/global/css/components.css" rel="stylesheet" id="style_components" type="text/css"/>
 <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
 <!--global js-->
 <script src="${staticPath}/global/plugins/jquery.min.js" type="text/javascript"></script>
