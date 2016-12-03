@@ -93,7 +93,7 @@ public class Page<T> {
         //设置首页和尾页
         this.first = 1;
 
-        this.last = (int)(totalSize / (this.pageSize < 1 ? 20 : this.pageSize) + first - 1);
+        this.last = (int)(totalSize / (this.pageSize < 1 ? 20 : this.pageSize));
 
         if (this.totalSize % this.pageSize != 0 || this.last == 0) {
             this.last++;
@@ -120,7 +120,43 @@ public class Page<T> {
      */
     @Override
     public String toString() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append("<ul class=\"pagination\">");
+        sb.append("<li class=\"page-first \"><a href=\"javascript:void(0)\" data-pageNo=\""+this.getFirst()+"\">«</a></li>");
+        sb.append("<li class=\"page-pre \"><a href=\"javascript:void(0)\" data-pageNo=\""+this.getPrev()+"\">‹</a></li>");
+        int pageNo = this.getPageNo();
+        if(pageNo <=3){
+            for(int i = 1; i< pageNo ;i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\""+i+"\">"+i+"</a></li>");
+            }
+            sb.append("<li class=\"page-number active\"><a href=\"javascript:void(0)\" data-pageNo=\"" + pageNo + "\">"+pageNo+"</a></li>");
+            int lastPage = this.getTotalPage() > 5 ? 5: this.getTotalPage();
+            for(int i = pageNo + 1; i <= lastPage;i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\"" + i + "\">"+i+"</a></li>");
+            }
+        }else if(this.getTotalPage() - pageNo <= 2){
+            int firstPage = this.getTotalPage() - 4;
+            for(int i = firstPage; i< pageNo ; i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\"" + i + "\">"+i+"</a></li>");
+            }
+            sb.append("<li class=\"page-number active\"><a href=\"javascript:void(0)\" data-pageNo=\"" + pageNo+ "\">"+pageNo+"</a></li>");
+            for(int i = pageNo + 1; i <= this.getTotalPage();i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\"" + i + "\">"+i+"</a></li>");
+            }
+        }else {
+            int firstPage = this.getPageNo() - 2;
+            for(int i = firstPage; i < pageNo;i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\"" + i + "\">"+i+"</a></li>");
+            }
+            sb.append("<li class=\"page-number active\"><a href=\"javascript:void(0)\" data-pageNo=\"" + pageNo + "\">"+pageNo+"</a></li>");
+            for(int i = pageNo + 1; i < pageNo + 3 ; i++){
+                sb.append("<li class=\"page-number\"><a href=\"javascript:void(0)\" data-pageNo=\"" + i + "\">"+i+"</a></li>");
+            }
+        }
+        sb.append(" <li class=\"page-next\"><a href=\"javascript:void(0)\" data-pageNo=\"" + this.getNext()+ "\">›</a></li>");
+        sb.append("<li class=\"page-last\"><a href=\"javascript:void(0)\" data-pageNo=\"" + this.getLast() + "\">»</a></li>");
+        sb.append(String.format("<li class=\"pagination-info\"><a>当前%s到%s条，共%s条</a></li></ul>" ,this.getFirstResult() + 1, this.getLastResult() , this.getTotalSize()));
+        return sb.toString();
     }
 
     /**
@@ -256,6 +292,18 @@ public class Page<T> {
             firstResult = 0;
         }
         return firstResult;
+    }
+
+    /**
+     * 得到结尾条数
+     * @return
+     */
+    public int getLastResult(){
+        int lastResult = getFirstResult() + getPageSize() -1;
+        if(lastResult > getTotalSize()){
+            return Long.valueOf(getTotalSize()).intValue();
+        }
+        return lastResult;
     }
 
     /**

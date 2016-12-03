@@ -66,6 +66,8 @@
 			<mvc:exclude-mapping path="/static/**"/>
 			<mvc:exclude-mapping path="${adminPath}/validateCode"/>
 			<mvc:exclude-mapping path="${adminPath}/**/tree-data"/>
+			<mvc:exclude-mapping path="${adminPath}/login"/>
+			<mvc:exclude-mapping path="${adminPath}/system/log"/>
 			<bean class="com.doubleview.jeebase.support.interceptor.LogInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -78,7 +78,7 @@ public class LogInterceptor implements HandlerInterceptor {
         }
         Log log = new Log();
         log.setRemoteIp(ServletUtils.getRemoteAddr(request));
-        log.setRequestUri(request.getRequestURI());
+        log.setRequestUri(StringUtils.substringBefore(request.getRequestURI(),";"));
         log.setMethod(request.getMethod());
         log.setUserAgent(request.getHeader("user-agent"));
         Map<String , String[]> paramMap = request.getParameterMap();
@@ -120,7 +120,7 @@ public class LogInterceptor implements HandlerInterceptor {
             String methodName = handlerMethod.getMethod().getName();
 
             log.setTitle(controllerClassName + "-->" + methodName);
-            log.setType(ex != null ? Log.ACCESS : Log.EXCEPTION);
+            log.setType(ex == null ? Log.ACCESS : Log.EXCEPTION);
             User user = ShiroUtils.getCurrentUser();
             if(user == null){
                 log.setCreateBy(new User("0"));

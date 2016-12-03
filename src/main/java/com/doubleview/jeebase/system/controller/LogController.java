@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -28,9 +29,9 @@ public class LogController extends BaseController{
      * @return
      */
     @RequestMapping(value = {"list",""})
-    public String list(Log log , Model model){
-/*        Page<Log> page = logService.getPage(new Page<>() , log);
-        model.addAttribute("page" , page);*/
+    public String list(Log log , HttpServletRequest request , Model model){
+        Page<Log> page = logService.getPage(new Page<>(request) , log);
+        model.addAttribute("page" , page);
         return "system/log-list";
     }
 }

@@ -20,12 +20,12 @@
     <div class="row">
         <div class="portlet light">
 
-                    <form class="form-horizontal row" role="form">
-
+                    <form:form id="searchForm" modelAttribute="log"  class="form-horizontal row"  action="${adminPath}/system/log" role="form">
+                        <input type="hidden" name="pageNo" value="1">
                         <div class="form-group col-md-3">
                             <label class="col-md-5 control-label">开始时间</label>
                             <div class="input-group col-md-7 date date-picker"  data-date-format="yyyy-mm-dd">
-                                <input type="text" class="form-control" readonly>
+                                <form:input path="beginDate" cssClass="form-control" readonly="true"/>
                                 <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -35,7 +35,7 @@
                         <div class="form-group col-md-3">
                             <label class="col-md-5 control-label">结束时间</label>
                             <div class="input-group col-md-7 date date-picker"  data-date-format="yyyy-mm-dd" >
-                                <input type="text" class="form-control" readonly>
+                                <form:input path="endDate" cssClass="form-control" readonly="true"/>
                                 <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -51,58 +51,47 @@
                             </div>
                         </div>
 
-                    </form>
+                    </form:form>
 
             <div class="portlet-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th> #</th>
-                            <th> Table heading</th>
-                            <th> Table heading</th>
-                            <th> Table heading</th>
-                            <th> Table heading</th>
-                            <th> Table heading</th>
-                            <th> Table heading</th>
+                            <th> 日志类型</th>
+                            <th> 操作ip</th>
+                            <th> uri</th>
+                            <th>操作方式</th>
+                            <th> 异常信息</th>
+                            <th> 操作者</th>
+                            <th> 操作时间</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td> 1</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                        </tr>
-                        <tr>
-                            <td> 2</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                        </tr>
-                        <tr>
-                            <td> 3</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                            <td> Table cell</td>
-                        </tr>
+                        <c:forEach items="${page.list}" var="log">
+                            <tr>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${log.type eq 1 }">
+                                            接入
+                                        </c:when>
+                                        <c:otherwise>
+                                            异常
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>${log.remoteIp}</td>
+                                <td>${log.requestUri}</td>
+                                <td>${log.method}</td>
+                                <td>${log.exception}</td>
+                                <td>${log.createBy.name}</td>
+                                <td><fmt:formatDate value="${log.createTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
-                <nav class="col-md-12">
-                    <ul class="pagination"><li class="page-first disabled"><a href="javascript:void(0)">«</a></li><li class="page-pre disabled"><a href="javascript:void(0)">‹</a></li><li class="page-number active"><a href="javascript:void(0)">1</a></li><li class="page-number"><a href="javascript:void(0)">2</a></li><li class="page-number"><a href="javascript:void(0)">3</a></li><li class="page-number"><a href="javascript:void(0)">4</a></li><li class="page-number"><a href="javascript:void(0)">5</a></li><li class="page-next"><a href="javascript:void(0)">›</a></li><li class="page-last"><a href="javascript:void(0)">»</a></li>
-                        <li class="pagination-info"><a>当前1到30条 ， 共500条</a></li>
-                    </ul>
-                </nav>
+                <nav class="col-md-12">${page}</nav>
             </div>
         </div>
 
@@ -121,12 +110,21 @@
             }
         }
 
+        var bindPageNo = function () {
+            $(".pagination a[data-pageNo]").click(function () {
+                var pageNo =$(this).attr("data-pageNo");
+                $("input[name='pageNo']").val(pageNo);
+                //提交表单
+                $("#searchForm").submit();
+            });
+        }
+
         return {
             init : function(){
                 handleDatePickers();
+                bindPageNo();
             }
         }
-
     }();
 
     $(document).ready(function () {

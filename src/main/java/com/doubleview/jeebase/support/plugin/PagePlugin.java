@@ -29,6 +29,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -82,7 +83,6 @@ public class PagePlugin implements Interceptor {
             countStmt.close();
             page.setTotalSize(count);
             String pageSql = generatePageSql(sql, page);
-            logger.debug("page sql is {}" , pageSql);
             ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
         }
         return ivk.proceed();
@@ -159,6 +159,9 @@ public class PagePlugin implements Interceptor {
     @Override
     public void setProperties(Properties p) {
         //取得数据库类型
+        if(Objects.nonNull(dialect)){
+            return;
+        }
         String dialectType = p.getProperty("jdbc.type");
         initDialect(dialectType);
     }

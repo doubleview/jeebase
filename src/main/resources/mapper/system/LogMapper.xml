@@ -3,7 +3,7 @@
 <mapper namespace="com.doubleview.jeebase.system.dao.LogDao">
 
 	<!--得到日志列表-->
-	<select id="findList" resultType="Log">
+	<select id="getList" resultType="Log">
 		SELECT
 		l.id AS "id",
 		l.type AS "type",
@@ -18,13 +18,13 @@
 		l.create_time AS "createTime",
 		u.name AS "createBy.name"
 		FROM sys_log l
-		LEFT JOIN sys_user u ON u.id = a.create_by
+		LEFT JOIN sys_user u ON u.id = l.create_by
 		<where>
 			<if test="beginDate != null">
-			   	AND l.create_time gt;= #{beginDate}
+			   	AND l.create_time &gt;= DATE (#{beginDate})
 			</if>
 			<if test="endDate != null">
-				AND  l.create_time lt;= #{endDate}
+				AND  l.create_time &lt;= DATE (#{endDate})
 			</if>
 			<if test="title != null and title != ''">
 				AND l.title LIKE

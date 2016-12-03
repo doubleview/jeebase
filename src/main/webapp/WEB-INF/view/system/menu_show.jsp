@@ -52,8 +52,6 @@
                             <th> 链接</th>
                             <th>排序</th>
                             <th>是否显示</th>
-                            <th>创建时间</th>
-                            <th>更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,12 +89,6 @@
                                     <input type="checkbox"
                                            <c:if test="${subMenu.isShow eq '1'}">checked</c:if> readonly
                                            class="make-switch" data-size="mini">
-                                </td>
-                                <td>
-                                    <fmt:formatDate value="${subMenu.createTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
-                                </td>
-                                <td>
-                                    <fmt:formatDate value="${subMenu.updateTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                                 </td>
                             </tr>
                         </c:forEach>
