@@ -10,15 +10,15 @@
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
     <!--layout and theme-->
-    <link href="${staticPath}/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="${staticPath}/apps/css/menu-tab.css" rel="stylesheet" type="text/css"/>
+    <link href="${staticPath}/global/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="${staticPath}/global/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="${staticPath}/pages/css/menu-tab.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="${staticPath}/favicon.ico"/>
     <!--layout-->
-    <script src="${staticPath}/layouts/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/layout/scripts/layout.js" type="text/javascript"></script>
     <!--menu-tab-->
-    <script src="${staticPath}/apps/scripts/layer/layer.min.js" type="text/javascript"></script>
-    <script src="${staticPath}/apps/scripts/menu-tab.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/layer/layer.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/pages/scripts/menu-tab.js" type="text/javascript"></script>
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white <%--page-sidebar-fixed--%>">

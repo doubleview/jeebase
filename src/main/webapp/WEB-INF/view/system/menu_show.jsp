@@ -88,7 +88,7 @@
                                 <td>
                                     <input type="checkbox"
                                            <c:if test="${subMenu.isShow eq '1'}">checked</c:if> readonly
-                                           class="make-switch" data-size="mini">
+                                           class="make-switch" data-esize="mini">
                                 </td>
                             </tr>
                         </c:forEach>

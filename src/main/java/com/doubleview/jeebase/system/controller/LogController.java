@@ -32,6 +32,6 @@ public class LogController extends BaseController{
     public String list(Log log , HttpServletRequest request , Model model){
         Page<Log> page = logService.getPage(new Page<>(request) , log);
         model.addAttribute("page" , page);
-        return "system/log-list";
+        return "system/log";
     }
 }

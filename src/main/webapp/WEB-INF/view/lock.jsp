@@ -21,7 +21,7 @@
         <!-- page-->
         <link href="${staticPath}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="${staticPath}/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <link href="${staticPath}/pages/css/lock-2.min.css" rel="stylesheet" type="text/css" />
+        <link href="${staticPath}/pages/css/lock.min.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body class="">
