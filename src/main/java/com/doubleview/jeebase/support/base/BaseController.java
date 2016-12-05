@@ -4,26 +4,18 @@ import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.support.render.RenderFactory;
 import com.doubleview.jeebase.support.utils.DateTimeUtils;
 import com.doubleview.jeebase.support.web.ResponseResult;
-import com.doubleview.jeebase.support.web.TreeDataResult;
-import com.doubleview.jeebase.system.model.Menu;
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.BindException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
-import javax.validation.ValidationException;
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Controller基础接口

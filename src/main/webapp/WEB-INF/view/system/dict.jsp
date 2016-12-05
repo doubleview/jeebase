@@ -3,15 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>日志管理</title>
+    <title>字典管理</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
     <link href="${staticPath}/global/plugins/sweet-alert/css/sweet-alert.css" rel="stylesheet" type="text/css"/>
-    <link href="${staticPath}/global/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-    <script src="${staticPath}/global/plugins/bootstrap-datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/sweet-alert/js/sweet-alert.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="page-inner-container" style="padding: 0px 15px;">
@@ -21,9 +20,12 @@
                     <form:form id="searchForm" modelAttribute="log"  class="form-horizontal row"  action="${adminPath}/system/log" role="form">
                         <input type="hidden" name="pageNo" value="1">
                         <div class="form-group col-md-3">
-                            <label class="col-md-5 control-label">开始时间</label>
-                            <div class="input-group col-md-7 date date-picker"  data-date-format="yyyy-mm-dd">
-                                <form:input path="beginDate" cssClass="form-control" readonly="true"/>
+                            <label class="col-md-5 control-label">类型</label>
+                            <div class="input-group col-md-7">
+                                <form:select path="type" cssClass="form-control">
+                                    <form:option value="" label=""/>
+                                    <form:options  items="${typeList}" itemValue="" itemLabel=""/>
+                                </form:select>
                                 <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -31,9 +33,9 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="col-md-5 control-label">结束时间</label>
-                            <div class="input-group col-md-7 date date-picker"  data-date-format="yyyy-mm-dd" >
-                                <form:input path="endDate" cssClass="form-control" readonly="true"/>
+                            <label class="col-md-5 control-label">描述</label>
+                            <div class="input-group col-md-7"  >
+                                <form:input path="description" cssClass="form-control" readonly="true"/>
                                 <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -54,34 +56,28 @@
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th> 日志类型</th>
-                            <th> 操作ip</th>
-                            <th> uri</th>
-                            <th>操作方式</th>
-                            <th> 异常信息</th>
-                            <th> 操作者</th>
-                            <th> 操作时间</th>
+                            <th> 类型</th>
+                            <th> 键值</th>
+                            <th> 标签</th>
+                            <th>描述</th>
+                            <th> 排序</th>
+                            <th> 操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${page.list}" var="log">
+                        <c:forEach items="${page.list}" var="dict">
                             <tr>
+                                <td>${dict.type}</td>
+                                <td>${dict.value}</td>
+                                <td>${dict.label}</td>
+                                <td>${dict.description}</td>
+                                <td>${dict.sort}</td>
                                 <td>
-                                    <c:choose>
-                                        <c:when test="${log.type eq 1 }">
-                                            接入
-                                        </c:when>
-                                        <c:otherwise>
-                                            异常
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <a href="javascript:;" class="btn btn-circle blue" id="edit">
+                                        <i class="fa fa-edit"></i> 编辑 </a>
+                                    <a href="javascript:;" class="btn btn-circle red" id="del">
+                                        <i class="fa fa-times" data-id="${dict.id}"></i> 删除 </a>
                                 </td>
-                                <td>${log.remoteIp}</td>
-                                <td>${log.requestUri}</td>
-                                <td>${log.method}</td>
-                                <td>${log.exception}</td>
-                                <td>${log.createBy.name}</td>
-                                <td><fmt:formatDate value="${log.createTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -94,15 +90,7 @@
     </div>
 </div>
 <script>
-    var Log = function(){
-        var handleDatePickers = function () {
-            if (jQuery().datepicker) {
-                $('.date-picker').datepicker({
-                    autoclose: true,
-                    clearBtn:true
-                });
-            }
-        }
+    var Dict = function(){
 
         var bindPageNo = function () {
             $(".pagination a[data-pageNo]").click(function () {
@@ -113,24 +101,44 @@
             });
         }
 
-        var bindReset = function(){
+        var bindOperation = function(){
             $("#reset").click(function(){
-                $("input[name='beginDate']").val("");
-                $("input[name='endDate']").val("");
+                $("#searchForm input").val();
+            });
+            $("#del").click(function(){
+                var id = $(this).attr("data-id");
+                window.swal({
+                            title: "确认删除么?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: '确认',
+                            cancelButtonText: "取消",
+                            closeOnConfirm: false,
+                        },
+                        function(){
+                            $.post("${adminPath}/system/dict/del",{id : id} , function(result){
+                                if(result.code == "0"){
+                                    window.swal("删除成功!","","success");
+                                    $("#searchForm").submit();
+                                }else {
+                                    window.swal("删除失败!",result.message,"error");
+                                }
+                            });
+                        });
             });
         }
 
         return {
             init : function(){
-                handleDatePickers();
                 bindPageNo();
-                bindReset();
+                bindOperation();
             }
         }
     }();
 
     $(document).ready(function () {
-        Log.init();
+        Dict.init();
     });
 </script>
 </body>

@@ -5,6 +5,7 @@ import com.doubleview.jeebase.support.persistence.dialect.MySQLDialect;
 import com.doubleview.jeebase.support.persistence.dialect.OracleDialect;
 import com.doubleview.jeebase.support.utils.ReflectUtils;
 import com.doubleview.jeebase.support.web.Page;
+import org.apache.commons.lang3.Validate;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
@@ -42,7 +43,7 @@ public class PagePlugin implements Interceptor {
     private Dialect dialect;    //数据库方言
 
     public Object intercept(Invocation ivk) throws Throwable {
-
+        logger.debug("start to generate page sql");
         if (ivk.getTarget() instanceof RoutingStatementHandler) {
             RoutingStatementHandler statementHandler = (RoutingStatementHandler) ivk.getTarget();
             BaseStatementHandler delegate = (BaseStatementHandler) ReflectUtils.getValueByFieldName(statementHandler, "delegate");
@@ -85,6 +86,7 @@ public class PagePlugin implements Interceptor {
             String pageSql = generatePageSql(sql, page);
             ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
         }
+        logger.debug("end to generate the page sql");
         return ivk.proceed();
     }
 
@@ -172,9 +174,7 @@ public class PagePlugin implements Interceptor {
      * @param dialectType
      */
     private void initDialect(String dialectType) {
-        if (dialectType == null) {
-            throw new RuntimeException("mybatis dialect init error");
-        }
+        Validate.notBlank(dialectType);
         Dialect dialect = null;
         if ("mysql".equals(dialectType)) {
             dialect = new MySQLDialect();

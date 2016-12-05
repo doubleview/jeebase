@@ -1,6 +1,7 @@
 package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.support.base.BaseModel;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -26,9 +27,10 @@ public class Log extends BaseModel<Log>{
     private String exception; 	// 异常信息
 
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date beginDate;		// 根据开始日期查询日志
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;		// 根据结束日期查询
 
     // 日志类型（1：接入日志；2：错误日志）

@@ -8,7 +8,9 @@ import com.doubleview.jeebase.system.model.Area;
 import com.doubleview.jeebase.system.service.AreaService;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,10 +49,8 @@ public class AreaController extends BaseController {
      */
     @RequestMapping("get")
     @ResponseBody
-    public ResponseResult<Area> getArea(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new RuntimeException("id is null");
-        }
+    public ResponseResult<Area> get(String id) {
+        Validate.notBlank(id);
         Area area = areaService.get(id);
         return success(area);
     }
@@ -63,9 +63,7 @@ public class AreaController extends BaseController {
      */
     @RequestMapping("show")
     public String show(String parentId, Model model) {
-        if (StringUtils.isBlank(parentId)) {
-            throw new RuntimeException("parentId is null");
-        }
+        Validate.notBlank(parentId);
         List<Area> subAreaList = Lists.newArrayList();
         subAreaList.add(areaService.get(parentId));
         subAreaList.addAll(areaService.getByParentId(parentId));
@@ -95,8 +93,7 @@ public class AreaController extends BaseController {
      * @return
      */
     private List<TreeDataResult> toTreeDataResult(List<Area> areaList) {
-
-        if (areaList == null || areaList.isEmpty()) {
+        if(CollectionUtils.isEmpty(areaList)){
             return null;
         }
 
@@ -106,7 +103,7 @@ public class AreaController extends BaseController {
             treeDataResult.setId(area.getId());
             treeDataResult.setText(area.getName());
 
-            if (area.getSubAreaList() != null && !area.getSubAreaList().isEmpty()) {
+            if (com.doubleview.jeebase.support.utils.CollectionUtils.isNotEmpty(area.getSubAreaList())) {
                 treeDataResult.setIcon("fa fa-folder icon-state-warning");
             } else {
                 treeDataResult.setIcon("fa fa-file icon-state-default");

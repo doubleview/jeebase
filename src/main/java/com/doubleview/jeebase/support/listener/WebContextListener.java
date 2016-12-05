@@ -1,13 +1,14 @@
 package com.doubleview.jeebase.support.listener;
 
 import com.doubleview.jeebase.support.config.Constant;
+import org.springframework.web.context.ContextLoaderListener;
 
 import javax.servlet.ServletContextEvent;
 
 /**
  * web启动监听器
  */
-public class WebContextListener extends org.springframework.web.context.ContextLoaderListener {
+public class WebContextListener extends ContextLoaderListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {

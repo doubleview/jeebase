@@ -3,6 +3,7 @@ package com.doubleview.jeebase.system.utils;
 import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.config.SpringContext;
 import com.doubleview.jeebase.support.utils.CacheUtils;
+import com.doubleview.jeebase.support.utils.CollectionUtils;
 import com.doubleview.jeebase.system.model.*;
 import com.doubleview.jeebase.system.service.*;
 import com.google.common.collect.Lists;
@@ -51,9 +52,9 @@ public class SystemCacheUtils {
     public static List<Menu> getMenuList() {
         logger.debug("try to get menu list from system cache");
         List<Menu> menuList = (List<Menu>) CacheUtils.get(SYSTEM_CACHE, MENU_LIST);
-        if (menuList == null) {
+        if (CollectionUtils.isEmpty(menuList)) {
             menuList = menuService.getList(new Menu());
-            if (menuList != null) {
+            if (CollectionUtils.isNotEmpty(menuList)) {
                 menuList = levelAndSortMenuList(menuList, Constant.rootParentId, false);
                 logger.debug("put menu list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, MENU_LIST, menuList);
@@ -70,7 +71,7 @@ public class SystemCacheUtils {
     public static List<Role> getRoleList() {
         logger.debug("try to get role list from system cache");
         List<Role> roleList = (List<Role>) CacheUtils.get(SYSTEM_CACHE, ROLE_LIST);
-        if (roleList == null) {
+        if (CollectionUtils.isEmpty(roleList)) {
             roleList = roleService.getList(new Role());
             if (roleList == null) {
                 return null;
@@ -89,9 +90,9 @@ public class SystemCacheUtils {
     public static List<Area> getAreaList() {
         logger.debug("try to get role list from system cache");
         List<Area> areaList = (List<Area>) CacheUtils.get(SYSTEM_CACHE, AREA_LIST);
-        if (areaList == null) {
+        if (CollectionUtils.isEmpty(areaList)) {
             areaList = areaService.getList(new Area());
-            if(areaList != null){
+            if(CollectionUtils.isNotEmpty(areaList)){
                 areaList = levelAndSortAreaList(areaList , Constant.rootParentId);
                 logger.debug("put area list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, AREA_LIST, areaList);
@@ -108,9 +109,9 @@ public class SystemCacheUtils {
     public static List<Department> getDepartmentList() {
         logger.debug("try to get role list from system cache");
         List<Department> departmentList = (List<Department>) CacheUtils.get(SYSTEM_CACHE, DEPARTMENT_LIST);
-        if (departmentList == null) {
+        if (CollectionUtils.isEmpty(departmentList)) {
             departmentList = departmentService.getList(new Department());
-            if (departmentList != null) {
+            if (CollectionUtils.isNotEmpty(departmentList)) {
                 departmentList = levelAndSortDeptList(departmentList, Constant.rootParentId, false);
                 logger.debug("put department list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, DEPARTMENT_LIST, departmentList);
@@ -240,7 +241,7 @@ public class SystemCacheUtils {
      */
     private static List<Menu> levelAndSortMenuList(List<Menu> menuList, String parentId, boolean filterNoShow) {
 
-        if (menuList == null || menuList.isEmpty()) {
+        if (CollectionUtils.isEmpty(menuList)) {
             return null;
         }
 
@@ -274,7 +275,7 @@ public class SystemCacheUtils {
      */
     private static List<Department> levelAndSortDeptList(List<Department> departmentList, String parentId, boolean filterNoUse) {
 
-        if (departmentList == null || departmentList.isEmpty()) {
+        if (CollectionUtils.isEmpty(departmentList)) {
             return null;
         }
 
@@ -307,7 +308,7 @@ public class SystemCacheUtils {
      */
     private static List<Area> levelAndSortAreaList(List<Area> areaList, String parentId) {
 
-        if (areaList == null || areaList.isEmpty()) {
+        if (CollectionUtils.isEmpty(areaList)) {
             return null;
         }
 

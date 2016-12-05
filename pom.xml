@@ -26,7 +26,7 @@
     <!-- 项目属性 -->
     <properties>
         <!-- 相关库版本设置-->
-        <spring.version>4.1.7.RELEASE</spring.version>
+        <spring.version>4.3.3.RELEASE</spring.version>
         <dubbo>2.5.3</dubbo>
         <validator.version>5.2.4.Final</validator.version>
         <mybatis.version>3.2.8</mybatis.version>

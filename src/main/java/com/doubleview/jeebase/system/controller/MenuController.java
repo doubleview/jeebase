@@ -2,6 +2,7 @@ package com.doubleview.jeebase.system.controller;
 
 import com.doubleview.jeebase.support.base.BaseController;
 import com.doubleview.jeebase.support.config.Constant;
+import com.doubleview.jeebase.support.utils.CollectionUtils;
 import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.support.web.TreeDataResult;
 import com.doubleview.jeebase.system.model.Menu;
@@ -9,6 +10,7 @@ import com.doubleview.jeebase.system.service.MenuService;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,10 +48,8 @@ public class MenuController extends BaseController {
      */
     @RequestMapping("get")
     @ResponseBody
-    public ResponseResult<Menu> getMenu(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new RuntimeException("id is null");
-        }
+    public ResponseResult<Menu> get(String id) {
+        Validate.notBlank(id);
         Menu menu = menuService.get(id);
         return success(menu);
     }
@@ -61,9 +61,7 @@ public class MenuController extends BaseController {
      */
     @RequestMapping("show")
     public String show(String parentId , Model model){
-        if(StringUtils.isBlank(parentId)){
-            throw  new RuntimeException("parentId is null");
-        }
+        Validate.notBlank(parentId);
         List<Menu> subMenuList = Lists.newArrayList();
         subMenuList.add(menuService.get(parentId));
         subMenuList.addAll(menuService.getByParentId(parentId));
@@ -93,7 +91,7 @@ public class MenuController extends BaseController {
      */
     private List<TreeDataResult> toTreeDataResult(List<Menu> menuList) {
 
-        if (menuList == null || menuList.isEmpty()) {
+        if (CollectionUtils.isEmpty(menuList)) {
             return null;
         }
 
@@ -103,7 +101,7 @@ public class MenuController extends BaseController {
             treeDataResult.setId(menu.getId());
             treeDataResult.setText(menu.getName());
 
-            if (menu.getSubMenuList() != null && !menu.getSubMenuList().isEmpty()) {
+            if (CollectionUtils.isNotEmpty(menu.getSubMenuList())) {
                 treeDataResult.setIcon("fa fa-folder icon-state-warning");
             } else {
                 treeDataResult.setIcon("fa fa-file icon-state-default");

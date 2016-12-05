@@ -2,6 +2,7 @@ package com.doubleview.jeebase.system.controller;
 
 import com.doubleview.jeebase.support.base.BaseController;
 import com.doubleview.jeebase.support.config.Constant;
+import com.doubleview.jeebase.support.utils.CollectionUtils;
 import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.support.web.TreeDataResult;
 import com.doubleview.jeebase.system.model.Department;
@@ -9,6 +10,8 @@ import com.doubleview.jeebase.system.service.DepartmentService;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.ibatis.ognl.CollectionElementsAccessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,10 +50,8 @@ public class DepartmentController extends BaseController {
      */
     @RequestMapping("get")
     @ResponseBody
-    public ResponseResult<Department> getDepartment(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new RuntimeException("id is null");
-        }
+    public ResponseResult<Department> get(String id) {
+        Validate.notBlank(id);
         Department department = departmentService.get(id);
         return success(department);
     }
@@ -63,9 +64,7 @@ public class DepartmentController extends BaseController {
      */
     @RequestMapping("show")
     public String show(String parentId, Model model) {
-        if (StringUtils.isBlank(parentId)) {
-            throw new RuntimeException("parentId is null");
-        }
+        Validate.notBlank(parentId);
         List<Department> subDeptList = Lists.newArrayList();
         subDeptList.add(departmentService.get(parentId));
         subDeptList.addAll(departmentService.getByParentId(parentId));
@@ -95,7 +94,7 @@ public class DepartmentController extends BaseController {
      */
     private List<TreeDataResult> toTreeDataResult(List<Department> departmentList) {
 
-        if (departmentList == null || departmentList.isEmpty()) {
+        if (CollectionUtils.isEmpty(departmentList)) {
             return null;
         }
 
@@ -105,7 +104,7 @@ public class DepartmentController extends BaseController {
             treeDataResult.setId(department.getId());
             treeDataResult.setText(department.getName());
 
-            if (department.getSubDeptList() != null && !department.getSubDeptList().isEmpty()) {
+            if (CollectionUtils.isNotEmpty(department.getSubDeptList())) {
                 treeDataResult.setIcon("fa fa-folder icon-state-warning");
             } else {
                 treeDataResult.setIcon("fa fa-file icon-state-default");
