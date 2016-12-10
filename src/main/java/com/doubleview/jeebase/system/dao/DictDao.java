@@ -16,6 +16,6 @@ public interface DictDao extends BaseDao<Dict>{
      * 获取所有字典类型
      * @return
      */
-    List<String> findTypeList();
+    List<String> getTypeList();
 
 }

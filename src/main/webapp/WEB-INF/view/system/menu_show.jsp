@@ -35,8 +35,10 @@
             </div>
             <div class="portlet-body">
                 <c:if test="${not empty message}">
-                    <div class="alert alert-success"><button class="close" data-close="alert"></button>${message}</div>
-                </c:if>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            ${message}
+                    </div>                </c:if>
                 <div class="table-scrollable">
                     <table class="table table-bordered table-striped table-condensed table-hover table-checkable" id="menu-table">
                         <thead>
@@ -88,7 +90,7 @@
                                 <td>
                                     <input type="checkbox"
                                            <c:if test="${subMenu.isShow eq '1'}">checked</c:if> readonly
-                                           class="make-switch" data-esize="mini">
+                                           class="make-switch" data-size="mini">
                                 </td>
                             </tr>
                         </c:forEach>

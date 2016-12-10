@@ -115,8 +115,7 @@
 
         var bindReset = function(){
             $("#reset").click(function(){
-                $("input[name='beginDate']").val("");
-                $("input[name='endDate']").val("");
+                $("#searchForm .input-group input").val("");
             });
         }
 

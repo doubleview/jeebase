@@ -19,8 +19,8 @@ public class DictService extends BaseService<DictDao, Dict>{
      * 查询字段类型列表
      * @return
      */
-    public List<String> findTypeList(){
-        return dao.findTypeList();
+    public List<String> getTypeList(){
+        return dao.getTypeList();
     }
 
 }

@@ -20,10 +20,12 @@ public class Dict extends BaseModel<Dict>{
 
     public Dict() {
         super();
+        this.sort = 10;
     }
 
     public Dict(String id){
         super(id);
+        this.sort = 10;
     }
 
     public Dict(String value, String label){

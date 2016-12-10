@@ -60,13 +60,12 @@ public class PagePlugin implements Interceptor {
                 } else {
                     page = (Page<Object>) ReflectUtils.getValueByFieldName(parameterObject, "page");
                 }
-            } else {
-                throw new NullPointerException("parameterObject尚未实例化！");
             }
 
             if (page == null) {
                 return ivk.proceed();
             }
+
             //查找此次查询的条数
             Connection connection = (Connection) ivk.getArgs()[0];
             String sql = boundSql.getSql();

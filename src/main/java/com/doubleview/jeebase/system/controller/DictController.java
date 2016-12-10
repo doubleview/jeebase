@@ -6,12 +6,14 @@ import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.system.model.Dict;
 import com.doubleview.jeebase.system.service.DictService;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,16 +33,27 @@ public class DictController extends BaseController{
     @RequestMapping(value = {"list" , ""})
     public String list(Dict dict , HttpServletRequest request , Model model){
         Page<Dict> page = dictService.getPage(new Page<>(request) , dict);
-        model.addAttribute("typeList" , dictService.findTypeList());
+        model.addAttribute("typeList" , dictService.getTypeList());
         model.addAttribute("page" , page);
-        return "dict";
+        return "system/dict";
     }
 
     @RequestMapping("edit")
     public String edit(String id , Model model){
-        Validate.notBlank(id);
-        model.addAttribute("dict" , dictService.get(id));
-        return "dict-edit";
+        if(StringUtils.isNotBlank(id)){
+            model.addAttribute("dict" , dictService.get(id));
+        }else {
+            model.addAttribute("dict" , new Dict());
+        }
+        return "system/dict_edit";
+    }
+
+    @RequestMapping("save")
+    public String save(Dict dict, RedirectAttributes model){
+        dictService.save(dict);
+        model.addFlashAttribute("message" , "保存字典'"+dict.getLabel()+"'成功");
+        SystemCacheUtils.clearSystemCache(SystemCacheUtils.DICT_MAP);
+        return "redirect:" + adminPath + "/system/dict";
     }
 
     @RequestMapping("del")
