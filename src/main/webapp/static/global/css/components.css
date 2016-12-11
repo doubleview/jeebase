@@ -7318,13 +7318,12 @@ Form Layouts
 }
 
 /* Control Label */
-.control-label {
+ .control-label {
     margin-top: 1px;
     font-weight: normal;
 }
 
-.control-label .required,
-.form-group .required {
+.form-group .control-label .required {
     color: #e02222;
     font-size: 12px;
     padding-left: 2px;

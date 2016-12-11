@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>字典管理</title>
+    <title>角色管理</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -12,41 +12,53 @@
     <link href="${staticPath}/global/plugins/sweet-alert/css/sweet-alert.css" rel="stylesheet" type="text/css"/>
     <link href="${staticPath}/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 
     <script src="${staticPath}/global/plugins/sweet-alert/js/sweet-alert.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="page-inner-container" style="padding: 0px 15px;">
     <div class="row">
         <div class="portlet light">
-                <form:form id="searchForm" modelAttribute="dict"  class="form-horizontal row"  action="${adminPath}/system/dict" role="form">
-                    <input type="hidden" name="pageNo" value="1">
-                    <div class="form-group col-md-3">
-                        <label class="col-md-5 control-label">类型</label>
-                        <div class="input-group col-md-7">
-                            <form:select  path="type" cssClass="select2 form-control">
-                                <form:option value="" label="请选择"/>
-                                <form:options  items="${typeList}"/>
-                            </form:select>
-                        </div>
+            <form:form id="searchForm" modelAttribute="role"  class="form-horizontal row"  action="${adminPath}/system/role" role="form">
+                <input type="hidden" name="pageNo" value="1">
+                <div class="form-group col-md-3">
+                    <label class="col-md-5 control-label">类型</label>
+                    <div class="input-group col-md-7">
+                        <form:select  path="roleType" cssClass="select2 form-control">
+                            <form:option value="" label="请选择"/>
+                            <form:options  items="${sys:getDictList('ROLE_TYPE')}" itemLabel="label" itemValue="value"/>
+                        </form:select>
                     </div>
+                </div>
 
-                    <div class="form-group col-md-3">
-                        <label class="col-md-5 control-label">描述</label>
-                        <div class="input-group col-md-7"  >
-                            <form:input path="description" cssClass="form-control"/>
-                        </div>
+                <div class="form-group col-md-3">
+                    <label class="col-md-5 control-label">是否可用</label>
+                    <div class="input-group col-md-7">
+                        <form:select  path="useable" cssClass="select2 form-control">
+                            <form:option value="" label="请选择"/>
+                            <form:options  items="${sys:getDictList('USEABLE')}" itemLabel="label" itemValue="value"/>
+                        </form:select>
                     </div>
+                </div>
 
-                    <div class="form-actions col-md-3 pull-right">
-                        <div class="row">
-                                <button type="submit" class="btn green">查询</button>
-                                <button type="button" class="btn default" id="reset">重置</button>
-                                <a href="${adminPath}/system/dict/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加字典 </a>
-                        </div>
+                <div class="form-group col-md-3">
+                    <label class="col-md-5 control-label">名称</label>
+                    <div class="input-group col-md-7"  >
+                        <form:input path="name" cssClass="form-control"/>
                     </div>
-                </form:form>
+                </div>
+
+                <div class="form-actions col-md-3 pull-right">
+                    <div class="row">
+                            <button type="submit" class="btn green">查询</button>
+                            <button type="button" class="btn default" id="reset">重置</button>
+                            <a href="${adminPath}/system/role/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加角色 </a>
+                    </div>
+                </div>
+            </form:form>
             <div class="portlet-body">
                 <c:if test="${not empty message}">
                     <div class="alert alert-success alert-dismissible" role="alert">
@@ -59,25 +71,23 @@
                         <thead>
                         <tr>
                             <th> 类型</th>
-                            <th> 键值</th>
-                            <th> 标签</th>
-                            <th>描述</th>
-                            <th> 排序</th>
+                            <th> 名称</th>
+                            <th> 是否可用</th>
                             <th> 操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${page.list}" var="dict">
+                        <c:forEach items="${page.list}" var="role">
                             <tr>
-                                <td>${dict.type}</td>
-                                <td>${dict.value}</td>
-                                <td>${dict.label}</td>
-                                <td>${dict.description}</td>
-                                <td>${dict.sort}</td>
+                                <td>${sys:getDictLabel(role.roleType, 'ROLE_TYPE', '---')}</td>
+                                <td>${role.name}</td>
                                 <td>
-                                    <a href="${adminPath}/system/dict/edit?id=${dict.id}" class="btn btn-circle btn-xs blue edit">
+                                    <input type="checkbox" <c:if test="${role.useable eq '1'}">checked</c:if> readonly class="make-switch" data-size="mini">
+                                </td>
+                                <td>
+                                    <a href="${adminPath}/system/role/edit?id=${role.id}" class="btn btn-circle btn-xs blue edit">
                                         <i class="fa fa-edit"></i> 编辑 </a>
-                                    <a href="javascript:;" class="btn btn-circle btn-xs red del"  data-id="${dict.id}">
+                                    <a href="javascript:;" class="btn btn-circle btn-xs red del"  data-id="${role.id}">
                                         <i class="fa fa-times"></i> 删除 </a>
                                 </td>
                             </tr>
@@ -92,13 +102,13 @@
     </div>
 </div>
 <script>
-    var Dict = function(){
+    var Role = function(){
 
         var bindPageNo = function () {
             $(".pagination a[data-pageNo]").click(function () {
                 var pageNo =$(this).attr("data-pageNo");
                 $("input[name='pageNo']").val(pageNo);
-                //提交表单
+                    //提交表单
                 $("#searchForm").submit();
             });
         }
@@ -127,7 +137,7 @@
                             closeOnConfirm: false,
                         },
                         function(){
-                            $.post("${adminPath}/system/dict/del",{id : id} , function(result){
+                            $.post("${adminPath}/system/role/del",{id : id} , function(result){
                                 if(result.code == "0"){
                                     window.swal("删除成功!","","success");
                                     $("#searchForm").submit();
@@ -149,7 +159,7 @@
     }();
 
     $(document).ready(function () {
-        Dict.init();
+        Role.init();
     });
 </script>
 </body>

@@ -6,6 +6,8 @@
 	<sql id="roleColumns">
 		r.id AS "id",
 		r.name AS "name",
+		r.role_type AS "roleType",
+		r.useable AS "useable",
 		r.remarks AS "remarks",
 		r.create_by AS "createBy.id",
 		r.create_time AS "createTime",
@@ -45,6 +47,12 @@
 			JOIN sys_user_role ur ON ur.role_id = r.id AND ur.user_id = #{user.id}
 		</if>
 		<where>
+			<if test="roleType != null and roleType != '' ">
+				AND r.role_type = #{roleType}
+			</if>
+			<if test="useable != null and useable != '' ">
+				AND r.useable = #{useable}
+			</if>
 			<if test="name != null and name != '' ">
 				AND r.name LIKE  CONCAT('%', #{name}, '%')
 			</if>
@@ -58,6 +66,8 @@
 		INSERT INTO sys_role(
 		id,
 		name,
+		role_type,
+		useable,
 		remarks,
 		create_by,
 		create_time,
@@ -67,6 +77,8 @@
 		) VALUES (
 		#{id},
 		#{name},
+		#{roleType},
+		#{useable},
 		#{remarks},
 		#{createBy.id},
 		#{createTime},
@@ -79,6 +91,8 @@
 	<update id="update">
 		UPDATE sys_role SET
 		name = #{name},
+		role_type = #{roleType},
+		useable = #{useable},
 		remarks = #{remarks},
 		update_by = #{updateBy.id},
 		update_time = #{updateTime},

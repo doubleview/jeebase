@@ -40,12 +40,10 @@
                             </div>
                         </div>
 
-                        <div class="form-actions col-md-4">
+                        <div class="form-actions col-md-3 pull-right">
                             <div class="row">
-                                <div class="col-md-offset-3 col-md-9">
                                     <button type="submit" class="btn green">查询</button>
                                     <button type="button" class="btn default" id="reset">重置</button>
-                                </div>
                             </div>
                         </div>
                     </form:form>

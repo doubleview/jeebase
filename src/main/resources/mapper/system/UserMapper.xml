@@ -90,14 +90,7 @@
 			</if>
 			AND u.del_status = "0"
 		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-				ORDER BY u.create_time
-			</otherwise>
-		</choose>
+		ORDER BY u.create_time
 	</select>
 
 	<!-- 查询全部用户数目 -->

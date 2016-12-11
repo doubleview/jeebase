@@ -33,10 +33,6 @@ public class User extends BaseModel<User> {
 
     private String loginFlag;    // 是否允许登陆
 
-    private String oldLoginName;// 原登录名
-
-    private String newPassword;    // 新密码
-
     private String oldLoginIp;    // 上次登陆IP
 
     private Date oldLoginDate;    // 上次登陆日期
@@ -45,10 +41,13 @@ public class User extends BaseModel<User> {
 
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
+    /*-----------------**/
+    private String oldLoginName;// 原登录名
+    private String newPassword;    // 新密码
 
+    private List<String> roleIdList = Lists.newArrayList();//roleId
 
     private Role role;//根据角色信息查询用户
-
     private List<String> departmentIds;//根据部门id查询用户信息
 
     public User(){
@@ -209,5 +208,16 @@ public class User extends BaseModel<User> {
 
     public void setDepartmentIds(List<String> departmentIds) {
         this.departmentIds = departmentIds;
+    }
+
+    public List<String> getRoleIdList() {
+        for(Role role : roleList){
+            roleIdList.add(role.getId());
+        }
+        return roleIdList;
+    }
+
+    public void setRoleIdList(List<String> roleIdList) {
+        this.roleIdList = roleIdList;
     }
 }

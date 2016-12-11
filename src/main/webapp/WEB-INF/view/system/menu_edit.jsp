@@ -39,7 +39,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="name" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="name" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="href" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="href" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="icon" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="icon" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="parent.name" cssClass="form-control" htmlEscape="false" disabled="true"/>
+                                    <form:input path="parent.name" cssClass="form-control"  disabled="true"/>
                                  </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  htmlEscape="false"/>
+                                    <form:input path="sort" cssClass="form-control"  />
                                 </div>
                             </div>
                         </div>
@@ -94,10 +94,10 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                <form:checkbox path="isShow"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
+                                    <form:checkbox path="isShow"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                         </div>
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">备注
                                 <span class="required"> </span>
@@ -105,7 +105,7 @@
                             <div class="col-xs-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:textarea path="remarks" cssClass="form-control" htmlEscape="false"/>
+                                    <form:textarea path="remarks" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>

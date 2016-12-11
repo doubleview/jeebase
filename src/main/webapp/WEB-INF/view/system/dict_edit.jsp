@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>部门编辑</title>
+    <title>字典编辑</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -29,7 +29,7 @@
                     <div class="form-body">
                         <div class="alert alert-danger display-hide alert-dismissible" role="alert">
                              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-                            请保证表单信息填写正确
+                                请保证表单信息填写正确
                         </div>
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3" style="text-align: right; padding-top:7px">数据值
@@ -38,7 +38,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="value" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="value" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="label" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="label" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="type" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="type" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="sort" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:input path="description" cssClass="form-control" htmlEscape="false"/>
+                                    <form:input path="description" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -98,14 +98,14 @@
                             <div class="col-md-4">
                                 <div class="input-icon right">
                                     <i class="fa"></i>
-                                    <form:textarea path="remarks" cssClass="form-control" htmlEscape="false"/>
+                                    <form:textarea path="remarks" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-actions">
                             <div class="row">
-                                <div class="col-xs-offset-3 col-xs-9">
+                                <div class="col-md-offset-3 col-md-9">
                                     <input type="submit" class="btn green" value="保存"/>
                                     <input type="button" class="btn default" value="返回"
                                            onclick="location.href='${adminPath}/system/dict/list'"/>
@@ -175,7 +175,6 @@
                     form.submit();
                 }
             });
-
         }
         return {
             init: function () {

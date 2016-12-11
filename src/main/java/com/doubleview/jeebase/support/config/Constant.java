@@ -103,9 +103,21 @@ public class Constant {
         return getConfig("frontPath");
     }
 
+    /**
+     * 获取静态资源路径
+     * @return
+     */
+    public static String getStaticPath(){
+        return getConfig("staticPath");
+    }
+    /**
+     * 获取产品名称
+     * @return
+     */
     public static String getProductName(){
         return getConfig("productName");
     }
+
     /**
      * 获取URL后缀
      * @return

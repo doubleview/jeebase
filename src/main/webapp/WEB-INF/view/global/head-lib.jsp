@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sys" uri="http://doubleview.github.io/system" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
-<c:set var="adminPath" value="${pageContext.request.contextPath}/admin"/>
+<c:set var="staticPath" value="${pageContext.request.contextPath}${sys:getStaticPath()}"/>
+<c:set var="adminPath" value="${pageContext.request.contextPath}${sys:getAdminPath()}"/>
+<c:set var="frontPath" value="${pageContext.request.contextPath}${sys:getFrontPath()}"/>
 <!--global css-->
 <link href="${staticPath}/global/font/font.css" rel="stylesheet" type="text/css" />
 <link href="${staticPath}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
