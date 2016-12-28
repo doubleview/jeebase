@@ -132,7 +132,13 @@ public class DepartmentController extends BaseController {
         Department department = null;
         if (parentId != null) {
             department = new Department();
-            department.setParent(departmentService.get(parentId));
+            if (parentId.equals(Constant.rootId)) {
+                Department parent = new Department("0");
+                parent.setName("顶级部门");
+                department.setParent(parent);
+            }else {
+                department.setParent(departmentService.get(parentId));
+            }
         } else {
             department = departmentService.get(id);
         }

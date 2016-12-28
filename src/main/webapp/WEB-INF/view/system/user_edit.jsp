@@ -10,9 +10,13 @@
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp" %>
     <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
+
+    <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.method.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -43,7 +47,6 @@
                                     <i class="fa"></i>
                                     <form:input path="loginName" cssClass="form-control required" maxlength="50"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -56,7 +59,6 @@
                                     <i class="fa"></i>
                                     <form:input path="name" cssClass="form-control required" maxlength="50"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -67,9 +69,8 @@
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="newPassword" cssClass="form-control required" minlength="6" maxlength="20"/>
+                                    <form:input path="newPassword" cssClass="form-control" minlength="6" maxlength="20"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -80,9 +81,8 @@
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <input path="confirmNewPassword" class="form-control"  minlength="6" maxlength="20" equalTo="#newPassword"/>
+                                    <form:input path="confirmNewPassword" class="form-control"  minlength="6" maxlength="20" equalTo="#newPassword"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -95,7 +95,6 @@
                                     <i class="fa"></i>
                                     <form:input path="email" cssClass="form-control required email" maxlength="50"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -108,7 +107,6 @@
                                     <i class="fa"></i>
                                     <form:input path="phone" cssClass="form-control" maxlength="50" />
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -121,7 +119,6 @@
                                     <i class="fa"></i>
                                     <form:input path="mobile" cssClass="form-control required" minlength="11" maxlength="11"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -134,34 +131,33 @@
                                     <i class="fa"></i>
                                     <form:checkbox path="loginFlag"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3">所属部门
-                                <span class="required">*</span>
+                                <span class="required"></span>
                             </label>
                             <div class="col-md-9">
-                                <div class="input-icon input-inline input-medium right">
-                                    <i class="fa"></i>
-                                    <form:input path="department.name" cssClass="form-control" />
-                                    <form:hidden path="department.id" cssClass="form-control" />
+                                <div class="input-inline input-medium">
+                                    <div class="input-group">
+                                        <systag:tree name="department.id" value="${user.department.id}"
+                                                     labelName="department.name" labelValue="${user.department.name}"
+                                                     title="选择部门" url="${adminPath}/system/dept/tree-data"/>
+                                    </div>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3">用户角色
-                                <span class="required"> </span>
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:checkboxes path="roleIdList" items="${sys:getRoleList()}" itemLabel="name" itemValue="id"  class="required"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -174,7 +170,6 @@
                                     <i class="fa"></i>
                                     <form:textarea path="remarks" cssClass="form-control" maxlength="200"/>
                                 </div>
-                                <span class="help-inline"></span>
                             </div>
                         </div>
 
@@ -205,12 +200,9 @@
 
             userForm.validate({
                 errorElement: 'span',
-                errorClass: 'help-block help-block-error',
+                errorClass: 'help-inline help-inline-error',
                 focusInvalid: false,
                 ignore: "",
-                rules: {
-
-                },
 
                 invalidHandler: function (event, validator) {
                     error.show();
@@ -218,17 +210,23 @@
 
                 errorPlacement: function (error, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.addClass("fa-warning");
+                    if (element.is(":checkbox")||element.is(":radio")){
+                        error.insertAfter(element.parent(".input-inline"));
+                        element.removeClass("help-inline").addClass("help-block");
+                    }else {
+                        error.appendTo(element.parent().parent());
+                    }
                 },
 
                 highlight: function (element) {
-                    $(element).closest('.form-group').removeClass("has-success").addClass('has-error');
+                    $(element).closest('.form-group').addClass('has-error');
                 },
 
                 success: function (label, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-                    icon.removeClass("fa-warning").addClass("fa-check");
+                    $(element).closest('.form-group').removeClass('has-error');
+                    icon.removeClass("fa-warning")
                 },
 
                 submitHandler: function (form) {

@@ -42,7 +42,9 @@
 
                         <div class="form-actions col-md-3 pull-right">
                             <div class="row">
-                                    <button type="submit" class="btn green">查询</button>
+                                    <button type="submit" class="btn green">
+                                        <i class="fa fa-search"></i>查询
+                                    </button>
                                     <button type="button" class="btn default" id="reset">重置</button>
                             </div>
                         </div>

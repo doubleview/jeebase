@@ -53,22 +53,15 @@
               <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
+              <li><a href="${adminPath}/system/user/profile" class="menu-item"><i class="icon-user"></i> 我的主页 </a></li>
+              <li><a href=""><i class="icon-calendar"></i> 我的日历 </a></li>
               <li>
-                <a href="">
-                  <i class="icon-user"></i> 我的主页 </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="icon-calendar"></i> 我的日历 </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="icon-envelope-open"></i> 我的收件箱
-                  <span class="badge badge-danger"> 3 </span>
+                  <a href=""><i class="icon-envelope-open"></i> 我的收件箱
+                    <span class="badge badge-danger"> 3 </span>
                 </a>
               </li>
               <li>
-                <a href="">
+                  <a href="">
                   <i class="icon-rocket"></i> 我的任务
                   <span class="badge badge-success"> 7 </span>
                 </a>

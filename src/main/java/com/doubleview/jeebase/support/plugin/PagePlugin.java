@@ -7,19 +7,19 @@ import com.doubleview.jeebase.support.utils.ReflectUtils;
 import com.doubleview.jeebase.support.web.Page;
 import org.apache.commons.lang3.Validate;
 import org.apache.ibatis.executor.ErrorContext;
+import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.mapping.BoundSql;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.ParameterMapping;
-import org.apache.ibatis.mapping.ParameterMode;
+import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.slf4j.Logger;
@@ -73,21 +73,32 @@ public class PagePlugin implements Interceptor {
             String countSql = "select count(0) from (" + fhsql + ")  tmp_count"; //记录统计
             PreparedStatement countStmt = connection.prepareStatement(countSql);
             BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql, boundSql.getParameterMappings(), parameterObject);
+
+            //处理foreach失效问题
+            if (ReflectUtils.getValueByFieldName(boundSql, "metaParameters") != null) {
+                MetaObject mo = (MetaObject) ReflectUtils.getValueByFieldName(boundSql, "metaParameters");
+                ReflectUtils.setValueByFieldName(countBS, "metaParameters", mo);
+            }
+
             setParameters(countStmt, mappedStatement, countBS, parameterObject);
+
             ResultSet rs = countStmt.executeQuery();
             int count = 0;
             if (rs.next()) {
                 count = rs.getInt(1);
+                logger.debug("sql count : {}" , count);
             }
             rs.close();
             countStmt.close();
             page.setTotalSize(count);
+            //生成分页语句
             String pageSql = generatePageSql(sql, page);
             ReflectUtils.setValueByFieldName(boundSql, "sql", pageSql); //将分页sql语句反射回BoundSql.
         }
         logger.debug("end to generate the page sql");
         return ivk.proceed();
     }
+
 
 
     /**
@@ -135,7 +146,6 @@ public class PagePlugin implements Interceptor {
             }
         }
     }
-
 
     /**
      * 根据数据库方言，生成特定的分页sql

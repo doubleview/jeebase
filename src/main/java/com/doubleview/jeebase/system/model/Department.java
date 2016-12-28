@@ -31,6 +31,9 @@ public class Department extends TreeModel<Department> {
 
     private User master;//负责人
 
+
+    //----------------------------------
+
     private List<Department> subDeptList;//子部门
 
     public Department(){

@@ -158,7 +158,7 @@
 		DELETE FROM sys_role_menu
 		<where>
 			role_id IN
-			<foreach collection="list" item="menuId" separator="," open="(" close=")">
+			<foreach collection="list" item="roleId" separator="," open="(" close=")">
 				#{roleId}
 			</foreach>
 		</where>

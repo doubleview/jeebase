@@ -53,9 +53,12 @@
 
                 <div class="form-actions col-md-3 pull-right">
                     <div class="row">
-                            <button type="submit" class="btn green">查询</button>
-                            <button type="button" class="btn default" id="reset">重置</button>
-                            <a href="${adminPath}/system/role/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加角色 </a>
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>查询
+                            </button>
+                            <a href="${adminPath}/system/role/edit" class="btn blue" id="menu-add">
+                                <i class="fa fa-plus"></i> 添加
+                            </a>
                     </div>
                 </div>
             </form:form>
@@ -121,10 +124,6 @@
         }
 
         var bindOperation = function(){
-            $("#reset").click(function(){
-                $("#searchForm .input-group input").val("");
-                $("#searchForm .input-group select").val("");
-            });
             $(".del").click(function(){
                 var id = $(this).attr("data-id");
                 window.swal({

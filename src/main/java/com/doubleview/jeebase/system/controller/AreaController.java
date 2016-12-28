@@ -131,6 +131,11 @@ public class AreaController extends BaseController {
         Area area = null;
         if (parentId != null) {
             area = new Area();
+            if (parentId.equals(Constant.rootId)) {
+                Area parent = new Area("0");
+                parent.setName("顶级区域");
+                area.setParent(parent);
+            }
             area.setParent(areaService.get(parentId));
         } else {
             area = areaService.get(id);

@@ -41,9 +41,10 @@ public class User extends BaseModel<User> {
 
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
-    /*-----------------**/
+    /*----------------------**/
     private String oldLoginName;// 原登录名
     private String newPassword;    // 新密码
+    private String confirmNewPassword;//确认新密码
 
     private List<String> roleIdList = Lists.newArrayList();//roleId
 
@@ -160,6 +161,14 @@ public class User extends BaseModel<User> {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getConfirmNewPassword() {
+        return confirmNewPassword;
+    }
+
+    public void setConfirmNewPassword(String confirmNewPassword) {
+        this.confirmNewPassword = confirmNewPassword;
     }
 
     public String getOldLoginIp() {

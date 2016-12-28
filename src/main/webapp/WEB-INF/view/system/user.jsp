@@ -13,7 +13,9 @@
     <link href="${staticPath}/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
 
+    <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/sweet-alert/js/sweet-alert.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
@@ -42,15 +44,20 @@
                 <div class="form-group col-md-3">
                     <label class="col-md-5 control-label">所属部门</label>
                     <div class="input-group col-md-7"  >
-                        <form:input path="department.name" cssClass="form-control"/>
+                        <systag:tree name="department.id" value="${user.department.id}"
+                                     labelName="department.name" labelValue="${user.department.name}"
+                                     title="选择部门" url="${adminPath}/system/dept/tree-data" />
                     </div>
                 </div>
 
                 <div class="form-actions col-md-3 pull-right">
                     <div class="row">
-                            <button type="submit" class="btn green">查询</button>
-                            <button type="button" class="btn default" id="reset">重置</button>
-                            <a href="${adminPath}/system/user/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加用户 </a>
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>查询
+                            </button>
+                            <a href="${adminPath}/system/user/edit" class="btn blue" id="menu-add">
+                                <i class="fa fa-plus"></i> 添加
+                            </a>
                     </div>
                 </div>
             </form:form>
@@ -120,10 +127,6 @@
         }
 
         var bindOperation = function(){
-            $("#reset").click(function(){
-                $("#searchForm .input-group input").val("");
-                $("#searchForm .input-group select").val("");
-            });
             $(".del").click(function(){
                 var id = $(this).attr("data-id");
                 window.swal({

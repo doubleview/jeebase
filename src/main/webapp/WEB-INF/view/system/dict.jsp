@@ -41,8 +41,9 @@
 
                     <div class="form-actions col-md-3 pull-right">
                         <div class="row">
-                                <button type="submit" class="btn green">查询</button>
-                                <button type="button" class="btn default" id="reset">重置</button>
+                                <button type="submit" class="btn green">
+                                    <i class="fa fa-search"></i>查询
+                                </button>
                                 <a href="${adminPath}/system/dict/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加字典 </a>
                         </div>
                     </div>

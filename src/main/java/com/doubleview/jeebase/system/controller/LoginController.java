@@ -4,9 +4,11 @@ import com.doubleview.jeebase.support.base.BaseController;
 import com.doubleview.jeebase.support.config.Constant;
 import com.doubleview.jeebase.support.render.Render;
 import com.doubleview.jeebase.system.model.User;
+import com.doubleview.jeebase.system.service.UserService;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import org.apache.shiro.session.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/${adminPath}")
 @Controller
 public class LoginController extends BaseController{
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 请求登录页面
@@ -43,7 +48,7 @@ public class LoginController extends BaseController{
      * @return
      */
     @RequestMapping("/index")
-    public String mainIndex(Model model){
+    public String mainIndex(Model model , HttpServletRequest request){
         Session session = ShiroUtils.getSession();
         if(session == null){
             return "redirect:" + adminPath + "/index";
@@ -52,6 +57,7 @@ public class LoginController extends BaseController{
         logger.debug("login host : {}" , session.getHost());
         logger.debug("login timeout : {}" , session.getTimeout());
         User user = ShiroUtils.getCurrentUser();
+        userService.updateLoginInfo(user , request);
         model.addAttribute("currentUser" , user);
         model.addAttribute("productName" , Constant.getProductName());
         model.addAttribute("menuList" , SystemCacheUtils.getCurrentMenuList());

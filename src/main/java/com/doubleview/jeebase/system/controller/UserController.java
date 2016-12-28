@@ -5,6 +5,7 @@ import com.doubleview.jeebase.support.web.Page;
 import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.service.UserService;
+import com.doubleview.jeebase.system.utils.ShiroUtils;
 import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -24,10 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController extends BaseController{
 
-
     @Autowired
     private UserService userService;
-
 
     @RequestMapping(value = {"list" , ""})
     public String list(User user , HttpServletRequest request , Model model){
@@ -64,5 +63,15 @@ public class UserController extends BaseController{
             return fail(e.getMessage());
         }
         return  success("删除成功");
+    }
+
+    /**
+     * 个人信息
+     * @return
+     */
+    @RequestMapping("profile")
+    public String profile(Model model) {
+        model.addAttribute("user" , ShiroUtils.getCurrentUser());
+        return "system/user_profile";
     }
 }

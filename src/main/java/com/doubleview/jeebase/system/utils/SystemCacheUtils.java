@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +56,7 @@ public class SystemCacheUtils {
         if (CollectionUtils.isEmpty(menuList)) {
             menuList = menuService.getList(new Menu());
             if (CollectionUtils.isNotEmpty(menuList)) {
-                menuList = levelAndSortMenuList(menuList, Constant.rootParentId, false);
+                menuList = levelAndSortMenuList(menuList, Constant.rootId, false);
                 logger.debug("put menu list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, MENU_LIST, menuList);
             }
@@ -88,12 +89,12 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Area> getAreaList() {
-        logger.debug("try to get role list from system cache");
+        logger.debug("try to get area list from system cache");
         List<Area> areaList = (List<Area>) CacheUtils.get(SYSTEM_CACHE, AREA_LIST);
         if (CollectionUtils.isEmpty(areaList)) {
             areaList = areaService.getList(new Area());
             if(CollectionUtils.isNotEmpty(areaList)){
-                areaList = levelAndSortAreaList(areaList , Constant.rootParentId);
+                areaList = levelAndSortAreaList(areaList , Constant.rootId);
                 logger.debug("put area list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, AREA_LIST, areaList);
             }
@@ -107,18 +108,36 @@ public class SystemCacheUtils {
      * @return
      */
     public static List<Department> getDepartmentList() {
-        logger.debug("try to get role list from system cache");
+        logger.debug("try to get dept list from system cache");
         List<Department> departmentList = (List<Department>) CacheUtils.get(SYSTEM_CACHE, DEPARTMENT_LIST);
         if (CollectionUtils.isEmpty(departmentList)) {
             departmentList = departmentService.getList(new Department());
             if (CollectionUtils.isNotEmpty(departmentList)) {
-                departmentList = levelAndSortDeptList(departmentList, Constant.rootParentId, false);
+                departmentList =  levelAndSortDeptList(departmentList, Constant.rootId, false);
                 logger.debug("put department list into system cache");
                 CacheUtils.put(SYSTEM_CACHE, DEPARTMENT_LIST, departmentList);
             }
         }
         return departmentList;
     }
+
+    public static List<String> getsubDeptIds(String parentDeptId , List<Department> parentList) {
+        if (CollectionUtils.isEmpty(parentList) || StringUtils.isBlank(parentDeptId)) {
+            return Lists.newArrayList();
+        }
+        List<String> parentIds = Lists.newArrayList();
+        for (Department department : parentList) {
+            if(department.getParent().getId().equals(parentDeptId)){
+                parentIds.add(department.getId());
+                parentIds.addAll(getsubDeptIds(department.getId() , department.getSubDeptList()));
+            }else {
+                parentIds.addAll(getsubDeptIds(parentDeptId , department.getSubDeptList()));
+            }
+        }
+        return parentIds;
+    }
+
+
 
     /**
      * 获取字典的label

@@ -129,7 +129,13 @@ public class MenuController extends BaseController {
         Menu menu = null;
         if (parentId != null) {
             menu = new Menu();
-            menu.setParent(menuService.get(parentId));
+            if(parentId.equals(Constant.rootId)){
+                Menu parent = new Menu("0");
+                parent.setName("顶级菜单");
+                menu.setParent(parent);
+            }else {
+                menu.setParent(menuService.get(parentId));
+            }
         } else {
             menu = menuService.get(id);
         }

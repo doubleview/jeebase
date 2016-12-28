@@ -7313,6 +7313,10 @@ Form Layouts
     padding: 5px;
 }
 
+.help-inline-error {
+    color:red;
+}
+
 .form-inline input {
     margin-bottom: 0px !important;
 }
