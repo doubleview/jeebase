@@ -69,7 +69,7 @@
                                 </td>
                                 <td>${subArea.name}</td>
                                 <td>${subArea.code}</td>
-                                <td>${subArea.type}</td>
+                                <td>${sys:getDictLabel(subArea.type, 'AREA_TYPE', '---')}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -115,13 +115,13 @@
             $("#area-add").click(function () {
                 var $checked = $(".checkboxes:checked");
                 if ($checked.size() > 1) {
-                    window.parent.swal("只能选中一条添加");
-                    return;
-                } else if ($checked.size() == 0) {
                     window.parent.swal("请选中一条进行添加");
                     return;
                 }
                 var areaId = $(".checkboxes:checked").val();
+                if(areaId == null) {
+                    areaId = 0;
+                }
                 location.href = "${adminPath}/system/area/edit?parentId=" + areaId;
             });
 

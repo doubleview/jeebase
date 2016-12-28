@@ -63,6 +63,17 @@
 		ORDER BY m.sort , m.create_time
 	</select>
 
+	<!--根据角色id获取所有菜单-->
+	<select id="getListByRoleId" resultType="Menu">
+		SELECT DISTINCT
+		<include refid="menuColumns"/>
+		<include refid="menuJoins"/>
+		JOIN sys_role_menu rm ON rm.menu_id = m.id
+		AND rm.role_id = #{roleId}
+		WHERE m.del_status = "0"
+		ORDER BY m.sort , m.create_time
+	</select>
+
 	<!--根据父级菜单id获取菜单-->
 	<select id="getByParentId" resultType="Menu">
 		SELECT DISTINCT

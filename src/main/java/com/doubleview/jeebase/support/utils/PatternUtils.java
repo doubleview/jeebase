@@ -275,7 +275,6 @@ public class PatternUtils {
      * pattern			(.*?})年(.*?)月
      * template：	$1-$2
      * return 			2013-5
-     *
      * @param regex    匹配正则字符串
      * @param content  被匹配的内容
      * @param template 生成内容模板，变量 $1 表示group1的内容，以此类推

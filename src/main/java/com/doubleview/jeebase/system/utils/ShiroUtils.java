@@ -6,6 +6,7 @@ import com.doubleview.jeebase.system.model.User;
 import com.sun.scenario.effect.impl.sw.java.JSWBlend_EXCLUSIONPeer;
 import org.apache.poi.ss.formula.functions.T;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -135,6 +136,19 @@ public class ShiroUtils {
         byte[] salt = generateSalt(SALT_SIZE);
         byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
         return EncodeUtils.encodeHex(salt)+ EncodeUtils.encodeHex(hashPassword);
+    }
+
+    /**
+     * 根据指定的saltString，并经过1024次sha-1 hash
+     * @param plainPassword
+     * @param saltString
+     * @return
+     */
+    public static String entryptPassword(String plainPassword, String saltString) {
+        String plain = EncodeUtils.unescapeHtml(plainPassword);
+        byte[] salt = EncodeUtils.decodeHex(saltString);
+        byte[] hashPassword = DigestUtils.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
+        return EncodeUtils.encodeHex(salt) + EncodeUtils.encodeHex(hashPassword);
     }
 
     /**

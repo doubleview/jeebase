@@ -20,9 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * 地区控制器
+ * 区域控制器
  */
 @RequestMapping("${adminPath}/system/area")
 @Controller
@@ -65,7 +66,10 @@ public class AreaController extends BaseController {
     public String show(String parentId, Model model) {
         Validate.notBlank(parentId);
         List<Area> subAreaList = Lists.newArrayList();
-        subAreaList.add(areaService.get(parentId));
+        Area parent = areaService.get(parentId);
+        if (!Objects.isNull(parent)) {
+            subAreaList.add(parent);
+        }
         subAreaList.addAll(areaService.getByParentId(parentId));
         model.addAttribute("subAreaList", subAreaList);
         return "system/area_show";
@@ -131,6 +135,11 @@ public class AreaController extends BaseController {
         Area area = null;
         if (parentId != null) {
             area = new Area();
+            if (parentId.equals(Constant.rootId)) {
+                Area parent = new Area("0");
+                parent.setName("顶级区域");
+                area.setParent(parent);
+            }
             area.setParent(areaService.get(parentId));
         } else {
             area = areaService.get(id);

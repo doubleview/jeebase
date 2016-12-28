@@ -16,10 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 菜单控制器
@@ -63,7 +65,10 @@ public class MenuController extends BaseController {
     public String show(String parentId , Model model){
         Validate.notBlank(parentId);
         List<Menu> subMenuList = Lists.newArrayList();
-        subMenuList.add(menuService.get(parentId));
+        Menu parent = menuService.get(parentId);
+        if (!Objects.isNull(parent)) {
+            subMenuList.add(menuService.get(parent));
+        }
         subMenuList.addAll(menuService.getByParentId(parentId));
         model.addAttribute("subMenuList" , subMenuList);
         return "system/menu_show";
@@ -129,7 +134,13 @@ public class MenuController extends BaseController {
         Menu menu = null;
         if (parentId != null) {
             menu = new Menu();
-            menu.setParent(menuService.get(parentId));
+            if(parentId.equals(Constant.rootId)){
+                Menu parent = new Menu("0");
+                parent.setName("顶级菜单");
+                menu.setParent(parent);
+            }else {
+                menu.setParent(menuService.get(parentId));
+            }
         } else {
             menu = menuService.get(id);
         }

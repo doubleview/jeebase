@@ -1,6 +1,5 @@
 package com.doubleview.jeebase.support.utils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 

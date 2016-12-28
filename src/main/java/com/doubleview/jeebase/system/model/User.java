@@ -1,7 +1,9 @@
 package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.support.base.BaseModel;
+import com.doubleview.jeebase.support.config.Constant;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -41,14 +43,17 @@ public class User extends BaseModel<User> {
 
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
-    /*-----------------**/
+    /*----------------------**/
     private String oldLoginName;// 原登录名
     private String newPassword;    // 新密码
+    private String confirmNewPassword;//确认新密码
 
-    private List<String> roleIdList = Lists.newArrayList();//roleId
+    private List<String> roleIdList = Lists.newArrayList();//角色id
 
     private Role role;//根据角色信息查询用户
     private List<String> departmentIds;//根据部门id查询用户信息
+
+    public static User rootUser = new User(Constant.rootId);
 
     public User(){
         super();
@@ -143,7 +148,11 @@ public class User extends BaseModel<User> {
     }
 
     public void setLoginFlag(String loginFlag) {
-        this.loginFlag = loginFlag;
+        if (StringUtils.isBlank(loginFlag)) {
+            this.loginFlag = Constant.NO;
+        }else {
+            this.loginFlag = loginFlag;
+        }
     }
 
     public String getOldLoginName() {
@@ -160,6 +169,14 @@ public class User extends BaseModel<User> {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getConfirmNewPassword() {
+        return confirmNewPassword;
+    }
+
+    public void setConfirmNewPassword(String confirmNewPassword) {
+        this.confirmNewPassword = confirmNewPassword;
     }
 
     public String getOldLoginIp() {

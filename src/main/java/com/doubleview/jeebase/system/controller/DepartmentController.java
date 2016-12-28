@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 部门控制器
@@ -66,7 +67,10 @@ public class DepartmentController extends BaseController {
     public String show(String parentId, Model model) {
         Validate.notBlank(parentId);
         List<Department> subDeptList = Lists.newArrayList();
-        subDeptList.add(departmentService.get(parentId));
+        Department parent = departmentService.get(parentId);
+        if (!Objects.isNull(parent)) {
+            subDeptList.add(parent);
+        }
         subDeptList.addAll(departmentService.getByParentId(parentId));
         model.addAttribute("subDeptList", subDeptList);
         return "system/dept_show";
@@ -132,7 +136,13 @@ public class DepartmentController extends BaseController {
         Department department = null;
         if (parentId != null) {
             department = new Department();
-            department.setParent(departmentService.get(parentId));
+            if (parentId.equals(Constant.rootId)) {
+                Department parent = new Department("0");
+                parent.setName("顶级部门");
+                department.setParent(parent);
+            }else {
+                department.setParent(departmentService.get(parentId));
+            }
         } else {
             department = departmentService.get(id);
         }

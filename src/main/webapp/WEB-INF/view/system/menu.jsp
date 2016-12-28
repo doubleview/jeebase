@@ -59,7 +59,6 @@
         var loadMenuTree = function(){
             $.getJSON("${adminPath}/system/menu/tree-data",function(result){
                 if(result.code == "0"){
-                    console.log("success");
                     $("#menu-tree").jstree({
                         "core": {
                             "themes": {

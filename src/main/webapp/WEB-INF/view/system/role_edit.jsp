@@ -12,10 +12,13 @@
     <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="${staticPath}/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
+    <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.method.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -33,18 +36,18 @@
                     <form:hidden path="id"/>
                     <div class="form-body">
                         <div class="alert alert-danger display-hide alert-dismissible" role="alert">
-                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-                                请保证表单信息填写正确
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            请保证表单信息填写正确
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3" style="text-align: right; padding-top:7px">角色类型
                                 <span class="required">*</span>
                             </label>
-                            <div class="col-md-4">
-                                <div class="input-icon right">
+                            <div class="col-md-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:select  path="roleType" cssClass="select2 form-control">
+                                    <form:select  path="roleType" cssClass="select2 form-control required">
                                         <form:options  items="${sys:getDictList('ROLE_TYPE')}" itemLabel="label" itemValue="value"/>
                                     </form:select>
                                 </div>
@@ -55,20 +58,20 @@
                             <label class="control-label col-md-3" style="text-align: right; padding-top:7px">名称
                                 <span class="required">* </span>
                             </label>
-                            <div class="col-md-4">
-                                <div class="input-icon right">
+                            <div class="col-md-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="name" cssClass="form-control" />
+                                    <form:input path="name" cssClass="form-control required" maxlength="50" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3" style="text-align: right; padding-top:7px">是否可用
-                                <span class="required">*</span>
+                                <span class="required"></span>
                             </label>
-                            <div class="col-md-4">
-                                <div class="input-icon right">
+                            <div class="col-md-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:checkbox path="useable"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
                                 </div>
@@ -76,11 +79,21 @@
                         </div>
 
                         <div class="form-group  margin-top-20">
+                            <label class="control-label col-md-3" style="text-align: right; padding-top:7px">权限
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9">
+                                <div id="menu-tree"></div>
+                                <input type="hidden" name="menuIds" id="menuIds" value="${role.menuStrings}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group  margin-top-20">
                             <label class="control-label col-md-3" style="text-align: right; padding-top:7px">备注
                                 <span class="required"> </span>
                             </label>
-                            <div class="col-md-4">
-                                <div class="input-icon right">
+                            <div class="col-md-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:textarea path="remarks" cssClass="form-control" />
                                 </div>
@@ -103,7 +116,6 @@
         </div>
     </div>
 </div>
-
 <script>
 
     var FormValidation = function () {
@@ -114,17 +126,9 @@
 
             roleForm.validate({
                 errorElement: 'span',
-                errorClass: 'help-block help-block-error',
+                errorClass: 'help-inline help-inline-error',
                 focusInvalid: false,
                 ignore: "",
-                rules: {
-                    roleType: {
-                        required: true
-                    },
-                    name: {
-                        required: true,
-                    }
-                },
 
                 invalidHandler: function (event, validator) {
                     error.show();
@@ -132,24 +136,30 @@
 
                 errorPlacement: function (error, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.addClass("fa-warning");
+                    if (element.is(":checkbox")||element.is(":radio")){
+                        error.insertAfter(element.parent(".input-inline"));
+                        element.removeClass("help-inline").addClass("help-block");
+                    }else {
+                        error.appendTo(element.parent().parent());
+                    }
                 },
 
                 highlight: function (element) {
-                    $(element).closest('.form-group').removeClass("has-success").addClass('has-error');
+                    $(element).closest('.form-group').addClass('has-error');
                 },
 
                 success: function (label, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-                    icon.removeClass("fa-warning").addClass("fa-check");
+                    $(element).closest('.form-group').removeClass('has-error');
+                    icon.removeClass("fa-warning")
                 },
 
                 submitHandler: function (form) {
+                    getMenuIds();
                     form.submit();
                 }
             });
-
         }
 
         var bindSelect = function(){
@@ -159,10 +169,57 @@
             });
         }
 
+        var menuSelect = function(){
+            $.getJSON("${adminPath}/system/menu/tree-data",function(result){
+                if(result.code == "0"){
+                    $("#menu-tree").jstree({
+                        "core": {
+                            "themes": {
+                                "responsive": false
+                            },
+                            "data": result.data
+                        },
+                        "plugins": ["checkbox", "types"],
+                    }).on('loaded.jstree', function(e, data){
+                        var inst = data.instance;
+                        var menuIds = $('#menuIds').val();
+                        var array = menuIds.split(",");
+                        for(var i=0;i<array.length;i++){
+                            var obj = inst.get_node(array[i]);
+                            if(inst.is_leaf(obj)){
+                                inst.select_node(obj);
+                            }
+                        }
+                    })
+                }
+            });
+        }
+
+        //获取所有选中的node的id
+        var  getMenuIds = function(){
+            var tree = $("#menu-tree");
+            var menuIds = tree.jstree("get_checked");
+            var paths = menuIds.map(function (id) { return tree.jstree("get_path", id , false , true); });
+            console.log(paths);
+            var selected = [];
+            var uniq = {};
+            paths.forEach(function (path) {
+                path.forEach(function (id) {
+                    if (!uniq[id]) {
+                        uniq[id] = true;
+                        selected.push(id);
+                    }
+                });
+            });
+            console.log(selected.join(","));
+            $('#menuIds').val(selected.join(","));
+        }
+
         return {
             init: function () {
                 handleValidation();
                 bindSelect();
+                menuSelect();
             }
         }
     }();

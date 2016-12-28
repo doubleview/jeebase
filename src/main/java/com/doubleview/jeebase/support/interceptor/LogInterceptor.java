@@ -97,17 +97,22 @@ public class LogInterceptor implements HandlerInterceptor {
         }
         log.setParams(params.toString());
         //启动保存日志线程
-        new LogThread(log, handler, ex).start();
+        new Thread(new LogTask(log , ShiroUtils.getCurrentUser() , handler , ex)).start();
     }
 
-    private class LogThread extends Thread {
+    /**
+     * 保存日志任务
+     */
+    private class LogTask implements Runnable {
 
         private Log log;
+        private User currentUser;
         private Object handler;
         private Exception ex;
 
-        public LogThread(Log log, Object handler, Exception ex) {
+        public LogTask(Log log, User currentUser , Object handler, Exception ex) {
             this.log = log;
+            this.currentUser = currentUser;
             this.handler = handler;
             this.ex = ex;
         }
@@ -121,12 +126,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
             log.setTitle(controllerClassName + "-->" + methodName);
             log.setType(ex == null ? Log.ACCESS : Log.EXCEPTION);
-            User user = ShiroUtils.getCurrentUser();
-            if(user == null){
-                log.setCreateBy(new User("0"));
-            }else {
-                log.setCreateBy(user);
-            }
+            log.setCreateBy(currentUser == null ? User.rootUser : currentUser);
             if(ex != null){
                 log.setException(ex.getClass().getName() + ":" + ex.getMessage());
             }else {

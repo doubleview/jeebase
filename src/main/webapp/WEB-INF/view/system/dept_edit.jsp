@@ -10,9 +10,14 @@
     <meta content="" name="author"/>
     <%@ include file="/WEB-INF/view/global/head-lib.jsp"%>
     <link href="${staticPath}/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticPath}/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
     <script src="${staticPath}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.method.js" type="text/javascript"></script>
+    <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
+
+
 </head>
 <body>
 
@@ -30,16 +35,19 @@
                     <form:hidden path="id"/>
                     <form:hidden path="parent.id"/>
                     <div class="form-body">
-                        <div class="alert alert-danger display-hide">
-                            <button class="close" data-close="alert"></button>请保证表单信息填写正确</div>
+                        <div class="alert alert-danger display-hide alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            请保证表单信息填写正确
+                        </div>
+
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">名称
                                 <span class="required"> * </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="name" cssClass="form-control" />
+                                    <form:input path="name" cssClass="form-control required" />
                                 </div>
                             </div>
                         </div>
@@ -48,10 +56,10 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">编码
                                 <span class="required">* </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="code" cssClass="form-control" />
+                                    <form:input path="code" cssClass="form-control required" />
                                 </div>
                             </div>
                         </div>
@@ -60,8 +68,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">地址
                                 <span class="required">  </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="address" cssClass="form-control" />
                                 </div>
@@ -72,10 +80,10 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">上级部门
                                 <span class="required"> * </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="parent.name" cssClass="form-control"  disabled="true"/>
+                                    <form:input path="parent.name" cssClass="form-control required"  disabled="true"/>
                                  </div>
                             </div>
                         </div>
@@ -84,8 +92,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮政编码
                                 <span class="required"></span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="zipCode" cssClass="form-control"  />
                                 </div>
@@ -96,8 +104,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">电话
                                 <span class="required"></span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="phone" cssClass="form-control"  />
                                 </div>
@@ -108,21 +116,22 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">传真
                                 <span class="required"></span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="fax" cssClass="form-control"  />
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group  margin-top-20">
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">邮箱
-                                <span class="required"> </span>
+                                <span class="required">*</span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="email" cssClass="form-control"  />
+                                    <form:input path="email" cssClass="form-control required email"  />
                                 </div>
                             </div>
                         </div>
@@ -131,10 +140,13 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">所属区域
                                 <span class="required">  </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
-                                    <i class="fa"></i>
-                                    <form:input path="area.name" cssClass="form-control"  />
+                            <div class="col-xs-9">
+                                <div class="input-inline input-medium">
+                                    <div class="input-group">
+                                        <systag:tree name="area.id" value="${dept.area.id}"
+                                                     labelName="area.name" labelValue="${dept.area.name}"
+                                                     title="选择区域" url="${adminPath}/system/area/tree-data"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,8 +155,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">负责人
                                 <span class="required">  </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="master.name" cssClass="form-control"  />
                                 </div>
@@ -155,10 +167,10 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">排序
                                 <span class="required"> * </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:input path="sort" cssClass="form-control"  />
+                                    <form:input path="sort" cssClass="form-control required"  />
                                 </div>
                             </div>
                         </div>
@@ -167,8 +179,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">是否可用
                                 <span class="required"></span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                 <form:checkbox path="useable"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
                             </div>
@@ -178,8 +190,8 @@
                             <label class="control-label col-xs-3" style="text-align: right; padding-top:7px">备注
                                 <span class="required"> </span>
                             </label>
-                            <div class="col-xs-4">
-                                <div class="input-icon right">
+                            <div class="col-xs-9">
+                                <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:textarea path="remarks" cssClass="form-control" />
                                 </div>
@@ -210,23 +222,9 @@
 
             deptForm.validate({
                 errorElement: 'span',
-                errorClass: 'help-block help-block-error',
+                errorClass: 'help-inline help-inline-error',
                 focusInvalid: false,
                 ignore: "",
-                rules: {
-                    name: {
-                        minlength: 2,
-                        required: true
-                    },
-                    sort:{
-                        required: true,
-                        number: true,
-                        min : 0
-                    },
-                    code:{
-                        required:true
-                    }
-                },
 
                 invalidHandler: function (event, validator) {
                     error.show();
@@ -234,17 +232,23 @@
 
                 errorPlacement: function (error, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    icon.removeClass('fa-check').addClass("fa-warning");
+                    icon.addClass("fa-warning");
+                    if (element.is(":checkbox")||element.is(":radio")){
+                        error.insertAfter(element.parent(".input-inline"));
+                        element.removeClass("help-inline").addClass("help-block");
+                    }else {
+                        error.appendTo(element.parent().parent());
+                    }
                 },
 
                 highlight: function (element) {
-                    $(element).closest('.form-group').removeClass("has-success").addClass('has-error');
+                    $(element).closest('.form-group').addClass('has-error');
                 },
 
                 success: function (label, element) {
                     var icon = $(element).parent('.input-icon').children('i');
-                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-                    icon.removeClass("fa-warning").addClass("fa-check");
+                    $(element).closest('.form-group').removeClass('has-error');
+                    icon.removeClass("fa-warning")
                 },
 
                 submitHandler: function (form) {

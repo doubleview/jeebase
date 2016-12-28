@@ -38,7 +38,8 @@
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
                             ${message}
-                    </div>                </c:if>
+                    </div>
+                </c:if>
                 <div class="table-scrollable">
                     <table class="table table-bordered table-striped table-condensed table-hover table-checkable" id="menu-table">
                         <thead>
@@ -137,13 +138,13 @@
             $("#menu-add").click(function () {
                 var $checked = $(".checkboxes:checked");
                 if($checked.size() > 1){
-                    window.parent.swal("只能选中一条添加子菜单");
-                    return;
-                }else if($checked.size() == 0){
                     window.parent.swal("请选中一条添加子菜单");
                     return;
                 }
                 var menuId = $(".checkboxes:checked").val();
+                if(menuId == null){
+                    menuId = 0;
+                }
                 location.href = "${adminPath}/system/menu/edit?parentId=" + menuId;
             });
 

@@ -13,8 +13,6 @@ public class DigestUtils {
     private static final String SHA1 = "SHA-1";
     private static final String MD5 = "MD5";
 
-
-
     /**
      * 对输入字符串进行md5散列.
      */

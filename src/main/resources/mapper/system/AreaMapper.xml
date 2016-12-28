@@ -102,7 +102,6 @@
 	<update id="update">
 		UPDATE sys_area SET
 		parent_id = #{parent.id},
-		parent_ids = #{parentIds},
 		code = #{code},
 		name = #{name},
 		sort = #{sort},

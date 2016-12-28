@@ -59,7 +59,6 @@
         var loadAreaTree = function(){
             $.getJSON("${adminPath}/system/area/tree-data",function(result){
                 if(result.code == "0"){
-                    console.log("success");
                     $("#area-tree").jstree({
                         "core": {
                             "themes": {

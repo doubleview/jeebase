@@ -66,10 +66,6 @@ public class Constant {
      * 树形结构跟级id
      */
     public static final String rootId = "0";
-    /**
-     * 树形结构父级id
-     */
-    public static final String rootParentId = "-1";
 
     public static final String defaultCharset = "UTF-8";//默认编码
 
@@ -126,22 +122,22 @@ public class Constant {
         return getConfig("urlSuffix");
     }
 
-    public Integer getInt(String key) {
+    public static Integer getInt(String key) {
         return getInt(key, null);
     }
 
-    public Integer getInt(String key, Integer defaultValue) {
+    public static  Integer getInt(String key, Integer defaultValue) {
         String value = getConfig(key);
         if (value != null)
             return Integer.parseInt(value.trim());
         return defaultValue;
     }
 
-    public Long getLong(String key) {
+    public static Long getLong(String key) {
         return getLong(key, null);
     }
 
-    public Long getLong(String key, Long defaultValue) {
+    public static Long getLong(String key, Long defaultValue) {
         String value = getConfig(key);
         if (value != null)
             return Long.parseLong(value.trim());
@@ -149,12 +145,12 @@ public class Constant {
     }
 
 
-    public Boolean getBoolean(String key) {
+    public static Boolean getBoolean(String key) {
         return getBoolean(key, null);
     }
 
 
-    public Boolean getBoolean(String key, Boolean defaultValue) {
+    public static Boolean getBoolean(String key, Boolean defaultValue) {
         String value = getConfig(key);
         if (value != null) {
             value = value.toLowerCase().trim();
@@ -166,11 +162,6 @@ public class Constant {
                     + value);
         }
         return defaultValue;
-    }
-
-
-    public static void main(String[] args){
-        System.out.println(Constant.getAdminPath());
     }
 
 }

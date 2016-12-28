@@ -3,6 +3,7 @@ package com.doubleview.jeebase.system.model;
 import com.doubleview.jeebase.support.base.BaseModel;
 import com.doubleview.jeebase.support.config.Constant;
 import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -26,6 +27,10 @@ public class Role extends BaseModel<Role>{
     private static String ADMIN = "admin";
 
     private static  String ASSIGN = "assign";
+
+    //--------------------------------------------
+
+    private List<String> menuIds = Lists.newArrayList();
 
     private  User user;//根据user查询角色
 
@@ -76,10 +81,26 @@ public class Role extends BaseModel<Role>{
     }
 
     public void setUseable(String useable) {
-        if(StringUtils.isBlank(useable)){
+        if(useable == null){
             this.useable = Constant.NO;
         }else {
             this.useable = useable;
         }
+    }
+
+    public List<String> getMenuIds() {
+        return menuIds;
+    }
+
+    public void setMenuIds(List<String> menuIds) {
+        this.menuIds = menuIds;
+    }
+
+    public String getMenuStrings(){
+        List<String> menuIds = Lists.newArrayList();
+        for (Menu menu : getMenuList()) {
+            menuIds.add(menu.getId());
+        }
+        return StringUtils.join(menuIds, ",");
     }
 }

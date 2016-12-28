@@ -12,6 +12,7 @@
 		u.skin AS "skin",
 		u.phone AS "phone",
 		u.mobile AS "mobile",
+		u.photo AS "photo",
 		u.login_ip AS "loginIp",
 		u.login_date AS "loginDate",
 		u.login_flag AS "loginFlag",
@@ -77,7 +78,7 @@
 			<if test="departmentIds != null">
 				AND d.id IN
 				<foreach collection="departmentIds" item="departmentId" open="(" close=")" separator=",">
-					departmentId
+					#{departmentId}
 				</foreach>
 			</if>
 			<if test="loginName != null and loginName != ''">
@@ -112,14 +113,14 @@
 		skin,
 		phone,
 		mobile,
-		photo,
 		login_flag,
 		remarks,
 		create_by,
 		create_time,
 		update_by,
 		update_time,
-		del_status
+		del_status,
+		department_id
 		) VALUES (
 		#{id},
 		#{loginName},
@@ -129,14 +130,14 @@
 		#{skin},
 		#{phone},
 		#{mobile},
-		#{photo},
 		#{loginFlag},
 		#{remarks},
 		#{createBy.id},
 		#{createTime},
 		#{updateBy.id},
 		#{updateTime},
-		#{delStatus}
+		#{delStatus},
+		#{department.id}
 		)
 	</insert>
 
@@ -144,18 +145,22 @@
 	<update id="update">
 		UPDATE sys_user SET
 		login_name = #{loginName},
-		password = #{password},
+		<set>
+			<if test="password !=null and password!= '' ">
+				password = #{password},
+			</if>
+		</set>
 		name = #{name},
 		email = #{email},
 		skin = #{skin},
 		phone = #{phone},
 		mobile = #{mobile},
-		photo = #{photo},
 		login_flag = #{loginFlag},
 		remarks = #{remarks},
 		update_by = #{updateBy.id},
 		update_time = #{updateTime},
 		del_status = #{delStatus},
+		department_id = #{department.id}
 		WHERE id = #{id}
 	</update>
 
@@ -171,6 +176,13 @@
 		UPDATE sys_user SET
 		login_ip = #{loginIp},
 		login_Date = #{loginDate}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更新用户头像-->
+	<update id="updatePhoto">
+		UPDATE sys_user SET
+		photo = #{photo}
 		WHERE id = #{id}
 	</update>
 
@@ -212,7 +224,7 @@
 		role_id
 		)VALUES
 		<foreach collection="list" item="userRole" separator=",">
-			(#{userId} , #{roleId})
+			(#{userRole.userId} , #{userRole.roleId})
 		</foreach>
 	</insert>
 </mapper>

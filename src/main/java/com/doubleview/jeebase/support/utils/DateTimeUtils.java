@@ -20,6 +20,16 @@ public class DateTimeUtils extends DateUtils {
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
             "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
+
+    /**
+     * 得到当前日期的格式字符串
+     * @param pattern
+     * @return
+     */
+    public static String format(Object pattern) {
+        return format(new Date(), pattern);
+    }
+
     /**
      * 得到日期格式字符串
      * @param date 日期
@@ -48,7 +58,7 @@ public class DateTimeUtils extends DateUtils {
      * 得到日期字符串 格式（yyyy-MM-dd）
      */
     public static String formatDate(Date date) {
-        String formatDate = DateFormatUtils.format(date, "yyyy-MM-dd");
+        String formatDate = format(date, "yyyy-MM-dd");
         return formatDate;
     }
 
@@ -78,14 +88,7 @@ public class DateTimeUtils extends DateUtils {
      * 得到当前日期字符串 格式（yyyy-MM-dd）
      */
     public static String getDate() {
-        return getDate("yyyy-MM-dd");
-    }
-
-    /**
-     * 得到当前日期字符串 格式（yyyy-MM-dd） pattern可以为："yyyy-MM-dd" "HH:mm:ss" "E"
-     */
-    public static String getDate(String pattern) {
-        return DateFormatUtils.format(new Date(), pattern);
+        return format(new Date(), "yyyy-MM-dd");
     }
 
     /**
@@ -180,8 +183,6 @@ public class DateTimeUtils extends DateUtils {
         return t / (60 * 1000);
     }
 
-
-
     /**
      * 获取两个日期之间的天数
      *
@@ -193,17 +194,6 @@ public class DateTimeUtils extends DateUtils {
         long beforeTime = before.getTime();
         long afterTime = after.getTime();
         return (afterTime - beforeTime) / (1000 * 60 * 60 * 24);
-    }
-
-    /**
-     * @param args
-     * @throws ParseException
-     */
-    public static void main(String[] args) throws ParseException {
-        System.out.println(formatDate(parseDate("2010/3/6")));
-        System.out.println(getDate("yyyy年MM月dd日 E"));
-        long time = new Date().getTime() - parseDate("2012-11-19").getTime();
-        System.out.println(time / (24 * 60 * 60 * 1000));
     }
 
 }

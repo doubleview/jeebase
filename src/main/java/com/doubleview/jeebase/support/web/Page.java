@@ -89,26 +89,20 @@ public class Page<T> {
      * 初始化参数
      */
     public void initialize(){
-
         //设置首页和尾页
         this.first = 1;
-
         this.last = (int)(totalSize / (this.pageSize < 1 ? 20 : this.pageSize));
-
         if (this.totalSize % this.pageSize != 0 || this.last == 0) {
             this.last++;
         }
-
         if (this.last < this.first) {
             this.last = this.first;
         }
-
         //设置当前页
         if (this.pageNo <= 1) {
             this.pageNo = this.first;
             this.firstPage=true;
         }
-
         if (this.pageNo >= this.last) {
             this.pageNo = this.last;
             this.lastPage=true;

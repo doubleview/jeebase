@@ -28,6 +28,13 @@ public interface MenuDao extends BaseDao<Menu> {
 
 
     /**
+     * 根据角色id获取菜单
+     * @param roleId
+     * @return
+     */
+    List<Menu> getListByRoleId(String roleId);
+
+    /**
      * 更新排序
      * @param menu
      * @return

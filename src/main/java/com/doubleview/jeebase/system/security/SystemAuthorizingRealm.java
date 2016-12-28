@@ -60,10 +60,10 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
             throw new AuthenticationException("error:验证码有误, 请重试.");
         }
 
-        User user = userService.getUserByLoginName(systemToken.getUsername());
+        User user = userService.getByLoginName(systemToken.getUsername());
         if (user != null) {
-            if (user.getLoginFlag().equals(Constant.NO))
-                throw new AuthenticationException("error:您被禁止登录");
+            if (user.getLoginFlag().equals(Constant.NO))throw new AuthenticationException("error:您被禁止登录");
+
             String salt = user.getPassword().substring(0, ShiroUtils.SALT_SIZE*2);
             ByteSource saltSource = ByteSource.Util.bytes(EncodeUtils.decodeHex(salt));
             return new SimpleAuthenticationInfo(user, user.getPassword().substring(16),saltSource, this.getName());

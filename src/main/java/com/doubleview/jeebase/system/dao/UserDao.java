@@ -48,6 +48,12 @@ public interface UserDao extends BaseDao<User>{
      */
      int updatePassword(User user);
 
+    /**
+     * 更改用户头像
+     * @param user
+     * @return
+     */
+    int updatePhoto(User user);
 
     /**
      * 删除用户角色关联数据
