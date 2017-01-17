@@ -73,7 +73,7 @@
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
-                                    <form:checkbox path="useable"  value="1"  cssClass="make-switch form-control"  data-size="small"/>
+                                    <form:checkbox path="useable"  value="1"  cssClass="make-switch form-control required"  data-size="small"/>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +123,7 @@
         var handleValidation = function () {
             var roleForm = $('#role-form');
             var error = $('.alert-danger', roleForm);
+
 
             roleForm.validate({
                 errorElement: 'span',

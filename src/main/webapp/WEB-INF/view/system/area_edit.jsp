@@ -57,6 +57,7 @@
                             </label>
                             <div class="col-xs-9">
                                 <div class="input-icon input-inline input-medium right">
+<<<<<<< HEAD
                                     <i class="fa"></i>
                                     <form:input path="code" cssClass="form-control required" />
                                 </div>
@@ -71,6 +72,10 @@
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
                                     <form:input path="parent.name" cssClass="form-control required" disabled="true"/>
+=======
+                                    <i class="fa"></i>
+                                    <form:input path="code" cssClass="form-control required" />
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                                 </div>
                             </div>
                         </div>
@@ -82,10 +87,14 @@
                             <div class="col-xs-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
+<<<<<<< HEAD
                                     <form:select  path="type" cssClass="select2 form-control required">
                                         <form:option value="" label="请选择"/>
                                         <form:options  items="${sys:getDictList('AREA_TYPE')}" itemLabel="label" itemValue="value"/>
                                     </form:select>
+=======
+                                    <form:input path="type" cssClass="form-contro requiredl" />
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                                 </div>
                             </div>
                         </div>

@@ -12,6 +12,7 @@ import com.doubleview.jeebase.system.utils.SystemCacheUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,11 @@ public class UserService extends BaseService<UserDao , User>{
     /**
      * 根据登录名获取用户
      * @param id 登录名
+<<<<<<< HEAD
      * @return 用户
+=======
+     * @return
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
      */
     public User get(String id) {
         User user =  super.get(id);
@@ -52,6 +57,19 @@ public class UserService extends BaseService<UserDao , User>{
         return user;
     }
 
+<<<<<<< HEAD
+=======
+    public Page<User> getPage(Page<User> page, User user) {
+        if (user.getDepartment() != null && StringUtils.isNotBlank(user.getDepartment().getId())) {
+            List<String> subDeptIds = SystemCacheUtils.getsubDeptIds(user.getDepartment().getId() ,
+                    SystemCacheUtils.getDepartmentList());
+            subDeptIds.add(user.getDepartment().getId());
+            user.setDepartmentIds(subDeptIds);
+        }
+        return  super.getPage(page , user);
+    }
+
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
     /**
      * 注入角色信息
      * @param user

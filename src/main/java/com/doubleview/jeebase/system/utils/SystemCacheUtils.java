@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -119,6 +120,24 @@ public class SystemCacheUtils {
         }
         return departmentList;
     }
+
+    public static List<String> getsubDeptIds(String parentDeptId , List<Department> parentList) {
+        if (CollectionUtils.isEmpty(parentList) || StringUtils.isBlank(parentDeptId)) {
+            return Lists.newArrayList();
+        }
+        List<String> parentIds = Lists.newArrayList();
+        for (Department department : parentList) {
+            if(department.getParent().getId().equals(parentDeptId)){
+                parentIds.add(department.getId());
+                parentIds.addAll(getsubDeptIds(department.getId() , department.getSubDeptList()));
+            }else {
+                parentIds.addAll(getsubDeptIds(parentDeptId , department.getSubDeptList()));
+            }
+        }
+        return parentIds;
+    }
+
+
 
     /**
      * 获取所有所有部门id

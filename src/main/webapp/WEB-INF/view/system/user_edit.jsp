@@ -69,7 +69,11 @@
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
+<<<<<<< HEAD
                                     <form:password path="newPassword" cssClass="form-control" minlength="6" maxlength="20"/>
+=======
+                                    <form:input path="newPassword" cssClass="form-control" minlength="6" maxlength="20"/>
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                                 </div>
                             </div>
                         </div>
@@ -81,7 +85,11 @@
                             <div class="col-md-9">
                                 <div class="input-icon input-inline input-medium right">
                                     <i class="fa"></i>
+<<<<<<< HEAD
                                     <form:password path="confirmNewPassword" class="form-control"  minlength="6" maxlength="20" equalTo="#newPassword"/>
+=======
+                                    <form:input path="confirmNewPassword" class="form-control"  minlength="6" maxlength="20" equalTo="#newPassword"/>
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                                 </div>
                             </div>
                         </div>

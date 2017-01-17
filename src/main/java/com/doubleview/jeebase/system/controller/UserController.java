@@ -7,6 +7,10 @@ import com.doubleview.jeebase.support.web.ResponseResult;
 import com.doubleview.jeebase.system.model.User;
 import com.doubleview.jeebase.system.service.UserService;
 import com.doubleview.jeebase.system.utils.ShiroUtils;
+<<<<<<< HEAD
+=======
+import com.doubleview.jeebase.system.utils.SystemCacheUtils;
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,11 +76,16 @@ public class UserController extends BaseController{
      * 个人信息
      * @return
      */
+<<<<<<< HEAD
     @RequestMapping("user-profile")
+=======
+    @RequestMapping("profile")
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
     public String profile(Model model) {
         model.addAttribute("user" , ShiroUtils.getCurrentUser());
         return "system/user_profile";
     }
+<<<<<<< HEAD
 
     /**
      * 头像修改页面
@@ -144,4 +153,6 @@ public class UserController extends BaseController{
         userService.updatePhoto(user);
         return "system/user_profile_photo";
     }
+=======
+>>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
 }
