@@ -15,12 +15,7 @@
     <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
     <script src="${staticPath}/global/plugins/jquery-validation/js/jquery.validate.method.js" type="text/javascript"></script>
-<<<<<<< HEAD
     <script src="${staticPath}/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
-
-=======
->>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
-
 </head>
 <body>
 
@@ -144,18 +139,12 @@
                                 <span class="required">  </span>
                             </label>
                             <div class="col-xs-9">
-<<<<<<< HEAD
                                 <div class="input-inline input-medium">
                                     <div class="input-group">
                                         <systag:tree name="area.id" value="${dept.area.id}"
                                                      labelName="area.name" labelValue="${dept.area.name}"
                                                      title="选择区域" url="${adminPath}/system/area/tree-data"/>
                                     </div>
-=======
-                                <div class="input-icon input-inline input-medium right">
-                                    <i class="fa"></i>
-                                    <form:input path="area.name" cssClass="form-control"  />
->>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                                 </div>
                             </div>
                         </div>

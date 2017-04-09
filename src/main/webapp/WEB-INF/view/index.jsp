@@ -53,11 +53,7 @@
               <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
-<<<<<<< HEAD
               <li><a href="${adminPath}/system/user/user-profile" class="menu-item"><i class="icon-user"></i> 账户设置 </a></li>
-=======
-              <li><a href="${adminPath}/system/user/profile" class="menu-item"><i class="icon-user"></i> 我的主页 </a></li>
->>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
               <li><a href=""><i class="icon-calendar"></i> 我的日历 </a></li>
               <li>
                   <a href=""><i class="icon-envelope-open"></i> 我的收件箱

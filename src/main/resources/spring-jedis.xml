@@ -8,7 +8,7 @@
 	<description>jedis配置</description>
 
     <!-- 加载配置属性文件 -->
-	<context:property-placeholder ignore-unresolvable="true" location="classpath:common.properties" />
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:jeebase.properties" />
 
 	<!--jedis池配置-->
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">

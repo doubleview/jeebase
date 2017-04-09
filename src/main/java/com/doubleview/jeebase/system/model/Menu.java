@@ -2,7 +2,6 @@ package com.doubleview.jeebase.system.model;
 
 import com.doubleview.jeebase.support.base.TreeModel;
 import com.doubleview.jeebase.support.config.Constant;
-import com.drew.lang.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

@@ -44,11 +44,7 @@
                                 <button type="submit" class="btn green">
                                     <i class="fa fa-search"></i>查询
                                 </button>
-<<<<<<< HEAD
                                 <a href="${adminPath}/system/dict/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加 </a>
-=======
-                                <a href="${adminPath}/system/dict/edit" class="btn blue" id="menu-add"><i class="fa fa-plus"></i> 添加字典 </a>
->>>>>>> c8a5ea59c9c7f24d421849f4c7e1d51d18cad5f3
                         </div>
                     </div>
                 </form:form>

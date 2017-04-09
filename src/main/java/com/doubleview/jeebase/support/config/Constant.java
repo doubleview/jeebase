@@ -20,7 +20,7 @@ public class Constant {
 
     private static Properties props;
 
-    private static String defaultLoadProperties = "common.properties";//默认加载配置文件
+    private static String defaultLoadProperties = "jeebase.properties";//默认加载配置文件
 
     /**
      * 静态加载配置文件
@@ -32,7 +32,7 @@ public class Constant {
                 is = Thread.currentThread().getContextClassLoader().getResourceAsStream(defaultLoadProperties);
                 props.load(is);
             } catch (IOException ex) {
-                logger.warn("Could not load common.properties {}" , ex.getMessage());
+                logger.warn("Could not load jeebase.properties {}" , ex.getMessage());
             } finally {
                 IOUtils.closeQuietly(is);
             }
